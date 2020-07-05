@@ -1,23 +1,3 @@
-# finnhub-python
-- API documentation: https://finnhub.io/docs/api
-- API version: 1.0.0
-- Package version: 1.0.0
-
-## Installation
-
-```sh
-gem install finnhub_ruby
-```
-
-or in your Gemfile
-
-```ruby
-gem 'finnhub_ruby', '~> 1.0.0'
-```
-
-## Getting Started
-
-```ruby
 require 'finnhub_ruby'
 
 FinnhubRuby.configure do |config|
@@ -157,8 +137,3 @@ puts(finnhub_client.stock_tick_with_http_info('AAPL', '2020-03-25', 500, 0))
 
 # Technical Indicator
 puts(finnhub_client.technical_indicator("AAPL", 'D', 1583098857, 1584308457, 'rsi', {"timeperiod": 3}))
-```
-
-## License
-
-Apache License
