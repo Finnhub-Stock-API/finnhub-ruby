@@ -4,6 +4,7 @@
 - Package version: 1.0.0
 
 ## Installation
+https://rubygems.org/gems/finnhub_ruby
 
 ```sh
 gem install finnhub_ruby
