@@ -1,10 +1,10 @@
-# FinnhubRuby::ETFSectorExposure
+# FinnhubRuby::ETFCountryExposureData
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**industry** | **String** | Industry | [optional] 
+**country** | **String** | Country | [optional] 
 **exposure** | **String** | Percent of exposure. | [optional] 
 
 ## Code Sample
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ```ruby
 require 'FinnhubRuby'
 
-instance = FinnhubRuby::ETFSectorExposure.new(industry: null,
+instance = FinnhubRuby::ETFCountryExposureData.new(country: null,
                                  exposure: null)
 ```
 

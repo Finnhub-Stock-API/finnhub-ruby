@@ -38,7 +38,7 @@ describe 'ETFsCountryExposure' do
     end
   end
 
-  describe 'test attribute "holdings"' do
+  describe 'test attribute "country_exposure"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

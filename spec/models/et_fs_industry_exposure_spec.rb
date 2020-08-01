@@ -38,7 +38,7 @@ describe 'ETFsIndustryExposure' do
     end
   end
 
-  describe 'test attribute "holdings"' do
+  describe 'test attribute "sector_exposure"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

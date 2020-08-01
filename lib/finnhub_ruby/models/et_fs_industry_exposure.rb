@@ -18,13 +18,13 @@ module FinnhubRuby
     attr_accessor :symbol
 
     # Array of industries and exposure levels.
-    attr_accessor :holdings
+    attr_accessor :sector_exposure
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'symbol' => :'symbol',
-        :'holdings' => :'holdings'
+        :'sector_exposure' => :'sectorExposure'
       }
     end
 
@@ -32,7 +32,7 @@ module FinnhubRuby
     def self.openapi_types
       {
         :'symbol' => :'String',
-        :'holdings' => :'Array<Object>'
+        :'sector_exposure' => :'Array<Object>'
       }
     end
 
@@ -61,9 +61,9 @@ module FinnhubRuby
         self.symbol = attributes[:'symbol']
       end
 
-      if attributes.key?(:'holdings')
-        if (value = attributes[:'holdings']).is_a?(Array)
-          self.holdings = value
+      if attributes.key?(:'sector_exposure')
+        if (value = attributes[:'sector_exposure']).is_a?(Array)
+          self.sector_exposure = value
         end
       end
     end
@@ -87,7 +87,7 @@ module FinnhubRuby
       return true if self.equal?(o)
       self.class == o.class &&
           symbol == o.symbol &&
-          holdings == o.holdings
+          sector_exposure == o.sector_exposure
     end
 
     # @see the `==` method
@@ -99,7 +99,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, holdings].hash
+      [symbol, sector_exposure].hash
     end
 
     # Builds the object from hash

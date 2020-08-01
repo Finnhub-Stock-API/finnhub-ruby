@@ -1,4 +1,4 @@
-# FinnhubRuby::ETFHoldings
+# FinnhubRuby::ETFHoldingsData
 
 ## Properties
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ```ruby
 require 'FinnhubRuby'
 
-instance = FinnhubRuby::ETFHoldings.new(symbol: null,
+instance = FinnhubRuby::ETFHoldingsData.new(symbol: null,
                                  share: null,
                                  percent: null)
 ```

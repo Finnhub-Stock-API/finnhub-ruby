@@ -11,5 +11,5 @@ OpenAPI Generator version: 4.3.1
 =end
 
 module FinnhubRuby
-  VERSION = '1.1.1'
+  VERSION = '1.1.2'
 end

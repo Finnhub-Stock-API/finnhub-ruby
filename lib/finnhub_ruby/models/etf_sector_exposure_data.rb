@@ -13,9 +13,9 @@ OpenAPI Generator version: 4.3.1
 require 'date'
 
 module FinnhubRuby
-  class ETFCountryExposure
-    # Country
-    attr_accessor :country
+  class ETFSectorExposureData
+    # Industry
+    attr_accessor :industry
 
     # Percent of exposure.
     attr_accessor :exposure
@@ -23,7 +23,7 @@ module FinnhubRuby
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'country' => :'country',
+        :'industry' => :'industry',
         :'exposure' => :'exposure'
       }
     end
@@ -31,7 +31,7 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'country' => :'String',
+        :'industry' => :'String',
         :'exposure' => :'String'
       }
     end
@@ -46,19 +46,19 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::ETFCountryExposure` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::ETFSectorExposureData` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::ETFCountryExposure`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::ETFSectorExposureData`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'country')
-        self.country = attributes[:'country']
+      if attributes.key?(:'industry')
+        self.industry = attributes[:'industry']
       end
 
       if attributes.key?(:'exposure')
@@ -84,7 +84,7 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          country == o.country &&
+          industry == o.industry &&
           exposure == o.exposure
     end
 
@@ -97,7 +97,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [country, exposure].hash
+      [industry, exposure].hash
     end
 
     # Builds the object from hash

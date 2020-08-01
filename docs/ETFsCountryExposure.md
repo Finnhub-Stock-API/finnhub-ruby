@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **symbol** | **String** | ETF symbol. | [optional] 
-**holdings** | **Array&lt;Object&gt;** | Array of countries and and exposure levels. | [optional] 
+**country_exposure** | **Array&lt;Object&gt;** | Array of countries and and exposure levels. | [optional] 
 
 ## Code Sample
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 require 'FinnhubRuby'
 
 instance = FinnhubRuby::ETFsCountryExposure.new(symbol: null,
-                                 holdings: null)
+                                 country_exposure: null)
 ```
 
 
