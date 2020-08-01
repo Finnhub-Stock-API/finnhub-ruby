@@ -139,10 +139,10 @@ puts(finnhub_client.stock_tick_with_http_info('AAPL', '2020-03-25', 500, 0))
 puts(finnhub_client.technical_indicator("AAPL", 'D', 1583098857, 1584308457, 'rsi', {"timeperiod": 3}))
 
 # Indices Constituents
-puts(finnhub_client.indices_constituents({symbol: "^GSPC"}))
+puts(finnhub_client.indices_constituents("^GSPC"))
 
 # Indices Historical Constituents
-puts(finnhub_client.indices_historical_constituents({symbol: "^GSPC"}))
+puts(finnhub_client.indices_historical_constituents("^GSPC"))
 
 # ETFs Profile
 puts(finnhub_client.etfs_profile('SPY'))

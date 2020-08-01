@@ -2059,26 +2059,33 @@ module FinnhubRuby
 
     # Indices Constituents
     # Get a list of index's constituents. Currently support <code>^GSPC (S&P 500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
+    # @param symbol [String] symbol
     # @param [Hash] opts the optional parameters
     # @return [IndicesConstituents]
-    def indices_constituents(opts = {})
-      data, _status_code, _headers = indices_constituents_with_http_info(opts)
+    def indices_constituents(symbol, opts = {})
+      data, _status_code, _headers = indices_constituents_with_http_info(symbol, opts)
       data
     end
 
     # Indices Constituents
     # Get a list of index&#39;s constituents. Currently support &lt;code&gt;^GSPC (S&amp;P 500)&lt;/code&gt;, &lt;code&gt;^NDX (Nasdaq 100)&lt;/code&gt;, &lt;code&gt;^DJI (Dow Jones)&lt;/code&gt;
+    # @param symbol [String] symbol
     # @param [Hash] opts the optional parameters
     # @return [Array<(IndicesConstituents, Integer, Hash)>] IndicesConstituents data, response status code and response headers
-    def indices_constituents_with_http_info(opts = {})
+    def indices_constituents_with_http_info(symbol, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.indices_constituents ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.indices_constituents"
       end
       # resource path
       local_var_path = '/index/constituents'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -2115,26 +2122,33 @@ module FinnhubRuby
 
     # Indices Historical Constituents
     # Get full history of index's constituents including symbols and dates of joining and leaving the Index. Currently support <code>^GSPC (S&P 500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
+    # @param symbol [String] symbol
     # @param [Hash] opts the optional parameters
     # @return [IndicesHistoricalConstituents]
-    def indices_historical_constituents(opts = {})
-      data, _status_code, _headers = indices_historical_constituents_with_http_info(opts)
+    def indices_historical_constituents(symbol, opts = {})
+      data, _status_code, _headers = indices_historical_constituents_with_http_info(symbol, opts)
       data
     end
 
     # Indices Historical Constituents
     # Get full history of index&#39;s constituents including symbols and dates of joining and leaving the Index. Currently support &lt;code&gt;^GSPC (S&amp;P 500)&lt;/code&gt;, &lt;code&gt;^NDX (Nasdaq 100)&lt;/code&gt;, &lt;code&gt;^DJI (Dow Jones)&lt;/code&gt;
+    # @param symbol [String] symbol
     # @param [Hash] opts the optional parameters
     # @return [Array<(IndicesHistoricalConstituents, Integer, Hash)>] IndicesHistoricalConstituents data, response status code and response headers
-    def indices_historical_constituents_with_http_info(opts = {})
+    def indices_historical_constituents_with_http_info(symbol, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.indices_historical_constituents ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.indices_historical_constituents"
       end
       # resource path
       local_var_path = '/index/historical-constituents'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
 
       # header parameters
       header_params = opts[:header_params] || {}

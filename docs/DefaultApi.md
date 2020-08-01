@@ -1802,7 +1802,7 @@ Name | Type | Description  | Notes
 
 ## indices_constituents
 
-> IndicesConstituents indices_constituents
+> IndicesConstituents indices_constituents(symbol)
 
 Indices Constituents
 
@@ -1822,10 +1822,11 @@ FinnhubRuby.configure do |config|
 end
 
 api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | symbol
 
 begin
   #Indices Constituents
-  result = api_instance.indices_constituents
+  result = api_instance.indices_constituents(symbol)
   p result
 rescue FinnhubRuby::ApiError => e
   puts "Exception when calling DefaultApi->indices_constituents: #{e}"
@@ -1834,7 +1835,10 @@ end
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| symbol | 
 
 ### Return type
 
@@ -1852,7 +1856,7 @@ This endpoint does not need any parameter.
 
 ## indices_historical_constituents
 
-> IndicesHistoricalConstituents indices_historical_constituents
+> IndicesHistoricalConstituents indices_historical_constituents(symbol)
 
 Indices Historical Constituents
 
@@ -1872,10 +1876,11 @@ FinnhubRuby.configure do |config|
 end
 
 api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | symbol
 
 begin
   #Indices Historical Constituents
-  result = api_instance.indices_historical_constituents
+  result = api_instance.indices_historical_constituents(symbol)
   p result
 rescue FinnhubRuby::ApiError => e
   puts "Exception when calling DefaultApi->indices_historical_constituents: #{e}"
@@ -1884,7 +1889,10 @@ end
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| symbol | 
 
 ### Return type
 

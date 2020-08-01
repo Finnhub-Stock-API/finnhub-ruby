@@ -434,6 +434,7 @@ describe 'DefaultApi' do
   # unit tests for indices_constituents
   # Indices Constituents
   # Get a list of index&#39;s constituents. Currently support &lt;code&gt;^GSPC (S&amp;P 500)&lt;/code&gt;, &lt;code&gt;^NDX (Nasdaq 100)&lt;/code&gt;, &lt;code&gt;^DJI (Dow Jones)&lt;/code&gt;
+  # @param symbol symbol
   # @param [Hash] opts the optional parameters
   # @return [IndicesConstituents]
   describe 'indices_constituents test' do
@@ -445,6 +446,7 @@ describe 'DefaultApi' do
   # unit tests for indices_historical_constituents
   # Indices Historical Constituents
   # Get full history of index&#39;s constituents including symbols and dates of joining and leaving the Index. Currently support &lt;code&gt;^GSPC (S&amp;P 500)&lt;/code&gt;, &lt;code&gt;^NDX (Nasdaq 100)&lt;/code&gt;, &lt;code&gt;^DJI (Dow Jones)&lt;/code&gt;
+  # @param symbol symbol
   # @param [Hash] opts the optional parameters
   # @return [IndicesHistoricalConstituents]
   describe 'indices_historical_constituents test' do
