@@ -230,7 +230,7 @@ describe 'DefaultApi' do
   # @option opts [Date] :from From date: 2020-03-15.
   # @option opts [Date] :to To date: 2020-03-16.
   # @option opts [String] :symbol Filter by symbol: AAPL.
-  # @option opts [AnyType] :international Set to &lt;code&gt;true&lt;/code&gt; to include international markets. Default value is &lt;code&gt;false&lt;/code&gt;
+  # @option opts [Boolean] :international Set to &lt;code&gt;true&lt;/code&gt; to include international markets. Default value is &lt;code&gt;false&lt;/code&gt;
   # @return [EarningsCalendar]
   describe 'earnings_calendar test' do
     it 'should work' do
@@ -256,6 +256,54 @@ describe 'DefaultApi' do
   # @param [Hash] opts the optional parameters
   # @return [EconomicData]
   describe 'economic_data test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for etfs_country_exposure
+  # ETFs Country Exposure
+  # Get ETF country exposure data.
+  # @param symbol ETF symbol.
+  # @param [Hash] opts the optional parameters
+  # @return [ETFsCountryExposure]
+  describe 'etfs_country_exposure test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for etfs_holdings
+  # ETFs Holdings
+  # Get current ETF holdings.
+  # @param symbol ETF symbol.
+  # @param [Hash] opts the optional parameters
+  # @return [ETFsHoldings]
+  describe 'etfs_holdings test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for etfs_industry_exposure
+  # ETFs Industry Exposure
+  # Get ETF industry exposure data.
+  # @param symbol ETF symbol.
+  # @param [Hash] opts the optional parameters
+  # @return [ETFsIndustryExposure]
+  describe 'etfs_industry_exposure test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for etfs_profile
+  # ETFs Profile
+  # Get ETF profile information. Currently support all US ETFs.
+  # @param symbol ETF symbol.
+  # @param [Hash] opts the optional parameters
+  # @return [ETFsProfile]
+  describe 'etfs_profile test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -383,6 +431,28 @@ describe 'DefaultApi' do
     end
   end
 
+  # unit tests for indices_constituents
+  # Indices Constituents
+  # Get a list of index&#39;s constituents. Currently support &lt;code&gt;^GSPC (S&amp;P 500)&lt;/code&gt;, &lt;code&gt;^NDX (Nasdaq 100)&lt;/code&gt;, &lt;code&gt;^DJI (Dow Jones)&lt;/code&gt;
+  # @param [Hash] opts the optional parameters
+  # @return [IndicesConstituents]
+  describe 'indices_constituents test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for indices_historical_constituents
+  # Indices Historical Constituents
+  # Get full history of index&#39;s constituents including symbols and dates of joining and leaving the Index. Currently support &lt;code&gt;^GSPC (S&amp;P 500)&lt;/code&gt;, &lt;code&gt;^NDX (Nasdaq 100)&lt;/code&gt;, &lt;code&gt;^DJI (Dow Jones)&lt;/code&gt;
+  # @param [Hash] opts the optional parameters
+  # @return [IndicesHistoricalConstituents]
+  describe 'indices_historical_constituents test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for investors_ownership
   # Investors Ownership
   # Get a full list of shareholders/investors of a company in descending order of the number of shares held.
@@ -484,6 +554,20 @@ describe 'DefaultApi' do
     end
   end
 
+  # unit tests for similarity_index
+  # Similarity Index
+  # &lt;p&gt;Calculate the textual difference between a company&#39;s 10-K / 10-Q reports and the same type of report in the previous year using Cosine Similarity. For example, this endpoint compares 2019&#39;s 10-K with 2018&#39;s 10-K. Companies breaking from its routines in disclosure of financial condition and risk analysis section can signal a significant change in the company&#39;s stock price in the upcoming 4 quarters.&lt;/p&gt;
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :symbol Symbol. Required if cik is empty
+  # @option opts [String] :cik CIK. Required if symbol is empty
+  # @option opts [String] :freq &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt;
+  # @return [SimilarityIndex]
+  describe 'similarity_index test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for stock_bidask
   # Last Bid-Ask
   # Get last bid/ask data for US stocks.
@@ -542,7 +626,7 @@ describe 'DefaultApi' do
 
   # unit tests for stock_symbols
   # Stock Symbol
-  # List supported stocks.
+  # List supported stocks. A list of supported CFD Indices can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1BAbIXBgl405fj0oHeEyRFEu8mW4QD1PhvtaBATLoR14/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
   # @param exchange Exchange you want to get the list of symbols from. List of exchanges with fundamental data can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
   # @param [Hash] opts the optional parameters
   # @return [Array<Stock>]

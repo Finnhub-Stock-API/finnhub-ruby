@@ -22,6 +22,10 @@ Method | HTTP request | Description
 [**earnings_calendar**](DefaultApi.md#earnings_calendar) | **GET** /calendar/earnings | Earnings Calendar
 [**economic_code**](DefaultApi.md#economic_code) | **GET** /economic/code | Economic Code
 [**economic_data**](DefaultApi.md#economic_data) | **GET** /economic | Economic Data
+[**etfs_country_exposure**](DefaultApi.md#etfs_country_exposure) | **GET** /etf/country | ETFs Country Exposure
+[**etfs_holdings**](DefaultApi.md#etfs_holdings) | **GET** /etf/holdings | ETFs Holdings
+[**etfs_industry_exposure**](DefaultApi.md#etfs_industry_exposure) | **GET** /etf/sector | ETFs Industry Exposure
+[**etfs_profile**](DefaultApi.md#etfs_profile) | **GET** /etf/profile | ETFs Profile
 [**filings**](DefaultApi.md#filings) | **GET** /stock/filings | Filings
 [**financials**](DefaultApi.md#financials) | **GET** /stock/financials | Financial Statements
 [**financials_reported**](DefaultApi.md#financials_reported) | **GET** /stock/financials-reported | Financials As Reported
@@ -31,6 +35,8 @@ Method | HTTP request | Description
 [**forex_symbols**](DefaultApi.md#forex_symbols) | **GET** /forex/symbol | Forex Symbol
 [**fund_ownership**](DefaultApi.md#fund_ownership) | **GET** /stock/fund-ownership | Fund Ownership
 [**general_news**](DefaultApi.md#general_news) | **GET** /news | General News
+[**indices_constituents**](DefaultApi.md#indices_constituents) | **GET** /index/constituents | Indices Constituents
+[**indices_historical_constituents**](DefaultApi.md#indices_historical_constituents) | **GET** /index/historical-constituents | Indices Historical Constituents
 [**investors_ownership**](DefaultApi.md#investors_ownership) | **GET** /stock/investor-ownership | Investors Ownership
 [**ipo_calendar**](DefaultApi.md#ipo_calendar) | **GET** /calendar/ipo | IPO Calendar
 [**major_developments**](DefaultApi.md#major_developments) | **GET** /major-development | Major Developments
@@ -39,6 +45,7 @@ Method | HTTP request | Description
 [**price_target**](DefaultApi.md#price_target) | **GET** /stock/price-target | Price Target
 [**quote**](DefaultApi.md#quote) | **GET** /quote | Quote
 [**recommendation_trends**](DefaultApi.md#recommendation_trends) | **GET** /stock/recommendation | Recommendation Trends
+[**similarity_index**](DefaultApi.md#similarity_index) | **GET** /stock/similarity-index | Similarity Index
 [**stock_bidask**](DefaultApi.md#stock_bidask) | **GET** /stock/bidask | Last Bid-Ask
 [**stock_candles**](DefaultApi.md#stock_candles) | **GET** /stock/candle | Stock Candles
 [**stock_dividends**](DefaultApi.md#stock_dividends) | **GET** /stock/dividend | Dividends
@@ -915,7 +922,7 @@ opts = {
   from: Date.parse('2013-10-20'), # Date | From date: 2020-03-15.
   to: Date.parse('2013-10-20'), # Date | To date: 2020-03-16.
   symbol: 'symbol_example', # String | Filter by symbol: AAPL.
-  international: FinnhubRuby::AnyType.new # AnyType | Set to <code>true</code> to include international markets. Default value is <code>false</code>
+  international: true # Boolean | Set to <code>true</code> to include international markets. Default value is <code>false</code>
 }
 
 begin
@@ -935,7 +942,7 @@ Name | Type | Description  | Notes
  **from** | **Date**| From date: 2020-03-15. | [optional] 
  **to** | **Date**| To date: 2020-03-16. | [optional] 
  **symbol** | **String**| Filter by symbol: AAPL. | [optional] 
- **international** | [**AnyType**](.md)| Set to &lt;code&gt;true&lt;/code&gt; to include international markets. Default value is &lt;code&gt;false&lt;/code&gt; | [optional] 
+ **international** | **Boolean**| Set to &lt;code&gt;true&lt;/code&gt; to include international markets. Default value is &lt;code&gt;false&lt;/code&gt; | [optional] 
 
 ### Return type
 
@@ -1044,6 +1051,222 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**EconomicData**](EconomicData.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## etfs_country_exposure
+
+> ETFsCountryExposure etfs_country_exposure(symbol)
+
+ETFs Country Exposure
+
+Get ETF country exposure data.
+
+### Example
+
+```ruby
+# load the gem
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['token'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['token'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | ETF symbol.
+
+begin
+  #ETFs Country Exposure
+  result = api_instance.etfs_country_exposure(symbol)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Exception when calling DefaultApi->etfs_country_exposure: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| ETF symbol. | 
+
+### Return type
+
+[**ETFsCountryExposure**](ETFsCountryExposure.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## etfs_holdings
+
+> ETFsHoldings etfs_holdings(symbol)
+
+ETFs Holdings
+
+Get current ETF holdings.
+
+### Example
+
+```ruby
+# load the gem
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['token'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['token'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | ETF symbol.
+
+begin
+  #ETFs Holdings
+  result = api_instance.etfs_holdings(symbol)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Exception when calling DefaultApi->etfs_holdings: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| ETF symbol. | 
+
+### Return type
+
+[**ETFsHoldings**](ETFsHoldings.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## etfs_industry_exposure
+
+> ETFsIndustryExposure etfs_industry_exposure(symbol)
+
+ETFs Industry Exposure
+
+Get ETF industry exposure data.
+
+### Example
+
+```ruby
+# load the gem
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['token'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['token'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | ETF symbol.
+
+begin
+  #ETFs Industry Exposure
+  result = api_instance.etfs_industry_exposure(symbol)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Exception when calling DefaultApi->etfs_industry_exposure: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| ETF symbol. | 
+
+### Return type
+
+[**ETFsIndustryExposure**](ETFsIndustryExposure.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## etfs_profile
+
+> ETFsProfile etfs_profile(symbol)
+
+ETFs Profile
+
+Get ETF profile information. Currently support all US ETFs.
+
+### Example
+
+```ruby
+# load the gem
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['token'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['token'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | ETF symbol.
+
+begin
+  #ETFs Profile
+  result = api_instance.etfs_profile(symbol)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Exception when calling DefaultApi->etfs_profile: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| ETF symbol. | 
+
+### Return type
+
+[**ETFsProfile**](ETFsProfile.md)
 
 ### Authorization
 
@@ -1577,6 +1800,106 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## indices_constituents
+
+> IndicesConstituents indices_constituents
+
+Indices Constituents
+
+Get a list of index's constituents. Currently support <code>^GSPC (S&P 500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
+
+### Example
+
+```ruby
+# load the gem
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['token'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['token'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+
+begin
+  #Indices Constituents
+  result = api_instance.indices_constituents
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Exception when calling DefaultApi->indices_constituents: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**IndicesConstituents**](IndicesConstituents.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## indices_historical_constituents
+
+> IndicesHistoricalConstituents indices_historical_constituents
+
+Indices Historical Constituents
+
+Get full history of index's constituents including symbols and dates of joining and leaving the Index. Currently support <code>^GSPC (S&P 500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
+
+### Example
+
+```ruby
+# load the gem
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['token'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['token'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+
+begin
+  #Indices Historical Constituents
+  result = api_instance.indices_historical_constituents
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Exception when calling DefaultApi->indices_historical_constituents: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**IndicesHistoricalConstituents**](IndicesHistoricalConstituents.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## investors_ownership
 
 > InvestorsOwnership investors_ownership(symbol, opts)
@@ -2023,6 +2346,66 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
+## similarity_index
+
+> SimilarityIndex similarity_index(opts)
+
+Similarity Index
+
+<p>Calculate the textual difference between a company's 10-K / 10-Q reports and the same type of report in the previous year using Cosine Similarity. For example, this endpoint compares 2019's 10-K with 2018's 10-K. Companies breaking from its routines in disclosure of financial condition and risk analysis section can signal a significant change in the company's stock price in the upcoming 4 quarters.</p>
+
+### Example
+
+```ruby
+# load the gem
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['token'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['token'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+opts = {
+  symbol: 'symbol_example', # String | Symbol. Required if cik is empty
+  cik: 'cik_example', # String | CIK. Required if symbol is empty
+  freq: 'freq_example' # String | <code>annual</code> or <code>quarterly</code>. Default to <code>annual</code>
+}
+
+begin
+  #Similarity Index
+  result = api_instance.similarity_index(opts)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Exception when calling DefaultApi->similarity_index: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **symbol** | **String**| Symbol. Required if cik is empty | [optional] 
+ **cik** | **String**| CIK. Required if symbol is empty | [optional] 
+ **freq** | **String**| &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt; | [optional] 
+
+### Return type
+
+[**SimilarityIndex**](SimilarityIndex.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## stock_bidask
 
 > LastBidAsk stock_bidask(symbol)
@@ -2263,7 +2646,7 @@ Name | Type | Description  | Notes
 
 Stock Symbol
 
-List supported stocks.
+List supported stocks. A list of supported CFD Indices can be found <a href=\"https://docs.google.com/spreadsheets/d/1BAbIXBgl405fj0oHeEyRFEu8mW4QD1PhvtaBATLoR14/edit?usp=sharing\" target=\"_blank\">here</a>.
 
 ### Example
 

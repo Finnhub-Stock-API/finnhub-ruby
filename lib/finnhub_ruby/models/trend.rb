@@ -17,17 +17,22 @@ module FinnhubRuby
     # ADX reading
     attr_accessor :adx
 
+    # Whether market is trending or going sideway
+    attr_accessor :trending
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'adx' => :'adx'
+        :'adx' => :'adx',
+        :'trending' => :'trending'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'adx' => :'Float'
+        :'adx' => :'Float',
+        :'trending' => :'Boolean'
       }
     end
 
@@ -55,6 +60,10 @@ module FinnhubRuby
       if attributes.key?(:'adx')
         self.adx = attributes[:'adx']
       end
+
+      if attributes.key?(:'trending')
+        self.trending = attributes[:'trending']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -75,7 +84,8 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          adx == o.adx
+          adx == o.adx &&
+          trending == o.trending
     end
 
     # @see the `==` method
@@ -87,7 +97,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [adx].hash
+      [adx, trending].hash
     end
 
     # Builds the object from hash

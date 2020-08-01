@@ -13,41 +13,31 @@ OpenAPI Generator version: 4.3.1
 require 'date'
 
 module FinnhubRuby
-  class Stock
+  class ETFHoldings
     # Symbol description
-    attr_accessor :description
-
-    # Display symbol name.
-    attr_accessor :display_symbol
-
-    # Unique symbol used to identify this symbol used in <code>/stock/candle</code> endpoint.
     attr_accessor :symbol
 
-    # Security type.
-    attr_accessor :type
+    # Number of shares owned by the ETF.
+    attr_accessor :share
 
-    # Price's currency. This might be different from the reporting currency of fundamental data.
-    attr_accessor :currency
+    # Portfolio's percent
+    attr_accessor :percent
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'description' => :'description',
-        :'display_symbol' => :'displaySymbol',
         :'symbol' => :'symbol',
-        :'type' => :'type',
-        :'currency' => :'currency'
+        :'share' => :'share',
+        :'percent' => :'percent'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'description' => :'String',
-        :'display_symbol' => :'String',
         :'symbol' => :'String',
-        :'type' => :'String',
-        :'currency' => :'String'
+        :'share' => :'Float',
+        :'percent' => :'Float'
       }
     end
 
@@ -61,35 +51,27 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::Stock` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::ETFHoldings` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::Stock`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::ETFHoldings`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
-
-      if attributes.key?(:'description')
-        self.description = attributes[:'description']
-      end
-
-      if attributes.key?(:'display_symbol')
-        self.display_symbol = attributes[:'display_symbol']
-      end
 
       if attributes.key?(:'symbol')
         self.symbol = attributes[:'symbol']
       end
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.key?(:'share')
+        self.share = attributes[:'share']
       end
 
-      if attributes.key?(:'currency')
-        self.currency = attributes[:'currency']
+      if attributes.key?(:'percent')
+        self.percent = attributes[:'percent']
       end
     end
 
@@ -111,11 +93,9 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          description == o.description &&
-          display_symbol == o.display_symbol &&
           symbol == o.symbol &&
-          type == o.type &&
-          currency == o.currency
+          share == o.share &&
+          percent == o.percent
     end
 
     # @see the `==` method
@@ -127,7 +107,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [description, display_symbol, symbol, type, currency].hash
+      [symbol, share, percent].hash
     end
 
     # Builds the object from hash

@@ -1011,7 +1011,7 @@ module FinnhubRuby
     # @option opts [Date] :from From date: 2020-03-15.
     # @option opts [Date] :to To date: 2020-03-16.
     # @option opts [String] :symbol Filter by symbol: AAPL.
-    # @option opts [AnyType] :international Set to &lt;code&gt;true&lt;/code&gt; to include international markets. Default value is &lt;code&gt;false&lt;/code&gt;
+    # @option opts [Boolean] :international Set to &lt;code&gt;true&lt;/code&gt; to include international markets. Default value is &lt;code&gt;false&lt;/code&gt;
     # @return [EarningsCalendar]
     def earnings_calendar(opts = {})
       data, _status_code, _headers = earnings_calendar_with_http_info(opts)
@@ -1024,7 +1024,7 @@ module FinnhubRuby
     # @option opts [Date] :from From date: 2020-03-15.
     # @option opts [Date] :to To date: 2020-03-16.
     # @option opts [String] :symbol Filter by symbol: AAPL.
-    # @option opts [AnyType] :international Set to &lt;code&gt;true&lt;/code&gt; to include international markets. Default value is &lt;code&gt;false&lt;/code&gt;
+    # @option opts [Boolean] :international Set to &lt;code&gt;true&lt;/code&gt; to include international markets. Default value is &lt;code&gt;false&lt;/code&gt;
     # @return [Array<(EarningsCalendar, Integer, Hash)>] EarningsCalendar data, response status code and response headers
     def earnings_calendar_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -1188,6 +1188,258 @@ module FinnhubRuby
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#economic_data\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # ETFs Country Exposure
+    # Get ETF country exposure data.
+    # @param symbol [String] ETF symbol.
+    # @param [Hash] opts the optional parameters
+    # @return [ETFsCountryExposure]
+    def etfs_country_exposure(symbol, opts = {})
+      data, _status_code, _headers = etfs_country_exposure_with_http_info(symbol, opts)
+      data
+    end
+
+    # ETFs Country Exposure
+    # Get ETF country exposure data.
+    # @param symbol [String] ETF symbol.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(ETFsCountryExposure, Integer, Hash)>] ETFsCountryExposure data, response status code and response headers
+    def etfs_country_exposure_with_http_info(symbol, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.etfs_country_exposure ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.etfs_country_exposure"
+      end
+      # resource path
+      local_var_path = '/etf/country'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'ETFsCountryExposure' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#etfs_country_exposure\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # ETFs Holdings
+    # Get current ETF holdings.
+    # @param symbol [String] ETF symbol.
+    # @param [Hash] opts the optional parameters
+    # @return [ETFsHoldings]
+    def etfs_holdings(symbol, opts = {})
+      data, _status_code, _headers = etfs_holdings_with_http_info(symbol, opts)
+      data
+    end
+
+    # ETFs Holdings
+    # Get current ETF holdings.
+    # @param symbol [String] ETF symbol.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(ETFsHoldings, Integer, Hash)>] ETFsHoldings data, response status code and response headers
+    def etfs_holdings_with_http_info(symbol, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.etfs_holdings ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.etfs_holdings"
+      end
+      # resource path
+      local_var_path = '/etf/holdings'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'ETFsHoldings' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#etfs_holdings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # ETFs Industry Exposure
+    # Get ETF industry exposure data.
+    # @param symbol [String] ETF symbol.
+    # @param [Hash] opts the optional parameters
+    # @return [ETFsIndustryExposure]
+    def etfs_industry_exposure(symbol, opts = {})
+      data, _status_code, _headers = etfs_industry_exposure_with_http_info(symbol, opts)
+      data
+    end
+
+    # ETFs Industry Exposure
+    # Get ETF industry exposure data.
+    # @param symbol [String] ETF symbol.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(ETFsIndustryExposure, Integer, Hash)>] ETFsIndustryExposure data, response status code and response headers
+    def etfs_industry_exposure_with_http_info(symbol, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.etfs_industry_exposure ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.etfs_industry_exposure"
+      end
+      # resource path
+      local_var_path = '/etf/sector'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'ETFsIndustryExposure' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#etfs_industry_exposure\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # ETFs Profile
+    # Get ETF profile information. Currently support all US ETFs.
+    # @param symbol [String] ETF symbol.
+    # @param [Hash] opts the optional parameters
+    # @return [ETFsProfile]
+    def etfs_profile(symbol, opts = {})
+      data, _status_code, _headers = etfs_profile_with_http_info(symbol, opts)
+      data
+    end
+
+    # ETFs Profile
+    # Get ETF profile information. Currently support all US ETFs.
+    # @param symbol [String] ETF symbol.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(ETFsProfile, Integer, Hash)>] ETFsProfile data, response status code and response headers
+    def etfs_profile_with_http_info(symbol, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.etfs_profile ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.etfs_profile"
+      end
+      # resource path
+      local_var_path = '/etf/profile'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'ETFsProfile' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#etfs_profile\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1805,6 +2057,118 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
+    # Indices Constituents
+    # Get a list of index's constituents. Currently support <code>^GSPC (S&P 500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
+    # @param [Hash] opts the optional parameters
+    # @return [IndicesConstituents]
+    def indices_constituents(opts = {})
+      data, _status_code, _headers = indices_constituents_with_http_info(opts)
+      data
+    end
+
+    # Indices Constituents
+    # Get a list of index&#39;s constituents. Currently support &lt;code&gt;^GSPC (S&amp;P 500)&lt;/code&gt;, &lt;code&gt;^NDX (Nasdaq 100)&lt;/code&gt;, &lt;code&gt;^DJI (Dow Jones)&lt;/code&gt;
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(IndicesConstituents, Integer, Hash)>] IndicesConstituents data, response status code and response headers
+    def indices_constituents_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.indices_constituents ...'
+      end
+      # resource path
+      local_var_path = '/index/constituents'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'IndicesConstituents' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#indices_constituents\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Indices Historical Constituents
+    # Get full history of index's constituents including symbols and dates of joining and leaving the Index. Currently support <code>^GSPC (S&P 500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
+    # @param [Hash] opts the optional parameters
+    # @return [IndicesHistoricalConstituents]
+    def indices_historical_constituents(opts = {})
+      data, _status_code, _headers = indices_historical_constituents_with_http_info(opts)
+      data
+    end
+
+    # Indices Historical Constituents
+    # Get full history of index&#39;s constituents including symbols and dates of joining and leaving the Index. Currently support &lt;code&gt;^GSPC (S&amp;P 500)&lt;/code&gt;, &lt;code&gt;^NDX (Nasdaq 100)&lt;/code&gt;, &lt;code&gt;^DJI (Dow Jones)&lt;/code&gt;
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(IndicesHistoricalConstituents, Integer, Hash)>] IndicesHistoricalConstituents data, response status code and response headers
+    def indices_historical_constituents_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.indices_historical_constituents ...'
+      end
+      # resource path
+      local_var_path = '/index/historical-constituents'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'IndicesHistoricalConstituents' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#indices_historical_constituents\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Investors Ownership
     # Get a full list of shareholders/investors of a company in descending order of the number of shares held.
     # @param symbol [String] Symbol of the company: AAPL.
@@ -2332,6 +2696,71 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
+    # Similarity Index
+    # <p>Calculate the textual difference between a company's 10-K / 10-Q reports and the same type of report in the previous year using Cosine Similarity. For example, this endpoint compares 2019's 10-K with 2018's 10-K. Companies breaking from its routines in disclosure of financial condition and risk analysis section can signal a significant change in the company's stock price in the upcoming 4 quarters.</p>
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol Symbol. Required if cik is empty
+    # @option opts [String] :cik CIK. Required if symbol is empty
+    # @option opts [String] :freq &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt;
+    # @return [SimilarityIndex]
+    def similarity_index(opts = {})
+      data, _status_code, _headers = similarity_index_with_http_info(opts)
+      data
+    end
+
+    # Similarity Index
+    # &lt;p&gt;Calculate the textual difference between a company&#39;s 10-K / 10-Q reports and the same type of report in the previous year using Cosine Similarity. For example, this endpoint compares 2019&#39;s 10-K with 2018&#39;s 10-K. Companies breaking from its routines in disclosure of financial condition and risk analysis section can signal a significant change in the company&#39;s stock price in the upcoming 4 quarters.&lt;/p&gt;
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol Symbol. Required if cik is empty
+    # @option opts [String] :cik CIK. Required if symbol is empty
+    # @option opts [String] :freq &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt;
+    # @return [Array<(SimilarityIndex, Integer, Hash)>] SimilarityIndex data, response status code and response headers
+    def similarity_index_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.similarity_index ...'
+      end
+      # resource path
+      local_var_path = '/stock/similarity-index'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = opts[:'symbol'] if !opts[:'symbol'].nil?
+      query_params[:'cik'] = opts[:'cik'] if !opts[:'cik'].nil?
+      query_params[:'freq'] = opts[:'freq'] if !opts[:'freq'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body] 
+
+      # return_type
+      return_type = opts[:return_type] || 'SimilarityIndex' 
+
+      # auth_names
+      auth_names = opts[:auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#similarity_index\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Last Bid-Ask
     # Get last bid/ask data for US stocks.
     # @param symbol [String] Symbol.
@@ -2637,7 +3066,7 @@ module FinnhubRuby
     end
 
     # Stock Symbol
-    # List supported stocks.
+    # List supported stocks. A list of supported CFD Indices can be found <a href=\"https://docs.google.com/spreadsheets/d/1BAbIXBgl405fj0oHeEyRFEu8mW4QD1PhvtaBATLoR14/edit?usp=sharing\" target=\"_blank\">here</a>.
     # @param exchange [String] Exchange you want to get the list of symbols from. List of exchanges with fundamental data can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
     # @param [Hash] opts the optional parameters
     # @return [Array<Stock>]
@@ -2647,7 +3076,7 @@ module FinnhubRuby
     end
 
     # Stock Symbol
-    # List supported stocks.
+    # List supported stocks. A list of supported CFD Indices can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1BAbIXBgl405fj0oHeEyRFEu8mW4QD1PhvtaBATLoR14/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
     # @param exchange [String] Exchange you want to get the list of symbols from. List of exchanges with fundamental data can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
     # @param [Hash] opts the optional parameters
     # @return [Array<(Array<Stock>, Integer, Hash)>] Array<Stock> data, response status code and response headers

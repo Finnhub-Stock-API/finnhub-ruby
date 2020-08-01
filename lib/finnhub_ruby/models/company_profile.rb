@@ -140,7 +140,7 @@ module FinnhubRuby
         :'country' => :'String',
         :'currency' => :'String',
         :'cusip' => :'String',
-        :'sedol' => :'Integer',
+        :'sedol' => :'String',
         :'description' => :'String',
         :'exchange' => :'String',
         :'ggroup' => :'String',
