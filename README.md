@@ -13,7 +13,7 @@ gem install finnhub_ruby
 or in your Gemfile
 
 ```ruby
-gem 'finnhub_ruby', '~> 1.1.2'
+gem 'finnhub_ruby', '~> 1.0.1'
 ```
 
 ## Getting Started
