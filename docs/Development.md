@@ -2,22 +2,25 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**symbol** | **String** | Company symbol. | [optional] 
-**datetime** | **DateTime** | Published time in &lt;code&gt;YYYY-MM-DD HH:MM:SS&lt;/code&gt; format. | [optional] 
-**headline** | **String** | Development headline. | [optional] 
-**description** | **String** | Development description. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Company symbol. | [optional] |
+| **datetime** | **Time** | Published time in &lt;code&gt;YYYY-MM-DD HH:MM:SS&lt;/code&gt; format. | [optional] |
+| **headline** | **String** | Development headline. | [optional] |
+| **description** | **String** | Development description. | [optional] |
+| **url** | **String** | URL. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::Development.new(symbol: null,
-                                 datetime: null,
-                                 headline: null,
-                                 description: null)
+instance = FinnhubRuby::Development.new(
+  symbol: null,
+  datetime: null,
+  headline: null,
+  description: null,
+  url: null
+)
 ```
-
 

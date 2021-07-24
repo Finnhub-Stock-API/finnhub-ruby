@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**symbol** | **String** | Use symbol returned in &lt;code&gt;/forex/symbol&lt;/code&gt; endpoint for this field. | [optional] 
-**profile** | [**Object**](.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol. | [optional] |
+| **profile** | [**ETFProfileData**](ETFProfileData.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::ETFsProfile.new(symbol: null,
-                                 profile: null)
+instance = FinnhubRuby::ETFsProfile.new(
+  symbol: null,
+  profile: null
+)
 ```
-
 

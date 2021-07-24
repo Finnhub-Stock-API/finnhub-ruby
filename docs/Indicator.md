@@ -2,20 +2,21 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**buy** | **Integer** | Number of buy signals | [optional] 
-**neutral** | **Integer** | Number of neutral signals | [optional] 
-**sell** | **Integer** | Number of sell signals | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **buy** | **Integer** | Number of buy signals | [optional] |
+| **neutral** | **Integer** | Number of neutral signals | [optional] |
+| **sell** | **Integer** | Number of sell signals | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::Indicator.new(buy: null,
-                                 neutral: null,
-                                 sell: null)
+instance = FinnhubRuby::Indicator.new(
+  buy: null,
+  neutral: null,
+  sell: null
+)
 ```
-
 

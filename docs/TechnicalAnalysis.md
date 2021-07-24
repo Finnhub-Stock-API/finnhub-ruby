@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**count** | [**Indicator**](Indicator.md) |  | [optional] 
-**signal** | **String** | Aggregate Signal | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **count** | [**Indicator**](Indicator.md) |  | [optional] |
+| **signal** | **String** | Aggregate Signal | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::TechnicalAnalysis.new(count: null,
-                                 signal: null)
+instance = FinnhubRuby::TechnicalAnalysis.new(
+  count: null,
+  signal: null
+)
 ```
-
 

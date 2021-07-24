@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**bearish_percent** | **Integer** |  | [optional] 
-**bullish_percent** | **Integer** |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **bearish_percent** | **Integer** |  | [optional] |
+| **bullish_percent** | **Integer** |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::Sentiment.new(bearish_percent: null,
-                                 bullish_percent: null)
+instance = FinnhubRuby::Sentiment.new(
+  bearish_percent: null,
+  bullish_percent: null
+)
 ```
-
 

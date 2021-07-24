@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**symbol** | **String** | Company symbol. | [optional] 
-**executive** | **Array&lt;Object&gt;** | Array of company&#39;s executives and members of the Board. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Company symbol. | [optional] |
+| **executive** | **Array&lt;Object&gt;** | Array of company&#39;s executives and members of the Board. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::CompanyExecutive.new(symbol: null,
-                                 executive: null)
+instance = FinnhubRuby::CompanyExecutive.new(
+  symbol: null,
+  executive: null
+)
 ```
-
 

@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**points** | **Array&lt;Object&gt;** | Array of patterns. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **points** | **Array&lt;Object&gt;** | Array of patterns. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::PatternRecognition.new(points: null)
+instance = FinnhubRuby::PatternRecognition.new(
+  points: null
+)
 ```
-
 

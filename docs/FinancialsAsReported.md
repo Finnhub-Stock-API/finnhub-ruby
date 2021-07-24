@@ -2,20 +2,21 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**symbol** | **String** | Symbol | [optional] 
-**cik** | **String** | CIK | [optional] 
-**data** | **Array&lt;Object&gt;** | Array of filings. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol | [optional] |
+| **cik** | **String** | CIK | [optional] |
+| **data** | **Array&lt;Object&gt;** | Array of filings. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::FinancialsAsReported.new(symbol: null,
-                                 cik: null,
-                                 data: null)
+instance = FinnhubRuby::FinancialsAsReported.new(
+  symbol: null,
+  cik: null,
+  data: null
+)
 ```
-
 

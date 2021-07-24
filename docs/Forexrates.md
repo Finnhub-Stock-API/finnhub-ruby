@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**base** | **String** | Base currency. | [optional] 
-**quote** | [**Object**](.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **base** | **String** | Base currency. | [optional] |
+| **quote** | **Object** |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::Forexrates.new(base: null,
-                                 quote: null)
+instance = FinnhubRuby::Forexrates.new(
+  base: null,
+  quote: null
+)
 ```
-
 

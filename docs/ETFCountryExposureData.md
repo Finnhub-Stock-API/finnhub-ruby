@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**country** | **String** | Country | [optional] 
-**exposure** | **String** | Percent of exposure. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **country** | **String** | Country | [optional] |
+| **exposure** | **Float** | Percent of exposure. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::ETFCountryExposureData.new(country: null,
-                                 exposure: null)
+instance = FinnhubRuby::ETFCountryExposureData.new(
+  country: null,
+  exposure: null
+)
 ```
-
 

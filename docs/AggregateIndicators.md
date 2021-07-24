@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**technical_analysis** | [**TechnicalAnalysis**](TechnicalAnalysis.md) |  | [optional] 
-**trend** | [**Trend**](Trend.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **technical_analysis** | [**TechnicalAnalysis**](TechnicalAnalysis.md) |  | [optional] |
+| **trend** | [**Trend**](Trend.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::AggregateIndicators.new(technical_analysis: null,
-                                 trend: null)
+instance = FinnhubRuby::AggregateIndicators.new(
+  technical_analysis: null,
+  trend: null
+)
 ```
-
 

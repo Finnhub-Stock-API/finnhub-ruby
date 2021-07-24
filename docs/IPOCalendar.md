@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**ipo_calendar** | **Array&lt;Object&gt;** | Array of IPO events. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **ipo_calendar** | **Array&lt;Object&gt;** | Array of IPO events. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::IPOCalendar.new(ipo_calendar: null)
+instance = FinnhubRuby::IPOCalendar.new(
+  ipo_calendar: null
+)
 ```
-
 

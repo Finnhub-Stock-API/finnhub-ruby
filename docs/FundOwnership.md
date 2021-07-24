@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**symbol** | **String** | Symbol of the company. | [optional] 
-**ownership** | **Array&lt;Object&gt;** | Array of investors with detailed information about their holdings. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol of the company. | [optional] |
+| **ownership** | **Array&lt;Object&gt;** | Array of investors with detailed information about their holdings. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::FundOwnership.new(symbol: null,
-                                 ownership: null)
+instance = FinnhubRuby::FundOwnership.new(
+  symbol: null,
+  ownership: null
+)
 ```
-
 

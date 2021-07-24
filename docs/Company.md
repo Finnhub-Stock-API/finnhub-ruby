@@ -2,28 +2,29 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**name** | **String** | Executive name | [optional] 
-**age** | **Integer** | Age | [optional] 
-**title** | **String** | Title | [optional] 
-**since** | **String** | Year appointed | [optional] 
-**sex** | **String** | Sex | [optional] 
-**compensation** | **Integer** | Total compensation | [optional] 
-**currency** | **String** | Compensation currency | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **name** | **String** | Executive name | [optional] |
+| **age** | **Integer** | Age | [optional] |
+| **title** | **String** | Title | [optional] |
+| **since** | **String** | Year appointed | [optional] |
+| **sex** | **String** | Sex | [optional] |
+| **compensation** | **Integer** | Total compensation | [optional] |
+| **currency** | **String** | Compensation currency | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::Company.new(name: null,
-                                 age: null,
-                                 title: null,
-                                 since: null,
-                                 sex: null,
-                                 compensation: null,
-                                 currency: null)
+instance = FinnhubRuby::Company.new(
+  name: null,
+  age: null,
+  title: null,
+  since: null,
+  sex: null,
+  compensation: null,
+  currency: null
+)
 ```
-
 

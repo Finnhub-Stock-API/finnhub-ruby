@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**symbol** | **String** | Symbol of the company. | [optional] 
-**financials** | **Array&lt;Object&gt;** | An array of map of key, value pairs containing the data for each period. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol of the company. | [optional] |
+| **financials** | **Array&lt;Object&gt;** | An array of map of key, value pairs containing the data for each period. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::FinancialStatements.new(symbol: null,
-                                 financials: null)
+instance = FinnhubRuby::FinancialStatements.new(
+  symbol: null,
+  financials: null
+)
 ```
-
 

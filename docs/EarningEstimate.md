@@ -2,24 +2,25 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**eps_avg** | **Float** | Average EPS estimates. | [optional] 
-**eps_high** | **Float** | Highest estimate. | [optional] 
-**eps_low** | **Float** | Lowest estimate. | [optional] 
-**number_analysts** | **Integer** | Number of Analysts. | [optional] 
-**period** | **Date** | Period. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **eps_avg** | **Float** | Average EPS estimates including Finnhub&#39;s proprietary estimates. | [optional] |
+| **eps_high** | **Float** | Highest estimate. | [optional] |
+| **eps_low** | **Float** | Lowest estimate. | [optional] |
+| **number_analysts** | **Integer** | Number of Analysts. | [optional] |
+| **period** | **Date** | Period. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::EarningEstimate.new(eps_avg: null,
-                                 eps_high: null,
-                                 eps_low: null,
-                                 number_analysts: null,
-                                 period: null)
+instance = FinnhubRuby::EarningEstimate.new(
+  eps_avg: null,
+  eps_high: null,
+  eps_low: null,
+  number_analysts: null,
+  period: null
+)
 ```
-
 

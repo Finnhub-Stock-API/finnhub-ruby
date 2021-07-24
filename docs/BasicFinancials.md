@@ -2,20 +2,23 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**symbol** | **String** | Symbol of the company. | [optional] 
-**metric_type** | **String** | Metric type. | [optional] 
-**metric** | [**Object**](.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol of the company. | [optional] |
+| **metric_type** | **String** | Metric type. | [optional] |
+| **series** | **Object** |  | [optional] |
+| **metric** | **Object** |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::BasicFinancials.new(symbol: null,
-                                 metric_type: null,
-                                 metric: null)
+instance = FinnhubRuby::BasicFinancials.new(
+  symbol: null,
+  metric_type: null,
+  series: null,
+  metric: null
+)
 ```
-
 

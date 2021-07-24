@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**earnings_calendar** | **Array&lt;Object&gt;** | Array of earnings release. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **earnings_calendar** | **Array&lt;Object&gt;** | Array of earnings release. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::EarningsCalendar.new(earnings_calendar: null)
+instance = FinnhubRuby::EarningsCalendar.new(
+  earnings_calendar: null
+)
 ```
-
 

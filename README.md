@@ -1,7 +1,7 @@
 # finnhub-ruby
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 1.1.2
+- Package version: 1.1.3
 
 ## Installation
 https://rubygems.org/gems/finnhub_ruby
@@ -13,7 +13,7 @@ gem install finnhub_ruby
 or in your Gemfile
 
 ```ruby
-gem 'finnhub_ruby', '~> 1.1.2'
+gem 'finnhub_ruby', '~> 1.1.3'
 ```
 
 ## Getting Started
@@ -100,13 +100,13 @@ puts(finnhub_client.fund_ownership('AMZN', {limit: 5}))
 puts(finnhub_client.general_news('forex', {min_id: 0}))
 
 # Investors ownership
-puts(finnhub_client.investors_ownership('AAPL', {limit: 5}))
+puts(finnhub_client.ownership('AAPL', {limit: 5}))
 
 # IPO calendar
 puts(finnhub_client.ipo_calendar("2020-05-01", "2020-06-01"))
 
-# Major developments
-puts(finnhub_client.major_developments('AAPL', {from: "2020-01-01", to: "2020-12-31"}))
+# Press Releases
+puts(finnhub_client.press_releases('AAPL', {from: "2020-01-01", to: "2020-12-31"}))
 
 # News sentiment
 puts(finnhub_client.news_sentiment('AAPL'))
@@ -166,16 +166,44 @@ puts(finnhub_client.indices_constituents("^GSPC"))
 puts(finnhub_client.indices_historical_constituents("^GSPC"))
 
 # ETFs Profile
-puts(finnhub_client.etfs_profile('SPY'))
+puts(finnhub_client.etfs_profile({symbol:'SPY'}))
 
 # ETFs Holdings
 puts(finnhub_client.etfs_holdings('SPY'))
 
 # ETFs Industry Exposure
-puts(finnhub_client.etfs_industry_exposure('SPY'))
+puts(finnhub_client.etfs_sector_exposure('SPY'))
 
 # ETFs Country Exposure
 puts(finnhub_client.etfs_country_exposure('SPY'))
+
+# Mutual Fund Profile
+puts(finnhub_client.mutual_fund_profile({symbol:'VTSAX'}))
+
+# Mutual Fund Holdings
+puts(finnhub_client.mutual_fund_holdings('VTSAX'))
+
+# Mutual Fund Industry Exposure
+puts(finnhub_client.mutual_fund_sector_exposure('VTSAX'))
+
+# Mutual Fund Country Exposure
+puts(finnhub_client.mutual_fund_country_exposure('VTSAX'))
+
+# Insider Transactions
+puts(finnhub_client.insider_transactions('AAPL'))
+
+# Revenue breakdown
+puts(finnhub_client.revenue_breakdown({symbol:'AAPL'}))
+
+# Social Sentiment
+puts(finnhub_client.social_sentiment('GME'))
+
+# Investment theme
+puts(finnhub_client.investment_themes_thematic_investing('financialExchangesData'))
+
+# Supply chain
+puts(finnhub_client.supply_chain_relationships('AAPL'))
+
 ```
 
 ## License

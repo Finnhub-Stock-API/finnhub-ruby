@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**data** | **Array&lt;Object&gt;** | Array of economic data for requested code. | [optional] 
-**code** | **String** | Finnhub economic code | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **data** | **Array&lt;Object&gt;** | Array of economic data for requested code. | [optional] |
+| **code** | **String** | Finnhub economic code | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::EconomicData.new(data: null,
-                                 code: null)
+instance = FinnhubRuby::EconomicData.new(
+  data: null,
+  code: null
+)
 ```
-
 

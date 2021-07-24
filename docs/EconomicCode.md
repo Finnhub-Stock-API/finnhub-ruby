@@ -2,22 +2,23 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**code** | **String** | Finnhub economic code used to get historical data | [optional] 
-**country** | **String** | Country | [optional] 
-**name** | **String** | Indicator name | [optional] 
-**unit** | **String** | Unit | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **code** | **String** | Finnhub economic code used to get historical data | [optional] |
+| **country** | **String** | Country | [optional] |
+| **name** | **String** | Indicator name | [optional] |
+| **unit** | **String** | Unit | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::EconomicCode.new(code: null,
-                                 country: null,
-                                 name: null,
-                                 unit: null)
+instance = FinnhubRuby::EconomicCode.new(
+  code: null,
+  country: null,
+  name: null,
+  unit: null
+)
 ```
-
 

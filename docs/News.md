@@ -2,32 +2,33 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**category** | **String** | News category. | [optional] 
-**datetime** | **Integer** | Published time in UNIX timestamp. | [optional] 
-**headline** | **String** | News headline. | [optional] 
-**id** | **Integer** | News ID. This value can be used for &lt;code&gt;minId&lt;/code&gt; params to get the latest news only. | [optional] 
-**image** | **String** | Thumbnail image URL. | [optional] 
-**related** | **String** | Related stocks and companies mentioned in the article. | [optional] 
-**source** | **String** | News source. | [optional] 
-**summary** | **String** | News summary. | [optional] 
-**url** | **String** | URL of the original article. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **category** | **String** | News category. | [optional] |
+| **datetime** | **Integer** | Published time in UNIX timestamp. | [optional] |
+| **headline** | **String** | News headline. | [optional] |
+| **id** | **Integer** | News ID. This value can be used for &lt;code&gt;minId&lt;/code&gt; params to get the latest news only. | [optional] |
+| **image** | **String** | Thumbnail image URL. | [optional] |
+| **related** | **String** | Related stocks and companies mentioned in the article. | [optional] |
+| **source** | **String** | News source. | [optional] |
+| **summary** | **String** | News summary. | [optional] |
+| **url** | **String** | URL of the original article. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::News.new(category: null,
-                                 datetime: null,
-                                 headline: null,
-                                 id: null,
-                                 image: null,
-                                 related: null,
-                                 source: null,
-                                 summary: null,
-                                 url: null)
+instance = FinnhubRuby::News.new(
+  category: null,
+  datetime: null,
+  headline: null,
+  id: null,
+  image: null,
+  related: null,
+  source: null,
+  summary: null,
+  url: null
+)
 ```
-
 

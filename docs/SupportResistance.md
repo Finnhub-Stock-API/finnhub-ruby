@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**levels** | **Array&lt;Float&gt;** | Array of support and resistance levels. | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **levels** | **Array&lt;Float&gt;** | Array of support and resistance levels. | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'FinnhubRuby'
+require 'finnhub_ruby'
 
-instance = FinnhubRuby::SupportResistance.new(levels: null)
+instance = FinnhubRuby::SupportResistance.new(
+  levels: null
+)
 ```
-
 
