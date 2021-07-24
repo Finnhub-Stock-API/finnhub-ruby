@@ -22,8 +22,10 @@ gem 'finnhub_ruby', '~> 1.1.3'
 require 'finnhub_ruby'
 
 FinnhubRuby.configure do |config|
-  config.api_key['token'] = 'YOUR API KEY'
+  config.api_key['api_key'] = 'YOUR API KEY'
 end
+
+finnhub_client = FinnhubRuby::DefaultApi.new
 
 finnhub_client = FinnhubRuby::DefaultApi.new
 
@@ -97,7 +99,7 @@ puts(finnhub_client.forex_symbols('OANDA'))
 puts(finnhub_client.fund_ownership('AMZN', {limit: 5}))
 
 # General news
-puts(finnhub_client.general_news('forex', {min_id: 0}))
+puts(finnhub_client.market_news('forex', {min_id: 0}))
 
 # Investors ownership
 puts(finnhub_client.ownership('AAPL', {limit: 5}))
@@ -127,7 +129,7 @@ puts(finnhub_client.recommendation_trends('AAPL'))
 puts(finnhub_client.stock_dividends('KO', '2019-01-01', '2020-01-01'))
 
 # Transcripts
-puts(finnhub_client.transcripts('AAPL_162777'))
+puts(finnhub_client.earnings_call_transcripts_api('AAPL_162777'))
 
 # Transcripts list
 puts(finnhub_client.transcripts_list('AAPL'))
@@ -169,7 +171,7 @@ puts(finnhub_client.indices_historical_constituents("^GSPC"))
 puts(finnhub_client.etfs_profile({symbol:'SPY'}))
 
 # ETFs Holdings
-puts(finnhub_client.etfs_holdings('SPY'))
+puts(finnhub_client.etfs_holdings({symbol:'SPY'}))
 
 # ETFs Industry Exposure
 puts(finnhub_client.etfs_sector_exposure('SPY'))
@@ -181,7 +183,7 @@ puts(finnhub_client.etfs_country_exposure('SPY'))
 puts(finnhub_client.mutual_fund_profile({symbol:'VTSAX'}))
 
 # Mutual Fund Holdings
-puts(finnhub_client.mutual_fund_holdings('VTSAX'))
+puts(finnhub_client.mutual_fund_holdings({symbol:'VTSAX'}))
 
 # Mutual Fund Industry Exposure
 puts(finnhub_client.mutual_fund_sector_exposure('VTSAX'))
