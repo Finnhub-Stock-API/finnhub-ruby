@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **earnings_calendar** | **Array&lt;Object&gt;** | Array of earnings release. | [optional] |
+| **earnings_calendar** | [**Array&lt;EarningRelease&gt;**](EarningRelease.md) | Array of earnings release. | [optional] |
 
 ## Example
 

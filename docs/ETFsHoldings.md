@@ -7,7 +7,7 @@
 | **symbol** | **String** | ETF symbol. | [optional] |
 | **at_date** | **Date** | Holdings update date. | [optional] |
 | **number_of_holdings** | **Integer** | Number of holdings. | [optional] |
-| **holdings** | **Array&lt;Object&gt;** | Array of holdings. | [optional] |
+| **holdings** | [**Array&lt;ETFHoldingsData&gt;**](ETFHoldingsData.md) | Array of holdings. | [optional] |
 
 ## Example
 

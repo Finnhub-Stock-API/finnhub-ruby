@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Symbol | [optional] |
 | **cik** | **String** | CIK | [optional] |
-| **data** | **Array&lt;Object&gt;** | Array of revenue breakdown over multiple periods. | [optional] |
+| **data** | [**Array&lt;BreakdownItem&gt;**](BreakdownItem.md) | Array of revenue breakdown over multiple periods. | [optional] |
 
 ## Example
 

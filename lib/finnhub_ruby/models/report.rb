@@ -78,10 +78,10 @@ module FinnhubRuby
         :'year' => :'Integer',
         :'quarter' => :'Integer',
         :'form' => :'String',
-        :'start_date' => :'Time',
-        :'end_date' => :'Time',
-        :'filed_date' => :'Time',
-        :'accepted_date' => :'Time',
+        :'start_date' => :'String',
+        :'end_date' => :'String',
+        :'filed_date' => :'String',
+        :'accepted_date' => :'String',
         :'report' => :'Object'
       }
     end

@@ -73,7 +73,7 @@ module FinnhubRuby
         :'p' => :'Array<Float>',
         :'t' => :'Array<Integer>',
         :'x' => :'Array<String>',
-        :'c' => :'Array<Array<NULL_SCHEMA_ERR>>'
+        :'c' => :'Array<Array<String>>'
       }
     end
 

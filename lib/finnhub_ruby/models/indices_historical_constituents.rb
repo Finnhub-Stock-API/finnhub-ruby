@@ -38,7 +38,7 @@ module FinnhubRuby
     def self.openapi_types
       {
         :'symbol' => :'String',
-        :'historical_constituents' => :'Array<Object>'
+        :'historical_constituents' => :'Array<IndexHistoricalConstituent>'
       }
     end
 

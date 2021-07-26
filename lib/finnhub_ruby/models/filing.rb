@@ -65,8 +65,8 @@ module FinnhubRuby
         :'symbol' => :'String',
         :'cik' => :'String',
         :'form' => :'String',
-        :'filed_date' => :'Time',
-        :'accepted_date' => :'Time',
+        :'filed_date' => :'String',
+        :'accepted_date' => :'String',
         :'report_url' => :'String',
         :'filing_url' => :'String'
       }

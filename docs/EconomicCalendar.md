@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **economic_calendar** | **Array&lt;Object&gt;** | Array of economic events. | [optional] |
+| **economic_calendar** | [**Array&lt;EconomicEvent&gt;**](EconomicEvent.md) | Array of economic events. | [optional] |
 
 ## Example
 

@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Symbol. | [optional] |
 | **company_name** | **String** | Company name. | [optional] |
-| **filed_date** | **Time** | Filed date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] |
+| **filed_date** | **String** | Filed date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] |
 | **category** | **String** | Category. | [optional] |
 | **title** | **String** | Document&#39;s title. | [optional] |
 | **description** | **String** | Document&#39;s description. | [optional] |

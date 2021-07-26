@@ -48,7 +48,7 @@ module FinnhubRuby
         :'symbol' => :'String',
         :'at_date' => :'Date',
         :'number_of_holdings' => :'Integer',
-        :'holdings' => :'Array<Object>'
+        :'holdings' => :'Array<ETFHoldingsData>'
       }
     end
 

@@ -1,7 +1,7 @@
 # finnhub-ruby
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 1.1.4
+- Package version: 1.1.5
 
 ## Installation
 https://rubygems.org/gems/finnhub_ruby
@@ -129,7 +129,7 @@ puts(finnhub_client.recommendation_trends('AAPL'))
 puts(finnhub_client.stock_dividends('KO', '2019-01-01', '2020-01-01'))
 
 # Transcripts
-puts(finnhub_client.earnings_call_transcripts_api('AAPL_162777'))
+puts(finnhub_client.transcripts('AAPL_162777'))
 
 # Transcripts list
 puts(finnhub_client.transcripts_list('AAPL'))
@@ -201,7 +201,7 @@ puts(finnhub_client.revenue_breakdown({symbol:'AAPL'}))
 puts(finnhub_client.social_sentiment('GME'))
 
 # Investment theme
-puts(finnhub_client.investment_themes_thematic_investing('financialExchangesData'))
+puts(finnhub_client.investment_themes('financialExchangesData'))
 
 # Supply chain
 puts(finnhub_client.supply_chain_relationships('AAPL'))

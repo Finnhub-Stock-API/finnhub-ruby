@@ -51,7 +51,7 @@ module FinnhubRuby
       {
         :'id' => :'String',
         :'title' => :'String',
-        :'time' => :'Time',
+        :'time' => :'String',
         :'year' => :'Integer',
         :'quarter' => :'Integer'
       }

@@ -8,8 +8,8 @@
 | **symbol** | **String** | Symbol. | [optional] |
 | **cik** | **String** | CIK. | [optional] |
 | **form** | **String** | Form type. | [optional] |
-| **filed_date** | **Time** | Filed date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] |
-| **accepted_date** | **Time** | Accepted date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] |
+| **filed_date** | **String** | Filed date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] |
+| **accepted_date** | **String** | Accepted date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] |
 | **report_url** | **String** | Report&#39;s URL. | [optional] |
 | **filing_url** | **String** | Filing&#39;s URL. | [optional] |
 

@@ -50,7 +50,7 @@ module FinnhubRuby
     def self.openapi_types
       {
         :'symbol' => :'String',
-        :'datetime' => :'Time',
+        :'datetime' => :'String',
         :'headline' => :'String',
         :'description' => :'String',
         :'url' => :'String'

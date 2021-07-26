@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Symbol of the company. | [optional] |
-| **data** | **Array&lt;Object&gt;** | Array of insider transactions. | [optional] |
+| **data** | [**Array&lt;Transactions&gt;**](Transactions.md) | Array of insider transactions. | [optional] |
 
 ## Example
 

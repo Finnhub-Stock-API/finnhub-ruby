@@ -10,7 +10,7 @@
 | **positive_score** | **Float** | Positive score. Range 0-1 | [optional] |
 | **negative_score** | **Float** | Negative score. Range 0-1 | [optional] |
 | **score** | **Float** | Final score. Range: -1 to 1 with 1 is very positive and -1 is very negative | [optional] |
-| **at_time** | **Time** | Period. | [optional] |
+| **at_time** | **String** | Period. | [optional] |
 
 ## Example
 

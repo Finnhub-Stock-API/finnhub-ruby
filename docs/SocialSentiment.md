@@ -5,8 +5,8 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Company symbol. | [optional] |
-| **reddit** | **Array&lt;Object&gt;** | Reddit sentiment. | [optional] |
-| **twitter** | **Array&lt;Object&gt;** | Twitter sentiment. | [optional] |
+| **reddit** | [**Array&lt;RedditSentimentContent&gt;**](RedditSentimentContent.md) | Reddit sentiment. | [optional] |
+| **twitter** | [**Array&lt;TwitterSentimentContent&gt;**](TwitterSentimentContent.md) | Twitter sentiment. | [optional] |
 
 ## Example
 

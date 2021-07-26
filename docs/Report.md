@@ -10,10 +10,10 @@
 | **year** | **Integer** | Year. | [optional] |
 | **quarter** | **Integer** | Quarter. | [optional] |
 | **form** | **String** | Form type. | [optional] |
-| **start_date** | **Time** | Period start date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] |
-| **end_date** | **Time** | Period end date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] |
-| **filed_date** | **Time** | Filed date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] |
-| **accepted_date** | **Time** | Accepted date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] |
+| **start_date** | **String** | Period start date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] |
+| **end_date** | **String** | Period end date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] |
+| **filed_date** | **String** | Filed date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] |
+| **accepted_date** | **String** | Accepted date &lt;code&gt;%Y-%m-%d %H:%M:%S&lt;/code&gt;. | [optional] |
 | **report** | **Object** |  | [optional] |
 
 ## Example

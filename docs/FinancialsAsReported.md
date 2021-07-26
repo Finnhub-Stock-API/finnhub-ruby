@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Symbol | [optional] |
 | **cik** | **String** | CIK | [optional] |
-| **data** | **Array&lt;Object&gt;** | Array of filings. | [optional] |
+| **data** | [**Array&lt;Report&gt;**](Report.md) | Array of filings. | [optional] |
 
 ## Example
 

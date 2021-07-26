@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Company symbol. | [optional] |
-| **transcripts** | **Array&lt;Object&gt;** | Array of transcripts&#39; metadata | [optional] |
+| **transcripts** | [**Array&lt;StockTranscripts&gt;**](StockTranscripts.md) | Array of transcripts&#39; metadata | [optional] |
 
 ## Example
 

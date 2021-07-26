@@ -43,7 +43,7 @@ module FinnhubRuby
       {
         :'symbol' => :'String',
         :'cik' => :'String',
-        :'data' => :'Array<Object>'
+        :'data' => :'Array<BreakdownItem>'
       }
     end
 

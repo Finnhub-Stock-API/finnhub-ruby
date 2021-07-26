@@ -7,7 +7,7 @@
 | **state** | **String** | State. | [optional] |
 | **_case** | **Float** | Number of confirmed cases. | [optional] |
 | **death** | **Float** | Number of confirmed deaths. | [optional] |
-| **updated** | **Time** | Updated time. | [optional] |
+| **updated** | **String** | Updated time. | [optional] |
 
 ## Example
 

@@ -20,7 +20,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**crypto_exchanges**](DefaultApi.md#crypto_exchanges) | **GET** /crypto/exchange | Crypto Exchanges |
 | [**crypto_symbols**](DefaultApi.md#crypto_symbols) | **GET** /crypto/symbol | Crypto Symbol |
 | [**earnings_calendar**](DefaultApi.md#earnings_calendar) | **GET** /calendar/earnings | Earnings Calendar |
-| [**earnings_call_transcripts_api**](DefaultApi.md#earnings_call_transcripts_api) | **GET** /stock/transcripts | Earnings Call Transcripts |
+| [**economic_calendar**](DefaultApi.md#economic_calendar) | **GET** /calendar/economic | Economic Calendar |
 | [**economic_code**](DefaultApi.md#economic_code) | **GET** /economic/code | Economic Code |
 | [**economic_data**](DefaultApi.md#economic_data) | **GET** /economic | Economic Data |
 | [**etfs_country_exposure**](DefaultApi.md#etfs_country_exposure) | **GET** /etf/country | ETFs Country Exposure |
@@ -41,13 +41,13 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**indices_historical_constituents**](DefaultApi.md#indices_historical_constituents) | **GET** /index/historical-constituents | Indices Historical Constituents |
 | [**insider_transactions**](DefaultApi.md#insider_transactions) | **GET** /stock/insider-transactions | Insider Transactions |
 | [**international_filings**](DefaultApi.md#international_filings) | **GET** /stock/international-filings | International Filings |
-| [**investment_themes_thematic_investing**](DefaultApi.md#investment_themes_thematic_investing) | **GET** /stock/investment-theme | Investment Themes (Thematic Investing) |
+| [**investment_themes**](DefaultApi.md#investment_themes) | **GET** /stock/investment-theme | Investment Themes (Thematic Investing) |
 | [**ipo_calendar**](DefaultApi.md#ipo_calendar) | **GET** /calendar/ipo | IPO Calendar |
 | [**market_news**](DefaultApi.md#market_news) | **GET** /news | Market News |
 | [**mutual_fund_country_exposure**](DefaultApi.md#mutual_fund_country_exposure) | **GET** /mutual-fund/country | Mutual Funds Country Exposure |
 | [**mutual_fund_holdings**](DefaultApi.md#mutual_fund_holdings) | **GET** /mutual-fund/holdings | Mutual Funds Holdings |
 | [**mutual_fund_profile**](DefaultApi.md#mutual_fund_profile) | **GET** /mutual-fund/profile | Mutual Funds Profile |
-| [**mutual_fund_sector_exposure**](DefaultApi.md#mutual_fund_sector_exposure) | **GET** /mutual-fund/sector | Mutual-fund Sector Exposure |
+| [**mutual_fund_sector_exposure**](DefaultApi.md#mutual_fund_sector_exposure) | **GET** /mutual-fund/sector | Mutual Funds Sector Exposure |
 | [**news_sentiment**](DefaultApi.md#news_sentiment) | **GET** /news-sentiment | News Sentiment |
 | [**ownership**](DefaultApi.md#ownership) | **GET** /stock/ownership | Ownership |
 | [**pattern_recognition**](DefaultApi.md#pattern_recognition) | **GET** /scan/pattern | Pattern Recognition |
@@ -70,6 +70,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**support_resistance**](DefaultApi.md#support_resistance) | **GET** /scan/support-resistance | Support/Resistance |
 | [**symbol_search**](DefaultApi.md#symbol_search) | **GET** /search | Symbol Lookup |
 | [**technical_indicator**](DefaultApi.md#technical_indicator) | **POST** /indicator | Technical Indicators |
+| [**transcripts**](DefaultApi.md#transcripts) | **GET** /stock/transcripts | Earnings Call Transcripts |
 | [**transcripts_list**](DefaultApi.md#transcripts_list) | **GET** /stock/transcripts/list | Earnings Call Transcripts List |
 | [**upgrade_downgrade**](DefaultApi.md#upgrade_downgrade) | **GET** /stock/upgrade-downgrade | Stock Upgrade/Downgrade |
 
@@ -443,7 +444,7 @@ end
 
 ## company_news
 
-> <Array<News>> company_news(symbol, from, to)
+> <Array<CompanyNews>> company_news(symbol, from, to)
 
 Company News
 
@@ -480,7 +481,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<Array<News>>, Integer, Hash)> company_news_with_http_info(symbol, from, to)
+> <Array(<Array<CompanyNews>>, Integer, Hash)> company_news_with_http_info(symbol, from, to)
 
 ```ruby
 begin
@@ -488,7 +489,7 @@ begin
   data, status_code, headers = api_instance.company_news_with_http_info(symbol, from, to)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <Array<News>>
+  p data # => <Array<CompanyNews>>
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->company_news_with_http_info: #{e}"
 end
@@ -504,7 +505,7 @@ end
 
 ### Return type
 
-[**Array&lt;News&gt;**](News.md)
+[**Array&lt;CompanyNews&gt;**](CompanyNews.md)
 
 ### Authorization
 
@@ -1247,13 +1248,13 @@ end
 - **Accept**: application/json
 
 
-## earnings_call_transcripts_api
+## economic_calendar
 
-> <EarningsCallTranscripts> earnings_call_transcripts_api(id)
+> <EconomicCalendar> economic_calendar
 
-Earnings Call Transcripts
+Economic Calendar
 
-<p>Get earnings call transcripts, audio and participants' list. This endpoint is only available for US, UK, and Candian companies. <p>15+ years of data is available with 220,000+ audio which add up to 7TB in size.</p>
+<p>Get recent and upcoming economic releases.</p><p>Historical events and surprises are available for Enterprise clients.</p>
 
 ### Examples
 
@@ -1269,44 +1270,41 @@ FinnhubRuby.configure do |config|
 end
 
 api_instance = FinnhubRuby::DefaultApi.new
-id = 'id_example' # String | Transcript's id obtained with <a href=\"#transcripts-list\">Transcripts List endpoint</a>.
 
 begin
-  # Earnings Call Transcripts
-  result = api_instance.earnings_call_transcripts_api(id)
+  # Economic Calendar
+  result = api_instance.economic_calendar
   p result
 rescue FinnhubRuby::ApiError => e
-  puts "Error when calling DefaultApi->earnings_call_transcripts_api: #{e}"
+  puts "Error when calling DefaultApi->economic_calendar: #{e}"
 end
 ```
 
-#### Using the earnings_call_transcripts_api_with_http_info variant
+#### Using the economic_calendar_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<EarningsCallTranscripts>, Integer, Hash)> earnings_call_transcripts_api_with_http_info(id)
+> <Array(<EconomicCalendar>, Integer, Hash)> economic_calendar_with_http_info
 
 ```ruby
 begin
-  # Earnings Call Transcripts
-  data, status_code, headers = api_instance.earnings_call_transcripts_api_with_http_info(id)
+  # Economic Calendar
+  data, status_code, headers = api_instance.economic_calendar_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <EarningsCallTranscripts>
+  p data # => <EconomicCalendar>
 rescue FinnhubRuby::ApiError => e
-  puts "Error when calling DefaultApi->earnings_call_transcripts_api_with_http_info: #{e}"
+  puts "Error when calling DefaultApi->economic_calendar_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **id** | **String** | Transcript&#39;s id obtained with &lt;a href&#x3D;\&quot;#transcripts-list\&quot;&gt;Transcripts List endpoint&lt;/a&gt;. |  |
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**EarningsCallTranscripts**](EarningsCallTranscripts.md)
+[**EconomicCalendar**](EconomicCalendar.md)
 
 ### Authorization
 
@@ -2785,9 +2783,9 @@ end
 - **Accept**: application/json
 
 
-## investment_themes_thematic_investing
+## investment_themes
 
-> <InvestmentThemesThematicInvesting> investment_themes_thematic_investing(theme)
+> <InvestmentThemes> investment_themes(theme)
 
 Investment Themes (Thematic Investing)
 
@@ -2811,28 +2809,28 @@ theme = 'theme_example' # String | Investment theme. A full list of themes suppo
 
 begin
   # Investment Themes (Thematic Investing)
-  result = api_instance.investment_themes_thematic_investing(theme)
+  result = api_instance.investment_themes(theme)
   p result
 rescue FinnhubRuby::ApiError => e
-  puts "Error when calling DefaultApi->investment_themes_thematic_investing: #{e}"
+  puts "Error when calling DefaultApi->investment_themes: #{e}"
 end
 ```
 
-#### Using the investment_themes_thematic_investing_with_http_info variant
+#### Using the investment_themes_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<InvestmentThemesThematicInvesting>, Integer, Hash)> investment_themes_thematic_investing_with_http_info(theme)
+> <Array(<InvestmentThemes>, Integer, Hash)> investment_themes_with_http_info(theme)
 
 ```ruby
 begin
   # Investment Themes (Thematic Investing)
-  data, status_code, headers = api_instance.investment_themes_thematic_investing_with_http_info(theme)
+  data, status_code, headers = api_instance.investment_themes_with_http_info(theme)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <InvestmentThemesThematicInvesting>
+  p data # => <InvestmentThemes>
 rescue FinnhubRuby::ApiError => e
-  puts "Error when calling DefaultApi->investment_themes_thematic_investing_with_http_info: #{e}"
+  puts "Error when calling DefaultApi->investment_themes_with_http_info: #{e}"
 end
 ```
 
@@ -2844,7 +2842,7 @@ end
 
 ### Return type
 
-[**InvestmentThemesThematicInvesting**](InvestmentThemesThematicInvesting.md)
+[**InvestmentThemes**](InvestmentThemes.md)
 
 ### Authorization
 
@@ -2931,7 +2929,7 @@ end
 
 ## market_news
 
-> <Array<News>> market_news(category, opts)
+> <Array<MarketNews>> market_news(category, opts)
 
 Market News
 
@@ -2969,7 +2967,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<Array<News>>, Integer, Hash)> market_news_with_http_info(category, opts)
+> <Array(<Array<MarketNews>>, Integer, Hash)> market_news_with_http_info(category, opts)
 
 ```ruby
 begin
@@ -2977,7 +2975,7 @@ begin
   data, status_code, headers = api_instance.market_news_with_http_info(category, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <Array<News>>
+  p data # => <Array<MarketNews>>
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->market_news_with_http_info: #{e}"
 end
@@ -2992,7 +2990,7 @@ end
 
 ### Return type
 
-[**Array&lt;News&gt;**](News.md)
+[**Array&lt;MarketNews&gt;**](MarketNews.md)
 
 ### Authorization
 
@@ -3006,7 +3004,7 @@ end
 
 ## mutual_fund_country_exposure
 
-> <MutualFundsCountryExposure> mutual_fund_country_exposure(symbol)
+> <MutualFundCountryExposure> mutual_fund_country_exposure(symbol)
 
 Mutual Funds Country Exposure
 
@@ -3041,7 +3039,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<MutualFundsCountryExposure>, Integer, Hash)> mutual_fund_country_exposure_with_http_info(symbol)
+> <Array(<MutualFundCountryExposure>, Integer, Hash)> mutual_fund_country_exposure_with_http_info(symbol)
 
 ```ruby
 begin
@@ -3049,7 +3047,7 @@ begin
   data, status_code, headers = api_instance.mutual_fund_country_exposure_with_http_info(symbol)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <MutualFundsCountryExposure>
+  p data # => <MutualFundCountryExposure>
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->mutual_fund_country_exposure_with_http_info: #{e}"
 end
@@ -3063,7 +3061,7 @@ end
 
 ### Return type
 
-[**MutualFundsCountryExposure**](MutualFundsCountryExposure.md)
+[**MutualFundCountryExposure**](MutualFundCountryExposure.md)
 
 ### Authorization
 
@@ -3077,7 +3075,7 @@ end
 
 ## mutual_fund_holdings
 
-> <MutualFundsHoldings> mutual_fund_holdings(opts)
+> <MutualFundHoldings> mutual_fund_holdings(opts)
 
 Mutual Funds Holdings
 
@@ -3116,7 +3114,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<MutualFundsHoldings>, Integer, Hash)> mutual_fund_holdings_with_http_info(opts)
+> <Array(<MutualFundHoldings>, Integer, Hash)> mutual_fund_holdings_with_http_info(opts)
 
 ```ruby
 begin
@@ -3124,7 +3122,7 @@ begin
   data, status_code, headers = api_instance.mutual_fund_holdings_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <MutualFundsHoldings>
+  p data # => <MutualFundHoldings>
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->mutual_fund_holdings_with_http_info: #{e}"
 end
@@ -3140,7 +3138,7 @@ end
 
 ### Return type
 
-[**MutualFundsHoldings**](MutualFundsHoldings.md)
+[**MutualFundHoldings**](MutualFundHoldings.md)
 
 ### Authorization
 
@@ -3154,7 +3152,7 @@ end
 
 ## mutual_fund_profile
 
-> <MutualFundsProfile> mutual_fund_profile(opts)
+> <MutualFundProfile> mutual_fund_profile(opts)
 
 Mutual Funds Profile
 
@@ -3192,7 +3190,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<MutualFundsProfile>, Integer, Hash)> mutual_fund_profile_with_http_info(opts)
+> <Array(<MutualFundProfile>, Integer, Hash)> mutual_fund_profile_with_http_info(opts)
 
 ```ruby
 begin
@@ -3200,7 +3198,7 @@ begin
   data, status_code, headers = api_instance.mutual_fund_profile_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <MutualFundsProfile>
+  p data # => <MutualFundProfile>
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->mutual_fund_profile_with_http_info: #{e}"
 end
@@ -3215,7 +3213,7 @@ end
 
 ### Return type
 
-[**MutualFundsProfile**](MutualFundsProfile.md)
+[**MutualFundProfile**](MutualFundProfile.md)
 
 ### Authorization
 
@@ -3231,7 +3229,7 @@ end
 
 > <MutualFundSectorExposure> mutual_fund_sector_exposure(symbol)
 
-Mutual-fund Sector Exposure
+Mutual Funds Sector Exposure
 
 Get Mutual Funds sector exposure data.
 
@@ -3252,7 +3250,7 @@ api_instance = FinnhubRuby::DefaultApi.new
 symbol = 'symbol_example' # String | Mutual Fund symbol.
 
 begin
-  # Mutual-fund Sector Exposure
+  # Mutual Funds Sector Exposure
   result = api_instance.mutual_fund_sector_exposure(symbol)
   p result
 rescue FinnhubRuby::ApiError => e
@@ -3268,7 +3266,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Mutual-fund Sector Exposure
+  # Mutual Funds Sector Exposure
   data, status_code, headers = api_instance.mutual_fund_sector_exposure_with_http_info(symbol)
   p status_code # => 2xx
   p headers # => { ... }
@@ -3519,7 +3517,7 @@ end
 
 ## press_releases
 
-> <MajorPressReleases> press_releases(symbol, opts)
+> <PressRelease> press_releases(symbol, opts)
 
 Major Press Releases
 
@@ -3558,7 +3556,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<MajorPressReleases>, Integer, Hash)> press_releases_with_http_info(symbol, opts)
+> <Array(<PressRelease>, Integer, Hash)> press_releases_with_http_info(symbol, opts)
 
 ```ruby
 begin
@@ -3566,7 +3564,7 @@ begin
   data, status_code, headers = api_instance.press_releases_with_http_info(symbol, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <MajorPressReleases>
+  p data # => <PressRelease>
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->press_releases_with_http_info: #{e}"
 end
@@ -3582,7 +3580,7 @@ end
 
 ### Return type
 
-[**MajorPressReleases**](MajorPressReleases.md)
+[**PressRelease**](PressRelease.md)
 
 ### Authorization
 
@@ -4038,7 +4036,7 @@ end
 
 ## stock_basic_dividends
 
-> <Dividends2Basic> stock_basic_dividends(symbol)
+> <Dividends2> stock_basic_dividends(symbol)
 
 Dividends 2 (Basic)
 
@@ -4073,7 +4071,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<Dividends2Basic>, Integer, Hash)> stock_basic_dividends_with_http_info(symbol)
+> <Array(<Dividends2>, Integer, Hash)> stock_basic_dividends_with_http_info(symbol)
 
 ```ruby
 begin
@@ -4081,7 +4079,7 @@ begin
   data, status_code, headers = api_instance.stock_basic_dividends_with_http_info(symbol)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <Dividends2Basic>
+  p data # => <Dividends2>
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->stock_basic_dividends_with_http_info: #{e}"
 end
@@ -4095,7 +4093,7 @@ end
 
 ### Return type
 
-[**Dividends2Basic**](Dividends2Basic.md)
+[**Dividends2**](Dividends2.md)
 
 ### Authorization
 
@@ -4488,7 +4486,7 @@ end
 
 ## stock_symbols
 
-> <Array<Stock>> stock_symbols(exchange, opts)
+> <Array<StockSymbol>> stock_symbols(exchange, opts)
 
 Stock Symbol
 
@@ -4528,7 +4526,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<Array<Stock>>, Integer, Hash)> stock_symbols_with_http_info(exchange, opts)
+> <Array(<Array<StockSymbol>>, Integer, Hash)> stock_symbols_with_http_info(exchange, opts)
 
 ```ruby
 begin
@@ -4536,7 +4534,7 @@ begin
   data, status_code, headers = api_instance.stock_symbols_with_http_info(exchange, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <Array<Stock>>
+  p data # => <Array<StockSymbol>>
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->stock_symbols_with_http_info: #{e}"
 end
@@ -4553,7 +4551,7 @@ end
 
 ### Return type
 
-[**Array&lt;Stock&gt;**](Stock.md)
+[**Array&lt;StockSymbol&gt;**](StockSymbol.md)
 
 ### Authorization
 
@@ -4937,6 +4935,77 @@ end
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## transcripts
+
+> <EarningsCallTranscripts> transcripts(id)
+
+Earnings Call Transcripts
+
+<p>Get earnings call transcripts, audio and participants' list. This endpoint is only available for US, UK, and Candian companies. <p>15+ years of data is available with 220,000+ audio which add up to 7TB in size.</p>
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+id = 'id_example' # String | Transcript's id obtained with <a href=\"#transcripts-list\">Transcripts List endpoint</a>.
+
+begin
+  # Earnings Call Transcripts
+  result = api_instance.transcripts(id)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->transcripts: #{e}"
+end
+```
+
+#### Using the transcripts_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<EarningsCallTranscripts>, Integer, Hash)> transcripts_with_http_info(id)
+
+```ruby
+begin
+  # Earnings Call Transcripts
+  data, status_code, headers = api_instance.transcripts_with_http_info(id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <EarningsCallTranscripts>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->transcripts_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | Transcript&#39;s id obtained with &lt;a href&#x3D;\&quot;#transcripts-list\&quot;&gt;Transcripts List endpoint&lt;/a&gt;. |  |
+
+### Return type
+
+[**EarningsCallTranscripts**](EarningsCallTranscripts.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 

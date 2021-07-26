@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **data** | **Array&lt;Object&gt;** | List of estimates | [optional] |
+| **data** | [**Array&lt;Estimate&gt;**](Estimate.md) | List of estimates | [optional] |
 | **freq** | **String** | Frequency: annual or quarterly. | [optional] |
 | **symbol** | **String** | Company symbol. | [optional] |
 

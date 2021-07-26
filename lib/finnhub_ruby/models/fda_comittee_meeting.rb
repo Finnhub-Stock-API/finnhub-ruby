@@ -45,8 +45,8 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'from_date' => :'Time',
-        :'to_date' => :'Time',
+        :'from_date' => :'String',
+        :'to_date' => :'String',
         :'event_description' => :'String',
         :'url' => :'String'
       }

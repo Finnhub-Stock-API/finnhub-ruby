@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | ETF symbol. | [optional] |
-| **country_exposure** | **Array&lt;Object&gt;** | Array of countries and and exposure levels. | [optional] |
+| **country_exposure** | [**Array&lt;ETFCountryExposureData&gt;**](ETFCountryExposureData.md) | Array of countries and and exposure levels. | [optional] |
 
 ## Example
 

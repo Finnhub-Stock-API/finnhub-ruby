@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Index&#39;s symbol. | [optional] |
-| **historical_constituents** | **Array&lt;Object&gt;** | Array of historical constituents. | [optional] |
+| **historical_constituents** | [**Array&lt;IndexHistoricalConstituent&gt;**](IndexHistoricalConstituent.md) | Array of historical constituents. | [optional] |
 
 ## Example
 

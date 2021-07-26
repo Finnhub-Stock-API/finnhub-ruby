@@ -365,7 +365,7 @@ module FinnhubRuby
     # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
     # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
     # @param [Hash] opts the optional parameters
-    # @return [Array<News>]
+    # @return [Array<CompanyNews>]
     def company_news(symbol, from, to, opts = {})
       data, _status_code, _headers = company_news_with_http_info(symbol, from, to, opts)
       data
@@ -377,7 +377,7 @@ module FinnhubRuby
     # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
     # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<News>, Integer, Hash)>] Array<News> data, response status code and response headers
+    # @return [Array<(Array<CompanyNews>, Integer, Hash)>] Array<CompanyNews> data, response status code and response headers
     def company_news_with_http_info(symbol, from, to, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.company_news ...'
@@ -415,7 +415,7 @@ module FinnhubRuby
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'Array<News>'
+      return_type = opts[:debug_return_type] || 'Array<CompanyNews>'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']
@@ -1089,35 +1089,28 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
-    # Earnings Call Transcripts
-    # <p>Get earnings call transcripts, audio and participants' list. This endpoint is only available for US, UK, and Candian companies. <p>15+ years of data is available with 220,000+ audio which add up to 7TB in size.</p>
-    # @param id [String] Transcript&#39;s id obtained with &lt;a href&#x3D;\&quot;#transcripts-list\&quot;&gt;Transcripts List endpoint&lt;/a&gt;.
+    # Economic Calendar
+    # <p>Get recent and upcoming economic releases.</p><p>Historical events and surprises are available for Enterprise clients.</p>
     # @param [Hash] opts the optional parameters
-    # @return [EarningsCallTranscripts]
-    def earnings_call_transcripts_api(id, opts = {})
-      data, _status_code, _headers = earnings_call_transcripts_api_with_http_info(id, opts)
+    # @return [EconomicCalendar]
+    def economic_calendar(opts = {})
+      data, _status_code, _headers = economic_calendar_with_http_info(opts)
       data
     end
 
-    # Earnings Call Transcripts
-    # &lt;p&gt;Get earnings call transcripts, audio and participants&#39; list. This endpoint is only available for US, UK, and Candian companies. &lt;p&gt;15+ years of data is available with 220,000+ audio which add up to 7TB in size.&lt;/p&gt;
-    # @param id [String] Transcript&#39;s id obtained with &lt;a href&#x3D;\&quot;#transcripts-list\&quot;&gt;Transcripts List endpoint&lt;/a&gt;.
+    # Economic Calendar
+    # &lt;p&gt;Get recent and upcoming economic releases.&lt;/p&gt;&lt;p&gt;Historical events and surprises are available for Enterprise clients.&lt;/p&gt;
     # @param [Hash] opts the optional parameters
-    # @return [Array<(EarningsCallTranscripts, Integer, Hash)>] EarningsCallTranscripts data, response status code and response headers
-    def earnings_call_transcripts_api_with_http_info(id, opts = {})
+    # @return [Array<(EconomicCalendar, Integer, Hash)>] EconomicCalendar data, response status code and response headers
+    def economic_calendar_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: DefaultApi.earnings_call_transcripts_api ...'
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling DefaultApi.earnings_call_transcripts_api"
+        @api_client.config.logger.debug 'Calling API: DefaultApi.economic_calendar ...'
       end
       # resource path
-      local_var_path = '/stock/transcripts'
+      local_var_path = '/calendar/economic'
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'id'] = id
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -1131,13 +1124,13 @@ module FinnhubRuby
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'EarningsCallTranscripts'
+      return_type = opts[:debug_return_type] || 'EconomicCalendar'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']
 
       new_options = opts.merge(
-        :operation => :"DefaultApi.earnings_call_transcripts_api",
+        :operation => :"DefaultApi.economic_calendar",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1148,7 +1141,7 @@ module FinnhubRuby
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: DefaultApi#earnings_call_transcripts_api\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: DefaultApi#economic_calendar\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2472,9 +2465,9 @@ module FinnhubRuby
     # <p>Thematic investing involves creating a portfolio (or portion of a portfolio) by gathering together a collection of companies involved in certain areas that you predict will generate above-market returns over the long term. Themes can be based on a concept such as ageing populations or a sub-sector such as robotics, and drones. Thematic investing focuses on predicted long-term trends rather than specific companies or sectors, enabling investors to access structural, one-off shifts that can change an entire industry.</p><p>This endpoint will help you get portfolios of different investment themes that are changing our life and are the way of the future.</p><p>A full list of themes supported can be found <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing\">here</a>. The theme coverage and portfolios are updated bi-weekly by our analysts. Our approach excludes penny, super-small cap and illiquid stocks.</p>
     # @param theme [String] Investment theme. A full list of themes supported can be found &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp&#x3D;sharing\&quot;&gt;here&lt;/a&gt;.
     # @param [Hash] opts the optional parameters
-    # @return [InvestmentThemesThematicInvesting]
-    def investment_themes_thematic_investing(theme, opts = {})
-      data, _status_code, _headers = investment_themes_thematic_investing_with_http_info(theme, opts)
+    # @return [InvestmentThemes]
+    def investment_themes(theme, opts = {})
+      data, _status_code, _headers = investment_themes_with_http_info(theme, opts)
       data
     end
 
@@ -2482,14 +2475,14 @@ module FinnhubRuby
     # &lt;p&gt;Thematic investing involves creating a portfolio (or portion of a portfolio) by gathering together a collection of companies involved in certain areas that you predict will generate above-market returns over the long term. Themes can be based on a concept such as ageing populations or a sub-sector such as robotics, and drones. Thematic investing focuses on predicted long-term trends rather than specific companies or sectors, enabling investors to access structural, one-off shifts that can change an entire industry.&lt;/p&gt;&lt;p&gt;This endpoint will help you get portfolios of different investment themes that are changing our life and are the way of the future.&lt;/p&gt;&lt;p&gt;A full list of themes supported can be found &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp&#x3D;sharing\&quot;&gt;here&lt;/a&gt;. The theme coverage and portfolios are updated bi-weekly by our analysts. Our approach excludes penny, super-small cap and illiquid stocks.&lt;/p&gt;
     # @param theme [String] Investment theme. A full list of themes supported can be found &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp&#x3D;sharing\&quot;&gt;here&lt;/a&gt;.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InvestmentThemesThematicInvesting, Integer, Hash)>] InvestmentThemesThematicInvesting data, response status code and response headers
-    def investment_themes_thematic_investing_with_http_info(theme, opts = {})
+    # @return [Array<(InvestmentThemes, Integer, Hash)>] InvestmentThemes data, response status code and response headers
+    def investment_themes_with_http_info(theme, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: DefaultApi.investment_themes_thematic_investing ...'
+        @api_client.config.logger.debug 'Calling API: DefaultApi.investment_themes ...'
       end
       # verify the required parameter 'theme' is set
       if @api_client.config.client_side_validation && theme.nil?
-        fail ArgumentError, "Missing the required parameter 'theme' when calling DefaultApi.investment_themes_thematic_investing"
+        fail ArgumentError, "Missing the required parameter 'theme' when calling DefaultApi.investment_themes"
       end
       # resource path
       local_var_path = '/stock/investment-theme'
@@ -2510,13 +2503,13 @@ module FinnhubRuby
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'InvestmentThemesThematicInvesting'
+      return_type = opts[:debug_return_type] || 'InvestmentThemes'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']
 
       new_options = opts.merge(
-        :operation => :"DefaultApi.investment_themes_thematic_investing",
+        :operation => :"DefaultApi.investment_themes",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2527,7 +2520,7 @@ module FinnhubRuby
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: DefaultApi#investment_themes_thematic_investing\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: DefaultApi#investment_themes\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2608,7 +2601,7 @@ module FinnhubRuby
     # @param category [String] This parameter can be 1 of the following values &lt;code&gt;general, forex, crypto, merger&lt;/code&gt;.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :min_id Use this field to get only news after this ID. Default to 0
-    # @return [Array<News>]
+    # @return [Array<MarketNews>]
     def market_news(category, opts = {})
       data, _status_code, _headers = market_news_with_http_info(category, opts)
       data
@@ -2619,7 +2612,7 @@ module FinnhubRuby
     # @param category [String] This parameter can be 1 of the following values &lt;code&gt;general, forex, crypto, merger&lt;/code&gt;.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :min_id Use this field to get only news after this ID. Default to 0
-    # @return [Array<(Array<News>, Integer, Hash)>] Array<News> data, response status code and response headers
+    # @return [Array<(Array<MarketNews>, Integer, Hash)>] Array<MarketNews> data, response status code and response headers
     def market_news_with_http_info(category, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.market_news ...'
@@ -2648,7 +2641,7 @@ module FinnhubRuby
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'Array<News>'
+      return_type = opts[:debug_return_type] || 'Array<MarketNews>'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']
@@ -2674,7 +2667,7 @@ module FinnhubRuby
     # Get Mutual Funds country exposure data.
     # @param symbol [String] Symbol.
     # @param [Hash] opts the optional parameters
-    # @return [MutualFundsCountryExposure]
+    # @return [MutualFundCountryExposure]
     def mutual_fund_country_exposure(symbol, opts = {})
       data, _status_code, _headers = mutual_fund_country_exposure_with_http_info(symbol, opts)
       data
@@ -2684,7 +2677,7 @@ module FinnhubRuby
     # Get Mutual Funds country exposure data.
     # @param symbol [String] Symbol.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(MutualFundsCountryExposure, Integer, Hash)>] MutualFundsCountryExposure data, response status code and response headers
+    # @return [Array<(MutualFundCountryExposure, Integer, Hash)>] MutualFundCountryExposure data, response status code and response headers
     def mutual_fund_country_exposure_with_http_info(symbol, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.mutual_fund_country_exposure ...'
@@ -2712,7 +2705,7 @@ module FinnhubRuby
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'MutualFundsCountryExposure'
+      return_type = opts[:debug_return_type] || 'MutualFundCountryExposure'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']
@@ -2740,7 +2733,7 @@ module FinnhubRuby
     # @option opts [String] :symbol Fund&#39;s symbol.
     # @option opts [String] :isin Fund&#39;s isin.
     # @option opts [Integer] :skip Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip&#x3D;0 or not set.
-    # @return [MutualFundsHoldings]
+    # @return [MutualFundHoldings]
     def mutual_fund_holdings(opts = {})
       data, _status_code, _headers = mutual_fund_holdings_with_http_info(opts)
       data
@@ -2752,7 +2745,7 @@ module FinnhubRuby
     # @option opts [String] :symbol Fund&#39;s symbol.
     # @option opts [String] :isin Fund&#39;s isin.
     # @option opts [Integer] :skip Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip&#x3D;0 or not set.
-    # @return [Array<(MutualFundsHoldings, Integer, Hash)>] MutualFundsHoldings data, response status code and response headers
+    # @return [Array<(MutualFundHoldings, Integer, Hash)>] MutualFundHoldings data, response status code and response headers
     def mutual_fund_holdings_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.mutual_fund_holdings ...'
@@ -2778,7 +2771,7 @@ module FinnhubRuby
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'MutualFundsHoldings'
+      return_type = opts[:debug_return_type] || 'MutualFundHoldings'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']
@@ -2805,7 +2798,7 @@ module FinnhubRuby
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Fund&#39;s symbol.
     # @option opts [String] :isin Fund&#39;s isin.
-    # @return [MutualFundsProfile]
+    # @return [MutualFundProfile]
     def mutual_fund_profile(opts = {})
       data, _status_code, _headers = mutual_fund_profile_with_http_info(opts)
       data
@@ -2816,7 +2809,7 @@ module FinnhubRuby
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Fund&#39;s symbol.
     # @option opts [String] :isin Fund&#39;s isin.
-    # @return [Array<(MutualFundsProfile, Integer, Hash)>] MutualFundsProfile data, response status code and response headers
+    # @return [Array<(MutualFundProfile, Integer, Hash)>] MutualFundProfile data, response status code and response headers
     def mutual_fund_profile_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.mutual_fund_profile ...'
@@ -2841,7 +2834,7 @@ module FinnhubRuby
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'MutualFundsProfile'
+      return_type = opts[:debug_return_type] || 'MutualFundProfile'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']
@@ -2863,7 +2856,7 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
-    # Mutual-fund Sector Exposure
+    # Mutual Funds Sector Exposure
     # Get Mutual Funds sector exposure data.
     # @param symbol [String] Mutual Fund symbol.
     # @param [Hash] opts the optional parameters
@@ -2873,7 +2866,7 @@ module FinnhubRuby
       data
     end
 
-    # Mutual-fund Sector Exposure
+    # Mutual Funds Sector Exposure
     # Get Mutual Funds sector exposure data.
     # @param symbol [String] Mutual Fund symbol.
     # @param [Hash] opts the optional parameters
@@ -3135,7 +3128,7 @@ module FinnhubRuby
     # @param [Hash] opts the optional parameters
     # @option opts [Date] :from From time: 2020-01-01.
     # @option opts [Date] :to To time: 2020-01-05.
-    # @return [MajorPressReleases]
+    # @return [PressRelease]
     def press_releases(symbol, opts = {})
       data, _status_code, _headers = press_releases_with_http_info(symbol, opts)
       data
@@ -3147,7 +3140,7 @@ module FinnhubRuby
     # @param [Hash] opts the optional parameters
     # @option opts [Date] :from From time: 2020-01-01.
     # @option opts [Date] :to To time: 2020-01-05.
-    # @return [Array<(MajorPressReleases, Integer, Hash)>] MajorPressReleases data, response status code and response headers
+    # @return [Array<(PressRelease, Integer, Hash)>] PressRelease data, response status code and response headers
     def press_releases_with_http_info(symbol, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.press_releases ...'
@@ -3177,7 +3170,7 @@ module FinnhubRuby
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'MajorPressReleases'
+      return_type = opts[:debug_return_type] || 'PressRelease'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']
@@ -3594,7 +3587,7 @@ module FinnhubRuby
     # Get global dividends data.
     # @param symbol [String] Symbol.
     # @param [Hash] opts the optional parameters
-    # @return [Dividends2Basic]
+    # @return [Dividends2]
     def stock_basic_dividends(symbol, opts = {})
       data, _status_code, _headers = stock_basic_dividends_with_http_info(symbol, opts)
       data
@@ -3604,7 +3597,7 @@ module FinnhubRuby
     # Get global dividends data.
     # @param symbol [String] Symbol.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Dividends2Basic, Integer, Hash)>] Dividends2Basic data, response status code and response headers
+    # @return [Array<(Dividends2, Integer, Hash)>] Dividends2 data, response status code and response headers
     def stock_basic_dividends_with_http_info(symbol, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.stock_basic_dividends ...'
@@ -3632,7 +3625,7 @@ module FinnhubRuby
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'Dividends2Basic'
+      return_type = opts[:debug_return_type] || 'Dividends2'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']
@@ -4054,7 +4047,7 @@ module FinnhubRuby
     # @option opts [String] :mic Filter by MIC code.
     # @option opts [String] :security_type Filter by security type used by OpenFigi standard.
     # @option opts [String] :currency Filter by currency.
-    # @return [Array<Stock>]
+    # @return [Array<StockSymbol>]
     def stock_symbols(exchange, opts = {})
       data, _status_code, _headers = stock_symbols_with_http_info(exchange, opts)
       data
@@ -4067,7 +4060,7 @@ module FinnhubRuby
     # @option opts [String] :mic Filter by MIC code.
     # @option opts [String] :security_type Filter by security type used by OpenFigi standard.
     # @option opts [String] :currency Filter by currency.
-    # @return [Array<(Array<Stock>, Integer, Hash)>] Array<Stock> data, response status code and response headers
+    # @return [Array<(Array<StockSymbol>, Integer, Hash)>] Array<StockSymbol> data, response status code and response headers
     def stock_symbols_with_http_info(exchange, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.stock_symbols ...'
@@ -4098,7 +4091,7 @@ module FinnhubRuby
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'Array<Stock>'
+      return_type = opts[:debug_return_type] || 'Array<StockSymbol>'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']
@@ -4496,6 +4489,70 @@ module FinnhubRuby
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#technical_indicator\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Earnings Call Transcripts
+    # <p>Get earnings call transcripts, audio and participants' list. This endpoint is only available for US, UK, and Candian companies. <p>15+ years of data is available with 220,000+ audio which add up to 7TB in size.</p>
+    # @param id [String] Transcript&#39;s id obtained with &lt;a href&#x3D;\&quot;#transcripts-list\&quot;&gt;Transcripts List endpoint&lt;/a&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [EarningsCallTranscripts]
+    def transcripts(id, opts = {})
+      data, _status_code, _headers = transcripts_with_http_info(id, opts)
+      data
+    end
+
+    # Earnings Call Transcripts
+    # &lt;p&gt;Get earnings call transcripts, audio and participants&#39; list. This endpoint is only available for US, UK, and Candian companies. &lt;p&gt;15+ years of data is available with 220,000+ audio which add up to 7TB in size.&lt;/p&gt;
+    # @param id [String] Transcript&#39;s id obtained with &lt;a href&#x3D;\&quot;#transcripts-list\&quot;&gt;Transcripts List endpoint&lt;/a&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(EarningsCallTranscripts, Integer, Hash)>] EarningsCallTranscripts data, response status code and response headers
+    def transcripts_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.transcripts ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling DefaultApi.transcripts"
+      end
+      # resource path
+      local_var_path = '/stock/transcripts'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'id'] = id
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'EarningsCallTranscripts'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.transcripts",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#transcripts\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

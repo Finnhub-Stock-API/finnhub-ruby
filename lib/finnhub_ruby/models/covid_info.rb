@@ -48,7 +48,7 @@ module FinnhubRuby
         :'state' => :'String',
         :'_case' => :'Float',
         :'death' => :'Float',
-        :'updated' => :'Time'
+        :'updated' => :'String'
       }
     end
 

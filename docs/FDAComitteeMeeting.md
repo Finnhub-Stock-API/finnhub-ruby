@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **from_date** | **Time** | Start time of the event in EST. | [optional] |
-| **to_date** | **Time** | End time of the event in EST. | [optional] |
+| **from_date** | **String** | Start time of the event in EST. | [optional] |
+| **to_date** | **String** | End time of the event in EST. | [optional] |
 | **event_description** | **String** | Event&#39;s description. | [optional] |
 | **url** | **String** | URL. | [optional] |
 

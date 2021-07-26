@@ -9,7 +9,7 @@
 | **target_low** | **Float** | Lowest analysts&#39; target. | [optional] |
 | **target_mean** | **Float** | Mean of all analysts&#39; targets. | [optional] |
 | **target_median** | **Float** | Median of all analysts&#39; targets. | [optional] |
-| **last_updated** | **Time** | Updated time of the data | [optional] |
+| **last_updated** | **String** | Updated time of the data | [optional] |
 
 ## Example
 

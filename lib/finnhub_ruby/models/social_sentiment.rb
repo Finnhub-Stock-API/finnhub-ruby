@@ -42,8 +42,8 @@ module FinnhubRuby
     def self.openapi_types
       {
         :'symbol' => :'String',
-        :'reddit' => :'Array<Object>',
-        :'twitter' => :'Array<Object>'
+        :'reddit' => :'Array<RedditSentimentContent>',
+        :'twitter' => :'Array<TwitterSentimentContent>'
       }
     end
 

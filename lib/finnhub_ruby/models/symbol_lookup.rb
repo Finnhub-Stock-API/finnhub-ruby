@@ -37,7 +37,7 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'result' => :'Array<Object>',
+        :'result' => :'Array<SymbolLookupInfo>',
         :'count' => :'Integer'
       }
     end

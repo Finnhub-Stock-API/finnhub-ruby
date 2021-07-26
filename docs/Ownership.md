@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Symbol of the company. | [optional] |
-| **ownership** | **Array&lt;Object&gt;** | Array of investors with detailed information about their holdings. | [optional] |
+| **ownership** | [**Array&lt;OwnershipInfo&gt;**](OwnershipInfo.md) | Array of investors with detailed information about their holdings. | [optional] |
 
 ## Example
 

@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Mutual symbol. | [optional] |
-| **sector_exposure** | **Array&lt;Object&gt;** | Array of sector and exposure levels. | [optional] |
+| **sector_exposure** | [**Array&lt;MutualFundSectorExposureData&gt;**](MutualFundSectorExposureData.md) | Array of sector and exposure levels. | [optional] |
 
 ## Example
 

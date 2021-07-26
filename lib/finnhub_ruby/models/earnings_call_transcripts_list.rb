@@ -38,7 +38,7 @@ module FinnhubRuby
     def self.openapi_types
       {
         :'symbol' => :'String',
-        :'transcripts' => :'Array<Object>'
+        :'transcripts' => :'Array<StockTranscripts>'
       }
     end
 

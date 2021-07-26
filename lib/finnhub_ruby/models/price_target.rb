@@ -58,7 +58,7 @@ module FinnhubRuby
         :'target_low' => :'Float',
         :'target_mean' => :'Float',
         :'target_median' => :'Float',
-        :'last_updated' => :'Time'
+        :'last_updated' => :'String'
       }
     end
 

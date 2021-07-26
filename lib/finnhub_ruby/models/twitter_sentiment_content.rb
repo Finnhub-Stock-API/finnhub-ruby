@@ -63,7 +63,7 @@ module FinnhubRuby
         :'positive_score' => :'Float',
         :'negative_score' => :'Float',
         :'score' => :'Float',
-        :'at_time' => :'Time'
+        :'at_time' => :'String'
       }
     end
 

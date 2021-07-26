@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | ETF symbol. | [optional] |
-| **sector_exposure** | **Array&lt;Object&gt;** | Array of industries and exposure levels. | [optional] |
+| **sector_exposure** | [**Array&lt;ETFSectorExposureData&gt;**](ETFSectorExposureData.md) | Array of industries and exposure levels. | [optional] |
 
 ## Example
 

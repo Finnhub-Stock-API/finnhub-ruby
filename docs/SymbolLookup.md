@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **result** | **Array&lt;Object&gt;** | Array of search results. | [optional] |
+| **result** | [**Array&lt;SymbolLookupInfo&gt;**](SymbolLookupInfo.md) | Array of search results. | [optional] |
 | **count** | **Integer** | Number of results. | [optional] |
 
 ## Example

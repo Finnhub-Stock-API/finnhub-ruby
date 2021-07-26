@@ -43,7 +43,7 @@ module FinnhubRuby
       {
         :'symbol' => :'String',
         :'cik' => :'String',
-        :'similarity' => :'Array<Object>'
+        :'similarity' => :'Array<Filing>'
       }
     end
 

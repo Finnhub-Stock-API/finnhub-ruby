@@ -33,7 +33,7 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'earnings_calendar' => :'Array<Object>'
+        :'earnings_calendar' => :'Array<EarningRelease>'
       }
     end
 

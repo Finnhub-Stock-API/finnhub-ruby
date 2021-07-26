@@ -66,12 +66,12 @@ module FinnhubRuby
     def self.openapi_types
       {
         :'symbol' => :'String',
-        :'transcript' => :'Array<Object>',
-        :'participant' => :'Array<Object>',
+        :'transcript' => :'Array<TranscriptContent>',
+        :'participant' => :'Array<TranscriptParticipant>',
         :'audio' => :'String',
         :'id' => :'String',
         :'title' => :'String',
-        :'time' => :'Time',
+        :'time' => :'String',
         :'year' => :'Integer',
         :'quarter' => :'Integer'
       }

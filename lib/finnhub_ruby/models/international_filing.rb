@@ -67,7 +67,7 @@ module FinnhubRuby
       {
         :'symbol' => :'String',
         :'company_name' => :'String',
-        :'filed_date' => :'Time',
+        :'filed_date' => :'String',
         :'category' => :'String',
         :'title' => :'String',
         :'description' => :'String',

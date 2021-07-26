@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | Transcript&#39;s ID used to get the &lt;a href&#x3D;\&quot;#transcripts\&quot;&gt;full transcript&lt;/a&gt;. | [optional] |
 | **title** | **String** | Title. | [optional] |
-| **time** | **Time** | Time of the event. | [optional] |
+| **time** | **String** | Time of the event. | [optional] |
 | **year** | **Integer** | Year of earnings result in the case of earnings call transcript. | [optional] |
 | **quarter** | **Integer** | Quarter of earnings result in the case of earnings call transcript. | [optional] |
 
