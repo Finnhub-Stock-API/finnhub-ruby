@@ -30,6 +30,9 @@ finnhub_client = FinnhubRuby::DefaultApi.new
 # Stock candles
 puts(finnhub_client.stock_candles('AAPL', 'D', 1590988249, 1591852249))
 
+# Stock symbols
+puts(finnhub_client.stock_symbols('US'))
+
 # Aggregate Indicators
 puts(finnhub_client.aggregate_indicator('AAPL', 'D'))
 
@@ -154,7 +157,7 @@ puts(finnhub_client.forex_candles('OANDA:EUR_USD', 'D', 1590988249, 1591852249))
 puts(finnhub_client.crypto_candles('BINANCE:BTCUSDT', 'D', 1590988249, 1591852249))
 
 # Tick Data
-puts(finnhub_client.stock_tick_with_http_info('AAPL', '2020-03-25', 500, 0))
+puts(finnhub_client.stock_tick('AAPL', '2020-03-25', 500, 0))
 
 # NBBO
 puts(finnhub_client.stock_nbbo('NFLX', '2020-03-25', 50, 0))
