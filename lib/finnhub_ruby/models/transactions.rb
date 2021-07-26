@@ -63,7 +63,7 @@ module FinnhubRuby
         :'filing_date' => :'Date',
         :'transaction_date' => :'Date',
         :'transaction_price' => :'Float',
-        :'transaction_code' => :'Date'
+        :'transaction_code' => :'String'
       }
     end
 

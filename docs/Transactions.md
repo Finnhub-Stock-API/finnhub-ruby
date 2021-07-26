@@ -10,7 +10,7 @@
 | **filing_date** | **Date** | Filing date. | [optional] |
 | **transaction_date** | **Date** | Transaction date. | [optional] |
 | **transaction_price** | **Float** | Average transaction price. | [optional] |
-| **transaction_code** | **Date** | Transaction code. A list of codes and their meanings can be found &lt;a href&#x3D;\&quot;https://www.sec.gov/about/forms/form4data.pdf\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener\&quot;&gt;here&lt;/a&gt;. | [optional] |
+| **transaction_code** | **String** | Transaction code. A list of codes and their meanings can be found &lt;a href&#x3D;\&quot;https://www.sec.gov/about/forms/form4data.pdf\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener\&quot;&gt;here&lt;/a&gt;. | [optional] |
 
 ## Example
 

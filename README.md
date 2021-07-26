@@ -1,7 +1,7 @@
 # finnhub-ruby
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 1.1.5
+- Package version: 1.1.6
 
 ## Installation
 https://rubygems.org/gems/finnhub_ruby
@@ -13,7 +13,7 @@ gem install finnhub_ruby
 or in your Gemfile
 
 ```ruby
-gem 'finnhub_ruby', '~> 1.1.4'
+gem 'finnhub_ruby', '~> 1.1.6'
 ```
 
 ## Getting Started
@@ -157,6 +157,9 @@ puts(finnhub_client.crypto_candles('BINANCE:BTCUSDT', 'D', 1590988249, 159185224
 
 # Tick Data
 puts(finnhub_client.stock_tick_with_http_info('AAPL', '2020-03-25', 500, 0))
+
+# NBBO
+puts(finnhub_client.stock_nbbo('NFLX', '2020-03-25', 50, 0))
 
 # Technical Indicator
 puts(finnhub_client.technical_indicator("AAPL", 'D', 1583098857, 1584308457, 'rsi', {"timeperiod": 3}))
