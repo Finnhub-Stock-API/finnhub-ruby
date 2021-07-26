@@ -27,8 +27,6 @@ end
 
 finnhub_client = FinnhubRuby::DefaultApi.new
 
-finnhub_client = FinnhubRuby::DefaultApi.new
-
 # Stock candles
 puts(finnhub_client.stock_candles('AAPL', 'D', 1590988249, 1591852249))
 
