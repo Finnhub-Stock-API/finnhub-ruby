@@ -1,7 +1,7 @@
 # finnhub-ruby
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 1.1.6
+- Package version: 1.1.7
 
 ## Installation
 https://rubygems.org/gems/finnhub_ruby
@@ -13,7 +13,7 @@ gem install finnhub_ruby
 or in your Gemfile
 
 ```ruby
-gem 'finnhub_ruby', '~> 1.1.6'
+gem 'finnhub_ruby', '~> 1.1.7'
 ```
 
 ## Getting Started
@@ -27,17 +27,35 @@ end
 
 finnhub_client = FinnhubRuby::DefaultApi.new
 
-# Stock candles
-puts(finnhub_client.stock_candles('AAPL', 'D', 1590988249, 1591852249))
+# Similarity Index
+puts(finnhub_client.similarity_index({symbol: 'AAPL'}))
 
 # Stock symbols
 puts(finnhub_client.stock_symbols('US'))
+
+#Symbol search
+puts(finnhub_client.symbol_search('AAPL'))
+
+# Tick Data
+puts(finnhub_client.stock_tick('NFLX', '2020-03-25', 500, 0))
+
+# NBBO
+puts(finnhub_client.stock_nbbo('NFLX', '2020-03-25', 500, 0))
+
+#Bid ask
+puts(finnhub_client.stock_bidask('AAPL'))
+
+# Forex all pairs
+puts(finnhub_client.forex_rates({base: 'USD'}))
+
+# Stock candles
+puts(finnhub_client.stock_candles('AAPL', 'D', 1590988249, 1591852249))
 
 # Aggregate Indicators
 puts(finnhub_client.aggregate_indicator('AAPL', 'D'))
 
 # Basic financials
-puts(finnhub_client.company_basic_financials('AAPL', 'margin'))
+puts(finnhub_client.company_basic_financials('AAPL', 'all'))
 
 # Earnings surprises
 puts(finnhub_client.company_earnings('TSLA', {limit: 5}))
@@ -75,11 +93,23 @@ puts(finnhub_client.crypto_exchanges())
 # Crypto symbols
 puts(finnhub_client.crypto_symbols('BINANCE'))
 
+# Economic code
+puts(finnhub_client.economic_code())
+
 # Economic data
 puts(finnhub_client.economic_data('MA-USA-656880'))
 
+# Economic calendar
+puts(finnhub_client.economic_calendar())
+
 # Filings
 puts(finnhub_client.filings({symbol: 'AAPL', from: "2020-01-01", to: "2020-06-11"}))
+
+# International Filings
+puts(finnhub_client.international_filings({symbol: 'AC.TO'}))
+
+# Filings Sentiment
+puts(finnhub_client.filings_sentiment('0000320193-20-000052', {}))
 
 # Financials
 puts(finnhub_client.financials('AAPL', 'bs', 'annual'))
@@ -89,9 +119,6 @@ puts(finnhub_client.financials_reported({symbol: 'AAPL', freq: 'annual'}))
 
 # Forex exchanges
 puts(finnhub_client.forex_exchanges())
-
-# Forex all pairs
-puts(finnhub_client.forex_rates({base: 'USD'}))
 
 # Forex symbols
 puts(finnhub_client.forex_symbols('OANDA'))
@@ -129,6 +156,9 @@ puts(finnhub_client.recommendation_trends('AAPL'))
 # Stock dividends
 puts(finnhub_client.stock_dividends('KO', '2019-01-01', '2020-01-01'))
 
+# Stock basic dividends
+puts(finnhub_client.stock_basic_dividends('KO'))
+
 # Transcripts
 puts(finnhub_client.transcripts('AAPL_162777'))
 
@@ -155,12 +185,6 @@ puts(finnhub_client.forex_candles('OANDA:EUR_USD', 'D', 1590988249, 1591852249))
 
 # Crypto Candles
 puts(finnhub_client.crypto_candles('BINANCE:BTCUSDT', 'D', 1590988249, 1591852249))
-
-# Tick Data
-puts(finnhub_client.stock_tick('AAPL', '2020-03-25', 500, 0))
-
-# NBBO
-puts(finnhub_client.stock_nbbo('NFLX', '2020-03-25', 50, 0))
 
 # Technical Indicator
 puts(finnhub_client.technical_indicator("AAPL", 'D', 1583098857, 1584308457, 'rsi', {"timeperiod": 3}))
@@ -209,6 +233,9 @@ puts(finnhub_client.investment_themes('financialExchangesData'))
 
 # Supply chain
 puts(finnhub_client.supply_chain_relationships('AAPL'))
+
+# FDA calendar
+puts(finnhub_client.fda_committee_meeting_calendar())
 
 ```
 
