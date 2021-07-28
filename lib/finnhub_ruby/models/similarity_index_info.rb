@@ -14,22 +14,58 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class SimilarityIndex
-    # Symbol.
-    attr_accessor :symbol
-
+  class SimilarityIndexInfo
     # CIK.
     attr_accessor :cik
 
-    # Array of filings with its cosine similarity compared to the same report of the previous year.
-    attr_accessor :similarity
+    # Cosine similarity of Item 1 (Business). This number is only available for Annual reports.
+    attr_accessor :item1
+
+    # Cosine similarity of Item 1A (Risk Factors). This number is available for both Annual and Quarterly reports.
+    attr_accessor :item1a
+
+    # Cosine similarity of Item 2 (Management’s Discussion and Analysis of Financial Condition and Results of Operations). This number is only available for Quarterly reports.
+    attr_accessor :item2
+
+    # Cosine similarity of Item 7 (Management’s Discussion and Analysis of Financial Condition and Results of Operations). This number is only available for Annual reports.
+    attr_accessor :item7
+
+    # Cosine similarity of Item 7A (Quantitative and Qualitative Disclosures About Market Risk). This number is only available for Annual reports.
+    attr_accessor :item7a
+
+    # Access number.
+    attr_accessor :access_number
+
+    # Form type.
+    attr_accessor :form
+
+    # Filed date <code>%Y-%m-%d %H:%M:%S</code>.
+    attr_accessor :filed_date
+
+    # Accepted date <code>%Y-%m-%d %H:%M:%S</code>.
+    attr_accessor :accepted_date
+
+    # Report's URL.
+    attr_accessor :report_url
+
+    # Filing's URL.
+    attr_accessor :filing_url
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'symbol' => :'symbol',
         :'cik' => :'cik',
-        :'similarity' => :'similarity'
+        :'item1' => :'item1',
+        :'item1a' => :'item1a',
+        :'item2' => :'item2',
+        :'item7' => :'item7',
+        :'item7a' => :'item7a',
+        :'access_number' => :'accessNumber',
+        :'form' => :'form',
+        :'filed_date' => :'filedDate',
+        :'accepted_date' => :'acceptedDate',
+        :'report_url' => :'reportUrl',
+        :'filing_url' => :'filingUrl'
       }
     end
 
@@ -41,9 +77,18 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'symbol' => :'String',
         :'cik' => :'String',
-        :'similarity' => :'Array<SimilarityIndexInfo>'
+        :'item1' => :'Float',
+        :'item1a' => :'Float',
+        :'item2' => :'Float',
+        :'item7' => :'Float',
+        :'item7a' => :'Float',
+        :'access_number' => :'String',
+        :'form' => :'String',
+        :'filed_date' => :'String',
+        :'accepted_date' => :'String',
+        :'report_url' => :'String',
+        :'filing_url' => :'String'
       }
     end
 
@@ -57,29 +102,63 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::SimilarityIndex` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::SimilarityIndexInfo` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::SimilarityIndex`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::SimilarityIndexInfo`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
-
-      if attributes.key?(:'symbol')
-        self.symbol = attributes[:'symbol']
-      end
 
       if attributes.key?(:'cik')
         self.cik = attributes[:'cik']
       end
 
-      if attributes.key?(:'similarity')
-        if (value = attributes[:'similarity']).is_a?(Array)
-          self.similarity = value
-        end
+      if attributes.key?(:'item1')
+        self.item1 = attributes[:'item1']
+      end
+
+      if attributes.key?(:'item1a')
+        self.item1a = attributes[:'item1a']
+      end
+
+      if attributes.key?(:'item2')
+        self.item2 = attributes[:'item2']
+      end
+
+      if attributes.key?(:'item7')
+        self.item7 = attributes[:'item7']
+      end
+
+      if attributes.key?(:'item7a')
+        self.item7a = attributes[:'item7a']
+      end
+
+      if attributes.key?(:'access_number')
+        self.access_number = attributes[:'access_number']
+      end
+
+      if attributes.key?(:'form')
+        self.form = attributes[:'form']
+      end
+
+      if attributes.key?(:'filed_date')
+        self.filed_date = attributes[:'filed_date']
+      end
+
+      if attributes.key?(:'accepted_date')
+        self.accepted_date = attributes[:'accepted_date']
+      end
+
+      if attributes.key?(:'report_url')
+        self.report_url = attributes[:'report_url']
+      end
+
+      if attributes.key?(:'filing_url')
+        self.filing_url = attributes[:'filing_url']
       end
     end
 
@@ -101,9 +180,18 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          symbol == o.symbol &&
           cik == o.cik &&
-          similarity == o.similarity
+          item1 == o.item1 &&
+          item1a == o.item1a &&
+          item2 == o.item2 &&
+          item7 == o.item7 &&
+          item7a == o.item7a &&
+          access_number == o.access_number &&
+          form == o.form &&
+          filed_date == o.filed_date &&
+          accepted_date == o.accepted_date &&
+          report_url == o.report_url &&
+          filing_url == o.filing_url
     end
 
     # @see the `==` method
@@ -115,7 +203,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, cik, similarity].hash
+      [cik, item1, item1a, item2, item7, item7a, access_number, form, filed_date, accepted_date, report_url, filing_url].hash
     end
 
     # Builds the object from hash

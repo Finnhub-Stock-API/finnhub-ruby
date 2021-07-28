@@ -2600,7 +2600,7 @@ module FinnhubRuby
     # Get latest market news.
     # @param category [String] This parameter can be 1 of the following values &lt;code&gt;general, forex, crypto, merger&lt;/code&gt;.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :min_id Use this field to get only news after this ID. Default to 0
+    # @option opts [Integer] :min_id Use this field to get only news after this ID. Default to 0
     # @return [Array<MarketNews>]
     def market_news(category, opts = {})
       data, _status_code, _headers = market_news_with_http_info(category, opts)
@@ -2611,7 +2611,7 @@ module FinnhubRuby
     # Get latest market news.
     # @param category [String] This parameter can be 1 of the following values &lt;code&gt;general, forex, crypto, merger&lt;/code&gt;.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :min_id Use this field to get only news after this ID. Default to 0
+    # @option opts [Integer] :min_id Use this field to get only news after this ID. Default to 0
     # @return [Array<(Array<MarketNews>, Integer, Hash)>] Array<MarketNews> data, response status code and response headers
     def market_news_with_http_info(category, opts = {})
       if @api_client.config.debugging
@@ -3712,13 +3712,12 @@ module FinnhubRuby
     end
 
     # Stock Candles
-    # <p>Get candlestick data (OHLCV) for stocks
+    # <p>Get candlestick data (OHLCV) for stocks.</p><p>Daily data will be adjusted for Splits. Intraday data will remain unadjusted.</p>
     # @param symbol [String] Symbol.
     # @param resolution [String] Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange.
     # @param from [Integer] UNIX timestamp. Interval initial value.
     # @param to [Integer] UNIX timestamp. Interval end value.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :adjusted DEPRECATED: this option has been deprecated. All Daily data will be adjusted for Splits and intraday data will remain unadjusted.
     # @return [StockCandles]
     def stock_candles(symbol, resolution, from, to, opts = {})
       data, _status_code, _headers = stock_candles_with_http_info(symbol, resolution, from, to, opts)
@@ -3726,13 +3725,12 @@ module FinnhubRuby
     end
 
     # Stock Candles
-    # &lt;p&gt;Get candlestick data (OHLCV) for stocks
+    # &lt;p&gt;Get candlestick data (OHLCV) for stocks.&lt;/p&gt;&lt;p&gt;Daily data will be adjusted for Splits. Intraday data will remain unadjusted.&lt;/p&gt;
     # @param symbol [String] Symbol.
     # @param resolution [String] Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange.
     # @param from [Integer] UNIX timestamp. Interval initial value.
     # @param to [Integer] UNIX timestamp. Interval end value.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :adjusted DEPRECATED: this option has been deprecated. All Daily data will be adjusted for Splits and intraday data will remain unadjusted.
     # @return [Array<(StockCandles, Integer, Hash)>] StockCandles data, response status code and response headers
     def stock_candles_with_http_info(symbol, resolution, from, to, opts = {})
       if @api_client.config.debugging
@@ -3763,7 +3761,6 @@ module FinnhubRuby
       query_params[:'resolution'] = resolution
       query_params[:'from'] = from
       query_params[:'to'] = to
-      query_params[:'adjusted'] = opts[:'adjusted'] if !opts[:'adjusted'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

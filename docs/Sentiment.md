@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **bearish_percent** | **Integer** |  | [optional] |
-| **bullish_percent** | **Integer** |  | [optional] |
+| **bearish_percent** | **Float** |  | [optional] |
+| **bullish_percent** | **Float** |  | [optional] |
 
 ## Example
 

@@ -67,8 +67,8 @@ module FinnhubRuby
         :'name' => :'String',
         :'status' => :'String',
         :'price' => :'String',
-        :'number_of_shares' => :'Integer',
-        :'total_shares_value' => :'Integer'
+        :'number_of_shares' => :'Float',
+        :'total_shares_value' => :'Float'
       }
     end
 

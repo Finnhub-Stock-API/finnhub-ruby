@@ -166,7 +166,7 @@ module FinnhubRuby
         :'ipo' => :'Date',
         :'market_capitalization' => :'Float',
         :'share_outstanding' => :'Float',
-        :'employee_total' => :'Integer',
+        :'employee_total' => :'Float',
         :'logo' => :'String',
         :'finnhub_industry' => :'String'
       }

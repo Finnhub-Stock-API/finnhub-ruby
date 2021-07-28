@@ -14,22 +14,30 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class SimilarityIndex
-    # Symbol.
-    attr_accessor :symbol
+  class RevenueEstimatesInfo
+    # Average revenue estimates including Finnhub's proprietary estimates.
+    attr_accessor :revenue_avg
 
-    # CIK.
-    attr_accessor :cik
+    # Highest estimate.
+    attr_accessor :revenue_high
 
-    # Array of filings with its cosine similarity compared to the same report of the previous year.
-    attr_accessor :similarity
+    # Lowest estimate.
+    attr_accessor :revenue_low
+
+    # Number of Analysts.
+    attr_accessor :number_analysts
+
+    # Period.
+    attr_accessor :period
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'symbol' => :'symbol',
-        :'cik' => :'cik',
-        :'similarity' => :'similarity'
+        :'revenue_avg' => :'revenueAvg',
+        :'revenue_high' => :'revenueHigh',
+        :'revenue_low' => :'revenueLow',
+        :'number_analysts' => :'numberAnalysts',
+        :'period' => :'period'
       }
     end
 
@@ -41,9 +49,11 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'symbol' => :'String',
-        :'cik' => :'String',
-        :'similarity' => :'Array<SimilarityIndexInfo>'
+        :'revenue_avg' => :'Float',
+        :'revenue_high' => :'Float',
+        :'revenue_low' => :'Float',
+        :'number_analysts' => :'Integer',
+        :'period' => :'Date'
       }
     end
 
@@ -57,29 +67,35 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::SimilarityIndex` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::RevenueEstimatesInfo` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::SimilarityIndex`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::RevenueEstimatesInfo`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'symbol')
-        self.symbol = attributes[:'symbol']
+      if attributes.key?(:'revenue_avg')
+        self.revenue_avg = attributes[:'revenue_avg']
       end
 
-      if attributes.key?(:'cik')
-        self.cik = attributes[:'cik']
+      if attributes.key?(:'revenue_high')
+        self.revenue_high = attributes[:'revenue_high']
       end
 
-      if attributes.key?(:'similarity')
-        if (value = attributes[:'similarity']).is_a?(Array)
-          self.similarity = value
-        end
+      if attributes.key?(:'revenue_low')
+        self.revenue_low = attributes[:'revenue_low']
+      end
+
+      if attributes.key?(:'number_analysts')
+        self.number_analysts = attributes[:'number_analysts']
+      end
+
+      if attributes.key?(:'period')
+        self.period = attributes[:'period']
       end
     end
 
@@ -101,9 +117,11 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          symbol == o.symbol &&
-          cik == o.cik &&
-          similarity == o.similarity
+          revenue_avg == o.revenue_avg &&
+          revenue_high == o.revenue_high &&
+          revenue_low == o.revenue_low &&
+          number_analysts == o.number_analysts &&
+          period == o.period
     end
 
     # @see the `==` method
@@ -115,7 +133,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, cik, similarity].hash
+      [revenue_avg, revenue_high, revenue_low, number_analysts, period].hash
     end
 
     # Builds the object from hash

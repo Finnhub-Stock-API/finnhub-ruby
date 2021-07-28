@@ -72,8 +72,8 @@ module FinnhubRuby
         :'quarter' => :'Integer',
         :'eps_estimate' => :'Float',
         :'eps_actual' => :'Float',
-        :'revenue_estimate' => :'Integer',
-        :'revenue_actual' => :'Integer'
+        :'revenue_estimate' => :'Float',
+        :'revenue_actual' => :'Float'
       }
     end
 

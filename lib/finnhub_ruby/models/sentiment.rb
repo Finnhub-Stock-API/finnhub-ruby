@@ -37,8 +37,8 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'bearish_percent' => :'Integer',
-        :'bullish_percent' => :'Integer'
+        :'bearish_percent' => :'Float',
+        :'bullish_percent' => :'Float'
       }
     end
 

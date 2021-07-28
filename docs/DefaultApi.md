@@ -2951,7 +2951,7 @@ end
 api_instance = FinnhubRuby::DefaultApi.new
 category = 'category_example' # String | This parameter can be 1 of the following values <code>general, forex, crypto, merger</code>.
 opts = {
-  min_id: 'min_id_example' # String | Use this field to get only news after this ID. Default to 0
+  min_id: 789 # Integer | Use this field to get only news after this ID. Default to 0
 }
 
 begin
@@ -2986,7 +2986,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **category** | **String** | This parameter can be 1 of the following values &lt;code&gt;general, forex, crypto, merger&lt;/code&gt;. |  |
-| **min_id** | **String** | Use this field to get only news after this ID. Default to 0 | [optional] |
+| **min_id** | **Integer** | Use this field to get only news after this ID. Default to 0 | [optional] |
 
 ### Return type
 
@@ -4178,11 +4178,11 @@ end
 
 ## stock_candles
 
-> <StockCandles> stock_candles(symbol, resolution, from, to, opts)
+> <StockCandles> stock_candles(symbol, resolution, from, to)
 
 Stock Candles
 
-<p>Get candlestick data (OHLCV) for stocks
+<p>Get candlestick data (OHLCV) for stocks.</p><p>Daily data will be adjusted for Splits. Intraday data will remain unadjusted.</p>
 
 ### Examples
 
@@ -4202,13 +4202,10 @@ symbol = 'symbol_example' # String | Symbol.
 resolution = 'resolution_example' # String | Supported resolution includes <code>1, 5, 15, 30, 60, D, W, M </code>.Some timeframes might not be available depending on the exchange.
 from = 789 # Integer | UNIX timestamp. Interval initial value.
 to = 789 # Integer | UNIX timestamp. Interval end value.
-opts = {
-  adjusted: 'adjusted_example' # String | DEPRECATED: this option has been deprecated. All Daily data will be adjusted for Splits and intraday data will remain unadjusted.
-}
 
 begin
   # Stock Candles
-  result = api_instance.stock_candles(symbol, resolution, from, to, opts)
+  result = api_instance.stock_candles(symbol, resolution, from, to)
   p result
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->stock_candles: #{e}"
@@ -4219,12 +4216,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<StockCandles>, Integer, Hash)> stock_candles_with_http_info(symbol, resolution, from, to, opts)
+> <Array(<StockCandles>, Integer, Hash)> stock_candles_with_http_info(symbol, resolution, from, to)
 
 ```ruby
 begin
   # Stock Candles
-  data, status_code, headers = api_instance.stock_candles_with_http_info(symbol, resolution, from, to, opts)
+  data, status_code, headers = api_instance.stock_candles_with_http_info(symbol, resolution, from, to)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <StockCandles>
@@ -4241,7 +4238,6 @@ end
 | **resolution** | **String** | Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange. |  |
 | **from** | **Integer** | UNIX timestamp. Interval initial value. |  |
 | **to** | **Integer** | UNIX timestamp. Interval end value. |  |
-| **adjusted** | **String** | DEPRECATED: this option has been deprecated. All Daily data will be adjusted for Splits and intraday data will remain unadjusted. | [optional] |
 
 ### Return type
 

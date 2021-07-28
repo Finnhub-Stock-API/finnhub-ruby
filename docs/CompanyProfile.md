@@ -29,7 +29,7 @@
 | **ipo** | **Date** | IPO date. | [optional] |
 | **market_capitalization** | **Float** | Market Capitalization. | [optional] |
 | **share_outstanding** | **Float** | Number of oustanding shares. | [optional] |
-| **employee_total** | **Integer** | Number of employee. | [optional] |
+| **employee_total** | **Float** | Number of employee. | [optional] |
 | **logo** | **String** | Logo image. | [optional] |
 | **finnhub_industry** | **String** | Finnhub industry classification. | [optional] |
 

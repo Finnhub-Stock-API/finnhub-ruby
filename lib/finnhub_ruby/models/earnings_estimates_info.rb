@@ -14,22 +14,30 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class SimilarityIndex
-    # Symbol.
-    attr_accessor :symbol
+  class EarningsEstimatesInfo
+    # Average EPS estimates including Finnhub's proprietary estimates.
+    attr_accessor :eps_avg
 
-    # CIK.
-    attr_accessor :cik
+    # Highest estimate.
+    attr_accessor :eps_high
 
-    # Array of filings with its cosine similarity compared to the same report of the previous year.
-    attr_accessor :similarity
+    # Lowest estimate.
+    attr_accessor :eps_low
+
+    # Number of Analysts.
+    attr_accessor :number_analysts
+
+    # Period.
+    attr_accessor :period
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'symbol' => :'symbol',
-        :'cik' => :'cik',
-        :'similarity' => :'similarity'
+        :'eps_avg' => :'epsAvg',
+        :'eps_high' => :'epsHigh',
+        :'eps_low' => :'epsLow',
+        :'number_analysts' => :'numberAnalysts',
+        :'period' => :'period'
       }
     end
 
@@ -41,9 +49,11 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'symbol' => :'String',
-        :'cik' => :'String',
-        :'similarity' => :'Array<SimilarityIndexInfo>'
+        :'eps_avg' => :'Float',
+        :'eps_high' => :'Float',
+        :'eps_low' => :'Float',
+        :'number_analysts' => :'Integer',
+        :'period' => :'Date'
       }
     end
 
@@ -57,29 +67,35 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::SimilarityIndex` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::EarningsEstimatesInfo` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::SimilarityIndex`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::EarningsEstimatesInfo`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'symbol')
-        self.symbol = attributes[:'symbol']
+      if attributes.key?(:'eps_avg')
+        self.eps_avg = attributes[:'eps_avg']
       end
 
-      if attributes.key?(:'cik')
-        self.cik = attributes[:'cik']
+      if attributes.key?(:'eps_high')
+        self.eps_high = attributes[:'eps_high']
       end
 
-      if attributes.key?(:'similarity')
-        if (value = attributes[:'similarity']).is_a?(Array)
-          self.similarity = value
-        end
+      if attributes.key?(:'eps_low')
+        self.eps_low = attributes[:'eps_low']
+      end
+
+      if attributes.key?(:'number_analysts')
+        self.number_analysts = attributes[:'number_analysts']
+      end
+
+      if attributes.key?(:'period')
+        self.period = attributes[:'period']
       end
     end
 
@@ -101,9 +117,11 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          symbol == o.symbol &&
-          cik == o.cik &&
-          similarity == o.similarity
+          eps_avg == o.eps_avg &&
+          eps_high == o.eps_high &&
+          eps_low == o.eps_low &&
+          number_analysts == o.number_analysts &&
+          period == o.period
     end
 
     # @see the `==` method
@@ -115,7 +133,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, cik, similarity].hash
+      [eps_avg, eps_high, eps_low, number_analysts, period].hash
     end
 
     # Builds the object from hash

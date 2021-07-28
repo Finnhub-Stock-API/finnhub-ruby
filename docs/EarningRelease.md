@@ -11,8 +11,8 @@
 | **quarter** | **Integer** | Earnings quarter. | [optional] |
 | **eps_estimate** | **Float** | EPS estimate. | [optional] |
 | **eps_actual** | **Float** | EPS actual. | [optional] |
-| **revenue_estimate** | **Integer** | Revenue estimate including Finnhub&#39;s proprietary estimates. | [optional] |
-| **revenue_actual** | **Integer** | Revenue actual. | [optional] |
+| **revenue_estimate** | **Float** | Revenue estimate including Finnhub&#39;s proprietary estimates. | [optional] |
+| **revenue_actual** | **Float** | Revenue actual. | [optional] |
 
 ## Example
 
