@@ -14,46 +14,33 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class FilingSentiment
-    # % of negative words in the filing.
-    attr_accessor :negative
+  class CompanyESG
+    # symbol
+    attr_accessor :symbol
 
-    # % of positive words in the filing.
-    attr_accessor :positive
+    # Total ESG Score
+    attr_accessor :total_esg_score
 
-    # % of polarity words in the filing.
-    attr_accessor :polarity
+    # symbol
+    attr_accessor :environment_score
 
-    # % of litigious words in the filing.
-    attr_accessor :litigious
+    # symbol
+    attr_accessor :governance_score
 
-    # % of uncertainty words in the filing.
-    attr_accessor :uncertainty
+    # symbol
+    attr_accessor :social_score
 
-    # % of constraining words in the filing.
-    attr_accessor :constraining
-
-    # % of modal-weak words in the filing.
-    attr_accessor :modal_weak
-
-    # % of modal-strong words in the filing.
-    attr_accessor :modal_strong
-
-    # % of modal-moderate words in the filing.
-    attr_accessor :modal_moderate
+    attr_accessor :data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'negative' => :'negative',
-        :'positive' => :'positive',
-        :'polarity' => :'polarity',
-        :'litigious' => :'litigious',
-        :'uncertainty' => :'uncertainty',
-        :'constraining' => :'constraining',
-        :'modal_weak' => :'modal-weak',
-        :'modal_strong' => :'modal-strong',
-        :'modal_moderate' => :'modal-moderate'
+        :'symbol' => :'symbol',
+        :'total_esg_score' => :'totalESGScore',
+        :'environment_score' => :'environmentScore',
+        :'governance_score' => :'governanceScore',
+        :'social_score' => :'socialScore',
+        :'data' => :'data'
       }
     end
 
@@ -65,15 +52,12 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'negative' => :'Float',
-        :'positive' => :'Float',
-        :'polarity' => :'Float',
-        :'litigious' => :'Float',
-        :'uncertainty' => :'Float',
-        :'constraining' => :'Float',
-        :'modal_weak' => :'Float',
-        :'modal_strong' => :'Float',
-        :'modal_moderate' => :'Float'
+        :'symbol' => :'String',
+        :'total_esg_score' => :'Float',
+        :'environment_score' => :'Float',
+        :'governance_score' => :'Float',
+        :'social_score' => :'Float',
+        :'data' => :'Object'
       }
     end
 
@@ -87,51 +71,39 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::FilingSentiment` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::CompanyESG` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::FilingSentiment`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::CompanyESG`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'negative')
-        self.negative = attributes[:'negative']
+      if attributes.key?(:'symbol')
+        self.symbol = attributes[:'symbol']
       end
 
-      if attributes.key?(:'positive')
-        self.positive = attributes[:'positive']
+      if attributes.key?(:'total_esg_score')
+        self.total_esg_score = attributes[:'total_esg_score']
       end
 
-      if attributes.key?(:'polarity')
-        self.polarity = attributes[:'polarity']
+      if attributes.key?(:'environment_score')
+        self.environment_score = attributes[:'environment_score']
       end
 
-      if attributes.key?(:'litigious')
-        self.litigious = attributes[:'litigious']
+      if attributes.key?(:'governance_score')
+        self.governance_score = attributes[:'governance_score']
       end
 
-      if attributes.key?(:'uncertainty')
-        self.uncertainty = attributes[:'uncertainty']
+      if attributes.key?(:'social_score')
+        self.social_score = attributes[:'social_score']
       end
 
-      if attributes.key?(:'constraining')
-        self.constraining = attributes[:'constraining']
-      end
-
-      if attributes.key?(:'modal_weak')
-        self.modal_weak = attributes[:'modal_weak']
-      end
-
-      if attributes.key?(:'modal_strong')
-        self.modal_strong = attributes[:'modal_strong']
-      end
-
-      if attributes.key?(:'modal_moderate')
-        self.modal_moderate = attributes[:'modal_moderate']
+      if attributes.key?(:'data')
+        self.data = attributes[:'data']
       end
     end
 
@@ -153,15 +125,12 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          negative == o.negative &&
-          positive == o.positive &&
-          polarity == o.polarity &&
-          litigious == o.litigious &&
-          uncertainty == o.uncertainty &&
-          constraining == o.constraining &&
-          modal_weak == o.modal_weak &&
-          modal_strong == o.modal_strong &&
-          modal_moderate == o.modal_moderate
+          symbol == o.symbol &&
+          total_esg_score == o.total_esg_score &&
+          environment_score == o.environment_score &&
+          governance_score == o.governance_score &&
+          social_score == o.social_score &&
+          data == o.data
     end
 
     # @see the `==` method
@@ -173,7 +142,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [negative, positive, polarity, litigious, uncertainty, constraining, modal_weak, modal_strong, modal_moderate].hash
+      [symbol, total_esg_score, environment_score, governance_score, social_score, data].hash
     end
 
     # Builds the object from hash

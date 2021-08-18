@@ -4,8 +4,11 @@ rvm:
   - 2.3
   - 2.4
   - 2.5
+  - 2.6
+  - 2.7
+  - 3.0
 script:
   - bundle install --path vendor/bundle
   - bundle exec rspec
   - gem build finnhub_ruby.gemspec
-  - gem install ./finnhub_ruby-1.1.7.gem
+  - gem install ./finnhub_ruby-1.1.8.gem
