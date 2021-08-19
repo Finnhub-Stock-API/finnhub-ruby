@@ -187,7 +187,7 @@ puts(finnhub_client.forex_candles('OANDA:EUR_USD', 'D', 1590988249, 1591852249))
 puts(finnhub_client.crypto_candles('BINANCE:BTCUSDT', 'D', 1590988249, 1591852249))
 
 # Technical Indicator
-puts(finnhub_client.technical_indicator("AAPL", 'D', 1583098857, 1584308457, 'rsi', {"timeperiod": 3}))
+puts(finnhub_client.technical_indicator("AAPL", 'D', 1583098857, 1584308457, 'rsi', {indicator_fields:{'timeperiod': 3}}))
 
 # Indices Constituents
 puts(finnhub_client.indices_constituents("^GSPC"))
