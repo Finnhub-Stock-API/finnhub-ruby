@@ -39,16 +39,16 @@ module FinnhubRuby
     # Listed exchange.
     attr_accessor :exchange
 
-    # GICS industry group.
+    # Industry group.
     attr_accessor :ggroup
 
-    # GICS industry.
+    # Industry.
     attr_accessor :gind
 
-    # GICS sector.
+    # Sector.
     attr_accessor :gsector
 
-    # GICS sub-industry.
+    # Sub-industry.
     attr_accessor :gsubind
 
     # ISIN number.

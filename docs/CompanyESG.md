@@ -6,9 +6,9 @@
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | symbol | [optional] |
 | **total_esg_score** | **Float** | Total ESG Score | [optional] |
-| **environment_score** | **Float** | symbol | [optional] |
-| **governance_score** | **Float** | symbol | [optional] |
-| **social_score** | **Float** | symbol | [optional] |
+| **environment_score** | **Float** | Environment Score | [optional] |
+| **governance_score** | **Float** | Governance Score | [optional] |
+| **social_score** | **Float** | Social Score | [optional] |
 | **data** | **Object** |  | [optional] |
 
 ## Example

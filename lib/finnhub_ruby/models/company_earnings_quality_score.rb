@@ -14,32 +14,21 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class CompanyESG
-    # symbol
+  class CompanyEarningsQualityScore
+    # Symbol
     attr_accessor :symbol
 
-    # Total ESG Score
-    attr_accessor :total_esg_score
+    # Frequency
+    attr_accessor :freq
 
-    # Environment Score
-    attr_accessor :environment_score
-
-    # Governance Score
-    attr_accessor :governance_score
-
-    # Social Score
-    attr_accessor :social_score
-
+    # Array of earnings quality score.
     attr_accessor :data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'symbol' => :'symbol',
-        :'total_esg_score' => :'totalESGScore',
-        :'environment_score' => :'environmentScore',
-        :'governance_score' => :'governanceScore',
-        :'social_score' => :'socialScore',
+        :'freq' => :'freq',
         :'data' => :'data'
       }
     end
@@ -53,11 +42,8 @@ module FinnhubRuby
     def self.openapi_types
       {
         :'symbol' => :'String',
-        :'total_esg_score' => :'Float',
-        :'environment_score' => :'Float',
-        :'governance_score' => :'Float',
-        :'social_score' => :'Float',
-        :'data' => :'Object'
+        :'freq' => :'String',
+        :'data' => :'Array<CompanyEarningsQualityScoreData>'
       }
     end
 
@@ -71,13 +57,13 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::CompanyESG` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::CompanyEarningsQualityScore` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::CompanyESG`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::CompanyEarningsQualityScore`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -86,24 +72,14 @@ module FinnhubRuby
         self.symbol = attributes[:'symbol']
       end
 
-      if attributes.key?(:'total_esg_score')
-        self.total_esg_score = attributes[:'total_esg_score']
-      end
-
-      if attributes.key?(:'environment_score')
-        self.environment_score = attributes[:'environment_score']
-      end
-
-      if attributes.key?(:'governance_score')
-        self.governance_score = attributes[:'governance_score']
-      end
-
-      if attributes.key?(:'social_score')
-        self.social_score = attributes[:'social_score']
+      if attributes.key?(:'freq')
+        self.freq = attributes[:'freq']
       end
 
       if attributes.key?(:'data')
-        self.data = attributes[:'data']
+        if (value = attributes[:'data']).is_a?(Array)
+          self.data = value
+        end
       end
     end
 
@@ -126,10 +102,7 @@ module FinnhubRuby
       return true if self.equal?(o)
       self.class == o.class &&
           symbol == o.symbol &&
-          total_esg_score == o.total_esg_score &&
-          environment_score == o.environment_score &&
-          governance_score == o.governance_score &&
-          social_score == o.social_score &&
+          freq == o.freq &&
           data == o.data
     end
 
@@ -142,7 +115,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, total_esg_score, environment_score, governance_score, social_score, data].hash
+      [symbol, freq, data].hash
     end
 
     # Builds the object from hash

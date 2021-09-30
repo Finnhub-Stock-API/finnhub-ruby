@@ -12,10 +12,10 @@
 | **sedol** | **String** | Sedol number. | [optional] |
 | **description** | **String** | Company business summary. | [optional] |
 | **exchange** | **String** | Listed exchange. | [optional] |
-| **ggroup** | **String** | GICS industry group. | [optional] |
-| **gind** | **String** | GICS industry. | [optional] |
-| **gsector** | **String** | GICS sector. | [optional] |
-| **gsubind** | **String** | GICS sub-industry. | [optional] |
+| **ggroup** | **String** | Industry group. | [optional] |
+| **gind** | **String** | Industry. | [optional] |
+| **gsector** | **String** | Sector. | [optional] |
+| **gsubind** | **String** | Sub-industry. | [optional] |
 | **isin** | **String** | ISIN number. | [optional] |
 | **naics_national_industry** | **String** | NAICS national industry. | [optional] |
 | **naics** | **String** | NAICS industry. | [optional] |

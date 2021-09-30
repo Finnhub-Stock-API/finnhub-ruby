@@ -33,6 +33,12 @@ module FinnhubRuby
     # Currency code
     attr_accessor :currency_code
 
+    # Region
+    attr_accessor :region
+
+    # Sub-Region
+    attr_accessor :sub_region
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -41,7 +47,9 @@ module FinnhubRuby
         :'code3' => :'code3',
         :'code_no' => :'codeNo',
         :'currency' => :'currency',
-        :'currency_code' => :'currencyCode'
+        :'currency_code' => :'currencyCode',
+        :'region' => :'region',
+        :'sub_region' => :'subRegion'
       }
     end
 
@@ -58,7 +66,9 @@ module FinnhubRuby
         :'code3' => :'String',
         :'code_no' => :'String',
         :'currency' => :'String',
-        :'currency_code' => :'String'
+        :'currency_code' => :'String',
+        :'region' => :'String',
+        :'sub_region' => :'String'
       }
     end
 
@@ -106,6 +116,14 @@ module FinnhubRuby
       if attributes.key?(:'currency_code')
         self.currency_code = attributes[:'currency_code']
       end
+
+      if attributes.key?(:'region')
+        self.region = attributes[:'region']
+      end
+
+      if attributes.key?(:'sub_region')
+        self.sub_region = attributes[:'sub_region']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -131,7 +149,9 @@ module FinnhubRuby
           code3 == o.code3 &&
           code_no == o.code_no &&
           currency == o.currency &&
-          currency_code == o.currency_code
+          currency_code == o.currency_code &&
+          region == o.region &&
+          sub_region == o.sub_region
     end
 
     # @see the `==` method
@@ -143,7 +163,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [country, code2, code3, code_no, currency, currency_code].hash
+      [country, code2, code3, code_no, currency, currency_code, region, sub_region].hash
     end
 
     # Builds the object from hash

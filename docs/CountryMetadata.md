@@ -10,6 +10,8 @@
 | **code_no** | **String** | UN code | [optional] |
 | **currency** | **String** | Currency name | [optional] |
 | **currency_code** | **String** | Currency code | [optional] |
+| **region** | **String** | Region | [optional] |
+| **sub_region** | **String** | Sub-Region | [optional] |
 
 ## Example
 
@@ -22,7 +24,9 @@ instance = FinnhubRuby::CountryMetadata.new(
   code3: null,
   code_no: null,
   currency: null,
-  currency_code: null
+  currency_code: null,
+  region: null,
+  sub_region: null
 )
 ```
 
