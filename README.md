@@ -1,7 +1,7 @@
 # finnhub-ruby
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 1.1.9
+- Package version: 1.1.10
 
 ## Installation
 https://rubygems.org/gems/finnhub_ruby
@@ -13,7 +13,7 @@ gem install finnhub_ruby
 or in your Gemfile
 
 ```ruby
-gem 'finnhub_ruby', '~> 1.1.9'
+gem 'finnhub_ruby', '~> 1.1.10'
 ```
 
 ## Getting Started
@@ -242,6 +242,9 @@ puts(finnhub_client.company_esg_score('AAPL'))
 
 # Company Earnings Quality
 puts(finnhub_client.company_earnings_quality_score('AAPL', 'quarterly'))
+
+# Crypto Profile
+puts(finnhub_client.crypto_profile('BTC'))
 
 ```
 

@@ -20,6 +20,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**covid19**](DefaultApi.md#covid19) | **GET** /covid19/us | COVID-19 |
 | [**crypto_candles**](DefaultApi.md#crypto_candles) | **GET** /crypto/candle | Crypto Candles |
 | [**crypto_exchanges**](DefaultApi.md#crypto_exchanges) | **GET** /crypto/exchange | Crypto Exchanges |
+| [**crypto_profile**](DefaultApi.md#crypto_profile) | **GET** /crypto/profile | Crypto Profile |
 | [**crypto_symbols**](DefaultApi.md#crypto_symbols) | **GET** /crypto/symbol | Crypto Symbol |
 | [**earnings_calendar**](DefaultApi.md#earnings_calendar) | **GET** /calendar/earnings | Earnings Calendar |
 | [**economic_calendar**](DefaultApi.md#economic_calendar) | **GET** /calendar/economic | Economic Calendar |
@@ -321,7 +322,7 @@ end
 
 api_instance = FinnhubRuby::DefaultApi.new
 symbol = 'symbol_example' # String | Symbol.
-freq = 'freq_example' # String | Frequency. Currently only support <code>quarterly</code>
+freq = 'freq_example' # String | Frequency. Currently support <code>annual</code> and <code>quarterly</code>
 
 begin
   # Company Earnings Quality Score
@@ -355,7 +356,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Symbol. |  |
-| **freq** | **String** | Frequency. Currently only support &lt;code&gt;quarterly&lt;/code&gt; |  |
+| **freq** | **String** | Frequency. Currently support &lt;code&gt;annual&lt;/code&gt; and &lt;code&gt;quarterly&lt;/code&gt; |  |
 
 ### Return type
 
@@ -1244,6 +1245,77 @@ This endpoint does not need any parameter.
 - **Accept**: application/json
 
 
+## crypto_profile
+
+> <CryptoProfile> crypto_profile(symbol)
+
+Crypto Profile
+
+Get crypto's profile.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | Crypto symbol such as BTC or ETH.
+
+begin
+  # Crypto Profile
+  result = api_instance.crypto_profile(symbol)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->crypto_profile: #{e}"
+end
+```
+
+#### Using the crypto_profile_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<CryptoProfile>, Integer, Hash)> crypto_profile_with_http_info(symbol)
+
+```ruby
+begin
+  # Crypto Profile
+  data, status_code, headers = api_instance.crypto_profile_with_http_info(symbol)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <CryptoProfile>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->crypto_profile_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Crypto symbol such as BTC or ETH. |  |
+
+### Return type
+
+[**CryptoProfile**](CryptoProfile.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## crypto_symbols
 
 > <Array<CryptoSymbol>> crypto_symbols(exchange)
@@ -1396,7 +1468,7 @@ end
 
 ## economic_calendar
 
-> <EconomicCalendar> economic_calendar
+> <EconomicCalendar> economic_calendar(opts)
 
 Economic Calendar
 
@@ -1416,10 +1488,14 @@ FinnhubRuby.configure do |config|
 end
 
 api_instance = FinnhubRuby::DefaultApi.new
+opts = {
+  from: Date.parse('2013-10-20'), # Date | From date <code>YYYY-MM-DD</code>.
+  to: Date.parse('2013-10-20') # Date | To date <code>YYYY-MM-DD</code>.
+}
 
 begin
   # Economic Calendar
-  result = api_instance.economic_calendar
+  result = api_instance.economic_calendar(opts)
   p result
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->economic_calendar: #{e}"
@@ -1430,12 +1506,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<EconomicCalendar>, Integer, Hash)> economic_calendar_with_http_info
+> <Array(<EconomicCalendar>, Integer, Hash)> economic_calendar_with_http_info(opts)
 
 ```ruby
 begin
   # Economic Calendar
-  data, status_code, headers = api_instance.economic_calendar_with_http_info
+  data, status_code, headers = api_instance.economic_calendar_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <EconomicCalendar>
@@ -1446,7 +1522,10 @@ end
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **from** | **Date** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | [optional] |
+| **to** | **Date** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. | [optional] |
 
 ### Return type
 
@@ -2799,7 +2878,7 @@ FinnhubRuby.configure do |config|
 end
 
 api_instance = FinnhubRuby::DefaultApi.new
-symbol = 'symbol_example' # String | Symbol of the company: AAPL.
+symbol = 'symbol_example' # String | Symbol of the company: AAPL. Leave this param blank to get the latest transactions.
 opts = {
   from: Date.parse('2013-10-20'), # Date | From date: 2020-03-15.
   to: Date.parse('2013-10-20') # Date | To date: 2020-03-16.
@@ -2836,7 +2915,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **symbol** | **String** | Symbol of the company: AAPL. |  |
+| **symbol** | **String** | Symbol of the company: AAPL. Leave this param blank to get the latest transactions. |  |
 | **from** | **Date** | From date: 2020-03-15. | [optional] |
 | **to** | **Date** | To date: 2020-03-16. | [optional] |
 

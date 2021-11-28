@@ -231,7 +231,7 @@ module FinnhubRuby
     # Company Earnings Quality Score
     # <p>This endpoint provides Earnings Quality Score for global companies.</p><p> Earnings quality refers to the extent to which current earnings predict future earnings. \"High-quality\" earnings are expected to persist, while \"low-quality\" earnings do not. A higher score means a higher earnings quality</p><p>Finnhub uses a proprietary model which takes into consideration 4 criteria:</p> <ul style=\"list-style-type: unset; margin-left: 30px;\"><li>Profitability</li><li>Growth</li><li>Cash Generation & Capital Allocation</li><li>Leverage</li></ul><br/><p>We then compare the metrics of each company in each category against its peers in the same industry to gauge how quality its earnings is.</p>
     # @param symbol [String] Symbol.
-    # @param freq [String] Frequency. Currently only support &lt;code&gt;quarterly&lt;/code&gt;
+    # @param freq [String] Frequency. Currently support &lt;code&gt;annual&lt;/code&gt; and &lt;code&gt;quarterly&lt;/code&gt;
     # @param [Hash] opts the optional parameters
     # @return [CompanyEarningsQualityScore]
     def company_earnings_quality_score(symbol, freq, opts = {})
@@ -242,7 +242,7 @@ module FinnhubRuby
     # Company Earnings Quality Score
     # &lt;p&gt;This endpoint provides Earnings Quality Score for global companies.&lt;/p&gt;&lt;p&gt; Earnings quality refers to the extent to which current earnings predict future earnings. \&quot;High-quality\&quot; earnings are expected to persist, while \&quot;low-quality\&quot; earnings do not. A higher score means a higher earnings quality&lt;/p&gt;&lt;p&gt;Finnhub uses a proprietary model which takes into consideration 4 criteria:&lt;/p&gt; &lt;ul style&#x3D;\&quot;list-style-type: unset; margin-left: 30px;\&quot;&gt;&lt;li&gt;Profitability&lt;/li&gt;&lt;li&gt;Growth&lt;/li&gt;&lt;li&gt;Cash Generation &amp; Capital Allocation&lt;/li&gt;&lt;li&gt;Leverage&lt;/li&gt;&lt;/ul&gt;&lt;br/&gt;&lt;p&gt;We then compare the metrics of each company in each category against its peers in the same industry to gauge how quality its earnings is.&lt;/p&gt;
     # @param symbol [String] Symbol.
-    # @param freq [String] Frequency. Currently only support &lt;code&gt;quarterly&lt;/code&gt;
+    # @param freq [String] Frequency. Currently support &lt;code&gt;annual&lt;/code&gt; and &lt;code&gt;quarterly&lt;/code&gt;
     # @param [Hash] opts the optional parameters
     # @return [Array<(CompanyEarningsQualityScore, Integer, Hash)>] CompanyEarningsQualityScore data, response status code and response headers
     def company_earnings_quality_score_with_http_info(symbol, freq, opts = {})
@@ -1091,6 +1091,70 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
+    # Crypto Profile
+    # Get crypto's profile.
+    # @param symbol [String] Crypto symbol such as BTC or ETH.
+    # @param [Hash] opts the optional parameters
+    # @return [CryptoProfile]
+    def crypto_profile(symbol, opts = {})
+      data, _status_code, _headers = crypto_profile_with_http_info(symbol, opts)
+      data
+    end
+
+    # Crypto Profile
+    # Get crypto&#39;s profile.
+    # @param symbol [String] Crypto symbol such as BTC or ETH.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(CryptoProfile, Integer, Hash)>] CryptoProfile data, response status code and response headers
+    def crypto_profile_with_http_info(symbol, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.crypto_profile ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.crypto_profile"
+      end
+      # resource path
+      local_var_path = '/crypto/profile'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'CryptoProfile'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.crypto_profile",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#crypto_profile\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Crypto Symbol
     # List supported crypto symbols by exchange
     # @param exchange [String] Exchange you want to get the list of symbols from.
@@ -1227,6 +1291,8 @@ module FinnhubRuby
     # Economic Calendar
     # <p>Get recent and upcoming economic releases.</p><p>Historical events and surprises are available for Enterprise clients.</p>
     # @param [Hash] opts the optional parameters
+    # @option opts [Date] :from From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @option opts [Date] :to To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
     # @return [EconomicCalendar]
     def economic_calendar(opts = {})
       data, _status_code, _headers = economic_calendar_with_http_info(opts)
@@ -1236,6 +1302,8 @@ module FinnhubRuby
     # Economic Calendar
     # &lt;p&gt;Get recent and upcoming economic releases.&lt;/p&gt;&lt;p&gt;Historical events and surprises are available for Enterprise clients.&lt;/p&gt;
     # @param [Hash] opts the optional parameters
+    # @option opts [Date] :from From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @option opts [Date] :to To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
     # @return [Array<(EconomicCalendar, Integer, Hash)>] EconomicCalendar data, response status code and response headers
     def economic_calendar_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -1246,6 +1314,8 @@ module FinnhubRuby
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'from'] = opts[:'from'] if !opts[:'from'].nil?
+      query_params[:'to'] = opts[:'to'] if !opts[:'to'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -2465,7 +2535,7 @@ module FinnhubRuby
 
     # Insider Transactions
     # Company insider transactions data sourced from <code>Form 3,4,5</code>. This endpoint only covers US companies at the moment. Limit to 100 transactions per API call.
-    # @param symbol [String] Symbol of the company: AAPL.
+    # @param symbol [String] Symbol of the company: AAPL. Leave this param blank to get the latest transactions.
     # @param [Hash] opts the optional parameters
     # @option opts [Date] :from From date: 2020-03-15.
     # @option opts [Date] :to To date: 2020-03-16.
@@ -2477,7 +2547,7 @@ module FinnhubRuby
 
     # Insider Transactions
     # Company insider transactions data sourced from &lt;code&gt;Form 3,4,5&lt;/code&gt;. This endpoint only covers US companies at the moment. Limit to 100 transactions per API call.
-    # @param symbol [String] Symbol of the company: AAPL.
+    # @param symbol [String] Symbol of the company: AAPL. Leave this param blank to get the latest transactions.
     # @param [Hash] opts the optional parameters
     # @option opts [Date] :from From date: 2020-03-15.
     # @option opts [Date] :to To date: 2020-03-16.

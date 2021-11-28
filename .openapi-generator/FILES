@@ -19,6 +19,7 @@ docs/CompanyProfile2.md
 docs/CountryMetadata.md
 docs/CovidInfo.md
 docs/CryptoCandles.md
+docs/CryptoProfile.md
 docs/CryptoSymbol.md
 docs/DefaultApi.md
 docs/Development.md
@@ -133,6 +134,7 @@ lib/finnhub_ruby/models/company_profile2.rb
 lib/finnhub_ruby/models/country_metadata.rb
 lib/finnhub_ruby/models/covid_info.rb
 lib/finnhub_ruby/models/crypto_candles.rb
+lib/finnhub_ruby/models/crypto_profile.rb
 lib/finnhub_ruby/models/crypto_symbol.rb
 lib/finnhub_ruby/models/development.rb
 lib/finnhub_ruby/models/dividends.rb
@@ -227,4 +229,5 @@ lib/finnhub_ruby/models/upgrade_downgrade.rb
 lib/finnhub_ruby/version.rb
 spec/api_client_spec.rb
 spec/configuration_spec.rb
+spec/models/crypto_profile_spec.rb
 spec/spec_helper.rb

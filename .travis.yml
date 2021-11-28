@@ -11,4 +11,4 @@ script:
   - bundle install --path vendor/bundle
   - bundle exec rspec
   - gem build finnhub_ruby.gemspec
-  - gem install ./finnhub_ruby-1.1.9.gem
+  - gem install ./finnhub_ruby-1.1.10.gem
