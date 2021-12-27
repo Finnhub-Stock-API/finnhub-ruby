@@ -41,6 +41,10 @@ docs/EarningsCallTranscripts.md
 docs/EarningsCallTranscriptsList.md
 docs/EarningsEstimates.md
 docs/EarningsEstimatesInfo.md
+docs/EbitEstimates.md
+docs/EbitEstimatesInfo.md
+docs/EbitdaEstimates.md
+docs/EbitdaEstimatesInfo.md
 docs/EconomicCalendar.md
 docs/EconomicCode.md
 docs/EconomicData.md
@@ -147,6 +151,10 @@ lib/finnhub_ruby/models/earnings_call_transcripts.rb
 lib/finnhub_ruby/models/earnings_call_transcripts_list.rb
 lib/finnhub_ruby/models/earnings_estimates.rb
 lib/finnhub_ruby/models/earnings_estimates_info.rb
+lib/finnhub_ruby/models/ebit_estimates.rb
+lib/finnhub_ruby/models/ebit_estimates_info.rb
+lib/finnhub_ruby/models/ebitda_estimates.rb
+lib/finnhub_ruby/models/ebitda_estimates_info.rb
 lib/finnhub_ruby/models/economic_calendar.rb
 lib/finnhub_ruby/models/economic_code.rb
 lib/finnhub_ruby/models/economic_data.rb
@@ -229,5 +237,4 @@ lib/finnhub_ruby/models/upgrade_downgrade.rb
 lib/finnhub_ruby/version.rb
 spec/api_client_spec.rb
 spec/configuration_spec.rb
-spec/models/crypto_profile_spec.rb
 spec/spec_helper.rb

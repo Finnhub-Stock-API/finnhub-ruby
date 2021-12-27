@@ -299,6 +299,140 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
+    # EBIT Estimates
+    # Get company's ebit estimates.
+    # @param symbol [String] Symbol of the company: AAPL.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :freq Can take 1 of the following values: &lt;code&gt;annual, quarterly&lt;/code&gt;. Default to &lt;code&gt;quarterly&lt;/code&gt;
+    # @return [EbitEstimates]
+    def company_ebit_estimates(symbol, opts = {})
+      data, _status_code, _headers = company_ebit_estimates_with_http_info(symbol, opts)
+      data
+    end
+
+    # EBIT Estimates
+    # Get company&#39;s ebit estimates.
+    # @param symbol [String] Symbol of the company: AAPL.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :freq Can take 1 of the following values: &lt;code&gt;annual, quarterly&lt;/code&gt;. Default to &lt;code&gt;quarterly&lt;/code&gt;
+    # @return [Array<(EbitEstimates, Integer, Hash)>] EbitEstimates data, response status code and response headers
+    def company_ebit_estimates_with_http_info(symbol, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.company_ebit_estimates ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.company_ebit_estimates"
+      end
+      # resource path
+      local_var_path = '/stock/ebit-estimate'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+      query_params[:'freq'] = opts[:'freq'] if !opts[:'freq'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'EbitEstimates'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.company_ebit_estimates",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#company_ebit_estimates\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # EBITDA Estimates
+    # Get company's ebitda estimates.
+    # @param symbol [String] Symbol of the company: AAPL.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :freq Can take 1 of the following values: &lt;code&gt;annual, quarterly&lt;/code&gt;. Default to &lt;code&gt;quarterly&lt;/code&gt;
+    # @return [EbitdaEstimates]
+    def company_ebitda_estimates(symbol, opts = {})
+      data, _status_code, _headers = company_ebitda_estimates_with_http_info(symbol, opts)
+      data
+    end
+
+    # EBITDA Estimates
+    # Get company&#39;s ebitda estimates.
+    # @param symbol [String] Symbol of the company: AAPL.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :freq Can take 1 of the following values: &lt;code&gt;annual, quarterly&lt;/code&gt;. Default to &lt;code&gt;quarterly&lt;/code&gt;
+    # @return [Array<(EbitdaEstimates, Integer, Hash)>] EbitdaEstimates data, response status code and response headers
+    def company_ebitda_estimates_with_http_info(symbol, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.company_ebitda_estimates ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.company_ebitda_estimates"
+      end
+      # resource path
+      local_var_path = '/stock/ebitda-estimate'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+      query_params[:'freq'] = opts[:'freq'] if !opts[:'freq'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'EbitdaEstimates'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.company_ebitda_estimates",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#company_ebitda_estimates\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Earnings Estimates
     # Get company's EPS estimates.
     # @param symbol [String] Symbol of the company: AAPL.

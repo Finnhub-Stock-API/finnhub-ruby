@@ -78,6 +78,18 @@ module FinnhubRuby
     # Turnover.
     attr_accessor :turnover
 
+    # Fund's series ID. This field can be used to group multiple share classes into 1 unique fund.
+    attr_accessor :series_id
+
+    # Fund's series name.
+    attr_accessor :series_name
+
+    # Class ID.
+    attr_accessor :class_id
+
+    # Class name.
+    attr_accessor :class_name
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -101,7 +113,11 @@ module FinnhubRuby
         :'cusip' => :'cusip',
         :'max_redemption_fee' => :'maxRedemptionFee',
         :'standard_min_investment' => :'standardMinInvestment',
-        :'turnover' => :'turnover'
+        :'turnover' => :'turnover',
+        :'series_id' => :'seriesId',
+        :'series_name' => :'seriesName',
+        :'class_id' => :'classId',
+        :'class_name' => :'className'
       }
     end
 
@@ -133,7 +149,11 @@ module FinnhubRuby
         :'cusip' => :'String',
         :'max_redemption_fee' => :'Float',
         :'standard_min_investment' => :'Float',
-        :'turnover' => :'Float'
+        :'turnover' => :'Float',
+        :'series_id' => :'String',
+        :'series_name' => :'String',
+        :'class_id' => :'String',
+        :'class_name' => :'String'
       }
     end
 
@@ -241,6 +261,22 @@ module FinnhubRuby
       if attributes.key?(:'turnover')
         self.turnover = attributes[:'turnover']
       end
+
+      if attributes.key?(:'series_id')
+        self.series_id = attributes[:'series_id']
+      end
+
+      if attributes.key?(:'series_name')
+        self.series_name = attributes[:'series_name']
+      end
+
+      if attributes.key?(:'class_id')
+        self.class_id = attributes[:'class_id']
+      end
+
+      if attributes.key?(:'class_name')
+        self.class_name = attributes[:'class_name']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -281,7 +317,11 @@ module FinnhubRuby
           cusip == o.cusip &&
           max_redemption_fee == o.max_redemption_fee &&
           standard_min_investment == o.standard_min_investment &&
-          turnover == o.turnover
+          turnover == o.turnover &&
+          series_id == o.series_id &&
+          series_name == o.series_name &&
+          class_id == o.class_id &&
+          class_name == o.class_name
     end
 
     # @see the `==` method
@@ -293,7 +333,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, category, investment_segment, total_nav, expense_ratio, benchmark, inception_date, description, fund_family, manager, status, beta, deferred_load, fee12b1, front_load, ira_min_investment, isin, cusip, max_redemption_fee, standard_min_investment, turnover].hash
+      [name, category, investment_segment, total_nav, expense_ratio, benchmark, inception_date, description, fund_family, manager, status, beta, deferred_load, fee12b1, front_load, ira_min_investment, isin, cusip, max_redemption_fee, standard_min_investment, turnover, series_id, series_name, class_id, class_name].hash
     end
 
     # Builds the object from hash

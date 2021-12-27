@@ -25,6 +25,10 @@
 | **max_redemption_fee** | **Float** | Max redemption fee. | [optional] |
 | **standard_min_investment** | **Float** | Minimum investment for standard accounts. | [optional] |
 | **turnover** | **Float** | Turnover. | [optional] |
+| **series_id** | **String** | Fund&#39;s series ID. This field can be used to group multiple share classes into 1 unique fund. | [optional] |
+| **series_name** | **String** | Fund&#39;s series name. | [optional] |
+| **class_id** | **String** | Class ID. | [optional] |
+| **class_name** | **String** | Class name. | [optional] |
 
 ## Example
 
@@ -52,7 +56,11 @@ instance = FinnhubRuby::MutualFundProfileData.new(
   cusip: null,
   max_redemption_fee: null,
   standard_min_investment: null,
-  turnover: null
+  turnover: null,
+  series_id: null,
+  series_name: null,
+  class_id: null,
+  class_name: null
 )
 ```
 

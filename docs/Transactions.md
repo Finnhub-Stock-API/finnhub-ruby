@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol. | [optional] |
 | **name** | **String** | Insider&#39;s name. | [optional] |
 | **share** | **Integer** | Number of shares held after the transaction. | [optional] |
 | **change** | **Integer** | Number of share changed from the last period. A positive value suggests a &lt;code&gt;BUY&lt;/code&gt; transaction. A negative value suggests a &lt;code&gt;SELL&lt;/code&gt; transaction. | [optional] |
@@ -18,6 +19,7 @@
 require 'finnhub_ruby'
 
 instance = FinnhubRuby::Transactions.new(
+  symbol: null,
   name: null,
   share: null,
   change: null,

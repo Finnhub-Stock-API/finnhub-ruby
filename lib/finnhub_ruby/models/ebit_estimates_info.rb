@@ -14,42 +14,30 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class Transactions
-    # Symbol.
-    attr_accessor :symbol
+  class EbitEstimatesInfo
+    # Average EBIT estimates including Finnhub's proprietary estimates.
+    attr_accessor :ebit_avg
 
-    # Insider's name.
-    attr_accessor :name
+    # Highest estimate.
+    attr_accessor :ebit_high
 
-    # Number of shares held after the transaction.
-    attr_accessor :share
+    # Lowest estimate.
+    attr_accessor :ebit_low
 
-    # Number of share changed from the last period. A positive value suggests a <code>BUY</code> transaction. A negative value suggests a <code>SELL</code> transaction.
-    attr_accessor :change
+    # Number of Analysts.
+    attr_accessor :number_analysts
 
-    # Filing date.
-    attr_accessor :filing_date
-
-    # Transaction date.
-    attr_accessor :transaction_date
-
-    # Average transaction price.
-    attr_accessor :transaction_price
-
-    # Transaction code. A list of codes and their meanings can be found <a href=\"https://www.sec.gov/about/forms/form4data.pdf\" target=\"_blank\" rel=\"noopener\">here</a>.
-    attr_accessor :transaction_code
+    # Period.
+    attr_accessor :period
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'symbol' => :'symbol',
-        :'name' => :'name',
-        :'share' => :'share',
-        :'change' => :'change',
-        :'filing_date' => :'filingDate',
-        :'transaction_date' => :'transactionDate',
-        :'transaction_price' => :'transactionPrice',
-        :'transaction_code' => :'transactionCode'
+        :'ebit_avg' => :'ebitAvg',
+        :'ebit_high' => :'ebitHigh',
+        :'ebit_low' => :'ebitLow',
+        :'number_analysts' => :'numberAnalysts',
+        :'period' => :'period'
       }
     end
 
@@ -61,14 +49,11 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'symbol' => :'String',
-        :'name' => :'String',
-        :'share' => :'Integer',
-        :'change' => :'Integer',
-        :'filing_date' => :'Date',
-        :'transaction_date' => :'Date',
-        :'transaction_price' => :'Float',
-        :'transaction_code' => :'String'
+        :'ebit_avg' => :'Float',
+        :'ebit_high' => :'Float',
+        :'ebit_low' => :'Float',
+        :'number_analysts' => :'Integer',
+        :'period' => :'Date'
       }
     end
 
@@ -82,47 +67,35 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::Transactions` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::EbitEstimatesInfo` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::Transactions`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::EbitEstimatesInfo`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'symbol')
-        self.symbol = attributes[:'symbol']
+      if attributes.key?(:'ebit_avg')
+        self.ebit_avg = attributes[:'ebit_avg']
       end
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.key?(:'ebit_high')
+        self.ebit_high = attributes[:'ebit_high']
       end
 
-      if attributes.key?(:'share')
-        self.share = attributes[:'share']
+      if attributes.key?(:'ebit_low')
+        self.ebit_low = attributes[:'ebit_low']
       end
 
-      if attributes.key?(:'change')
-        self.change = attributes[:'change']
+      if attributes.key?(:'number_analysts')
+        self.number_analysts = attributes[:'number_analysts']
       end
 
-      if attributes.key?(:'filing_date')
-        self.filing_date = attributes[:'filing_date']
-      end
-
-      if attributes.key?(:'transaction_date')
-        self.transaction_date = attributes[:'transaction_date']
-      end
-
-      if attributes.key?(:'transaction_price')
-        self.transaction_price = attributes[:'transaction_price']
-      end
-
-      if attributes.key?(:'transaction_code')
-        self.transaction_code = attributes[:'transaction_code']
+      if attributes.key?(:'period')
+        self.period = attributes[:'period']
       end
     end
 
@@ -144,14 +117,11 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          symbol == o.symbol &&
-          name == o.name &&
-          share == o.share &&
-          change == o.change &&
-          filing_date == o.filing_date &&
-          transaction_date == o.transaction_date &&
-          transaction_price == o.transaction_price &&
-          transaction_code == o.transaction_code
+          ebit_avg == o.ebit_avg &&
+          ebit_high == o.ebit_high &&
+          ebit_low == o.ebit_low &&
+          number_analysts == o.number_analysts &&
+          period == o.period
     end
 
     # @see the `==` method
@@ -163,7 +133,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, name, share, change, filing_date, transaction_date, transaction_price, transaction_code].hash
+      [ebit_avg, ebit_high, ebit_low, number_analysts, period].hash
     end
 
     # Builds the object from hash

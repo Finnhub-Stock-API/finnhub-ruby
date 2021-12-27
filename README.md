@@ -1,7 +1,7 @@
 # finnhub-ruby
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 1.1.10
+- Package version: 1.1.11
 
 ## Installation
 https://rubygems.org/gems/finnhub_ruby
@@ -13,7 +13,7 @@ gem install finnhub_ruby
 or in your Gemfile
 
 ```ruby
-gem 'finnhub_ruby', '~> 1.1.10'
+gem 'finnhub_ruby', '~> 1.1.11'
 ```
 
 ## Getting Started
@@ -246,6 +246,11 @@ puts(finnhub_client.company_earnings_quality_score('AAPL', 'quarterly'))
 # Crypto Profile
 puts(finnhub_client.crypto_profile('BTC'))
 
+# EBITDA Estimates
+puts(finnhub_client.company_ebitda_estimates('AAPL', {freq: 'quarterly'}))
+
+# EBIT Estimates
+puts(finnhub_client.company_ebit_estimates('TSLA', {freq: 'quarterly'}))
 ```
 
 ## License
