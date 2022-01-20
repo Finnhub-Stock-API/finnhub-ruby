@@ -14,50 +14,46 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class StockSymbol
-    # Symbol description
+  class UsptoPatent
+    # Application Number.
+    attr_accessor :application_number
+
+    # Array of companies' name on the patent.
+    attr_accessor :company_filing_name
+
+    # Filing date.
+    attr_accessor :filing_date
+
+    # Description.
     attr_accessor :description
 
-    # Display symbol name.
-    attr_accessor :display_symbol
+    # Filing status.
+    attr_accessor :filing_status
 
-    # Unique symbol used to identify this symbol used in <code>/stock/candle</code> endpoint.
-    attr_accessor :symbol
+    # Patent number.
+    attr_accessor :patent_number
 
-    # Security type.
-    attr_accessor :type
+    # Filing date.
+    attr_accessor :publication_date
 
-    # Primary exchange's MIC.
-    attr_accessor :mic
+    # Patent's type.
+    attr_accessor :patent_type
 
-    # FIGI identifier.
-    attr_accessor :figi
-
-    # Global Share Class FIGI.
-    attr_accessor :share_class_figi
-
-    # Price's currency. This might be different from the reporting currency of fundamental data.
-    attr_accessor :currency
-
-    # Alternative ticker for exchanges with multiple tickers for 1 stock such as BSE.
-    attr_accessor :symbol2
-
-    # ISIN. This field is only available for EU stocks and selected Asian markets. Entitlement from Finnhub is required to access this field.
-    attr_accessor :isin
+    # URL of the original article.
+    attr_accessor :url
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'application_number' => :'applicationNumber',
+        :'company_filing_name' => :'companyFilingName',
+        :'filing_date' => :'filingDate',
         :'description' => :'description',
-        :'display_symbol' => :'displaySymbol',
-        :'symbol' => :'symbol',
-        :'type' => :'type',
-        :'mic' => :'mic',
-        :'figi' => :'figi',
-        :'share_class_figi' => :'shareClassFIGI',
-        :'currency' => :'currency',
-        :'symbol2' => :'symbol2',
-        :'isin' => :'isin'
+        :'filing_status' => :'filingStatus',
+        :'patent_number' => :'patentNumber',
+        :'publication_date' => :'publicationDate',
+        :'patent_type' => :'patentType',
+        :'url' => :'url'
       }
     end
 
@@ -69,16 +65,15 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'application_number' => :'String',
+        :'company_filing_name' => :'Array<String>',
+        :'filing_date' => :'String',
         :'description' => :'String',
-        :'display_symbol' => :'String',
-        :'symbol' => :'String',
-        :'type' => :'String',
-        :'mic' => :'String',
-        :'figi' => :'String',
-        :'share_class_figi' => :'String',
-        :'currency' => :'String',
-        :'symbol2' => :'String',
-        :'isin' => :'String'
+        :'filing_status' => :'String',
+        :'patent_number' => :'String',
+        :'publication_date' => :'String',
+        :'patent_type' => :'String',
+        :'url' => :'String'
       }
     end
 
@@ -92,55 +87,53 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::StockSymbol` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::UsptoPatent` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::StockSymbol`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::UsptoPatent`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'application_number')
+        self.application_number = attributes[:'application_number']
+      end
+
+      if attributes.key?(:'company_filing_name')
+        if (value = attributes[:'company_filing_name']).is_a?(Array)
+          self.company_filing_name = value
+        end
+      end
+
+      if attributes.key?(:'filing_date')
+        self.filing_date = attributes[:'filing_date']
+      end
 
       if attributes.key?(:'description')
         self.description = attributes[:'description']
       end
 
-      if attributes.key?(:'display_symbol')
-        self.display_symbol = attributes[:'display_symbol']
+      if attributes.key?(:'filing_status')
+        self.filing_status = attributes[:'filing_status']
       end
 
-      if attributes.key?(:'symbol')
-        self.symbol = attributes[:'symbol']
+      if attributes.key?(:'patent_number')
+        self.patent_number = attributes[:'patent_number']
       end
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.key?(:'publication_date')
+        self.publication_date = attributes[:'publication_date']
       end
 
-      if attributes.key?(:'mic')
-        self.mic = attributes[:'mic']
+      if attributes.key?(:'patent_type')
+        self.patent_type = attributes[:'patent_type']
       end
 
-      if attributes.key?(:'figi')
-        self.figi = attributes[:'figi']
-      end
-
-      if attributes.key?(:'share_class_figi')
-        self.share_class_figi = attributes[:'share_class_figi']
-      end
-
-      if attributes.key?(:'currency')
-        self.currency = attributes[:'currency']
-      end
-
-      if attributes.key?(:'symbol2')
-        self.symbol2 = attributes[:'symbol2']
-      end
-
-      if attributes.key?(:'isin')
-        self.isin = attributes[:'isin']
+      if attributes.key?(:'url')
+        self.url = attributes[:'url']
       end
     end
 
@@ -162,16 +155,15 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          application_number == o.application_number &&
+          company_filing_name == o.company_filing_name &&
+          filing_date == o.filing_date &&
           description == o.description &&
-          display_symbol == o.display_symbol &&
-          symbol == o.symbol &&
-          type == o.type &&
-          mic == o.mic &&
-          figi == o.figi &&
-          share_class_figi == o.share_class_figi &&
-          currency == o.currency &&
-          symbol2 == o.symbol2 &&
-          isin == o.isin
+          filing_status == o.filing_status &&
+          patent_number == o.patent_number &&
+          publication_date == o.publication_date &&
+          patent_type == o.patent_type &&
+          url == o.url
     end
 
     # @see the `==` method
@@ -183,7 +175,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [description, display_symbol, symbol, type, mic, figi, share_class_figi, currency, symbol2, isin].hash
+      [application_number, company_filing_name, filing_date, description, filing_status, patent_number, publication_date, patent_type, url].hash
     end
 
     # Builds the object from hash

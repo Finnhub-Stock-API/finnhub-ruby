@@ -128,6 +128,8 @@ require 'finnhub_ruby/models/transcript_participant'
 require 'finnhub_ruby/models/trend'
 require 'finnhub_ruby/models/twitter_sentiment_content'
 require 'finnhub_ruby/models/upgrade_downgrade'
+require 'finnhub_ruby/models/uspto_patent'
+require 'finnhub_ruby/models/uspto_patent_result'
 
 # APIs
 require 'finnhub_ruby/api/default_api'

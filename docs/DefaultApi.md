@@ -71,6 +71,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**stock_splits**](DefaultApi.md#stock_splits) | **GET** /stock/split | Splits |
 | [**stock_symbols**](DefaultApi.md#stock_symbols) | **GET** /stock/symbol | Stock Symbol |
 | [**stock_tick**](DefaultApi.md#stock_tick) | **GET** /stock/tick | Tick Data |
+| [**stock_uspto_patent**](DefaultApi.md#stock_uspto_patent) | **GET** /stock/uspto-patent | USPTO Patents |
 | [**supply_chain_relationships**](DefaultApi.md#supply_chain_relationships) | **GET** /stock/supply-chain | Supply Chain Relationships |
 | [**support_resistance**](DefaultApi.md#support_resistance) | **GET** /scan/support-resistance | Support/Resistance |
 | [**symbol_search**](DefaultApi.md#symbol_search) | **GET** /search | Symbol Lookup |
@@ -3091,7 +3092,7 @@ end
 
 International Filings
 
-List filings for international companies which covers 95%+ of global market cap. Limit to 250 documents at a time. These are the documents we use to source our fundamental data.
+List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data.
 
 ### Examples
 
@@ -5002,6 +5003,81 @@ end
 ### Return type
 
 [**TickData**](TickData.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## stock_uspto_patent
+
+> <UsptoPatentResult> stock_uspto_patent(symbol, from, to)
+
+USPTO Patents
+
+List USPTO patents for companies. Limit to 250 records per API call.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | Symbol.
+from = Date.parse('2013-10-20') # Date | From date <code>YYYY-MM-DD</code>.
+to = Date.parse('2013-10-20') # Date | To date <code>YYYY-MM-DD</code>.
+
+begin
+  # USPTO Patents
+  result = api_instance.stock_uspto_patent(symbol, from, to)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->stock_uspto_patent: #{e}"
+end
+```
+
+#### Using the stock_uspto_patent_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<UsptoPatentResult>, Integer, Hash)> stock_uspto_patent_with_http_info(symbol, from, to)
+
+```ruby
+begin
+  # USPTO Patents
+  data, status_code, headers = api_instance.stock_uspto_patent_with_http_info(symbol, from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <UsptoPatentResult>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->stock_uspto_patent_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol. |  |
+| **from** | **Date** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+| **to** | **Date** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+
+### Return type
+
+[**UsptoPatentResult**](UsptoPatentResult.md)
 
 ### Authorization
 

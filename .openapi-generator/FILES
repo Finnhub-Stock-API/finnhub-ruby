@@ -116,11 +116,12 @@ docs/TranscriptParticipant.md
 docs/Trend.md
 docs/TwitterSentimentContent.md
 docs/UpgradeDowngrade.md
+docs/UsptoPatent.md
+docs/UsptoPatentResult.md
 finnhub_ruby.gemspec
 git_push.sh
 lib/finnhub_ruby.rb
 lib/finnhub_ruby/api/default_api.rb
-lib/finnhub_ruby/api_client.rb
 lib/finnhub_ruby/api_error.rb
 lib/finnhub_ruby/configuration.rb
 lib/finnhub_ruby/models/aggregate_indicators.rb
@@ -234,6 +235,8 @@ lib/finnhub_ruby/models/transcript_participant.rb
 lib/finnhub_ruby/models/trend.rb
 lib/finnhub_ruby/models/twitter_sentiment_content.rb
 lib/finnhub_ruby/models/upgrade_downgrade.rb
+lib/finnhub_ruby/models/uspto_patent.rb
+lib/finnhub_ruby/models/uspto_patent_result.rb
 lib/finnhub_ruby/version.rb
 spec/api_client_spec.rb
 spec/configuration_spec.rb

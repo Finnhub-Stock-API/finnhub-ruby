@@ -2738,7 +2738,7 @@ module FinnhubRuby
     end
 
     # International Filings
-    # List filings for international companies which covers 95%+ of global market cap. Limit to 250 documents at a time. These are the documents we use to source our fundamental data.
+    # List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Symbol. Leave empty to list latest filings.
     # @option opts [String] :country Filter by country using country&#39;s 2-letter code.
@@ -2749,7 +2749,7 @@ module FinnhubRuby
     end
 
     # International Filings
-    # List filings for international companies which covers 95%+ of global market cap. Limit to 250 documents at a time. These are the documents we use to source our fundamental data.
+    # List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Symbol. Leave empty to list latest filings.
     # @option opts [String] :country Filter by country using country&#39;s 2-letter code.
@@ -4530,6 +4530,84 @@ module FinnhubRuby
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#stock_tick\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # USPTO Patents
+    # List USPTO patents for companies. Limit to 250 records per API call.
+    # @param symbol [String] Symbol.
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [UsptoPatentResult]
+    def stock_uspto_patent(symbol, from, to, opts = {})
+      data, _status_code, _headers = stock_uspto_patent_with_http_info(symbol, from, to, opts)
+      data
+    end
+
+    # USPTO Patents
+    # List USPTO patents for companies. Limit to 250 records per API call.
+    # @param symbol [String] Symbol.
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(UsptoPatentResult, Integer, Hash)>] UsptoPatentResult data, response status code and response headers
+    def stock_uspto_patent_with_http_info(symbol, from, to, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.stock_uspto_patent ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.stock_uspto_patent"
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.stock_uspto_patent"
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.stock_uspto_patent"
+      end
+      # resource path
+      local_var_path = '/stock/uspto-patent'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+      query_params[:'from'] = from
+      query_params[:'to'] = to
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'UsptoPatentResult'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.stock_uspto_patent",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#stock_uspto_patent\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

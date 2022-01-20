@@ -1,7 +1,7 @@
 # finnhub-ruby
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 1.1.11
+- Package version: 1.1.12
 
 ## Installation
 https://rubygems.org/gems/finnhub_ruby
@@ -13,7 +13,7 @@ gem install finnhub_ruby
 or in your Gemfile
 
 ```ruby
-gem 'finnhub_ruby', '~> 1.1.11'
+gem 'finnhub_ruby', '~> 1.1.12'
 ```
 
 ## Getting Started
@@ -67,7 +67,6 @@ puts(finnhub_client.company_eps_estimates('AMZN', {freq: 'quarterly'}))
 puts(finnhub_client.company_executive('AAPL'))
 
 # Company News
-# Need to use _from instead of from to avoid conflict
 puts(finnhub_client.company_news('AAPL', "2020-06-01", "2020-06-10"))
 
 # Company Peers
@@ -251,6 +250,10 @@ puts(finnhub_client.company_ebitda_estimates('AAPL', {freq: 'quarterly'}))
 
 # EBIT Estimates
 puts(finnhub_client.company_ebit_estimates('TSLA', {freq: 'quarterly'}))
+
+# USPTO
+puts(finnhub_client.stock_uspto_patent('NVDA', "2020-06-01", "2021-06-10"))
+
 ```
 
 ## License
