@@ -2352,6 +2352,7 @@ module FinnhubRuby
     # Get rates for all forex pairs. Ideal for currency conversion
     # @param [Hash] opts the optional parameters
     # @option opts [String] :base Base currency. Default to EUR.
+    # @option opts [String] :date Date. Leave blank to get the latest data.
     # @return [Forexrates]
     def forex_rates(opts = {})
       data, _status_code, _headers = forex_rates_with_http_info(opts)
@@ -2362,6 +2363,7 @@ module FinnhubRuby
     # Get rates for all forex pairs. Ideal for currency conversion
     # @param [Hash] opts the optional parameters
     # @option opts [String] :base Base currency. Default to EUR.
+    # @option opts [String] :date Date. Leave blank to get the latest data.
     # @return [Array<(Forexrates, Integer, Hash)>] Forexrates data, response status code and response headers
     def forex_rates_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -2373,6 +2375,7 @@ module FinnhubRuby
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'base'] = opts[:'base'] if !opts[:'base'].nil?
+      query_params[:'date'] = opts[:'date'] if !opts[:'date'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -4608,6 +4611,84 @@ module FinnhubRuby
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#stock_uspto_patent\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # H1-B Visa Application
+    # Get a list of H1-B and Permanent visa applications for companies from the DOL. The data is updated quarterly.
+    # @param symbol [String] Symbol.
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter on the &lt;code&gt;beginDate&lt;/code&gt; column.
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter on the &lt;code&gt;beginDate&lt;/code&gt; column.
+    # @param [Hash] opts the optional parameters
+    # @return [VisaApplicationResult]
+    def stock_visa_application(symbol, from, to, opts = {})
+      data, _status_code, _headers = stock_visa_application_with_http_info(symbol, from, to, opts)
+      data
+    end
+
+    # H1-B Visa Application
+    # Get a list of H1-B and Permanent visa applications for companies from the DOL. The data is updated quarterly.
+    # @param symbol [String] Symbol.
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter on the &lt;code&gt;beginDate&lt;/code&gt; column.
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter on the &lt;code&gt;beginDate&lt;/code&gt; column.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(VisaApplicationResult, Integer, Hash)>] VisaApplicationResult data, response status code and response headers
+    def stock_visa_application_with_http_info(symbol, from, to, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.stock_visa_application ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.stock_visa_application"
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.stock_visa_application"
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.stock_visa_application"
+      end
+      # resource path
+      local_var_path = '/stock/visa-application'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+      query_params[:'from'] = from
+      query_params[:'to'] = to
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'VisaApplicationResult'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.stock_visa_application",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#stock_visa_application\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

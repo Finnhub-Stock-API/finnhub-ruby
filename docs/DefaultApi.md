@@ -72,6 +72,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**stock_symbols**](DefaultApi.md#stock_symbols) | **GET** /stock/symbol | Stock Symbol |
 | [**stock_tick**](DefaultApi.md#stock_tick) | **GET** /stock/tick | Tick Data |
 | [**stock_uspto_patent**](DefaultApi.md#stock_uspto_patent) | **GET** /stock/uspto-patent | USPTO Patents |
+| [**stock_visa_application**](DefaultApi.md#stock_visa_application) | **GET** /stock/visa-application | H1-B Visa Application |
 | [**supply_chain_relationships**](DefaultApi.md#supply_chain_relationships) | **GET** /stock/supply-chain | Supply Chain Relationships |
 | [**support_resistance**](DefaultApi.md#support_resistance) | **GET** /scan/support-resistance | Support/Resistance |
 | [**symbol_search**](DefaultApi.md#symbol_search) | **GET** /search | Symbol Lookup |
@@ -2671,7 +2672,8 @@ end
 
 api_instance = FinnhubRuby::DefaultApi.new
 opts = {
-  base: 'base_example' # String | Base currency. Default to EUR.
+  base: 'base_example', # String | Base currency. Default to EUR.
+  date: 'date_example' # String | Date. Leave blank to get the latest data.
 }
 
 begin
@@ -2706,6 +2708,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **base** | **String** | Base currency. Default to EUR. | [optional] |
+| **date** | **String** | Date. Leave blank to get the latest data. | [optional] |
 
 ### Return type
 
@@ -5078,6 +5081,81 @@ end
 ### Return type
 
 [**UsptoPatentResult**](UsptoPatentResult.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## stock_visa_application
+
+> <VisaApplicationResult> stock_visa_application(symbol, from, to)
+
+H1-B Visa Application
+
+Get a list of H1-B and Permanent visa applications for companies from the DOL. The data is updated quarterly.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | Symbol.
+from = Date.parse('2013-10-20') # Date | From date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column.
+to = Date.parse('2013-10-20') # Date | To date <code>YYYY-MM-DD</code>. Filter on the <code>beginDate</code> column.
+
+begin
+  # H1-B Visa Application
+  result = api_instance.stock_visa_application(symbol, from, to)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->stock_visa_application: #{e}"
+end
+```
+
+#### Using the stock_visa_application_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<VisaApplicationResult>, Integer, Hash)> stock_visa_application_with_http_info(symbol, from, to)
+
+```ruby
+begin
+  # H1-B Visa Application
+  data, status_code, headers = api_instance.stock_visa_application_with_http_info(symbol, from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <VisaApplicationResult>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->stock_visa_application_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol. |  |
+| **from** | **Date** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter on the &lt;code&gt;beginDate&lt;/code&gt; column. |  |
+| **to** | **Date** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter on the &lt;code&gt;beginDate&lt;/code&gt; column. |  |
+
+### Return type
+
+[**VisaApplicationResult**](VisaApplicationResult.md)
 
 ### Authorization
 

@@ -118,6 +118,8 @@ docs/TwitterSentimentContent.md
 docs/UpgradeDowngrade.md
 docs/UsptoPatent.md
 docs/UsptoPatentResult.md
+docs/VisaApplication.md
+docs/VisaApplicationResult.md
 finnhub_ruby.gemspec
 git_push.sh
 lib/finnhub_ruby.rb
@@ -237,7 +239,11 @@ lib/finnhub_ruby/models/twitter_sentiment_content.rb
 lib/finnhub_ruby/models/upgrade_downgrade.rb
 lib/finnhub_ruby/models/uspto_patent.rb
 lib/finnhub_ruby/models/uspto_patent_result.rb
+lib/finnhub_ruby/models/visa_application.rb
+lib/finnhub_ruby/models/visa_application_result.rb
 lib/finnhub_ruby/version.rb
 spec/api_client_spec.rb
 spec/configuration_spec.rb
+spec/models/visa_application_result_spec.rb
+spec/models/visa_application_spec.rb
 spec/spec_helper.rb

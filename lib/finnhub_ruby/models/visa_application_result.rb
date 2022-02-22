@@ -14,46 +14,18 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class UsptoPatent
-    # Application Number.
-    attr_accessor :application_number
+  class VisaApplicationResult
+    # Symbol.
+    attr_accessor :symbol
 
-    # Array of companies' name on the patent.
-    attr_accessor :company_filing_name
-
-    # Filing date.
-    attr_accessor :filing_date
-
-    # Description.
-    attr_accessor :description
-
-    # Filing status.
-    attr_accessor :filing_status
-
-    # Patent number.
-    attr_accessor :patent_number
-
-    # Publication date.
-    attr_accessor :publication_date
-
-    # Patent's type.
-    attr_accessor :patent_type
-
-    # URL of the original article.
-    attr_accessor :url
+    # Array of H1b and Permanent visa applications.
+    attr_accessor :data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'application_number' => :'applicationNumber',
-        :'company_filing_name' => :'companyFilingName',
-        :'filing_date' => :'filingDate',
-        :'description' => :'description',
-        :'filing_status' => :'filingStatus',
-        :'patent_number' => :'patentNumber',
-        :'publication_date' => :'publicationDate',
-        :'patent_type' => :'patentType',
-        :'url' => :'url'
+        :'symbol' => :'symbol',
+        :'data' => :'data'
       }
     end
 
@@ -65,15 +37,8 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'application_number' => :'String',
-        :'company_filing_name' => :'Array<String>',
-        :'filing_date' => :'String',
-        :'description' => :'String',
-        :'filing_status' => :'String',
-        :'patent_number' => :'String',
-        :'publication_date' => :'String',
-        :'patent_type' => :'String',
-        :'url' => :'String'
+        :'symbol' => :'String',
+        :'data' => :'Array<VisaApplication>'
       }
     end
 
@@ -87,53 +52,25 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::UsptoPatent` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::VisaApplicationResult` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::UsptoPatent`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::VisaApplicationResult`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'application_number')
-        self.application_number = attributes[:'application_number']
+      if attributes.key?(:'symbol')
+        self.symbol = attributes[:'symbol']
       end
 
-      if attributes.key?(:'company_filing_name')
-        if (value = attributes[:'company_filing_name']).is_a?(Array)
-          self.company_filing_name = value
+      if attributes.key?(:'data')
+        if (value = attributes[:'data']).is_a?(Array)
+          self.data = value
         end
-      end
-
-      if attributes.key?(:'filing_date')
-        self.filing_date = attributes[:'filing_date']
-      end
-
-      if attributes.key?(:'description')
-        self.description = attributes[:'description']
-      end
-
-      if attributes.key?(:'filing_status')
-        self.filing_status = attributes[:'filing_status']
-      end
-
-      if attributes.key?(:'patent_number')
-        self.patent_number = attributes[:'patent_number']
-      end
-
-      if attributes.key?(:'publication_date')
-        self.publication_date = attributes[:'publication_date']
-      end
-
-      if attributes.key?(:'patent_type')
-        self.patent_type = attributes[:'patent_type']
-      end
-
-      if attributes.key?(:'url')
-        self.url = attributes[:'url']
       end
     end
 
@@ -155,15 +92,8 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          application_number == o.application_number &&
-          company_filing_name == o.company_filing_name &&
-          filing_date == o.filing_date &&
-          description == o.description &&
-          filing_status == o.filing_status &&
-          patent_number == o.patent_number &&
-          publication_date == o.publication_date &&
-          patent_type == o.patent_type &&
-          url == o.url
+          symbol == o.symbol &&
+          data == o.data
     end
 
     # @see the `==` method
@@ -175,7 +105,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [application_number, company_filing_name, filing_date, description, filing_status, patent_number, publication_date, patent_type, url].hash
+      [symbol, data].hash
     end
 
     # Builds the object from hash

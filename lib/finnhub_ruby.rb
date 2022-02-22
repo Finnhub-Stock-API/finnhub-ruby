@@ -130,6 +130,8 @@ require 'finnhub_ruby/models/twitter_sentiment_content'
 require 'finnhub_ruby/models/upgrade_downgrade'
 require 'finnhub_ruby/models/uspto_patent'
 require 'finnhub_ruby/models/uspto_patent_result'
+require 'finnhub_ruby/models/visa_application'
+require 'finnhub_ruby/models/visa_application_result'
 
 # APIs
 require 'finnhub_ruby/api/default_api'
