@@ -67,6 +67,8 @@ docs/IndexHistoricalConstituent.md
 docs/Indicator.md
 docs/IndicesConstituents.md
 docs/IndicesHistoricalConstituents.md
+docs/InsiderSentiments.md
+docs/InsiderSentimentsData.md
 docs/InsiderTransactions.md
 docs/InternationalFiling.md
 docs/InvestmentThemePortfolio.md
@@ -186,6 +188,8 @@ lib/finnhub_ruby/models/index_historical_constituent.rb
 lib/finnhub_ruby/models/indicator.rb
 lib/finnhub_ruby/models/indices_constituents.rb
 lib/finnhub_ruby/models/indices_historical_constituents.rb
+lib/finnhub_ruby/models/insider_sentiments.rb
+lib/finnhub_ruby/models/insider_sentiments_data.rb
 lib/finnhub_ruby/models/insider_transactions.rb
 lib/finnhub_ruby/models/international_filing.rb
 lib/finnhub_ruby/models/investment_theme_portfolio.rb
@@ -244,6 +248,6 @@ lib/finnhub_ruby/models/visa_application_result.rb
 lib/finnhub_ruby/version.rb
 spec/api_client_spec.rb
 spec/configuration_spec.rb
-spec/models/visa_application_result_spec.rb
-spec/models/visa_application_spec.rb
+spec/models/insider_sentiments_data_spec.rb
+spec/models/insider_sentiments_spec.rb
 spec/spec_helper.rb

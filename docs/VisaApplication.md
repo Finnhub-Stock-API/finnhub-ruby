@@ -24,7 +24,7 @@
 | **worksite_postal_code** | **String** | Worksite postal code. | [optional] |
 | **wage_range_from** | **Float** | Wage range from. | [optional] |
 | **wage_range_to** | **Float** | Wage range to. | [optional] |
-| **wave_unit_of_pay** | **String** | Wage unit of pay. | [optional] |
+| **wage_unit_of_pay** | **String** | Wage unit of pay. | [optional] |
 | **wage_level** | **String** | Wage level. | [optional] |
 | **h1b_dependent** | **String** | H1B dependent flag. | [optional] |
 
@@ -54,7 +54,7 @@ instance = FinnhubRuby::VisaApplication.new(
   worksite_postal_code: null,
   wage_range_from: null,
   wage_range_to: null,
-  wave_unit_of_pay: null,
+  wage_unit_of_pay: null,
   wage_level: null,
   h1b_dependent: null
 )

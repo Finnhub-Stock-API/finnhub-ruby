@@ -76,7 +76,7 @@ module FinnhubRuby
     attr_accessor :wage_range_to
 
     # Wage unit of pay.
-    attr_accessor :wave_unit_of_pay
+    attr_accessor :wage_unit_of_pay
 
     # Wage level.
     attr_accessor :wage_level
@@ -107,7 +107,7 @@ module FinnhubRuby
         :'worksite_postal_code' => :'worksitePostalCode',
         :'wage_range_from' => :'wageRangeFrom',
         :'wage_range_to' => :'wageRangeTo',
-        :'wave_unit_of_pay' => :'waveUnitOfPay',
+        :'wage_unit_of_pay' => :'wageUnitOfPay',
         :'wage_level' => :'wageLevel',
         :'h1b_dependent' => :'h1bDependent'
       }
@@ -141,7 +141,7 @@ module FinnhubRuby
         :'worksite_postal_code' => :'String',
         :'wage_range_from' => :'Float',
         :'wage_range_to' => :'Float',
-        :'wave_unit_of_pay' => :'String',
+        :'wage_unit_of_pay' => :'String',
         :'wage_level' => :'String',
         :'h1b_dependent' => :'String'
       }
@@ -248,8 +248,8 @@ module FinnhubRuby
         self.wage_range_to = attributes[:'wage_range_to']
       end
 
-      if attributes.key?(:'wave_unit_of_pay')
-        self.wave_unit_of_pay = attributes[:'wave_unit_of_pay']
+      if attributes.key?(:'wage_unit_of_pay')
+        self.wage_unit_of_pay = attributes[:'wage_unit_of_pay']
       end
 
       if attributes.key?(:'wage_level')
@@ -299,7 +299,7 @@ module FinnhubRuby
           worksite_postal_code == o.worksite_postal_code &&
           wage_range_from == o.wage_range_from &&
           wage_range_to == o.wage_range_to &&
-          wave_unit_of_pay == o.wave_unit_of_pay &&
+          wage_unit_of_pay == o.wage_unit_of_pay &&
           wage_level == o.wage_level &&
           h1b_dependent == o.h1b_dependent
     end
@@ -313,7 +313,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [year, quarter, symbol, case_number, case_status, received_date, visa_class, job_title, soc_code, full_time_position, begin_date, end_date, employer_name, worksite_address, worksite_city, worksite_county, worksite_state, worksite_postal_code, wage_range_from, wage_range_to, wave_unit_of_pay, wage_level, h1b_dependent].hash
+      [year, quarter, symbol, case_number, case_status, received_date, visa_class, job_title, soc_code, full_time_position, begin_date, end_date, employer_name, worksite_address, worksite_city, worksite_county, worksite_state, worksite_postal_code, wage_range_from, wage_range_to, wage_unit_of_pay, wage_level, h1b_dependent].hash
     end
 
     # Builds the object from hash

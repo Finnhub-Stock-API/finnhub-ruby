@@ -44,6 +44,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**fund_ownership**](DefaultApi.md#fund_ownership) | **GET** /stock/fund-ownership | Fund Ownership |
 | [**indices_constituents**](DefaultApi.md#indices_constituents) | **GET** /index/constituents | Indices Constituents |
 | [**indices_historical_constituents**](DefaultApi.md#indices_historical_constituents) | **GET** /index/historical-constituents | Indices Historical Constituents |
+| [**insider_sentiment**](DefaultApi.md#insider_sentiment) | **GET** /stock/insider-sentiment | Insider Sentiment |
 | [**insider_transactions**](DefaultApi.md#insider_transactions) | **GET** /stock/insider-transactions | Insider Transactions |
 | [**international_filings**](DefaultApi.md#international_filings) | **GET** /stock/international-filings | International Filings |
 | [**investment_themes**](DefaultApi.md#investment_themes) | **GET** /stock/investment-theme | Investment Themes (Thematic Investing) |
@@ -1930,7 +1931,8 @@ api_instance = FinnhubRuby::DefaultApi.new
 opts = {
   symbol: 'symbol_example', # String | ETF symbol.
   isin: 'isin_example', # String | ETF isin.
-  skip: 789 # Integer | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip=0 or not set.
+  skip: 789, # Integer | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip=0 or not set.
+  date: 'date_example' # String | Query holdings by date. You can use either this param or <code>skip</code> param, not both.
 }
 
 begin
@@ -1967,6 +1969,7 @@ end
 | **symbol** | **String** | ETF symbol. | [optional] |
 | **isin** | **String** | ETF isin. | [optional] |
 | **skip** | **Integer** | Skip the first n results. You can use this parameter to query historical constituents data. The latest result is returned if skip&#x3D;0 or not set. | [optional] |
+| **date** | **String** | Query holdings by date. You can use either this param or &lt;code&gt;skip&lt;/code&gt; param, not both. | [optional] |
 
 ### Return type
 
@@ -2947,7 +2950,7 @@ end
 
 Indices Historical Constituents
 
-Get full history of index's constituents including symbols and dates of joining and leaving the Index. Currently support <code>^GSPC (S&P 500)</code>, <code>^NDX (Nasdaq 100)</code>, <code>^DJI (Dow Jones)</code>
+Get full history of index's constituents including symbols and dates of joining and leaving the Index. Currently support <code>^GSPC</code>, <code>^NDX</code>, <code>^DJI</code>
 
 ### Examples
 
@@ -3001,6 +3004,81 @@ end
 ### Return type
 
 [**IndicesHistoricalConstituents**](IndicesHistoricalConstituents.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## insider_sentiment
+
+> <InsiderSentiments> insider_sentiment(symbol, from, to)
+
+Insider Sentiment
+
+Get insider sentiment data for US companies calculated using method discussed <a href=\"https://medium.com/@stock-api/finnhub-insiders-sentiment-analysis-cc43f9f64b3a\" target=\"_blank\">here</a>. The MSPR ranges from -100 for the most negative to 100 for the most positive which can signal price changes in the coming 30-90 days.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | Symbol of the company: AAPL.
+from = Date.parse('2013-10-20') # Date | From date: 2020-03-15.
+to = Date.parse('2013-10-20') # Date | To date: 2020-03-16.
+
+begin
+  # Insider Sentiment
+  result = api_instance.insider_sentiment(symbol, from, to)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->insider_sentiment: #{e}"
+end
+```
+
+#### Using the insider_sentiment_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<InsiderSentiments>, Integer, Hash)> insider_sentiment_with_http_info(symbol, from, to)
+
+```ruby
+begin
+  # Insider Sentiment
+  data, status_code, headers = api_instance.insider_sentiment_with_http_info(symbol, from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <InsiderSentiments>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->insider_sentiment_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol of the company: AAPL. |  |
+| **from** | **Date** | From date: 2020-03-15. |  |
+| **to** | **Date** | To date: 2020-03-16. |  |
+
+### Return type
+
+[**InsiderSentiments**](InsiderSentiments.md)
 
 ### Authorization
 
@@ -4867,7 +4945,7 @@ end
 
 Stock Symbol
 
-List supported stocks. We use the following symbology to identify stocks on Finnhub <code>Exchange_Ticker.Exchange_Code</code>. A list of supported exchange codes can be found <a href=\"https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp=sharing\" target=\"_blank\">here</a>. A list of supported CFD Indices can be found <a href=\"https://docs.google.com/spreadsheets/d/1BAbIXBgl405fj0oHeEyRFEu8mW4QD1PhvtaBATLoR14/edit?usp=sharing\" target=\"_blank\">here</a>.
+List supported stocks. We use the following symbology to identify stocks on Finnhub <code>Exchange_Ticker.Exchange_Code</code>. A list of supported exchange codes can be found <a href=\"https://docs.google.com/spreadsheets/d/1I3pBxjfXB056-g_JYf_6o3Rns3BV2kMGG1nCatb91ls/edit?usp=sharing\" target=\"_blank\">here</a>.
 
 ### Examples
 
@@ -4946,7 +5024,7 @@ end
 
 Tick Data
 
-<p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target=\"_blank\" href=\"/dashboard/download\",>here</a> to speed up the download process.</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">US CTA/UTP</th>       <td>Full SIP</td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">TSX</th>       <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">LSE</th>       <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">Euronext</th>       <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Deutsche Börse</th>       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Nasdaq Nordic & Baltic</th>       <td> <ul> <li>Copenhagen (CO)</li> <li>Stockholm (ST)</li> <li>Helsinki (HE)</li> <li>Iceland (IC)</li> <li>Riga (RG)</li> <li>Tallinn (TL)</li> <li>Vilnius(VS)</li> <li>Fixed Income</li> <li>Derivatives</li> <li>Commodities</li></ul></td>       <td>End-of-day</td>     </tr>   </tbody> </table>
+<p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target=\"_blank\" href=\"/dashboard/download\",>here</a> to speed up the download process.</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">US CTA/UTP</th>       <td>Full SIP</td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">TSX</th>       <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">LSE</th>       <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">Euronext</th>       <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Deutsche Börse</th>       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>   </tbody> </table>
 
 ### Examples
 
@@ -5173,7 +5251,7 @@ end
 
 Supply Chain Relationships
 
-<p>This endpoint provides an overall map of public companies' key customers and suppliers. The data offers a deeper look into a company's supply chain and how products are created. The data will help investors manage risk, limit exposure or generate alpha-generating ideas and trading insights.</p><p>We currently cover data for S&P500 and Nasdaq 100 companies.</p>
+<p>This endpoint provides an overall map of public companies' key customers and suppliers. The data offers a deeper look into a company's supply chain and how products are created. The data will help investors manage risk, limit exposure or generate alpha-generating ideas and trading insights.</p>
 
 ### Examples
 
@@ -5542,7 +5620,7 @@ end
 
 Earnings Call Transcripts List
 
-List earnings call transcripts' metadata. This endpoint is available for US, UK and Canadian companies.
+List earnings call transcripts' metadata. This endpoint is available for US, UK, European, Australian and Canadian companies.
 
 ### Examples
 
