@@ -5,6 +5,8 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**aggregate_indicator**](DefaultApi.md#aggregate_indicator) | **GET** /scan/technical-indicator | Aggregate Indicators |
+| [**bond_price**](DefaultApi.md#bond_price) | **GET** /bond/price | Bond price data |
+| [**bond_profile**](DefaultApi.md#bond_profile) | **GET** /bond/profile | Bond Profile |
 | [**company_basic_financials**](DefaultApi.md#company_basic_financials) | **GET** /stock/metric | Basic Financials |
 | [**company_earnings**](DefaultApi.md#company_earnings) | **GET** /stock/earnings | Earnings Surprises |
 | [**company_earnings_quality_score**](DefaultApi.md#company_earnings_quality_score) | **GET** /stock/earnings-quality-score | Company Earnings Quality Score |
@@ -68,6 +70,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**stock_bidask**](DefaultApi.md#stock_bidask) | **GET** /stock/bidask | Last Bid-Ask |
 | [**stock_candles**](DefaultApi.md#stock_candles) | **GET** /stock/candle | Stock Candles |
 | [**stock_dividends**](DefaultApi.md#stock_dividends) | **GET** /stock/dividend | Dividends |
+| [**stock_lobbying**](DefaultApi.md#stock_lobbying) | **GET** /stock/lobbying | Senate Lobbying |
 | [**stock_nbbo**](DefaultApi.md#stock_nbbo) | **GET** /stock/bbo | Historical NBBO |
 | [**stock_splits**](DefaultApi.md#stock_splits) | **GET** /stock/split | Splits |
 | [**stock_symbols**](DefaultApi.md#stock_symbols) | **GET** /stock/symbol | Stock Symbol |
@@ -145,6 +148,158 @@ end
 ### Return type
 
 [**AggregateIndicators**](AggregateIndicators.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## bond_price
+
+> <BondCandles> bond_price(isin, from, to)
+
+Bond price data
+
+Get end-of-day bond's price data.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+isin = 'isin_example' # String | ISIN.
+from = 789 # Integer | UNIX timestamp. Interval initial value.
+to = 789 # Integer | UNIX timestamp. Interval end value.
+
+begin
+  # Bond price data
+  result = api_instance.bond_price(isin, from, to)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->bond_price: #{e}"
+end
+```
+
+#### Using the bond_price_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<BondCandles>, Integer, Hash)> bond_price_with_http_info(isin, from, to)
+
+```ruby
+begin
+  # Bond price data
+  data, status_code, headers = api_instance.bond_price_with_http_info(isin, from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <BondCandles>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->bond_price_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **isin** | **String** | ISIN. |  |
+| **from** | **Integer** | UNIX timestamp. Interval initial value. |  |
+| **to** | **Integer** | UNIX timestamp. Interval end value. |  |
+
+### Return type
+
+[**BondCandles**](BondCandles.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## bond_profile
+
+> <BondProfile> bond_profile(opts)
+
+Bond Profile
+
+Get general information of a bond. You can query by FIGI, ISIN or CUSIP
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+opts = {
+  isin: 'isin_example', # String | ISIN
+  cusip: 'cusip_example', # String | CUSIP
+  figi: 'figi_example' # String | FIGI
+}
+
+begin
+  # Bond Profile
+  result = api_instance.bond_profile(opts)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->bond_profile: #{e}"
+end
+```
+
+#### Using the bond_profile_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<BondProfile>, Integer, Hash)> bond_profile_with_http_info(opts)
+
+```ruby
+begin
+  # Bond Profile
+  data, status_code, headers = api_instance.bond_profile_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <BondProfile>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->bond_profile_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **isin** | **String** | ISIN | [optional] |
+| **cusip** | **String** | CUSIP | [optional] |
+| **figi** | **String** | FIGI | [optional] |
+
+### Return type
+
+[**BondProfile**](BondProfile.md)
 
 ### Authorization
 
@@ -4776,6 +4931,81 @@ end
 ### Return type
 
 [**Array&lt;Dividends&gt;**](Dividends.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## stock_lobbying
+
+> <LobbyingResult> stock_lobbying(symbol, from, to)
+
+Senate Lobbying
+
+Get a list of reported lobbying activities in the Senate and the House.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | Symbol.
+from = Date.parse('2013-10-20') # Date | From date <code>YYYY-MM-DD</code>.
+to = Date.parse('2013-10-20') # Date | To date <code>YYYY-MM-DD</code>.
+
+begin
+  # Senate Lobbying
+  result = api_instance.stock_lobbying(symbol, from, to)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->stock_lobbying: #{e}"
+end
+```
+
+#### Using the stock_lobbying_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<LobbyingResult>, Integer, Hash)> stock_lobbying_with_http_info(symbol, from, to)
+
+```ruby
+begin
+  # Senate Lobbying
+  data, status_code, headers = api_instance.stock_lobbying_with_http_info(symbol, from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <LobbyingResult>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->stock_lobbying_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol. |  |
+| **from** | **Date** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+| **to** | **Date** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+
+### Return type
+
+[**LobbyingResult**](LobbyingResult.md)
 
 ### Authorization
 

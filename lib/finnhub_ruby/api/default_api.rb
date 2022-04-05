@@ -90,6 +90,150 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
+    # Bond price data
+    # Get end-of-day bond's price data.
+    # @param isin [String] ISIN.
+    # @param from [Integer] UNIX timestamp. Interval initial value.
+    # @param to [Integer] UNIX timestamp. Interval end value.
+    # @param [Hash] opts the optional parameters
+    # @return [BondCandles]
+    def bond_price(isin, from, to, opts = {})
+      data, _status_code, _headers = bond_price_with_http_info(isin, from, to, opts)
+      data
+    end
+
+    # Bond price data
+    # Get end-of-day bond&#39;s price data.
+    # @param isin [String] ISIN.
+    # @param from [Integer] UNIX timestamp. Interval initial value.
+    # @param to [Integer] UNIX timestamp. Interval end value.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(BondCandles, Integer, Hash)>] BondCandles data, response status code and response headers
+    def bond_price_with_http_info(isin, from, to, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.bond_price ...'
+      end
+      # verify the required parameter 'isin' is set
+      if @api_client.config.client_side_validation && isin.nil?
+        fail ArgumentError, "Missing the required parameter 'isin' when calling DefaultApi.bond_price"
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.bond_price"
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.bond_price"
+      end
+      # resource path
+      local_var_path = '/bond/price'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'isin'] = isin
+      query_params[:'from'] = from
+      query_params[:'to'] = to
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'BondCandles'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.bond_price",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#bond_price\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Bond Profile
+    # Get general information of a bond. You can query by FIGI, ISIN or CUSIP
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :isin ISIN
+    # @option opts [String] :cusip CUSIP
+    # @option opts [String] :figi FIGI
+    # @return [BondProfile]
+    def bond_profile(opts = {})
+      data, _status_code, _headers = bond_profile_with_http_info(opts)
+      data
+    end
+
+    # Bond Profile
+    # Get general information of a bond. You can query by FIGI, ISIN or CUSIP
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :isin ISIN
+    # @option opts [String] :cusip CUSIP
+    # @option opts [String] :figi FIGI
+    # @return [Array<(BondProfile, Integer, Hash)>] BondProfile data, response status code and response headers
+    def bond_profile_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.bond_profile ...'
+      end
+      # resource path
+      local_var_path = '/bond/profile'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'isin'] = opts[:'isin'] if !opts[:'isin'].nil?
+      query_params[:'cusip'] = opts[:'cusip'] if !opts[:'cusip'].nil?
+      query_params[:'figi'] = opts[:'figi'] if !opts[:'figi'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'BondProfile'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.bond_profile",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#bond_profile\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Basic Financials
     # Get company basic financials such as margin, P/E ratio, 52-week high/low etc.
     # @param symbol [String] Symbol of the company: AAPL.
@@ -4293,6 +4437,84 @@ module FinnhubRuby
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#stock_dividends\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Senate Lobbying
+    # Get a list of reported lobbying activities in the Senate and the House.
+    # @param symbol [String] Symbol.
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [LobbyingResult]
+    def stock_lobbying(symbol, from, to, opts = {})
+      data, _status_code, _headers = stock_lobbying_with_http_info(symbol, from, to, opts)
+      data
+    end
+
+    # Senate Lobbying
+    # Get a list of reported lobbying activities in the Senate and the House.
+    # @param symbol [String] Symbol.
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(LobbyingResult, Integer, Hash)>] LobbyingResult data, response status code and response headers
+    def stock_lobbying_with_http_info(symbol, from, to, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.stock_lobbying ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.stock_lobbying"
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.stock_lobbying"
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.stock_lobbying"
+      end
+      # resource path
+      local_var_path = '/stock/lobbying'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+      query_params[:'from'] = from
+      query_params[:'to'] = to
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'LobbyingResult'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.stock_lobbying",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#stock_lobbying\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

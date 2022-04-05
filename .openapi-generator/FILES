@@ -6,6 +6,8 @@ Gemfile
 Rakefile
 docs/AggregateIndicators.md
 docs/BasicFinancials.md
+docs/BondCandles.md
+docs/BondProfile.md
 docs/BreakdownItem.md
 docs/Company.md
 docs/CompanyESG.md
@@ -75,6 +77,8 @@ docs/InvestmentThemePortfolio.md
 docs/InvestmentThemes.md
 docs/KeyCustomersSuppliers.md
 docs/LastBidAsk.md
+docs/LobbyingData.md
+docs/LobbyingResult.md
 docs/MarketNews.md
 docs/MutualFundCountryExposure.md
 docs/MutualFundCountryExposureData.md
@@ -130,6 +134,8 @@ lib/finnhub_ruby/api_error.rb
 lib/finnhub_ruby/configuration.rb
 lib/finnhub_ruby/models/aggregate_indicators.rb
 lib/finnhub_ruby/models/basic_financials.rb
+lib/finnhub_ruby/models/bond_candles.rb
+lib/finnhub_ruby/models/bond_profile.rb
 lib/finnhub_ruby/models/breakdown_item.rb
 lib/finnhub_ruby/models/company.rb
 lib/finnhub_ruby/models/company_earnings_quality_score.rb
@@ -198,6 +204,8 @@ lib/finnhub_ruby/models/ipo_calendar.rb
 lib/finnhub_ruby/models/ipo_event.rb
 lib/finnhub_ruby/models/key_customers_suppliers.rb
 lib/finnhub_ruby/models/last_bid_ask.rb
+lib/finnhub_ruby/models/lobbying_data.rb
+lib/finnhub_ruby/models/lobbying_result.rb
 lib/finnhub_ruby/models/market_news.rb
 lib/finnhub_ruby/models/mutual_fund_country_exposure.rb
 lib/finnhub_ruby/models/mutual_fund_country_exposure_data.rb
@@ -248,6 +256,8 @@ lib/finnhub_ruby/models/visa_application_result.rb
 lib/finnhub_ruby/version.rb
 spec/api_client_spec.rb
 spec/configuration_spec.rb
-spec/models/insider_sentiments_data_spec.rb
-spec/models/insider_sentiments_spec.rb
+spec/models/bond_candles_spec.rb
+spec/models/bond_profile_spec.rb
+spec/models/lobbying_data_spec.rb
+spec/models/lobbying_result_spec.rb
 spec/spec_helper.rb
