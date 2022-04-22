@@ -3295,7 +3295,7 @@ module FinnhubRuby
     end
 
     # Mutual Funds Holdings
-    # Get full Mutual Funds holdings/constituents.
+    # Get full Mutual Funds holdings/constituents. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Fund&#39;s symbol.
     # @option opts [String] :isin Fund&#39;s isin.
@@ -3307,7 +3307,7 @@ module FinnhubRuby
     end
 
     # Mutual Funds Holdings
-    # Get full Mutual Funds holdings/constituents.
+    # Get full Mutual Funds holdings/constituents. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Fund&#39;s symbol.
     # @option opts [String] :isin Fund&#39;s isin.
@@ -3361,7 +3361,7 @@ module FinnhubRuby
     end
 
     # Mutual Funds Profile
-    # Get mutual funds profile information. This endpoint covers US mutual funds only.
+    # Get mutual funds profile information. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Fund&#39;s symbol.
     # @option opts [String] :isin Fund&#39;s isin.
@@ -3372,7 +3372,7 @@ module FinnhubRuby
     end
 
     # Mutual Funds Profile
-    # Get mutual funds profile information. This endpoint covers US mutual funds only.
+    # Get mutual funds profile information. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Fund&#39;s symbol.
     # @option opts [String] :isin Fund&#39;s isin.
@@ -4836,6 +4836,84 @@ module FinnhubRuby
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#stock_tick\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # USA Spending
+    # Get a list of government's spending activities from USASpending dataset for public companies. This dataset can help you identify companies that win big government contracts which is extremely important for industries such as Defense, Aerospace, and Education.
+    # @param symbol [String] Symbol.
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for &lt;code&gt;actionDate&lt;/code&gt;
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for &lt;code&gt;actionDate&lt;/code&gt;
+    # @param [Hash] opts the optional parameters
+    # @return [UsaSpendingResult]
+    def stock_usa_spending(symbol, from, to, opts = {})
+      data, _status_code, _headers = stock_usa_spending_with_http_info(symbol, from, to, opts)
+      data
+    end
+
+    # USA Spending
+    # Get a list of government&#39;s spending activities from USASpending dataset for public companies. This dataset can help you identify companies that win big government contracts which is extremely important for industries such as Defense, Aerospace, and Education.
+    # @param symbol [String] Symbol.
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for &lt;code&gt;actionDate&lt;/code&gt;
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for &lt;code&gt;actionDate&lt;/code&gt;
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(UsaSpendingResult, Integer, Hash)>] UsaSpendingResult data, response status code and response headers
+    def stock_usa_spending_with_http_info(symbol, from, to, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.stock_usa_spending ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.stock_usa_spending"
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.stock_usa_spending"
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.stock_usa_spending"
+      end
+      # resource path
+      local_var_path = '/stock/usa-spending'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+      query_params[:'from'] = from
+      query_params[:'to'] = to
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'UsaSpendingResult'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.stock_usa_spending",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#stock_usa_spending\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

@@ -75,6 +75,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**stock_splits**](DefaultApi.md#stock_splits) | **GET** /stock/split | Splits |
 | [**stock_symbols**](DefaultApi.md#stock_symbols) | **GET** /stock/symbol | Stock Symbol |
 | [**stock_tick**](DefaultApi.md#stock_tick) | **GET** /stock/tick | Tick Data |
+| [**stock_usa_spending**](DefaultApi.md#stock_usa_spending) | **GET** /stock/usa-spending | USA Spending |
 | [**stock_uspto_patent**](DefaultApi.md#stock_uspto_patent) | **GET** /stock/uspto-patent | USPTO Patents |
 | [**stock_visa_application**](DefaultApi.md#stock_visa_application) | **GET** /stock/visa-application | H1-B Visa Application |
 | [**supply_chain_relationships**](DefaultApi.md#supply_chain_relationships) | **GET** /stock/supply-chain | Supply Chain Relationships |
@@ -3693,7 +3694,7 @@ end
 
 Mutual Funds Holdings
 
-Get full Mutual Funds holdings/constituents.
+Get full Mutual Funds holdings/constituents. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN.
 
 ### Examples
 
@@ -3770,7 +3771,7 @@ end
 
 Mutual Funds Profile
 
-Get mutual funds profile information. This endpoint covers US mutual funds only.
+Get mutual funds profile information. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN.
 
 ### Examples
 
@@ -5314,6 +5315,81 @@ end
 ### Return type
 
 [**TickData**](TickData.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## stock_usa_spending
+
+> <UsaSpendingResult> stock_usa_spending(symbol, from, to)
+
+USA Spending
+
+Get a list of government's spending activities from USASpending dataset for public companies. This dataset can help you identify companies that win big government contracts which is extremely important for industries such as Defense, Aerospace, and Education.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | Symbol.
+from = Date.parse('2013-10-20') # Date | From date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code>
+to = Date.parse('2013-10-20') # Date | To date <code>YYYY-MM-DD</code>. Filter for <code>actionDate</code>
+
+begin
+  # USA Spending
+  result = api_instance.stock_usa_spending(symbol, from, to)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->stock_usa_spending: #{e}"
+end
+```
+
+#### Using the stock_usa_spending_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<UsaSpendingResult>, Integer, Hash)> stock_usa_spending_with_http_info(symbol, from, to)
+
+```ruby
+begin
+  # USA Spending
+  data, status_code, headers = api_instance.stock_usa_spending_with_http_info(symbol, from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <UsaSpendingResult>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->stock_usa_spending_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol. |  |
+| **from** | **Date** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for &lt;code&gt;actionDate&lt;/code&gt; |  |
+| **to** | **Date** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for &lt;code&gt;actionDate&lt;/code&gt; |  |
+
+### Return type
+
+[**UsaSpendingResult**](UsaSpendingResult.md)
 
 ### Authorization
 
