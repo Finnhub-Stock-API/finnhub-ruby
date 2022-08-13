@@ -2966,7 +2966,7 @@ module FinnhubRuby
     end
 
     # International Filings
-    # List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data.
+    # List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Symbol. Leave empty to list latest filings.
     # @option opts [String] :country Filter by country using country&#39;s 2-letter code.
@@ -2977,7 +2977,7 @@ module FinnhubRuby
     end
 
     # International Filings
-    # List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data.
+    # List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Symbol. Leave empty to list latest filings.
     # @option opts [String] :country Filter by country using country&#39;s 2-letter code.
@@ -3690,7 +3690,7 @@ module FinnhubRuby
     end
 
     # Major Press Releases
-    # Get latest major press releases of a company. This data can be used to highlight the most significant events comprised of mostly press releases sourced from the exchanges, BusinessWire, AccessWire, GlobeNewswire, Newsfile, and PRNewswire.
+    # <p>Get latest major press releases of a company. This data can be used to highlight the most significant events comprised of mostly press releases sourced from the exchanges, BusinessWire, AccessWire, GlobeNewswire, Newsfile, and PRNewswire.</p><p>Full-text press releases data is available for Enterprise clients. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
     # @param symbol [String] Company symbol.
     # @param [Hash] opts the optional parameters
     # @option opts [Date] :from From time: 2020-01-01.
@@ -3702,7 +3702,7 @@ module FinnhubRuby
     end
 
     # Major Press Releases
-    # Get latest major press releases of a company. This data can be used to highlight the most significant events comprised of mostly press releases sourced from the exchanges, BusinessWire, AccessWire, GlobeNewswire, Newsfile, and PRNewswire.
+    # &lt;p&gt;Get latest major press releases of a company. This data can be used to highlight the most significant events comprised of mostly press releases sourced from the exchanges, BusinessWire, AccessWire, GlobeNewswire, Newsfile, and PRNewswire.&lt;/p&gt;&lt;p&gt;Full-text press releases data is available for Enterprise clients. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact Us&lt;/a&gt; to learn more.&lt;/p&gt;
     # @param symbol [String] Company symbol.
     # @param [Hash] opts the optional parameters
     # @option opts [Date] :from From time: 2020-01-01.
@@ -4010,6 +4010,70 @@ module FinnhubRuby
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#revenue_breakdown\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Sector Metrics
+    # Get ratios for different sectors and regions/indices.
+    # @param region [String] Region. A list of supported values for this field can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [SectorMetric]
+    def sector_metric(region, opts = {})
+      data, _status_code, _headers = sector_metric_with_http_info(region, opts)
+      data
+    end
+
+    # Sector Metrics
+    # Get ratios for different sectors and regions/indices.
+    # @param region [String] Region. A list of supported values for this field can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(SectorMetric, Integer, Hash)>] SectorMetric data, response status code and response headers
+    def sector_metric_with_http_info(region, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.sector_metric ...'
+      end
+      # verify the required parameter 'region' is set
+      if @api_client.config.client_side_validation && region.nil?
+        fail ArgumentError, "Missing the required parameter 'region' when calling DefaultApi.sector_metric"
+      end
+      # resource path
+      local_var_path = '/sector/metrics'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'region'] = region
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'SectorMetric'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.sector_metric",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#sector_metric\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

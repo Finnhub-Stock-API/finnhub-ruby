@@ -6,6 +6,8 @@
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Symbol | [optional] |
 | **name** | **String** | Name | [optional] |
+| **country** | **String** | Country | [optional] |
+| **industry** | **String** | Industry | [optional] |
 | **customer** | **Boolean** | Whether the company is a customer. | [optional] |
 | **supplier** | **Boolean** | Whether the company is a supplier | [optional] |
 | **one_month_correlation** | **Float** | 1-month price correlation | [optional] |
@@ -23,6 +25,8 @@ require 'finnhub_ruby'
 instance = FinnhubRuby::KeyCustomersSuppliers.new(
   symbol: null,
   name: null,
+  country: null,
+  industry: null,
   customer: null,
   supplier: null,
   one_month_correlation: null,

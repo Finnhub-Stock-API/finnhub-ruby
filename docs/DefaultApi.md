@@ -64,6 +64,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**quote**](DefaultApi.md#quote) | **GET** /quote | Quote |
 | [**recommendation_trends**](DefaultApi.md#recommendation_trends) | **GET** /stock/recommendation | Recommendation Trends |
 | [**revenue_breakdown**](DefaultApi.md#revenue_breakdown) | **GET** /stock/revenue-breakdown | Revenue Breakdown |
+| [**sector_metric**](DefaultApi.md#sector_metric) | **GET** /sector/metrics | Sector Metrics |
 | [**similarity_index**](DefaultApi.md#similarity_index) | **GET** /stock/similarity-index | Similarity Index |
 | [**social_sentiment**](DefaultApi.md#social_sentiment) | **GET** /stock/social-sentiment | Social Sentiment |
 | [**stock_basic_dividends**](DefaultApi.md#stock_basic_dividends) | **GET** /stock/dividend2 | Dividends 2 (Basic) |
@@ -3329,7 +3330,7 @@ end
 
 International Filings
 
-List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data.
+List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
 
 ### Examples
 
@@ -4136,7 +4137,7 @@ end
 
 Major Press Releases
 
-Get latest major press releases of a company. This data can be used to highlight the most significant events comprised of mostly press releases sourced from the exchanges, BusinessWire, AccessWire, GlobeNewswire, Newsfile, and PRNewswire.
+<p>Get latest major press releases of a company. This data can be used to highlight the most significant events comprised of mostly press releases sourced from the exchanges, BusinessWire, AccessWire, GlobeNewswire, Newsfile, and PRNewswire.</p><p>Full-text press releases data is available for Enterprise clients. <a href=\"mailto:support@finnhub.io\">Contact Us</a> to learn more.</p>
 
 ### Examples
 
@@ -4484,6 +4485,77 @@ end
 ### Return type
 
 [**RevenueBreakdown**](RevenueBreakdown.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## sector_metric
+
+> <SectorMetric> sector_metric(region)
+
+Sector Metrics
+
+Get ratios for different sectors and regions/indices.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+region = 'region_example' # String | Region. A list of supported values for this field can be found <a href=\"https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp=sharing\" target=\"_blank\">here</a>.
+
+begin
+  # Sector Metrics
+  result = api_instance.sector_metric(region)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->sector_metric: #{e}"
+end
+```
+
+#### Using the sector_metric_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<SectorMetric>, Integer, Hash)> sector_metric_with_http_info(region)
+
+```ruby
+begin
+  # Sector Metrics
+  data, status_code, headers = api_instance.sector_metric_with_http_info(region)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <SectorMetric>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->sector_metric_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **region** | **String** | Region. A list of supported values for this field can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1afedyv7yWJ-z7pMjaAZK-f6ENY3mI3EBCk95QffpoHw/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;. |  |
+
+### Return type
+
+[**SectorMetric**](SectorMetric.md)
 
 ### Authorization
 

@@ -24,7 +24,7 @@ module FinnhubRuby
     # Title
     attr_accessor :title
 
-    # Year appointed
+    # Year first appointed as executive/director of the company
     attr_accessor :since
 
     # Sex

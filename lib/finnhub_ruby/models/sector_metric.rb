@@ -14,58 +14,18 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class KeyCustomersSuppliers
-    # Symbol
-    attr_accessor :symbol
+  class SectorMetric
+    # Region.
+    attr_accessor :region
 
-    # Name
-    attr_accessor :name
-
-    # Country
-    attr_accessor :country
-
-    # Industry
-    attr_accessor :industry
-
-    # Whether the company is a customer.
-    attr_accessor :customer
-
-    # Whether the company is a supplier
-    attr_accessor :supplier
-
-    # 1-month price correlation
-    attr_accessor :one_month_correlation
-
-    # 1-year price correlation
-    attr_accessor :one_year_correlation
-
-    # 6-month price correlation
-    attr_accessor :six_month_correlation
-
-    # 3-month price correlation
-    attr_accessor :three_month_correlation
-
-    # 2-week price correlation
-    attr_accessor :two_week_correlation
-
-    # 2-year price correlation
-    attr_accessor :two_year_correlation
+    # Metrics for each sector.
+    attr_accessor :data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'symbol' => :'symbol',
-        :'name' => :'name',
-        :'country' => :'country',
-        :'industry' => :'industry',
-        :'customer' => :'customer',
-        :'supplier' => :'supplier',
-        :'one_month_correlation' => :'oneMonthCorrelation',
-        :'one_year_correlation' => :'oneYearCorrelation',
-        :'six_month_correlation' => :'sixMonthCorrelation',
-        :'three_month_correlation' => :'threeMonthCorrelation',
-        :'two_week_correlation' => :'twoWeekCorrelation',
-        :'two_year_correlation' => :'twoYearCorrelation'
+        :'region' => :'region',
+        :'data' => :'data'
       }
     end
 
@@ -77,18 +37,8 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'symbol' => :'String',
-        :'name' => :'String',
-        :'country' => :'String',
-        :'industry' => :'String',
-        :'customer' => :'Boolean',
-        :'supplier' => :'Boolean',
-        :'one_month_correlation' => :'Float',
-        :'one_year_correlation' => :'Float',
-        :'six_month_correlation' => :'Float',
-        :'three_month_correlation' => :'Float',
-        :'two_week_correlation' => :'Float',
-        :'two_year_correlation' => :'Float'
+        :'region' => :'String',
+        :'data' => :'Array<SectorMetricData>'
       }
     end
 
@@ -102,63 +52,25 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::KeyCustomersSuppliers` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::SectorMetric` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::KeyCustomersSuppliers`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::SectorMetric`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'symbol')
-        self.symbol = attributes[:'symbol']
+      if attributes.key?(:'region')
+        self.region = attributes[:'region']
       end
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
-      end
-
-      if attributes.key?(:'country')
-        self.country = attributes[:'country']
-      end
-
-      if attributes.key?(:'industry')
-        self.industry = attributes[:'industry']
-      end
-
-      if attributes.key?(:'customer')
-        self.customer = attributes[:'customer']
-      end
-
-      if attributes.key?(:'supplier')
-        self.supplier = attributes[:'supplier']
-      end
-
-      if attributes.key?(:'one_month_correlation')
-        self.one_month_correlation = attributes[:'one_month_correlation']
-      end
-
-      if attributes.key?(:'one_year_correlation')
-        self.one_year_correlation = attributes[:'one_year_correlation']
-      end
-
-      if attributes.key?(:'six_month_correlation')
-        self.six_month_correlation = attributes[:'six_month_correlation']
-      end
-
-      if attributes.key?(:'three_month_correlation')
-        self.three_month_correlation = attributes[:'three_month_correlation']
-      end
-
-      if attributes.key?(:'two_week_correlation')
-        self.two_week_correlation = attributes[:'two_week_correlation']
-      end
-
-      if attributes.key?(:'two_year_correlation')
-        self.two_year_correlation = attributes[:'two_year_correlation']
+      if attributes.key?(:'data')
+        if (value = attributes[:'data']).is_a?(Array)
+          self.data = value
+        end
       end
     end
 
@@ -180,18 +92,8 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          symbol == o.symbol &&
-          name == o.name &&
-          country == o.country &&
-          industry == o.industry &&
-          customer == o.customer &&
-          supplier == o.supplier &&
-          one_month_correlation == o.one_month_correlation &&
-          one_year_correlation == o.one_year_correlation &&
-          six_month_correlation == o.six_month_correlation &&
-          three_month_correlation == o.three_month_correlation &&
-          two_week_correlation == o.two_week_correlation &&
-          two_year_correlation == o.two_year_correlation
+          region == o.region &&
+          data == o.data
     end
 
     # @see the `==` method
@@ -203,7 +105,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, name, country, industry, customer, supplier, one_month_correlation, one_year_correlation, six_month_correlation, three_month_correlation, two_week_correlation, two_year_correlation].hash
+      [region, data].hash
     end
 
     # Builds the object from hash
