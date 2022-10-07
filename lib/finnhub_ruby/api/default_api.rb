@@ -91,7 +91,7 @@ module FinnhubRuby
     end
 
     # Bond price data
-    # Get end-of-day bond's price data.
+    # <p>Get bond's price data. The following datasets are supported:</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>   <tr>       <td class=\"text-blue\">US Government Bonds</th>       <td>Government Bonds</td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">FINRA Trace</th>       <td>BTDS: US Corporate Bonds</td>       <td>Delayed 4h</td>     </tr>     <tr>       <td class=\"text-blue\">FINRA Trace</th>       <td>144A Bonds</td>       <td>Delayed 4h</td>     </tr>   </tbody> </table>
     # @param isin [String] ISIN.
     # @param from [Integer] UNIX timestamp. Interval initial value.
     # @param to [Integer] UNIX timestamp. Interval end value.
@@ -103,7 +103,7 @@ module FinnhubRuby
     end
 
     # Bond price data
-    # Get end-of-day bond&#39;s price data.
+    # &lt;p&gt;Get bond&#39;s price data. The following datasets are supported:&lt;/p&gt;&lt;table class&#x3D;\&quot;table table-hover\&quot;&gt;   &lt;thead&gt;     &lt;tr&gt;       &lt;th&gt;Exchange&lt;/th&gt;       &lt;th&gt;Segment&lt;/th&gt;       &lt;th&gt;Delay&lt;/th&gt;     &lt;/tr&gt;   &lt;/thead&gt;   &lt;tbody&gt;   &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;US Government Bonds&lt;/th&gt;       &lt;td&gt;Government Bonds&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;FINRA Trace&lt;/th&gt;       &lt;td&gt;BTDS: US Corporate Bonds&lt;/td&gt;       &lt;td&gt;Delayed 4h&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;FINRA Trace&lt;/th&gt;       &lt;td&gt;144A Bonds&lt;/td&gt;       &lt;td&gt;Delayed 4h&lt;/td&gt;     &lt;/tr&gt;   &lt;/tbody&gt; &lt;/table&gt;
     # @param isin [String] ISIN.
     # @param from [Integer] UNIX timestamp. Interval initial value.
     # @param to [Integer] UNIX timestamp. Interval end value.
@@ -230,6 +230,98 @@ module FinnhubRuby
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#bond_profile\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Bond Tick Data
+    # <p>Get trade-level data for bonds. The following datasets are supported:</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">FINRA Trace</th>       <td>BTDS: US Corporate Bonds</td>       <td>Delayed 4h</td>     </tr>     <tr>       <td class=\"text-blue\">FINRA Trace</th>       <td>144A Bonds</td>       <td>Delayed 4h</td>     </tr>   </tbody> </table>
+    # @param isin [String] ISIN.
+    # @param date [Date] Date: 2020-04-02.
+    # @param limit [Integer] Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt;
+    # @param skip [Integer] Number of ticks to skip. Use this parameter to loop through the entire data.
+    # @param exchange [String] Currently support the following values: &lt;code&gt;trace&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [BondTickData]
+    def bond_tick(isin, date, limit, skip, exchange, opts = {})
+      data, _status_code, _headers = bond_tick_with_http_info(isin, date, limit, skip, exchange, opts)
+      data
+    end
+
+    # Bond Tick Data
+    # &lt;p&gt;Get trade-level data for bonds. The following datasets are supported:&lt;/p&gt;&lt;table class&#x3D;\&quot;table table-hover\&quot;&gt;   &lt;thead&gt;     &lt;tr&gt;       &lt;th&gt;Exchange&lt;/th&gt;       &lt;th&gt;Segment&lt;/th&gt;       &lt;th&gt;Delay&lt;/th&gt;     &lt;/tr&gt;   &lt;/thead&gt;   &lt;tbody&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;FINRA Trace&lt;/th&gt;       &lt;td&gt;BTDS: US Corporate Bonds&lt;/td&gt;       &lt;td&gt;Delayed 4h&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;FINRA Trace&lt;/th&gt;       &lt;td&gt;144A Bonds&lt;/td&gt;       &lt;td&gt;Delayed 4h&lt;/td&gt;     &lt;/tr&gt;   &lt;/tbody&gt; &lt;/table&gt;
+    # @param isin [String] ISIN.
+    # @param date [Date] Date: 2020-04-02.
+    # @param limit [Integer] Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt;
+    # @param skip [Integer] Number of ticks to skip. Use this parameter to loop through the entire data.
+    # @param exchange [String] Currently support the following values: &lt;code&gt;trace&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(BondTickData, Integer, Hash)>] BondTickData data, response status code and response headers
+    def bond_tick_with_http_info(isin, date, limit, skip, exchange, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.bond_tick ...'
+      end
+      # verify the required parameter 'isin' is set
+      if @api_client.config.client_side_validation && isin.nil?
+        fail ArgumentError, "Missing the required parameter 'isin' when calling DefaultApi.bond_tick"
+      end
+      # verify the required parameter 'date' is set
+      if @api_client.config.client_side_validation && date.nil?
+        fail ArgumentError, "Missing the required parameter 'date' when calling DefaultApi.bond_tick"
+      end
+      # verify the required parameter 'limit' is set
+      if @api_client.config.client_side_validation && limit.nil?
+        fail ArgumentError, "Missing the required parameter 'limit' when calling DefaultApi.bond_tick"
+      end
+      # verify the required parameter 'skip' is set
+      if @api_client.config.client_side_validation && skip.nil?
+        fail ArgumentError, "Missing the required parameter 'skip' when calling DefaultApi.bond_tick"
+      end
+      # verify the required parameter 'exchange' is set
+      if @api_client.config.client_side_validation && exchange.nil?
+        fail ArgumentError, "Missing the required parameter 'exchange' when calling DefaultApi.bond_tick"
+      end
+      # resource path
+      local_var_path = '/bond/tick'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'isin'] = isin
+      query_params[:'date'] = date
+      query_params[:'limit'] = limit
+      query_params[:'skip'] = skip
+      query_params[:'exchange'] = exchange
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'BondTickData'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.bond_tick",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#bond_tick\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -851,9 +943,10 @@ module FinnhubRuby
     end
 
     # Peers
-    # Get company peers. Return a list of peers in the same country and sub-industry
+    # Get company peers. Return a list of peers operating in the same country and sector/industry.
     # @param symbol [String] Symbol of the company: AAPL.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :grouping Specify the grouping criteria for choosing peers.Supporter values: &lt;code&gt;sector&lt;/code&gt;, &lt;code&gt;industry&lt;/code&gt;, &lt;code&gt;subIndustry&lt;/code&gt;. Default to &lt;code&gt;subIndustry&lt;/code&gt;.
     # @return [Array<String>]
     def company_peers(symbol, opts = {})
       data, _status_code, _headers = company_peers_with_http_info(symbol, opts)
@@ -861,9 +954,10 @@ module FinnhubRuby
     end
 
     # Peers
-    # Get company peers. Return a list of peers in the same country and sub-industry
+    # Get company peers. Return a list of peers operating in the same country and sector/industry.
     # @param symbol [String] Symbol of the company: AAPL.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :grouping Specify the grouping criteria for choosing peers.Supporter values: &lt;code&gt;sector&lt;/code&gt;, &lt;code&gt;industry&lt;/code&gt;, &lt;code&gt;subIndustry&lt;/code&gt;. Default to &lt;code&gt;subIndustry&lt;/code&gt;.
     # @return [Array<(Array<String>, Integer, Hash)>] Array<String> data, response status code and response headers
     def company_peers_with_http_info(symbol, opts = {})
       if @api_client.config.debugging
@@ -879,6 +973,7 @@ module FinnhubRuby
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'symbol'] = symbol
+      query_params[:'grouping'] = opts[:'grouping'] if !opts[:'grouping'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -2291,6 +2386,8 @@ module FinnhubRuby
     # @option opts [String] :cik CIK.
     # @option opts [String] :access_number Access number of a specific report you want to retrieve financials from.
     # @option opts [String] :freq Frequency. Can be either &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt;.
+    # @option opts [Date] :from From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for endDate.
+    # @option opts [Date] :to To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for endDate.
     # @return [FinancialsAsReported]
     def financials_reported(opts = {})
       data, _status_code, _headers = financials_reported_with_http_info(opts)
@@ -2304,6 +2401,8 @@ module FinnhubRuby
     # @option opts [String] :cik CIK.
     # @option opts [String] :access_number Access number of a specific report you want to retrieve financials from.
     # @option opts [String] :freq Frequency. Can be either &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt;.
+    # @option opts [Date] :from From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for endDate.
+    # @option opts [Date] :to To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for endDate.
     # @return [Array<(FinancialsAsReported, Integer, Hash)>] FinancialsAsReported data, response status code and response headers
     def financials_reported_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -2318,6 +2417,8 @@ module FinnhubRuby
       query_params[:'cik'] = opts[:'cik'] if !opts[:'cik'].nil?
       query_params[:'accessNumber'] = opts[:'access_number'] if !opts[:'access_number'].nil?
       query_params[:'freq'] = opts[:'freq'] if !opts[:'freq'].nil?
+      query_params[:'from'] = opts[:'from'] if !opts[:'from'].nil?
+      query_params[:'to'] = opts[:'to'] if !opts[:'to'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -2965,6 +3066,229 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
+    # Institutional Ownership
+    # Get a list institutional investors' positions for a particular stock overtime. Data from 13-F filings. Limit to 1 year of data at a time.
+    # @param symbol [String] Filter by symbol.
+    # @param cusip [String] Filter by CUSIP.
+    # @param from [String] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [String] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [InstitutionalOwnership]
+    def institutional_ownership(symbol, cusip, from, to, opts = {})
+      data, _status_code, _headers = institutional_ownership_with_http_info(symbol, cusip, from, to, opts)
+      data
+    end
+
+    # Institutional Ownership
+    # Get a list institutional investors&#39; positions for a particular stock overtime. Data from 13-F filings. Limit to 1 year of data at a time.
+    # @param symbol [String] Filter by symbol.
+    # @param cusip [String] Filter by CUSIP.
+    # @param from [String] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [String] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(InstitutionalOwnership, Integer, Hash)>] InstitutionalOwnership data, response status code and response headers
+    def institutional_ownership_with_http_info(symbol, cusip, from, to, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.institutional_ownership ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.institutional_ownership"
+      end
+      # verify the required parameter 'cusip' is set
+      if @api_client.config.client_side_validation && cusip.nil?
+        fail ArgumentError, "Missing the required parameter 'cusip' when calling DefaultApi.institutional_ownership"
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.institutional_ownership"
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.institutional_ownership"
+      end
+      # resource path
+      local_var_path = '/institutional/ownership'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+      query_params[:'cusip'] = cusip
+      query_params[:'from'] = from
+      query_params[:'to'] = to
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'InstitutionalOwnership'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.institutional_ownership",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#institutional_ownership\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Institutional Portfolio
+    # Get the holdings/portfolio data of institutional investors from 13-F filings. Limit to 1 year of data at a time.
+    # @param cik [String] Fund&#39;s CIK.
+    # @param from [String] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [String] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [InstitutionalPortfolio]
+    def institutional_portfolio(cik, from, to, opts = {})
+      data, _status_code, _headers = institutional_portfolio_with_http_info(cik, from, to, opts)
+      data
+    end
+
+    # Institutional Portfolio
+    # Get the holdings/portfolio data of institutional investors from 13-F filings. Limit to 1 year of data at a time.
+    # @param cik [String] Fund&#39;s CIK.
+    # @param from [String] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [String] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(InstitutionalPortfolio, Integer, Hash)>] InstitutionalPortfolio data, response status code and response headers
+    def institutional_portfolio_with_http_info(cik, from, to, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.institutional_portfolio ...'
+      end
+      # verify the required parameter 'cik' is set
+      if @api_client.config.client_side_validation && cik.nil?
+        fail ArgumentError, "Missing the required parameter 'cik' when calling DefaultApi.institutional_portfolio"
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.institutional_portfolio"
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.institutional_portfolio"
+      end
+      # resource path
+      local_var_path = '/institutional/portfolio'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'cik'] = cik
+      query_params[:'from'] = from
+      query_params[:'to'] = to
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'InstitutionalPortfolio'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.institutional_portfolio",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#institutional_portfolio\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Institutional Profile
+    # Get a list of well-known institutional investors. Currently support 60+ profiles.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :cik Filter by CIK. Leave blank to get the full list.
+    # @return [InstitutionalProfile]
+    def institutional_profile(opts = {})
+      data, _status_code, _headers = institutional_profile_with_http_info(opts)
+      data
+    end
+
+    # Institutional Profile
+    # Get a list of well-known institutional investors. Currently support 60+ profiles.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :cik Filter by CIK. Leave blank to get the full list.
+    # @return [Array<(InstitutionalProfile, Integer, Hash)>] InstitutionalProfile data, response status code and response headers
+    def institutional_profile_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.institutional_profile ...'
+      end
+      # resource path
+      local_var_path = '/institutional/profile'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'cik'] = opts[:'cik'] if !opts[:'cik'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'InstitutionalProfile'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.institutional_profile",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#institutional_profile\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # International Filings
     # List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
     # @param [Hash] opts the optional parameters
@@ -3159,6 +3483,77 @@ module FinnhubRuby
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#ipo_calendar\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # ISIN Change
+    # Get a list of ISIN changes for EU-listed securities. Limit to 2000 events at a time.
+    # @param from [String] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [String] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [IsinChange]
+    def isin_change(from, to, opts = {})
+      data, _status_code, _headers = isin_change_with_http_info(from, to, opts)
+      data
+    end
+
+    # ISIN Change
+    # Get a list of ISIN changes for EU-listed securities. Limit to 2000 events at a time.
+    # @param from [String] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [String] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(IsinChange, Integer, Hash)>] IsinChange data, response status code and response headers
+    def isin_change_with_http_info(from, to, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.isin_change ...'
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.isin_change"
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.isin_change"
+      end
+      # resource path
+      local_var_path = '/ca/isin-change'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'from'] = from
+      query_params[:'to'] = to
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'IsinChange'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.isin_change",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#isin_change\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -3755,6 +4150,70 @@ module FinnhubRuby
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#press_releases\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Price Metrics
+    # Get company price performance statistics such as 52-week high/low, YTD return and much more.
+    # @param symbol [String] Symbol of the company: AAPL.
+    # @param [Hash] opts the optional parameters
+    # @return [PriceMetrics]
+    def price_metrics(symbol, opts = {})
+      data, _status_code, _headers = price_metrics_with_http_info(symbol, opts)
+      data
+    end
+
+    # Price Metrics
+    # Get company price performance statistics such as 52-week high/low, YTD return and much more.
+    # @param symbol [String] Symbol of the company: AAPL.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(PriceMetrics, Integer, Hash)>] PriceMetrics data, response status code and response headers
+    def price_metrics_with_http_info(symbol, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.price_metrics ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.price_metrics"
+      end
+      # resource path
+      local_var_path = '/stock/price-metric'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'PriceMetrics'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.price_metrics",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#price_metrics\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -5269,6 +5728,77 @@ module FinnhubRuby
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#support_resistance\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Symbol Change
+    # Get a list of symbol changes for US-listed and EU-listed securities. Limit to 2000 events at a time.
+    # @param from [String] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [String] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [SymbolChange]
+    def symbol_change(from, to, opts = {})
+      data, _status_code, _headers = symbol_change_with_http_info(from, to, opts)
+      data
+    end
+
+    # Symbol Change
+    # Get a list of symbol changes for US-listed and EU-listed securities. Limit to 2000 events at a time.
+    # @param from [String] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [String] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(SymbolChange, Integer, Hash)>] SymbolChange data, response status code and response headers
+    def symbol_change_with_http_info(from, to, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.symbol_change ...'
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.symbol_change"
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.symbol_change"
+      end
+      # resource path
+      local_var_path = '/ca/symbol-change'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'from'] = from
+      query_params[:'to'] = to
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'SymbolChange'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.symbol_change",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#symbol_change\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

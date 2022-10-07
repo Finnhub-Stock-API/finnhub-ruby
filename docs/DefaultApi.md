@@ -7,6 +7,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**aggregate_indicator**](DefaultApi.md#aggregate_indicator) | **GET** /scan/technical-indicator | Aggregate Indicators |
 | [**bond_price**](DefaultApi.md#bond_price) | **GET** /bond/price | Bond price data |
 | [**bond_profile**](DefaultApi.md#bond_profile) | **GET** /bond/profile | Bond Profile |
+| [**bond_tick**](DefaultApi.md#bond_tick) | **GET** /bond/tick | Bond Tick Data |
 | [**company_basic_financials**](DefaultApi.md#company_basic_financials) | **GET** /stock/metric | Basic Financials |
 | [**company_earnings**](DefaultApi.md#company_earnings) | **GET** /stock/earnings | Earnings Surprises |
 | [**company_earnings_quality_score**](DefaultApi.md#company_earnings_quality_score) | **GET** /stock/earnings-quality-score | Company Earnings Quality Score |
@@ -48,9 +49,13 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**indices_historical_constituents**](DefaultApi.md#indices_historical_constituents) | **GET** /index/historical-constituents | Indices Historical Constituents |
 | [**insider_sentiment**](DefaultApi.md#insider_sentiment) | **GET** /stock/insider-sentiment | Insider Sentiment |
 | [**insider_transactions**](DefaultApi.md#insider_transactions) | **GET** /stock/insider-transactions | Insider Transactions |
+| [**institutional_ownership**](DefaultApi.md#institutional_ownership) | **GET** /institutional/ownership | Institutional Ownership |
+| [**institutional_portfolio**](DefaultApi.md#institutional_portfolio) | **GET** /institutional/portfolio | Institutional Portfolio |
+| [**institutional_profile**](DefaultApi.md#institutional_profile) | **GET** /institutional/profile | Institutional Profile |
 | [**international_filings**](DefaultApi.md#international_filings) | **GET** /stock/international-filings | International Filings |
 | [**investment_themes**](DefaultApi.md#investment_themes) | **GET** /stock/investment-theme | Investment Themes (Thematic Investing) |
 | [**ipo_calendar**](DefaultApi.md#ipo_calendar) | **GET** /calendar/ipo | IPO Calendar |
+| [**isin_change**](DefaultApi.md#isin_change) | **GET** /ca/isin-change | ISIN Change |
 | [**market_news**](DefaultApi.md#market_news) | **GET** /news | Market News |
 | [**mutual_fund_country_exposure**](DefaultApi.md#mutual_fund_country_exposure) | **GET** /mutual-fund/country | Mutual Funds Country Exposure |
 | [**mutual_fund_holdings**](DefaultApi.md#mutual_fund_holdings) | **GET** /mutual-fund/holdings | Mutual Funds Holdings |
@@ -60,6 +65,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**ownership**](DefaultApi.md#ownership) | **GET** /stock/ownership | Ownership |
 | [**pattern_recognition**](DefaultApi.md#pattern_recognition) | **GET** /scan/pattern | Pattern Recognition |
 | [**press_releases**](DefaultApi.md#press_releases) | **GET** /press-releases | Major Press Releases |
+| [**price_metrics**](DefaultApi.md#price_metrics) | **GET** /stock/price-metric | Price Metrics |
 | [**price_target**](DefaultApi.md#price_target) | **GET** /stock/price-target | Price Target |
 | [**quote**](DefaultApi.md#quote) | **GET** /quote | Quote |
 | [**recommendation_trends**](DefaultApi.md#recommendation_trends) | **GET** /stock/recommendation | Recommendation Trends |
@@ -81,6 +87,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**stock_visa_application**](DefaultApi.md#stock_visa_application) | **GET** /stock/visa-application | H1-B Visa Application |
 | [**supply_chain_relationships**](DefaultApi.md#supply_chain_relationships) | **GET** /stock/supply-chain | Supply Chain Relationships |
 | [**support_resistance**](DefaultApi.md#support_resistance) | **GET** /scan/support-resistance | Support/Resistance |
+| [**symbol_change**](DefaultApi.md#symbol_change) | **GET** /ca/symbol-change | Symbol Change |
 | [**symbol_search**](DefaultApi.md#symbol_search) | **GET** /search | Symbol Lookup |
 | [**technical_indicator**](DefaultApi.md#technical_indicator) | **POST** /indicator | Technical Indicators |
 | [**transcripts**](DefaultApi.md#transcripts) | **GET** /stock/transcripts | Earnings Call Transcripts |
@@ -167,7 +174,7 @@ end
 
 Bond price data
 
-Get end-of-day bond's price data.
+<p>Get bond's price data. The following datasets are supported:</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>   <tr>       <td class=\"text-blue\">US Government Bonds</th>       <td>Government Bonds</td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">FINRA Trace</th>       <td>BTDS: US Corporate Bonds</td>       <td>Delayed 4h</td>     </tr>     <tr>       <td class=\"text-blue\">FINRA Trace</th>       <td>144A Bonds</td>       <td>Delayed 4h</td>     </tr>   </tbody> </table>
 
 ### Examples
 
@@ -302,6 +309,85 @@ end
 ### Return type
 
 [**BondProfile**](BondProfile.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## bond_tick
+
+> <BondTickData> bond_tick(isin, date, limit, skip, exchange)
+
+Bond Tick Data
+
+<p>Get trade-level data for bonds. The following datasets are supported:</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">FINRA Trace</th>       <td>BTDS: US Corporate Bonds</td>       <td>Delayed 4h</td>     </tr>     <tr>       <td class=\"text-blue\">FINRA Trace</th>       <td>144A Bonds</td>       <td>Delayed 4h</td>     </tr>   </tbody> </table>
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+isin = 'isin_example' # String | ISIN.
+date = Date.parse('2013-10-20') # Date | Date: 2020-04-02.
+limit = 789 # Integer | Limit number of ticks returned. Maximum value: <code>25000</code>
+skip = 789 # Integer | Number of ticks to skip. Use this parameter to loop through the entire data.
+exchange = 'exchange_example' # String | Currently support the following values: <code>trace</code>.
+
+begin
+  # Bond Tick Data
+  result = api_instance.bond_tick(isin, date, limit, skip, exchange)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->bond_tick: #{e}"
+end
+```
+
+#### Using the bond_tick_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<BondTickData>, Integer, Hash)> bond_tick_with_http_info(isin, date, limit, skip, exchange)
+
+```ruby
+begin
+  # Bond Tick Data
+  data, status_code, headers = api_instance.bond_tick_with_http_info(isin, date, limit, skip, exchange)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <BondTickData>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->bond_tick_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **isin** | **String** | ISIN. |  |
+| **date** | **Date** | Date: 2020-04-02. |  |
+| **limit** | **Integer** | Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt; |  |
+| **skip** | **Integer** | Number of ticks to skip. Use this parameter to loop through the entire data. |  |
+| **exchange** | **String** | Currently support the following values: &lt;code&gt;trace&lt;/code&gt;. |  |
+
+### Return type
+
+[**BondTickData**](BondTickData.md)
 
 ### Authorization
 
@@ -978,11 +1064,11 @@ end
 
 ## company_peers
 
-> Array&lt;String&gt; company_peers(symbol)
+> Array&lt;String&gt; company_peers(symbol, opts)
 
 Peers
 
-Get company peers. Return a list of peers in the same country and sub-industry
+Get company peers. Return a list of peers operating in the same country and sector/industry.
 
 ### Examples
 
@@ -999,10 +1085,13 @@ end
 
 api_instance = FinnhubRuby::DefaultApi.new
 symbol = 'symbol_example' # String | Symbol of the company: AAPL.
+opts = {
+  grouping: 'grouping_example' # String | Specify the grouping criteria for choosing peers.Supporter values: <code>sector</code>, <code>industry</code>, <code>subIndustry</code>. Default to <code>subIndustry</code>.
+}
 
 begin
   # Peers
-  result = api_instance.company_peers(symbol)
+  result = api_instance.company_peers(symbol, opts)
   p result
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->company_peers: #{e}"
@@ -1013,12 +1102,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(Array&lt;String&gt;, Integer, Hash)> company_peers_with_http_info(symbol)
+> <Array(Array&lt;String&gt;, Integer, Hash)> company_peers_with_http_info(symbol, opts)
 
 ```ruby
 begin
   # Peers
-  data, status_code, headers = api_instance.company_peers_with_http_info(symbol)
+  data, status_code, headers = api_instance.company_peers_with_http_info(symbol, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => Array&lt;String&gt;
@@ -1032,6 +1121,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Symbol of the company: AAPL. |  |
+| **grouping** | **String** | Specify the grouping criteria for choosing peers.Supporter values: &lt;code&gt;sector&lt;/code&gt;, &lt;code&gt;industry&lt;/code&gt;, &lt;code&gt;subIndustry&lt;/code&gt;. Default to &lt;code&gt;subIndustry&lt;/code&gt;. | [optional] |
 
 ### Return type
 
@@ -2611,7 +2701,9 @@ opts = {
   symbol: 'symbol_example', # String | Symbol.
   cik: 'cik_example', # String | CIK.
   access_number: 'access_number_example', # String | Access number of a specific report you want to retrieve financials from.
-  freq: 'freq_example' # String | Frequency. Can be either <code>annual</code> or <code>quarterly</code>. Default to <code>annual</code>.
+  freq: 'freq_example', # String | Frequency. Can be either <code>annual</code> or <code>quarterly</code>. Default to <code>annual</code>.
+  from: Date.parse('2013-10-20'), # Date | From date <code>YYYY-MM-DD</code>. Filter for endDate.
+  to: Date.parse('2013-10-20') # Date | To date <code>YYYY-MM-DD</code>. Filter for endDate.
 }
 
 begin
@@ -2649,6 +2741,8 @@ end
 | **cik** | **String** | CIK. | [optional] |
 | **access_number** | **String** | Access number of a specific report you want to retrieve financials from. | [optional] |
 | **freq** | **String** | Frequency. Can be either &lt;code&gt;annual&lt;/code&gt; or &lt;code&gt;quarterly&lt;/code&gt;. Default to &lt;code&gt;annual&lt;/code&gt;. | [optional] |
+| **from** | **Date** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for endDate. | [optional] |
+| **to** | **Date** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. Filter for endDate. | [optional] |
 
 ### Return type
 
@@ -3324,6 +3418,231 @@ end
 - **Accept**: application/json
 
 
+## institutional_ownership
+
+> <InstitutionalOwnership> institutional_ownership(symbol, cusip, from, to)
+
+Institutional Ownership
+
+Get a list institutional investors' positions for a particular stock overtime. Data from 13-F filings. Limit to 1 year of data at a time.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | Filter by symbol.
+cusip = 'cusip_example' # String | Filter by CUSIP.
+from = 'from_example' # String | From date <code>YYYY-MM-DD</code>.
+to = 'to_example' # String | To date <code>YYYY-MM-DD</code>.
+
+begin
+  # Institutional Ownership
+  result = api_instance.institutional_ownership(symbol, cusip, from, to)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->institutional_ownership: #{e}"
+end
+```
+
+#### Using the institutional_ownership_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<InstitutionalOwnership>, Integer, Hash)> institutional_ownership_with_http_info(symbol, cusip, from, to)
+
+```ruby
+begin
+  # Institutional Ownership
+  data, status_code, headers = api_instance.institutional_ownership_with_http_info(symbol, cusip, from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <InstitutionalOwnership>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->institutional_ownership_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Filter by symbol. |  |
+| **cusip** | **String** | Filter by CUSIP. |  |
+| **from** | **String** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+| **to** | **String** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+
+### Return type
+
+[**InstitutionalOwnership**](InstitutionalOwnership.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## institutional_portfolio
+
+> <InstitutionalPortfolio> institutional_portfolio(cik, from, to)
+
+Institutional Portfolio
+
+Get the holdings/portfolio data of institutional investors from 13-F filings. Limit to 1 year of data at a time.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+cik = 'cik_example' # String | Fund's CIK.
+from = 'from_example' # String | From date <code>YYYY-MM-DD</code>.
+to = 'to_example' # String | To date <code>YYYY-MM-DD</code>.
+
+begin
+  # Institutional Portfolio
+  result = api_instance.institutional_portfolio(cik, from, to)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->institutional_portfolio: #{e}"
+end
+```
+
+#### Using the institutional_portfolio_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<InstitutionalPortfolio>, Integer, Hash)> institutional_portfolio_with_http_info(cik, from, to)
+
+```ruby
+begin
+  # Institutional Portfolio
+  data, status_code, headers = api_instance.institutional_portfolio_with_http_info(cik, from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <InstitutionalPortfolio>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->institutional_portfolio_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **cik** | **String** | Fund&#39;s CIK. |  |
+| **from** | **String** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+| **to** | **String** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+
+### Return type
+
+[**InstitutionalPortfolio**](InstitutionalPortfolio.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## institutional_profile
+
+> <InstitutionalProfile> institutional_profile(opts)
+
+Institutional Profile
+
+Get a list of well-known institutional investors. Currently support 60+ profiles.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+opts = {
+  cik: 'cik_example' # String | Filter by CIK. Leave blank to get the full list.
+}
+
+begin
+  # Institutional Profile
+  result = api_instance.institutional_profile(opts)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->institutional_profile: #{e}"
+end
+```
+
+#### Using the institutional_profile_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<InstitutionalProfile>, Integer, Hash)> institutional_profile_with_http_info(opts)
+
+```ruby
+begin
+  # Institutional Profile
+  data, status_code, headers = api_instance.institutional_profile_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <InstitutionalProfile>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->institutional_profile_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **cik** | **String** | Filter by CIK. Leave blank to get the full list. | [optional] |
+
+### Return type
+
+[**InstitutionalProfile**](InstitutionalProfile.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## international_filings
 
 > <Array<InternationalFiling>> international_filings(opts)
@@ -3532,6 +3851,79 @@ end
 ### Return type
 
 [**IPOCalendar**](IPOCalendar.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## isin_change
+
+> <IsinChange> isin_change(from, to)
+
+ISIN Change
+
+Get a list of ISIN changes for EU-listed securities. Limit to 2000 events at a time.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+from = 'from_example' # String | From date <code>YYYY-MM-DD</code>.
+to = 'to_example' # String | To date <code>YYYY-MM-DD</code>.
+
+begin
+  # ISIN Change
+  result = api_instance.isin_change(from, to)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->isin_change: #{e}"
+end
+```
+
+#### Using the isin_change_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<IsinChange>, Integer, Hash)> isin_change_with_http_info(from, to)
+
+```ruby
+begin
+  # ISIN Change
+  data, status_code, headers = api_instance.isin_change_with_http_info(from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <IsinChange>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->isin_change_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **from** | **String** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+| **to** | **String** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+
+### Return type
+
+[**IsinChange**](IsinChange.md)
 
 ### Authorization
 
@@ -4197,6 +4589,77 @@ end
 ### Return type
 
 [**PressRelease**](PressRelease.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## price_metrics
+
+> <PriceMetrics> price_metrics(symbol)
+
+Price Metrics
+
+Get company price performance statistics such as 52-week high/low, YTD return and much more.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | Symbol of the company: AAPL.
+
+begin
+  # Price Metrics
+  result = api_instance.price_metrics(symbol)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->price_metrics: #{e}"
+end
+```
+
+#### Using the price_metrics_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<PriceMetrics>, Integer, Hash)> price_metrics_with_http_info(symbol)
+
+```ruby
+begin
+  # Price Metrics
+  data, status_code, headers = api_instance.price_metrics_with_http_info(symbol)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <PriceMetrics>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->price_metrics_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol of the company: AAPL. |  |
+
+### Return type
+
+[**PriceMetrics**](PriceMetrics.md)
 
 ### Authorization
 
@@ -5756,6 +6219,79 @@ end
 ### Return type
 
 [**SupportResistance**](SupportResistance.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## symbol_change
+
+> <SymbolChange> symbol_change(from, to)
+
+Symbol Change
+
+Get a list of symbol changes for US-listed and EU-listed securities. Limit to 2000 events at a time.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+from = 'from_example' # String | From date <code>YYYY-MM-DD</code>.
+to = 'to_example' # String | To date <code>YYYY-MM-DD</code>.
+
+begin
+  # Symbol Change
+  result = api_instance.symbol_change(from, to)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->symbol_change: #{e}"
+end
+```
+
+#### Using the symbol_change_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<SymbolChange>, Integer, Hash)> symbol_change_with_http_info(from, to)
+
+```ruby
+begin
+  # Symbol Change
+  data, status_code, headers = api_instance.symbol_change_with_http_info(from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <SymbolChange>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->symbol_change_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **from** | **String** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+| **to** | **String** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+
+### Return type
+
+[**SymbolChange**](SymbolChange.md)
 
 ### Authorization
 

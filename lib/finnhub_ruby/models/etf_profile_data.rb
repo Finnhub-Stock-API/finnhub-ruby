@@ -33,7 +33,7 @@ module FinnhubRuby
     # NAV currency.
     attr_accessor :nav_currency
 
-    # Expense ratio.
+    # Expense ratio. For non-US funds, this is the <a href=\"https://www.esma.europa.eu/sites/default/files/library/2015/11/09_1028_final_kid_ongoing_charges_methodology_for_publication_u_2_.pdf\" target=\"_blank\">KID ongoing charges<a/>.
     attr_accessor :expense_ratio
 
     # Tracking Index.
@@ -69,6 +69,15 @@ module FinnhubRuby
     # ETF's description.
     attr_accessor :description
 
+    # Whether the ETF is inverse
+    attr_accessor :is_inverse
+
+    # Whether the ETF is leveraged
+    attr_accessor :is_leveraged
+
+    # Leverage factor.
+    attr_accessor :leverage_factor
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -89,7 +98,10 @@ module FinnhubRuby
         :'price_to_earnings' => :'priceToEarnings',
         :'price_to_book' => :'priceToBook',
         :'avg_volume' => :'avgVolume',
-        :'description' => :'description'
+        :'description' => :'description',
+        :'is_inverse' => :'isInverse',
+        :'is_leveraged' => :'isLeveraged',
+        :'leverage_factor' => :'leverageFactor'
       }
     end
 
@@ -118,7 +130,10 @@ module FinnhubRuby
         :'price_to_earnings' => :'Float',
         :'price_to_book' => :'Float',
         :'avg_volume' => :'Float',
-        :'description' => :'String'
+        :'description' => :'String',
+        :'is_inverse' => :'Boolean',
+        :'is_leveraged' => :'Boolean',
+        :'leverage_factor' => :'Float'
       }
     end
 
@@ -214,6 +229,18 @@ module FinnhubRuby
       if attributes.key?(:'description')
         self.description = attributes[:'description']
       end
+
+      if attributes.key?(:'is_inverse')
+        self.is_inverse = attributes[:'is_inverse']
+      end
+
+      if attributes.key?(:'is_leveraged')
+        self.is_leveraged = attributes[:'is_leveraged']
+      end
+
+      if attributes.key?(:'leverage_factor')
+        self.leverage_factor = attributes[:'leverage_factor']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -251,7 +278,10 @@ module FinnhubRuby
           price_to_earnings == o.price_to_earnings &&
           price_to_book == o.price_to_book &&
           avg_volume == o.avg_volume &&
-          description == o.description
+          description == o.description &&
+          is_inverse == o.is_inverse &&
+          is_leveraged == o.is_leveraged &&
+          leverage_factor == o.leverage_factor
     end
 
     # @see the `==` method
@@ -263,7 +293,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, asset_class, investment_segment, aum, nav, nav_currency, expense_ratio, tracking_index, etf_company, domicile, inception_date, website, isin, cusip, price_to_earnings, price_to_book, avg_volume, description].hash
+      [name, asset_class, investment_segment, aum, nav, nav_currency, expense_ratio, tracking_index, etf_company, domicile, inception_date, website, isin, cusip, price_to_earnings, price_to_book, avg_volume, description, is_inverse, is_leveraged, leverage_factor].hash
     end
 
     # Builds the object from hash
