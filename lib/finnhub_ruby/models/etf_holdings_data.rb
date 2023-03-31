@@ -36,6 +36,9 @@ module FinnhubRuby
     # Market value
     attr_accessor :value
 
+    # Asset type. Can be 1 of the following values: <code>Equity</code>, <code>ETP</code>, <code>Fund</code>, <code>Bond</code>, <code>Other</code> or empty.
+    attr_accessor :asset_type
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -45,7 +48,8 @@ module FinnhubRuby
         :'cusip' => :'cusip',
         :'share' => :'share',
         :'percent' => :'percent',
-        :'value' => :'value'
+        :'value' => :'value',
+        :'asset_type' => :'assetType'
       }
     end
 
@@ -63,7 +67,8 @@ module FinnhubRuby
         :'cusip' => :'String',
         :'share' => :'Float',
         :'percent' => :'Float',
-        :'value' => :'Float'
+        :'value' => :'Float',
+        :'asset_type' => :'String'
       }
     end
 
@@ -115,6 +120,10 @@ module FinnhubRuby
       if attributes.key?(:'value')
         self.value = attributes[:'value']
       end
+
+      if attributes.key?(:'asset_type')
+        self.asset_type = attributes[:'asset_type']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -141,7 +150,8 @@ module FinnhubRuby
           cusip == o.cusip &&
           share == o.share &&
           percent == o.percent &&
-          value == o.value
+          value == o.value &&
+          asset_type == o.asset_type
     end
 
     # @see the `==` method
@@ -153,7 +163,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, name, isin, cusip, share, percent, value].hash
+      [symbol, name, isin, cusip, share, percent, value, asset_type].hash
     end
 
     # Builds the object from hash

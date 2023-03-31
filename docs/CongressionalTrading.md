@@ -1,21 +1,19 @@
-# FinnhubRuby::PriceMetrics
+# FinnhubRuby::CongressionalTrading
 
 ## Properties
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Symbol of the company. | [optional] |
-| **at_date** | **String** | Data date. | [optional] |
-| **data** | **Object** |  | [optional] |
+| **data** | [**Array&lt;CongressionalTransaction&gt;**](CongressionalTransaction.md) | Array of stock trades. | [optional] |
 
 ## Example
 
 ```ruby
 require 'finnhub_ruby'
 
-instance = FinnhubRuby::PriceMetrics.new(
+instance = FinnhubRuby::CongressionalTrading.new(
   symbol: null,
-  at_date: null,
   data: null
 )
 ```

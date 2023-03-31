@@ -20,7 +20,7 @@ module FinnhubRuby
       @api_client = api_client
     end
     # Aggregate Indicators
-    # Get aggregate signal of multiple technical indicators such as MACD, RSI, Moving Average v.v.
+    # Get aggregate signal of multiple technical indicators such as MACD, RSI, Moving Average v.v. A full list of indicators can be found <a href=\"https://docs.google.com/spreadsheets/d/1MWuy0WuT2yVlxr1KbPdggVygMZtJfunDnhe-C0GEXYM/edit?usp=sharing\" target=\"_blank\">here</a>.
     # @param symbol [String] symbol
     # @param resolution [String] Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange.
     # @param [Hash] opts the optional parameters
@@ -31,7 +31,7 @@ module FinnhubRuby
     end
 
     # Aggregate Indicators
-    # Get aggregate signal of multiple technical indicators such as MACD, RSI, Moving Average v.v.
+    # Get aggregate signal of multiple technical indicators such as MACD, RSI, Moving Average v.v. A full list of indicators can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1MWuy0WuT2yVlxr1KbPdggVygMZtJfunDnhe-C0GEXYM/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
     # @param symbol [String] symbol
     # @param resolution [String] Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange.
     # @param [Hash] opts the optional parameters
@@ -169,7 +169,7 @@ module FinnhubRuby
     end
 
     # Bond Profile
-    # Get general information of a bond. You can query by FIGI, ISIN or CUSIP
+    # Get general information of a bond. You can query by FIGI, ISIN or CUSIP. A list of supported bonds can be found <a href=\"/api/v1/bond/list?token=\" target=\"_blank\">here</a>.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :isin ISIN
     # @option opts [String] :cusip CUSIP
@@ -181,7 +181,7 @@ module FinnhubRuby
     end
 
     # Bond Profile
-    # Get general information of a bond. You can query by FIGI, ISIN or CUSIP
+    # Get general information of a bond. You can query by FIGI, ISIN or CUSIP. A list of supported bonds can be found &lt;a href&#x3D;\&quot;/api/v1/bond/list?token&#x3D;\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :isin ISIN
     # @option opts [String] :cusip CUSIP
@@ -322,6 +322,70 @@ module FinnhubRuby
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#bond_tick\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Bond Yield Curve
+    # Get yield curve data for Treasury bonds.
+    # @param code [String] Bond&#39;s code. You can find the list of supported code &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener\&quot;&gt;here&lt;/a&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [BondYieldCurve]
+    def bond_yield_curve(code, opts = {})
+      data, _status_code, _headers = bond_yield_curve_with_http_info(code, opts)
+      data
+    end
+
+    # Bond Yield Curve
+    # Get yield curve data for Treasury bonds.
+    # @param code [String] Bond&#39;s code. You can find the list of supported code &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener\&quot;&gt;here&lt;/a&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(BondYieldCurve, Integer, Hash)>] BondYieldCurve data, response status code and response headers
+    def bond_yield_curve_with_http_info(code, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.bond_yield_curve ...'
+      end
+      # verify the required parameter 'code' is set
+      if @api_client.config.client_side_validation && code.nil?
+        fail ArgumentError, "Missing the required parameter 'code' when calling DefaultApi.bond_yield_curve"
+      end
+      # resource path
+      local_var_path = '/bond/yield-curve'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'code'] = code
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'BondYieldCurve'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.bond_yield_curve",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#bond_yield_curve\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1208,6 +1272,84 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
+    # Congressional Trading
+    # Get stock trades data disclosed by members of congress.
+    # @param symbol [String] Symbol of the company: AAPL.
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [CongressionalTrading]
+    def congressional_trading(symbol, from, to, opts = {})
+      data, _status_code, _headers = congressional_trading_with_http_info(symbol, from, to, opts)
+      data
+    end
+
+    # Congressional Trading
+    # Get stock trades data disclosed by members of congress.
+    # @param symbol [String] Symbol of the company: AAPL.
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(CongressionalTrading, Integer, Hash)>] CongressionalTrading data, response status code and response headers
+    def congressional_trading_with_http_info(symbol, from, to, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.congressional_trading ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.congressional_trading"
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.congressional_trading"
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.congressional_trading"
+      end
+      # resource path
+      local_var_path = '/stock/congressional-trading'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+      query_params[:'from'] = from
+      query_params[:'to'] = to
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'CongressionalTrading'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.congressional_trading",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#congressional_trading\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Country Metadata
     # List all countries and metadata.
     # @param [Hash] opts the optional parameters
@@ -1910,7 +2052,7 @@ module FinnhubRuby
     end
 
     # ETFs Holdings
-    # Get full ETF holdings/constituents. This endpoint has global coverage. Widget only shows top 10 holdings.
+    # Get full ETF holdings/constituents. This endpoint has global coverage. Widget only shows top 10 holdings. A list of supported ETFs can be found <a href=\"/api/v1/etf/list?token=\" target=\"_blank\">here</a>.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol ETF symbol.
     # @option opts [String] :isin ETF isin.
@@ -1923,7 +2065,7 @@ module FinnhubRuby
     end
 
     # ETFs Holdings
-    # Get full ETF holdings/constituents. This endpoint has global coverage. Widget only shows top 10 holdings.
+    # Get full ETF holdings/constituents. This endpoint has global coverage. Widget only shows top 10 holdings. A list of supported ETFs can be found &lt;a href&#x3D;\&quot;/api/v1/etf/list?token&#x3D;\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol ETF symbol.
     # @option opts [String] :isin ETF isin.
@@ -1979,7 +2121,7 @@ module FinnhubRuby
     end
 
     # ETFs Profile
-    # Get ETF profile information. This endpoint has global coverage.
+    # Get ETF profile information. This endpoint has global coverage. A list of supported ETFs can be found <a href=\"/api/v1/etf/list?token=\" target=\"_blank\">here</a>.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol ETF symbol.
     # @option opts [String] :isin ETF isin.
@@ -1990,7 +2132,7 @@ module FinnhubRuby
     end
 
     # ETFs Profile
-    # Get ETF profile information. This endpoint has global coverage.
+    # Get ETF profile information. This endpoint has global coverage. A list of supported ETFs can be found &lt;a href&#x3D;\&quot;/api/v1/etf/list?token&#x3D;\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol ETF symbol.
     # @option opts [String] :isin ETF isin.
@@ -2997,7 +3139,7 @@ module FinnhubRuby
     end
 
     # Insider Transactions
-    # Company insider transactions data sourced from <code>Form 3,4,5</code>. This endpoint only covers US companies at the moment. Limit to 100 transactions per API call.
+    # Company insider transactions data sourced from <code>Form 3,4,5</code>, SEDI and relevant companies' filings. This endpoint covers US, Canada, Australia, and selected EU companies. Limit to 100 transactions per API call.
     # @param symbol [String] Symbol of the company: AAPL. Leave this param blank to get the latest transactions.
     # @param [Hash] opts the optional parameters
     # @option opts [Date] :from From date: 2020-03-15.
@@ -3009,7 +3151,7 @@ module FinnhubRuby
     end
 
     # Insider Transactions
-    # Company insider transactions data sourced from &lt;code&gt;Form 3,4,5&lt;/code&gt;. This endpoint only covers US companies at the moment. Limit to 100 transactions per API call.
+    # Company insider transactions data sourced from &lt;code&gt;Form 3,4,5&lt;/code&gt;, SEDI and relevant companies&#39; filings. This endpoint covers US, Canada, Australia, and selected EU companies. Limit to 100 transactions per API call.
     # @param symbol [String] Symbol of the company: AAPL. Leave this param blank to get the latest transactions.
     # @param [Hash] opts the optional parameters
     # @option opts [Date] :from From date: 2020-03-15.
@@ -3152,7 +3294,7 @@ module FinnhubRuby
     end
 
     # Institutional Portfolio
-    # Get the holdings/portfolio data of institutional investors from 13-F filings. Limit to 1 year of data at a time.
+    # Get the holdings/portfolio data of institutional investors from 13-F filings. Limit to 1 year of data at a time. You can get a list of supported CIK <a href=\"/api/v1/institutional/list?token=\" target=\"_blank\">here</a>.
     # @param cik [String] Fund&#39;s CIK.
     # @param from [String] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
     # @param to [String] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
@@ -3164,7 +3306,7 @@ module FinnhubRuby
     end
 
     # Institutional Portfolio
-    # Get the holdings/portfolio data of institutional investors from 13-F filings. Limit to 1 year of data at a time.
+    # Get the holdings/portfolio data of institutional investors from 13-F filings. Limit to 1 year of data at a time. You can get a list of supported CIK &lt;a href&#x3D;\&quot;/api/v1/institutional/list?token&#x3D;\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
     # @param cik [String] Fund&#39;s CIK.
     # @param from [String] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
     # @param to [String] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
@@ -3285,69 +3427,6 @@ module FinnhubRuby
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#institutional_profile\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # International Filings
-    # List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :symbol Symbol. Leave empty to list latest filings.
-    # @option opts [String] :country Filter by country using country&#39;s 2-letter code.
-    # @return [Array<InternationalFiling>]
-    def international_filings(opts = {})
-      data, _status_code, _headers = international_filings_with_http_info(opts)
-      data
-    end
-
-    # International Filings
-    # List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :symbol Symbol. Leave empty to list latest filings.
-    # @option opts [String] :country Filter by country using country&#39;s 2-letter code.
-    # @return [Array<(Array<InternationalFiling>, Integer, Hash)>] Array<InternationalFiling> data, response status code and response headers
-    def international_filings_with_http_info(opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: DefaultApi.international_filings ...'
-      end
-      # resource path
-      local_var_path = '/stock/international-filings'
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-      query_params[:'symbol'] = opts[:'symbol'] if !opts[:'symbol'].nil?
-      query_params[:'country'] = opts[:'country'] if !opts[:'country'].nil?
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body]
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'Array<InternationalFiling>'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key']
-
-      new_options = opts.merge(
-        :operation => :"DefaultApi.international_filings",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: DefaultApi#international_filings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -3689,8 +3768,136 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
+    # Mutual Funds EET
+    # Get EET data for EU funds. For PAIs data, please see the EET PAI endpoint.
+    # @param isin [String] ISIN.
+    # @param [Hash] opts the optional parameters
+    # @return [MutualFundEet]
+    def mutual_fund_eet(isin, opts = {})
+      data, _status_code, _headers = mutual_fund_eet_with_http_info(isin, opts)
+      data
+    end
+
+    # Mutual Funds EET
+    # Get EET data for EU funds. For PAIs data, please see the EET PAI endpoint.
+    # @param isin [String] ISIN.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(MutualFundEet, Integer, Hash)>] MutualFundEet data, response status code and response headers
+    def mutual_fund_eet_with_http_info(isin, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.mutual_fund_eet ...'
+      end
+      # verify the required parameter 'isin' is set
+      if @api_client.config.client_side_validation && isin.nil?
+        fail ArgumentError, "Missing the required parameter 'isin' when calling DefaultApi.mutual_fund_eet"
+      end
+      # resource path
+      local_var_path = '/mutual-fund/eet'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'isin'] = isin
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'MutualFundEet'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.mutual_fund_eet",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#mutual_fund_eet\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Mutual Funds EET PAI
+    # Get EET PAI data for EU funds.
+    # @param isin [String] ISIN.
+    # @param [Hash] opts the optional parameters
+    # @return [MutualFundEetPai]
+    def mutual_fund_eet_pai(isin, opts = {})
+      data, _status_code, _headers = mutual_fund_eet_pai_with_http_info(isin, opts)
+      data
+    end
+
+    # Mutual Funds EET PAI
+    # Get EET PAI data for EU funds.
+    # @param isin [String] ISIN.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(MutualFundEetPai, Integer, Hash)>] MutualFundEetPai data, response status code and response headers
+    def mutual_fund_eet_pai_with_http_info(isin, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.mutual_fund_eet_pai ...'
+      end
+      # verify the required parameter 'isin' is set
+      if @api_client.config.client_side_validation && isin.nil?
+        fail ArgumentError, "Missing the required parameter 'isin' when calling DefaultApi.mutual_fund_eet_pai"
+      end
+      # resource path
+      local_var_path = '/mutual-fund/eet-pai'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'isin'] = isin
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'MutualFundEetPai'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.mutual_fund_eet_pai",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#mutual_fund_eet_pai\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Mutual Funds Holdings
-    # Get full Mutual Funds holdings/constituents. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN.
+    # Get full Mutual Funds holdings/constituents. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN. A list of supported funds can be found <a href=\"/api/v1/mutual-fund/list?token=\" target=\"_blank\">here</a>.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Fund&#39;s symbol.
     # @option opts [String] :isin Fund&#39;s isin.
@@ -3702,7 +3909,7 @@ module FinnhubRuby
     end
 
     # Mutual Funds Holdings
-    # Get full Mutual Funds holdings/constituents. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN.
+    # Get full Mutual Funds holdings/constituents. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN. A list of supported funds can be found &lt;a href&#x3D;\&quot;/api/v1/mutual-fund/list?token&#x3D;\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Fund&#39;s symbol.
     # @option opts [String] :isin Fund&#39;s isin.
@@ -3756,7 +3963,7 @@ module FinnhubRuby
     end
 
     # Mutual Funds Profile
-    # Get mutual funds profile information. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN.
+    # Get mutual funds profile information. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN. A list of supported funds can be found <a href=\"/api/v1/mutual-fund/list?token=\" target=\"_blank\">here</a>.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Fund&#39;s symbol.
     # @option opts [String] :isin Fund&#39;s isin.
@@ -3767,7 +3974,7 @@ module FinnhubRuby
     end
 
     # Mutual Funds Profile
-    # Get mutual funds profile information. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN.
+    # Get mutual funds profile information. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN. A list of supported funds can be found &lt;a href&#x3D;\&quot;/api/v1/mutual-fund/list?token&#x3D;\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Fund&#39;s symbol.
     # @option opts [String] :isin Fund&#39;s isin.
@@ -4158,6 +4365,7 @@ module FinnhubRuby
     # Get company price performance statistics such as 52-week high/low, YTD return and much more.
     # @param symbol [String] Symbol of the company: AAPL.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :date Get data on a specific date in the past. The data is available weekly so your date will be automatically adjusted to the last day of that week.
     # @return [PriceMetrics]
     def price_metrics(symbol, opts = {})
       data, _status_code, _headers = price_metrics_with_http_info(symbol, opts)
@@ -4168,6 +4376,7 @@ module FinnhubRuby
     # Get company price performance statistics such as 52-week high/low, YTD return and much more.
     # @param symbol [String] Symbol of the company: AAPL.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :date Get data on a specific date in the past. The data is available weekly so your date will be automatically adjusted to the last day of that week.
     # @return [Array<(PriceMetrics, Integer, Hash)>] PriceMetrics data, response status code and response headers
     def price_metrics_with_http_info(symbol, opts = {})
       if @api_client.config.debugging
@@ -4183,6 +4392,7 @@ module FinnhubRuby
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'symbol'] = symbol
+      query_params[:'date'] = opts[:'date'] if !opts[:'date'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -5279,7 +5489,7 @@ module FinnhubRuby
     end
 
     # Tick Data
-    # <p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target=\"_blank\" href=\"/dashboard/download\",>here</a> to speed up the download process.</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">US CTA/UTP</th>       <td>Full SIP</td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">TSX</th>       <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">LSE</th>       <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">Euronext</th>       <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Deutsche Börse</th>       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>   </tbody> </table>
+    # <p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target=\"_blank\" href=\"/dashboard/download\",>here</a> to speed up the download process.</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">US CTA/UTP</th>       <td>Full SIP</td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">TSX</th>       <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">LSE</th>       <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">Euronext</th>       <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Deutsche Börse</th>       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>   </tbody> </table>
     # @param symbol [String] Symbol.
     # @param date [Date] Date: 2020-04-02.
     # @param limit [Integer] Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt;
@@ -5292,7 +5502,7 @@ module FinnhubRuby
     end
 
     # Tick Data
-    # &lt;p&gt;Get historical tick data for global exchanges. You can send the request directly to our tick server at &lt;a href&#x3D;\&quot;https://tick.finnhub.io/\&quot;&gt;https://tick.finnhub.io/&lt;/a&gt; with the same path and parameters or get redirected there if you call our main server.&lt;/p&gt;&lt;p&gt;For US market, you can visit our bulk download page in the Dashboard &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;/dashboard/download\&quot;,&gt;here&lt;/a&gt; to speed up the download process.&lt;/p&gt;&lt;table class&#x3D;\&quot;table table-hover\&quot;&gt;   &lt;thead&gt;     &lt;tr&gt;       &lt;th&gt;Exchange&lt;/th&gt;       &lt;th&gt;Segment&lt;/th&gt;       &lt;th&gt;Delay&lt;/th&gt;     &lt;/tr&gt;   &lt;/thead&gt;   &lt;tbody&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;US CTA/UTP&lt;/th&gt;       &lt;td&gt;Full SIP&lt;/td&gt;       &lt;td&gt;15 minute&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;TSX&lt;/th&gt;       &lt;td&gt;&lt;ul&gt;&lt;li&gt;TSX&lt;/li&gt;&lt;li&gt;TSX Venture&lt;/li&gt;&lt;li&gt;Index&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;LSE&lt;/th&gt;       &lt;td&gt;&lt;ul&gt;&lt;li&gt;London Stock Exchange (L)&lt;/li&gt;&lt;li&gt;LSE International (L)&lt;/li&gt;&lt;li&gt;LSE European (L)&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;15 minute&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;Euronext&lt;/th&gt;       &lt;td&gt;&lt;ul&gt; &lt;li&gt;Euronext Paris (PA)&lt;/li&gt; &lt;li&gt;Euronext Amsterdam (AS)&lt;/li&gt; &lt;li&gt;Euronext Lisbon (LS)&lt;/li&gt; &lt;li&gt;Euronext Brussels (BR)&lt;/li&gt; &lt;li&gt;Euronext Oslo (OL)&lt;/li&gt; &lt;li&gt;Euronext London (LN)&lt;/li&gt; &lt;li&gt;Euronext Dublin (IR)&lt;/li&gt; &lt;li&gt;Index&lt;/li&gt; &lt;li&gt;Warrant&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;Deutsche Börse&lt;/th&gt;       &lt;td&gt;&lt;ul&gt; &lt;li&gt;Frankfurt (F)&lt;/li&gt; &lt;li&gt;Xetra (DE)&lt;/li&gt; &lt;li&gt;Duesseldorf (DU)&lt;/li&gt; &lt;li&gt;Hamburg (HM)&lt;/li&gt; &lt;li&gt;Berlin (BE)&lt;/li&gt; &lt;li&gt;Hanover (HA)&lt;/li&gt; &lt;li&gt;Stoxx (SX)&lt;/li&gt; &lt;li&gt;TradeGate (TG)&lt;/li&gt; &lt;li&gt;Zertifikate (SC)&lt;/li&gt; &lt;li&gt;Index&lt;/li&gt; &lt;li&gt;Warrant&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;   &lt;/tbody&gt; &lt;/table&gt;
+    # &lt;p&gt;Get historical tick data for global exchanges. You can send the request directly to our tick server at &lt;a href&#x3D;\&quot;https://tick.finnhub.io/\&quot;&gt;https://tick.finnhub.io/&lt;/a&gt; with the same path and parameters or get redirected there if you call our main server.&lt;/p&gt;&lt;p&gt;For US market, you can visit our bulk download page in the Dashboard &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;/dashboard/download\&quot;,&gt;here&lt;/a&gt; to speed up the download process.&lt;/p&gt;&lt;table class&#x3D;\&quot;table table-hover\&quot;&gt;   &lt;thead&gt;     &lt;tr&gt;       &lt;th&gt;Exchange&lt;/th&gt;       &lt;th&gt;Segment&lt;/th&gt;       &lt;th&gt;Delay&lt;/th&gt;     &lt;/tr&gt;   &lt;/thead&gt;   &lt;tbody&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;US CTA/UTP&lt;/th&gt;       &lt;td&gt;Full SIP&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;TSX&lt;/th&gt;       &lt;td&gt;&lt;ul&gt;&lt;li&gt;TSX&lt;/li&gt;&lt;li&gt;TSX Venture&lt;/li&gt;&lt;li&gt;Index&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;LSE&lt;/th&gt;       &lt;td&gt;&lt;ul&gt;&lt;li&gt;London Stock Exchange (L)&lt;/li&gt;&lt;li&gt;LSE International (L)&lt;/li&gt;&lt;li&gt;LSE European (L)&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;15 minute&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;Euronext&lt;/th&gt;       &lt;td&gt;&lt;ul&gt; &lt;li&gt;Euronext Paris (PA)&lt;/li&gt; &lt;li&gt;Euronext Amsterdam (AS)&lt;/li&gt; &lt;li&gt;Euronext Lisbon (LS)&lt;/li&gt; &lt;li&gt;Euronext Brussels (BR)&lt;/li&gt; &lt;li&gt;Euronext Oslo (OL)&lt;/li&gt; &lt;li&gt;Euronext London (LN)&lt;/li&gt; &lt;li&gt;Euronext Dublin (IR)&lt;/li&gt; &lt;li&gt;Index&lt;/li&gt; &lt;li&gt;Warrant&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;Deutsche Börse&lt;/th&gt;       &lt;td&gt;&lt;ul&gt; &lt;li&gt;Frankfurt (F)&lt;/li&gt; &lt;li&gt;Xetra (DE)&lt;/li&gt; &lt;li&gt;Duesseldorf (DU)&lt;/li&gt; &lt;li&gt;Hamburg (HM)&lt;/li&gt; &lt;li&gt;Berlin (BE)&lt;/li&gt; &lt;li&gt;Hanover (HA)&lt;/li&gt; &lt;li&gt;Stoxx (SX)&lt;/li&gt; &lt;li&gt;TradeGate (TG)&lt;/li&gt; &lt;li&gt;Zertifikate (SC)&lt;/li&gt; &lt;li&gt;Index&lt;/li&gt; &lt;li&gt;Warrant&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;   &lt;/tbody&gt; &lt;/table&gt;
     # @param symbol [String] Symbol.
     # @param date [Date] Date: 2020-04-02.
     # @param limit [Integer] Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt;
@@ -5733,7 +5943,7 @@ module FinnhubRuby
     end
 
     # Symbol Change
-    # Get a list of symbol changes for US-listed and EU-listed securities. Limit to 2000 events at a time.
+    # Get a list of symbol changes for US-listed, EU-listed, NSE and ASX securities. Limit to 2000 events at a time.
     # @param from [String] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
     # @param to [String] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
     # @param [Hash] opts the optional parameters
@@ -5744,7 +5954,7 @@ module FinnhubRuby
     end
 
     # Symbol Change
-    # Get a list of symbol changes for US-listed and EU-listed securities. Limit to 2000 events at a time.
+    # Get a list of symbol changes for US-listed, EU-listed, NSE and ASX securities. Limit to 2000 events at a time.
     # @param from [String] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
     # @param to [String] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
     # @param [Hash] opts the optional parameters
@@ -5956,7 +6166,7 @@ module FinnhubRuby
         :return_type => return_type
       )
 
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#technical_indicator\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -5964,7 +6174,7 @@ module FinnhubRuby
     end
 
     # Earnings Call Transcripts
-    # <p>Get earnings call transcripts, audio and participants' list. This endpoint is only available for US, UK, and Candian companies. <p>15+ years of data is available with 220,000+ audio which add up to 7TB in size.</p>
+    # <p>Get earnings call transcripts, audio and participants' list. Data is available for US, UK, European, Australian and Canadian companies.<p>15+ years of data is available with 220,000+ audio which add up to 7TB in size.</p>
     # @param id [String] Transcript&#39;s id obtained with &lt;a href&#x3D;\&quot;#transcripts-list\&quot;&gt;Transcripts List endpoint&lt;/a&gt;.
     # @param [Hash] opts the optional parameters
     # @return [EarningsCallTranscripts]
@@ -5974,7 +6184,7 @@ module FinnhubRuby
     end
 
     # Earnings Call Transcripts
-    # &lt;p&gt;Get earnings call transcripts, audio and participants&#39; list. This endpoint is only available for US, UK, and Candian companies. &lt;p&gt;15+ years of data is available with 220,000+ audio which add up to 7TB in size.&lt;/p&gt;
+    # &lt;p&gt;Get earnings call transcripts, audio and participants&#39; list. Data is available for US, UK, European, Australian and Canadian companies.&lt;p&gt;15+ years of data is available with 220,000+ audio which add up to 7TB in size.&lt;/p&gt;
     # @param id [String] Transcript&#39;s id obtained with &lt;a href&#x3D;\&quot;#transcripts-list\&quot;&gt;Transcripts List endpoint&lt;/a&gt;.
     # @param [Hash] opts the optional parameters
     # @return [Array<(EarningsCallTranscripts, Integer, Hash)>] EarningsCallTranscripts data, response status code and response headers

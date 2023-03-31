@@ -24,8 +24,14 @@ module FinnhubRuby
     # Country of company's headquarter.
     attr_accessor :country
 
-    # Currency used in company filings.
+    # Currency used in company filings and financials.
     attr_accessor :currency
+
+    # Currency used in Estimates data.
+    attr_accessor :estimate_currency
+
+    # Currency used in market capitalization.
+    attr_accessor :market_cap_currency
 
     # CUSIP number.
     attr_accessor :cusip
@@ -106,6 +112,8 @@ module FinnhubRuby
         :'city' => :'city',
         :'country' => :'country',
         :'currency' => :'currency',
+        :'estimate_currency' => :'estimateCurrency',
+        :'market_cap_currency' => :'marketCapCurrency',
         :'cusip' => :'cusip',
         :'sedol' => :'sedol',
         :'description' => :'description',
@@ -145,6 +153,8 @@ module FinnhubRuby
         :'city' => :'String',
         :'country' => :'String',
         :'currency' => :'String',
+        :'estimate_currency' => :'String',
+        :'market_cap_currency' => :'String',
         :'cusip' => :'String',
         :'sedol' => :'String',
         :'description' => :'String',
@@ -207,6 +217,14 @@ module FinnhubRuby
 
       if attributes.key?(:'currency')
         self.currency = attributes[:'currency']
+      end
+
+      if attributes.key?(:'estimate_currency')
+        self.estimate_currency = attributes[:'estimate_currency']
+      end
+
+      if attributes.key?(:'market_cap_currency')
+        self.market_cap_currency = attributes[:'market_cap_currency']
       end
 
       if attributes.key?(:'cusip')
@@ -328,6 +346,8 @@ module FinnhubRuby
           city == o.city &&
           country == o.country &&
           currency == o.currency &&
+          estimate_currency == o.estimate_currency &&
+          market_cap_currency == o.market_cap_currency &&
           cusip == o.cusip &&
           sedol == o.sedol &&
           description == o.description &&
@@ -363,7 +383,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [address, city, country, currency, cusip, sedol, description, exchange, ggroup, gind, gsector, gsubind, isin, naics_national_industry, naics, naics_sector, naics_subsector, name, phone, state, ticker, weburl, ipo, market_capitalization, share_outstanding, employee_total, logo, finnhub_industry].hash
+      [address, city, country, currency, estimate_currency, market_cap_currency, cusip, sedol, description, exchange, ggroup, gind, gsector, gsubind, isin, naics_national_industry, naics, naics_sector, naics_subsector, name, phone, state, ticker, weburl, ipo, market_capitalization, share_outstanding, employee_total, logo, finnhub_industry].hash
     end
 
     # Builds the object from hash

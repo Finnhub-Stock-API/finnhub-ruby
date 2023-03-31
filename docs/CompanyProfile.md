@@ -7,7 +7,9 @@
 | **address** | **String** | Address of company&#39;s headquarter. | [optional] |
 | **city** | **String** | City of company&#39;s headquarter. | [optional] |
 | **country** | **String** | Country of company&#39;s headquarter. | [optional] |
-| **currency** | **String** | Currency used in company filings. | [optional] |
+| **currency** | **String** | Currency used in company filings and financials. | [optional] |
+| **estimate_currency** | **String** | Currency used in Estimates data. | [optional] |
+| **market_cap_currency** | **String** | Currency used in market capitalization. | [optional] |
 | **cusip** | **String** | CUSIP number. | [optional] |
 | **sedol** | **String** | Sedol number. | [optional] |
 | **description** | **String** | Company business summary. | [optional] |
@@ -43,6 +45,8 @@ instance = FinnhubRuby::CompanyProfile.new(
   city: null,
   country: null,
   currency: null,
+  estimate_currency: null,
+  market_cap_currency: null,
   cusip: null,
   sedol: null,
   description: null,

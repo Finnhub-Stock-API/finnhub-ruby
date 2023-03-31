@@ -18,12 +18,16 @@ module FinnhubRuby
     # Symbol of the company.
     attr_accessor :symbol
 
+    # Data date.
+    attr_accessor :at_date
+
     attr_accessor :data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'symbol' => :'symbol',
+        :'at_date' => :'atDate',
         :'data' => :'data'
       }
     end
@@ -37,6 +41,7 @@ module FinnhubRuby
     def self.openapi_types
       {
         :'symbol' => :'String',
+        :'at_date' => :'String',
         :'data' => :'Object'
       }
     end
@@ -66,6 +71,10 @@ module FinnhubRuby
         self.symbol = attributes[:'symbol']
       end
 
+      if attributes.key?(:'at_date')
+        self.at_date = attributes[:'at_date']
+      end
+
       if attributes.key?(:'data')
         self.data = attributes[:'data']
       end
@@ -90,6 +99,7 @@ module FinnhubRuby
       return true if self.equal?(o)
       self.class == o.class &&
           symbol == o.symbol &&
+          at_date == o.at_date &&
           data == o.data
     end
 
@@ -102,7 +112,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, data].hash
+      [symbol, at_date, data].hash
     end
 
     # Builds the object from hash

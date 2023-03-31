@@ -14,58 +14,50 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class BondTickData
-    # Number of ticks skipped.
-    attr_accessor :skip
+  class CongressionalTransaction
+    # Transaction amount from.
+    attr_accessor :amount_from
 
-    # Number of ticks returned. If <code>count</code> < <code>limit</code>, all data for that date has been returned.
-    attr_accessor :count
+    # Transaction amount to.
+    attr_accessor :amount_to
 
-    # Total number of ticks for that date.
-    attr_accessor :total
+    # Asset name.
+    attr_accessor :asset_name
 
-    # List of volume data.
-    attr_accessor :v
+    # Filing date.
+    attr_accessor :filing_date
 
-    # List of price data.
-    attr_accessor :p
+    # Name of the representative.
+    attr_accessor :name
 
-    # List of yield data.
-    attr_accessor :y
+    # Owner Type.
+    attr_accessor :owner_type
 
-    # List of timestamp in UNIX ms.
-    attr_accessor :t
+    # Position.
+    attr_accessor :position
 
-    # List of values showing the side (Buy/sell) of each trade. List of supported values: <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\",>here</a>
-    attr_accessor :si
+    # Symbol.
+    attr_accessor :symbol
 
-    # List of values showing the counterparty of each trade. List of supported values: <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\",>here</a>
-    attr_accessor :cp
+    # Transaction date.
+    attr_accessor :transaction_date
 
-    # List of values showing the reporting party of each trade. List of supported values: <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\",>here</a>
-    attr_accessor :rp
-
-    # ATS flag. Y or empty
-    attr_accessor :ats
-
-    # List of trade conditions. A comprehensive list of trade conditions code can be found <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\">here</a>
-    attr_accessor :c
+    # Transaction type <code>Sale</code> or <code>Purchase</code>.
+    attr_accessor :transaction_type
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'skip' => :'skip',
-        :'count' => :'count',
-        :'total' => :'total',
-        :'v' => :'v',
-        :'p' => :'p',
-        :'y' => :'y',
-        :'t' => :'t',
-        :'si' => :'si',
-        :'cp' => :'cp',
-        :'rp' => :'rp',
-        :'ats' => :'ats',
-        :'c' => :'c'
+        :'amount_from' => :'amountFrom',
+        :'amount_to' => :'amountTo',
+        :'asset_name' => :'assetName',
+        :'filing_date' => :'filingDate',
+        :'name' => :'name',
+        :'owner_type' => :'ownerType',
+        :'position' => :'position',
+        :'symbol' => :'symbol',
+        :'transaction_date' => :'transactionDate',
+        :'transaction_type' => :'transactionType'
       }
     end
 
@@ -77,18 +69,16 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'skip' => :'Integer',
-        :'count' => :'Integer',
-        :'total' => :'Integer',
-        :'v' => :'Array<Float>',
-        :'p' => :'Array<Float>',
-        :'y' => :'Array<Float>',
-        :'t' => :'Array<Integer>',
-        :'si' => :'Array<String>',
-        :'cp' => :'Array<String>',
-        :'rp' => :'Array<String>',
-        :'ats' => :'Array<String>',
-        :'c' => :'Array<Array<String>>'
+        :'amount_from' => :'Float',
+        :'amount_to' => :'Float',
+        :'asset_name' => :'String',
+        :'filing_date' => :'String',
+        :'name' => :'String',
+        :'owner_type' => :'String',
+        :'position' => :'String',
+        :'symbol' => :'String',
+        :'transaction_date' => :'String',
+        :'transaction_type' => :'String'
       }
     end
 
@@ -102,81 +92,55 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::BondTickData` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::CongressionalTransaction` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::BondTickData`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::CongressionalTransaction`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'skip')
-        self.skip = attributes[:'skip']
+      if attributes.key?(:'amount_from')
+        self.amount_from = attributes[:'amount_from']
       end
 
-      if attributes.key?(:'count')
-        self.count = attributes[:'count']
+      if attributes.key?(:'amount_to')
+        self.amount_to = attributes[:'amount_to']
       end
 
-      if attributes.key?(:'total')
-        self.total = attributes[:'total']
+      if attributes.key?(:'asset_name')
+        self.asset_name = attributes[:'asset_name']
       end
 
-      if attributes.key?(:'v')
-        if (value = attributes[:'v']).is_a?(Array)
-          self.v = value
-        end
+      if attributes.key?(:'filing_date')
+        self.filing_date = attributes[:'filing_date']
       end
 
-      if attributes.key?(:'p')
-        if (value = attributes[:'p']).is_a?(Array)
-          self.p = value
-        end
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       end
 
-      if attributes.key?(:'y')
-        if (value = attributes[:'y']).is_a?(Array)
-          self.y = value
-        end
+      if attributes.key?(:'owner_type')
+        self.owner_type = attributes[:'owner_type']
       end
 
-      if attributes.key?(:'t')
-        if (value = attributes[:'t']).is_a?(Array)
-          self.t = value
-        end
+      if attributes.key?(:'position')
+        self.position = attributes[:'position']
       end
 
-      if attributes.key?(:'si')
-        if (value = attributes[:'si']).is_a?(Array)
-          self.si = value
-        end
+      if attributes.key?(:'symbol')
+        self.symbol = attributes[:'symbol']
       end
 
-      if attributes.key?(:'cp')
-        if (value = attributes[:'cp']).is_a?(Array)
-          self.cp = value
-        end
+      if attributes.key?(:'transaction_date')
+        self.transaction_date = attributes[:'transaction_date']
       end
 
-      if attributes.key?(:'rp')
-        if (value = attributes[:'rp']).is_a?(Array)
-          self.rp = value
-        end
-      end
-
-      if attributes.key?(:'ats')
-        if (value = attributes[:'ats']).is_a?(Array)
-          self.ats = value
-        end
-      end
-
-      if attributes.key?(:'c')
-        if (value = attributes[:'c']).is_a?(Array)
-          self.c = value
-        end
+      if attributes.key?(:'transaction_type')
+        self.transaction_type = attributes[:'transaction_type']
       end
     end
 
@@ -198,18 +162,16 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          skip == o.skip &&
-          count == o.count &&
-          total == o.total &&
-          v == o.v &&
-          p == o.p &&
-          y == o.y &&
-          t == o.t &&
-          si == o.si &&
-          cp == o.cp &&
-          rp == o.rp &&
-          ats == o.ats &&
-          c == o.c
+          amount_from == o.amount_from &&
+          amount_to == o.amount_to &&
+          asset_name == o.asset_name &&
+          filing_date == o.filing_date &&
+          name == o.name &&
+          owner_type == o.owner_type &&
+          position == o.position &&
+          symbol == o.symbol &&
+          transaction_date == o.transaction_date &&
+          transaction_type == o.transaction_type
     end
 
     # @see the `==` method
@@ -221,7 +183,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [skip, count, total, v, p, y, t, si, cp, rp, ats, c].hash
+      [amount_from, amount_to, asset_name, filing_date, name, owner_type, position, symbol, transaction_date, transaction_type].hash
     end
 
     # Builds the object from hash

@@ -10,6 +10,8 @@
 | **surprise_percent** | **Float** | Surprise percent. | [optional] |
 | **period** | **Date** | Reported period. | [optional] |
 | **symbol** | **String** | Company symbol. | [optional] |
+| **year** | **Integer** | Earnings year. | [optional] |
+| **quarter** | **Integer** | Earnings quarter. | [optional] |
 
 ## Example
 
@@ -22,7 +24,9 @@ instance = FinnhubRuby::EarningResult.new(
   surprise: null,
   surprise_percent: null,
   period: null,
-  symbol: null
+  symbol: null,
+  year: null,
+  quarter: null
 )
 ```
 

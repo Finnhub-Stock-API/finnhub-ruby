@@ -8,6 +8,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**bond_price**](DefaultApi.md#bond_price) | **GET** /bond/price | Bond price data |
 | [**bond_profile**](DefaultApi.md#bond_profile) | **GET** /bond/profile | Bond Profile |
 | [**bond_tick**](DefaultApi.md#bond_tick) | **GET** /bond/tick | Bond Tick Data |
+| [**bond_yield_curve**](DefaultApi.md#bond_yield_curve) | **GET** /bond/yield-curve | Bond Yield Curve |
 | [**company_basic_financials**](DefaultApi.md#company_basic_financials) | **GET** /stock/metric | Basic Financials |
 | [**company_earnings**](DefaultApi.md#company_earnings) | **GET** /stock/earnings | Earnings Surprises |
 | [**company_earnings_quality_score**](DefaultApi.md#company_earnings_quality_score) | **GET** /stock/earnings-quality-score | Company Earnings Quality Score |
@@ -21,6 +22,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**company_profile**](DefaultApi.md#company_profile) | **GET** /stock/profile | Company Profile |
 | [**company_profile2**](DefaultApi.md#company_profile2) | **GET** /stock/profile2 | Company Profile 2 |
 | [**company_revenue_estimates**](DefaultApi.md#company_revenue_estimates) | **GET** /stock/revenue-estimate | Revenue Estimates |
+| [**congressional_trading**](DefaultApi.md#congressional_trading) | **GET** /stock/congressional-trading | Congressional Trading |
 | [**country**](DefaultApi.md#country) | **GET** /country | Country Metadata |
 | [**covid19**](DefaultApi.md#covid19) | **GET** /covid19/us | COVID-19 |
 | [**crypto_candles**](DefaultApi.md#crypto_candles) | **GET** /crypto/candle | Crypto Candles |
@@ -52,12 +54,13 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**institutional_ownership**](DefaultApi.md#institutional_ownership) | **GET** /institutional/ownership | Institutional Ownership |
 | [**institutional_portfolio**](DefaultApi.md#institutional_portfolio) | **GET** /institutional/portfolio | Institutional Portfolio |
 | [**institutional_profile**](DefaultApi.md#institutional_profile) | **GET** /institutional/profile | Institutional Profile |
-| [**international_filings**](DefaultApi.md#international_filings) | **GET** /stock/international-filings | International Filings |
 | [**investment_themes**](DefaultApi.md#investment_themes) | **GET** /stock/investment-theme | Investment Themes (Thematic Investing) |
 | [**ipo_calendar**](DefaultApi.md#ipo_calendar) | **GET** /calendar/ipo | IPO Calendar |
 | [**isin_change**](DefaultApi.md#isin_change) | **GET** /ca/isin-change | ISIN Change |
 | [**market_news**](DefaultApi.md#market_news) | **GET** /news | Market News |
 | [**mutual_fund_country_exposure**](DefaultApi.md#mutual_fund_country_exposure) | **GET** /mutual-fund/country | Mutual Funds Country Exposure |
+| [**mutual_fund_eet**](DefaultApi.md#mutual_fund_eet) | **GET** /mutual-fund/eet | Mutual Funds EET |
+| [**mutual_fund_eet_pai**](DefaultApi.md#mutual_fund_eet_pai) | **GET** /mutual-fund/eet-pai | Mutual Funds EET PAI |
 | [**mutual_fund_holdings**](DefaultApi.md#mutual_fund_holdings) | **GET** /mutual-fund/holdings | Mutual Funds Holdings |
 | [**mutual_fund_profile**](DefaultApi.md#mutual_fund_profile) | **GET** /mutual-fund/profile | Mutual Funds Profile |
 | [**mutual_fund_sector_exposure**](DefaultApi.md#mutual_fund_sector_exposure) | **GET** /mutual-fund/sector | Mutual Funds Sector Exposure |
@@ -89,7 +92,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**support_resistance**](DefaultApi.md#support_resistance) | **GET** /scan/support-resistance | Support/Resistance |
 | [**symbol_change**](DefaultApi.md#symbol_change) | **GET** /ca/symbol-change | Symbol Change |
 | [**symbol_search**](DefaultApi.md#symbol_search) | **GET** /search | Symbol Lookup |
-| [**technical_indicator**](DefaultApi.md#technical_indicator) | **POST** /indicator | Technical Indicators |
+| [**technical_indicator**](DefaultApi.md#technical_indicator) | **GET** /indicator | Technical Indicators |
 | [**transcripts**](DefaultApi.md#transcripts) | **GET** /stock/transcripts | Earnings Call Transcripts |
 | [**transcripts_list**](DefaultApi.md#transcripts_list) | **GET** /stock/transcripts/list | Earnings Call Transcripts List |
 | [**upgrade_downgrade**](DefaultApi.md#upgrade_downgrade) | **GET** /stock/upgrade-downgrade | Stock Upgrade/Downgrade |
@@ -101,7 +104,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 
 Aggregate Indicators
 
-Get aggregate signal of multiple technical indicators such as MACD, RSI, Moving Average v.v.
+Get aggregate signal of multiple technical indicators such as MACD, RSI, Moving Average v.v. A full list of indicators can be found <a href=\"https://docs.google.com/spreadsheets/d/1MWuy0WuT2yVlxr1KbPdggVygMZtJfunDnhe-C0GEXYM/edit?usp=sharing\" target=\"_blank\">here</a>.
 
 ### Examples
 
@@ -249,7 +252,7 @@ end
 
 Bond Profile
 
-Get general information of a bond. You can query by FIGI, ISIN or CUSIP
+Get general information of a bond. You can query by FIGI, ISIN or CUSIP. A list of supported bonds can be found <a href=\"/api/v1/bond/list?token=\" target=\"_blank\">here</a>.
 
 ### Examples
 
@@ -388,6 +391,77 @@ end
 ### Return type
 
 [**BondTickData**](BondTickData.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## bond_yield_curve
+
+> <BondYieldCurve> bond_yield_curve(code)
+
+Bond Yield Curve
+
+Get yield curve data for Treasury bonds.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+code = 'code_example' # String | Bond's code. You can find the list of supported code <a href=\"https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp=sharing\" target=\"_blank\" rel=\"noopener\">here</a>.
+
+begin
+  # Bond Yield Curve
+  result = api_instance.bond_yield_curve(code)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->bond_yield_curve: #{e}"
+end
+```
+
+#### Using the bond_yield_curve_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<BondYieldCurve>, Integer, Hash)> bond_yield_curve_with_http_info(code)
+
+```ruby
+begin
+  # Bond Yield Curve
+  data, status_code, headers = api_instance.bond_yield_curve_with_http_info(code)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <BondYieldCurve>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->bond_yield_curve_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **code** | **String** | Bond&#39;s code. You can find the list of supported code &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1iA-lM0Kht7lsQZ7Uu_s6r2i1BbQNUNO9eGkO5-zglHg/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot; rel&#x3D;\&quot;noopener\&quot;&gt;here&lt;/a&gt;. |  |
+
+### Return type
+
+[**BondYieldCurve**](BondYieldCurve.md)
 
 ### Authorization
 
@@ -1366,6 +1440,81 @@ end
 - **Accept**: application/json
 
 
+## congressional_trading
+
+> <CongressionalTrading> congressional_trading(symbol, from, to)
+
+Congressional Trading
+
+Get stock trades data disclosed by members of congress.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | Symbol of the company: AAPL.
+from = Date.parse('2013-10-20') # Date | From date <code>YYYY-MM-DD</code>.
+to = Date.parse('2013-10-20') # Date | To date <code>YYYY-MM-DD</code>.
+
+begin
+  # Congressional Trading
+  result = api_instance.congressional_trading(symbol, from, to)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->congressional_trading: #{e}"
+end
+```
+
+#### Using the congressional_trading_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<CongressionalTrading>, Integer, Hash)> congressional_trading_with_http_info(symbol, from, to)
+
+```ruby
+begin
+  # Congressional Trading
+  data, status_code, headers = api_instance.congressional_trading_with_http_info(symbol, from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <CongressionalTrading>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->congressional_trading_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol of the company: AAPL. |  |
+| **from** | **Date** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+| **to** | **Date** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+
+### Return type
+
+[**CongressionalTrading**](CongressionalTrading.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## country
 
 > <Array<CountryMetadata>> country
@@ -2159,7 +2308,7 @@ end
 
 ETFs Holdings
 
-Get full ETF holdings/constituents. This endpoint has global coverage. Widget only shows top 10 holdings.
+Get full ETF holdings/constituents. This endpoint has global coverage. Widget only shows top 10 holdings. A list of supported ETFs can be found <a href=\"/api/v1/etf/list?token=\" target=\"_blank\">here</a>.
 
 ### Examples
 
@@ -2238,7 +2387,7 @@ end
 
 ETFs Profile
 
-Get ETF profile information. This endpoint has global coverage.
+Get ETF profile information. This endpoint has global coverage. A list of supported ETFs can be found <a href=\"/api/v1/etf/list?token=\" target=\"_blank\">here</a>.
 
 ### Examples
 
@@ -3347,7 +3496,7 @@ end
 
 Insider Transactions
 
-Company insider transactions data sourced from <code>Form 3,4,5</code>. This endpoint only covers US companies at the moment. Limit to 100 transactions per API call.
+Company insider transactions data sourced from <code>Form 3,4,5</code>, SEDI and relevant companies' filings. This endpoint covers US, Canada, Australia, and selected EU companies. Limit to 100 transactions per API call.
 
 ### Examples
 
@@ -3501,7 +3650,7 @@ end
 
 Institutional Portfolio
 
-Get the holdings/portfolio data of institutional investors from 13-F filings. Limit to 1 year of data at a time.
+Get the holdings/portfolio data of institutional investors from 13-F filings. Limit to 1 year of data at a time. You can get a list of supported CIK <a href=\"/api/v1/institutional/list?token=\" target=\"_blank\">here</a>.
 
 ### Examples
 
@@ -3632,81 +3781,6 @@ end
 ### Return type
 
 [**InstitutionalProfile**](InstitutionalProfile.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## international_filings
-
-> <Array<InternationalFiling>> international_filings(opts)
-
-International Filings
-
-List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
-
-### Examples
-
-```ruby
-require 'time'
-require 'finnhub_ruby'
-# setup authorization
-FinnhubRuby.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-end
-
-api_instance = FinnhubRuby::DefaultApi.new
-opts = {
-  symbol: 'symbol_example', # String | Symbol. Leave empty to list latest filings.
-  country: 'country_example' # String | Filter by country using country's 2-letter code.
-}
-
-begin
-  # International Filings
-  result = api_instance.international_filings(opts)
-  p result
-rescue FinnhubRuby::ApiError => e
-  puts "Error when calling DefaultApi->international_filings: #{e}"
-end
-```
-
-#### Using the international_filings_with_http_info variant
-
-This returns an Array which contains the response data, status code and headers.
-
-> <Array(<Array<InternationalFiling>>, Integer, Hash)> international_filings_with_http_info(opts)
-
-```ruby
-begin
-  # International Filings
-  data, status_code, headers = api_instance.international_filings_with_http_info(opts)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => <Array<InternationalFiling>>
-rescue FinnhubRuby::ApiError => e
-  puts "Error when calling DefaultApi->international_filings_with_http_info: #{e}"
-end
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **symbol** | **String** | Symbol. Leave empty to list latest filings. | [optional] |
-| **country** | **String** | Filter by country using country&#39;s 2-letter code. | [optional] |
-
-### Return type
-
-[**Array&lt;InternationalFiling&gt;**](InternationalFiling.md)
 
 ### Authorization
 
@@ -4081,13 +4155,155 @@ end
 - **Accept**: application/json
 
 
+## mutual_fund_eet
+
+> <MutualFundEet> mutual_fund_eet(isin)
+
+Mutual Funds EET
+
+Get EET data for EU funds. For PAIs data, please see the EET PAI endpoint.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+isin = 'isin_example' # String | ISIN.
+
+begin
+  # Mutual Funds EET
+  result = api_instance.mutual_fund_eet(isin)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->mutual_fund_eet: #{e}"
+end
+```
+
+#### Using the mutual_fund_eet_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<MutualFundEet>, Integer, Hash)> mutual_fund_eet_with_http_info(isin)
+
+```ruby
+begin
+  # Mutual Funds EET
+  data, status_code, headers = api_instance.mutual_fund_eet_with_http_info(isin)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <MutualFundEet>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->mutual_fund_eet_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **isin** | **String** | ISIN. |  |
+
+### Return type
+
+[**MutualFundEet**](MutualFundEet.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## mutual_fund_eet_pai
+
+> <MutualFundEetPai> mutual_fund_eet_pai(isin)
+
+Mutual Funds EET PAI
+
+Get EET PAI data for EU funds.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+isin = 'isin_example' # String | ISIN.
+
+begin
+  # Mutual Funds EET PAI
+  result = api_instance.mutual_fund_eet_pai(isin)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->mutual_fund_eet_pai: #{e}"
+end
+```
+
+#### Using the mutual_fund_eet_pai_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<MutualFundEetPai>, Integer, Hash)> mutual_fund_eet_pai_with_http_info(isin)
+
+```ruby
+begin
+  # Mutual Funds EET PAI
+  data, status_code, headers = api_instance.mutual_fund_eet_pai_with_http_info(isin)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <MutualFundEetPai>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->mutual_fund_eet_pai_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **isin** | **String** | ISIN. |  |
+
+### Return type
+
+[**MutualFundEetPai**](MutualFundEetPai.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## mutual_fund_holdings
 
 > <MutualFundHoldings> mutual_fund_holdings(opts)
 
 Mutual Funds Holdings
 
-Get full Mutual Funds holdings/constituents. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN.
+Get full Mutual Funds holdings/constituents. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN. A list of supported funds can be found <a href=\"/api/v1/mutual-fund/list?token=\" target=\"_blank\">here</a>.
 
 ### Examples
 
@@ -4164,7 +4380,7 @@ end
 
 Mutual Funds Profile
 
-Get mutual funds profile information. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN.
+Get mutual funds profile information. This endpoint covers both US and global mutual funds. For international funds, you must query the data using ISIN. A list of supported funds can be found <a href=\"/api/v1/mutual-fund/list?token=\" target=\"_blank\">here</a>.
 
 ### Examples
 
@@ -4602,7 +4818,7 @@ end
 
 ## price_metrics
 
-> <PriceMetrics> price_metrics(symbol)
+> <PriceMetrics> price_metrics(symbol, opts)
 
 Price Metrics
 
@@ -4623,10 +4839,13 @@ end
 
 api_instance = FinnhubRuby::DefaultApi.new
 symbol = 'symbol_example' # String | Symbol of the company: AAPL.
+opts = {
+  date: 'date_example' # String | Get data on a specific date in the past. The data is available weekly so your date will be automatically adjusted to the last day of that week.
+}
 
 begin
   # Price Metrics
-  result = api_instance.price_metrics(symbol)
+  result = api_instance.price_metrics(symbol, opts)
   p result
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->price_metrics: #{e}"
@@ -4637,12 +4856,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<PriceMetrics>, Integer, Hash)> price_metrics_with_http_info(symbol)
+> <Array(<PriceMetrics>, Integer, Hash)> price_metrics_with_http_info(symbol, opts)
 
 ```ruby
 begin
   # Price Metrics
-  data, status_code, headers = api_instance.price_metrics_with_http_info(symbol)
+  data, status_code, headers = api_instance.price_metrics_with_http_info(symbol, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <PriceMetrics>
@@ -4656,6 +4875,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Symbol of the company: AAPL. |  |
+| **date** | **String** | Get data on a specific date in the past. The data is available weekly so your date will be automatically adjusted to the last day of that week. | [optional] |
 
 ### Return type
 
@@ -5790,7 +6010,7 @@ end
 
 Tick Data
 
-<p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target=\"_blank\" href=\"/dashboard/download\",>here</a> to speed up the download process.</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">US CTA/UTP</th>       <td>Full SIP</td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">TSX</th>       <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">LSE</th>       <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">Euronext</th>       <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Deutsche Börse</th>       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>   </tbody> </table>
+<p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target=\"_blank\" href=\"/dashboard/download\",>here</a> to speed up the download process.</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">US CTA/UTP</th>       <td>Full SIP</td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">TSX</th>       <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">LSE</th>       <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">Euronext</th>       <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Deutsche Börse</th>       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>   </tbody> </table>
 
 ### Examples
 
@@ -6236,7 +6456,7 @@ end
 
 Symbol Change
 
-Get a list of symbol changes for US-listed and EU-listed securities. Limit to 2000 events at a time.
+Get a list of symbol changes for US-listed, EU-listed, NSE and ASX securities. Limit to 2000 events at a time.
 
 ### Examples
 
@@ -6463,7 +6683,7 @@ end
 
 Earnings Call Transcripts
 
-<p>Get earnings call transcripts, audio and participants' list. This endpoint is only available for US, UK, and Candian companies. <p>15+ years of data is available with 220,000+ audio which add up to 7TB in size.</p>
+<p>Get earnings call transcripts, audio and participants' list. Data is available for US, UK, European, Australian and Canadian companies.<p>15+ years of data is available with 220,000+ audio which add up to 7TB in size.</p>
 
 ### Examples
 

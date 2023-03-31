@@ -14,58 +14,66 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class BondTickData
-    # Number of ticks skipped.
-    attr_accessor :skip
+  class InFilingResponse
+    # Filing Id in Alpharesearch platform
+    attr_accessor :filing_id
 
-    # Number of ticks returned. If <code>count</code> < <code>limit</code>, all data for that date has been returned.
-    attr_accessor :count
+    # Filing title
+    attr_accessor :title
 
-    # Total number of ticks for that date.
-    attr_accessor :total
+    # Id of the entity submitted the filing
+    attr_accessor :filer_id
 
-    # List of volume data.
-    attr_accessor :v
+    # List of symbol associate with this filing
+    attr_accessor :symbol
 
-    # List of price data.
-    attr_accessor :p
+    # Filer name
+    attr_accessor :name
 
-    # List of yield data.
-    attr_accessor :y
+    # Date the filing is submitted.
+    attr_accessor :acceptance_date
 
-    # List of timestamp in UNIX ms.
-    attr_accessor :t
+    # Date the filing is make available to the public
+    attr_accessor :filed_date
 
-    # List of values showing the side (Buy/sell) of each trade. List of supported values: <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\",>here</a>
-    attr_accessor :si
+    # Date as which the filing is reported
+    attr_accessor :report_date
 
-    # List of values showing the counterparty of each trade. List of supported values: <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\",>here</a>
-    attr_accessor :cp
+    # Filing Form
+    attr_accessor :form
 
-    # List of values showing the reporting party of each trade. List of supported values: <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\",>here</a>
-    attr_accessor :rp
+    # Amendment
+    attr_accessor :amend
 
-    # ATS flag. Y or empty
-    attr_accessor :ats
+    # Filing Source
+    attr_accessor :source
 
-    # List of trade conditions. A comprehensive list of trade conditions code can be found <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\">here</a>
-    attr_accessor :c
+    # Estimate number of page when printing
+    attr_accessor :page_count
+
+    # Number of document in this filing
+    attr_accessor :document_count
+
+    # Document for this filing.
+    attr_accessor :documents
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'skip' => :'skip',
-        :'count' => :'count',
-        :'total' => :'total',
-        :'v' => :'v',
-        :'p' => :'p',
-        :'y' => :'y',
-        :'t' => :'t',
-        :'si' => :'si',
-        :'cp' => :'cp',
-        :'rp' => :'rp',
-        :'ats' => :'ats',
-        :'c' => :'c'
+        :'filing_id' => :'filingId',
+        :'title' => :'title',
+        :'filer_id' => :'filerId',
+        :'symbol' => :'symbol',
+        :'name' => :'name',
+        :'acceptance_date' => :'acceptanceDate',
+        :'filed_date' => :'filedDate',
+        :'report_date' => :'reportDate',
+        :'form' => :'form',
+        :'amend' => :'amend',
+        :'source' => :'source',
+        :'page_count' => :'pageCount',
+        :'document_count' => :'documentCount',
+        :'documents' => :'documents'
       }
     end
 
@@ -77,18 +85,20 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'skip' => :'Integer',
-        :'count' => :'Integer',
-        :'total' => :'Integer',
-        :'v' => :'Array<Float>',
-        :'p' => :'Array<Float>',
-        :'y' => :'Array<Float>',
-        :'t' => :'Array<Integer>',
-        :'si' => :'Array<String>',
-        :'cp' => :'Array<String>',
-        :'rp' => :'Array<String>',
-        :'ats' => :'Array<String>',
-        :'c' => :'Array<Array<String>>'
+        :'filing_id' => :'String',
+        :'title' => :'String',
+        :'filer_id' => :'String',
+        :'symbol' => :'Object',
+        :'name' => :'String',
+        :'acceptance_date' => :'String',
+        :'filed_date' => :'String',
+        :'report_date' => :'String',
+        :'form' => :'String',
+        :'amend' => :'Boolean',
+        :'source' => :'String',
+        :'page_count' => :'Integer',
+        :'document_count' => :'Integer',
+        :'documents' => :'Array<DocumentResponse>'
       }
     end
 
@@ -102,80 +112,72 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::BondTickData` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::InFilingResponse` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::BondTickData`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::InFilingResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'skip')
-        self.skip = attributes[:'skip']
+      if attributes.key?(:'filing_id')
+        self.filing_id = attributes[:'filing_id']
       end
 
-      if attributes.key?(:'count')
-        self.count = attributes[:'count']
+      if attributes.key?(:'title')
+        self.title = attributes[:'title']
       end
 
-      if attributes.key?(:'total')
-        self.total = attributes[:'total']
+      if attributes.key?(:'filer_id')
+        self.filer_id = attributes[:'filer_id']
       end
 
-      if attributes.key?(:'v')
-        if (value = attributes[:'v']).is_a?(Array)
-          self.v = value
-        end
+      if attributes.key?(:'symbol')
+        self.symbol = attributes[:'symbol']
       end
 
-      if attributes.key?(:'p')
-        if (value = attributes[:'p']).is_a?(Array)
-          self.p = value
-        end
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       end
 
-      if attributes.key?(:'y')
-        if (value = attributes[:'y']).is_a?(Array)
-          self.y = value
-        end
+      if attributes.key?(:'acceptance_date')
+        self.acceptance_date = attributes[:'acceptance_date']
       end
 
-      if attributes.key?(:'t')
-        if (value = attributes[:'t']).is_a?(Array)
-          self.t = value
-        end
+      if attributes.key?(:'filed_date')
+        self.filed_date = attributes[:'filed_date']
       end
 
-      if attributes.key?(:'si')
-        if (value = attributes[:'si']).is_a?(Array)
-          self.si = value
-        end
+      if attributes.key?(:'report_date')
+        self.report_date = attributes[:'report_date']
       end
 
-      if attributes.key?(:'cp')
-        if (value = attributes[:'cp']).is_a?(Array)
-          self.cp = value
-        end
+      if attributes.key?(:'form')
+        self.form = attributes[:'form']
       end
 
-      if attributes.key?(:'rp')
-        if (value = attributes[:'rp']).is_a?(Array)
-          self.rp = value
-        end
+      if attributes.key?(:'amend')
+        self.amend = attributes[:'amend']
       end
 
-      if attributes.key?(:'ats')
-        if (value = attributes[:'ats']).is_a?(Array)
-          self.ats = value
-        end
+      if attributes.key?(:'source')
+        self.source = attributes[:'source']
       end
 
-      if attributes.key?(:'c')
-        if (value = attributes[:'c']).is_a?(Array)
-          self.c = value
+      if attributes.key?(:'page_count')
+        self.page_count = attributes[:'page_count']
+      end
+
+      if attributes.key?(:'document_count')
+        self.document_count = attributes[:'document_count']
+      end
+
+      if attributes.key?(:'documents')
+        if (value = attributes[:'documents']).is_a?(Array)
+          self.documents = value
         end
       end
     end
@@ -198,18 +200,20 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          skip == o.skip &&
-          count == o.count &&
-          total == o.total &&
-          v == o.v &&
-          p == o.p &&
-          y == o.y &&
-          t == o.t &&
-          si == o.si &&
-          cp == o.cp &&
-          rp == o.rp &&
-          ats == o.ats &&
-          c == o.c
+          filing_id == o.filing_id &&
+          title == o.title &&
+          filer_id == o.filer_id &&
+          symbol == o.symbol &&
+          name == o.name &&
+          acceptance_date == o.acceptance_date &&
+          filed_date == o.filed_date &&
+          report_date == o.report_date &&
+          form == o.form &&
+          amend == o.amend &&
+          source == o.source &&
+          page_count == o.page_count &&
+          document_count == o.document_count &&
+          documents == o.documents
     end
 
     # @see the `==` method
@@ -221,7 +225,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [skip, count, total, v, p, y, t, si, cp, rp, ats, c].hash
+      [filing_id, title, filer_id, symbol, name, acceptance_date, filed_date, report_date, form, amend, source, page_count, document_count, documents].hash
     end
 
     # Builds the object from hash

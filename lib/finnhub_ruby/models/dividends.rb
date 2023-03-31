@@ -39,6 +39,9 @@ module FinnhubRuby
     # Currency.
     attr_accessor :currency
 
+    # <p>Dividend frequency. Can be 1 of the following values:</p><ul> <li><code>0: Annually</code></li> <li><code>1: Monthly</code></li> <li><code>2: Quarterly</code></li> <li><code>3: Semi-annually</code></li> <li><code>4: Other/Unknown</code></li> <li><code>5: Bimonthly</code></li> <li><code>6: Trimesterly</code></li> <li><code>7: Weekly</code></li> </ul>
+    attr_accessor :freq
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -49,7 +52,8 @@ module FinnhubRuby
         :'pay_date' => :'payDate',
         :'record_date' => :'recordDate',
         :'declaration_date' => :'declarationDate',
-        :'currency' => :'currency'
+        :'currency' => :'currency',
+        :'freq' => :'freq'
       }
     end
 
@@ -68,7 +72,8 @@ module FinnhubRuby
         :'pay_date' => :'Date',
         :'record_date' => :'Date',
         :'declaration_date' => :'Date',
-        :'currency' => :'String'
+        :'currency' => :'String',
+        :'freq' => :'String'
       }
     end
 
@@ -124,6 +129,10 @@ module FinnhubRuby
       if attributes.key?(:'currency')
         self.currency = attributes[:'currency']
       end
+
+      if attributes.key?(:'freq')
+        self.freq = attributes[:'freq']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -151,7 +160,8 @@ module FinnhubRuby
           pay_date == o.pay_date &&
           record_date == o.record_date &&
           declaration_date == o.declaration_date &&
-          currency == o.currency
+          currency == o.currency &&
+          freq == o.freq
     end
 
     # @see the `==` method
@@ -163,7 +173,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, date, amount, adjusted_amount, pay_date, record_date, declaration_date, currency].hash
+      [symbol, date, amount, adjusted_amount, pay_date, record_date, declaration_date, currency, freq].hash
     end
 
     # Builds the object from hash

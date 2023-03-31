@@ -33,6 +33,12 @@ module FinnhubRuby
     # Company symbol.
     attr_accessor :symbol
 
+    # Earnings year.
+    attr_accessor :year
+
+    # Earnings quarter.
+    attr_accessor :quarter
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -41,7 +47,9 @@ module FinnhubRuby
         :'surprise' => :'surprise',
         :'surprise_percent' => :'surprisePercent',
         :'period' => :'period',
-        :'symbol' => :'symbol'
+        :'symbol' => :'symbol',
+        :'year' => :'year',
+        :'quarter' => :'quarter'
       }
     end
 
@@ -58,7 +66,9 @@ module FinnhubRuby
         :'surprise' => :'Float',
         :'surprise_percent' => :'Float',
         :'period' => :'Date',
-        :'symbol' => :'String'
+        :'symbol' => :'String',
+        :'year' => :'Integer',
+        :'quarter' => :'Integer'
       }
     end
 
@@ -106,6 +116,14 @@ module FinnhubRuby
       if attributes.key?(:'symbol')
         self.symbol = attributes[:'symbol']
       end
+
+      if attributes.key?(:'year')
+        self.year = attributes[:'year']
+      end
+
+      if attributes.key?(:'quarter')
+        self.quarter = attributes[:'quarter']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -131,7 +149,9 @@ module FinnhubRuby
           surprise == o.surprise &&
           surprise_percent == o.surprise_percent &&
           period == o.period &&
-          symbol == o.symbol
+          symbol == o.symbol &&
+          year == o.year &&
+          quarter == o.quarter
     end
 
     # @see the `==` method
@@ -143,7 +163,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [actual, estimate, surprise, surprise_percent, period, symbol].hash
+      [actual, estimate, surprise, surprise_percent, period, symbol, year, quarter].hash
     end
 
     # Builds the object from hash

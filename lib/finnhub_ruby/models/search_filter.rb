@@ -14,58 +14,18 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class BondTickData
-    # Number of ticks skipped.
-    attr_accessor :skip
+  class SearchFilter
+    # Filter id, use with respective field in search query body.
+    attr_accessor :id
 
-    # Number of ticks returned. If <code>count</code> < <code>limit</code>, all data for that date has been returned.
-    attr_accessor :count
-
-    # Total number of ticks for that date.
-    attr_accessor :total
-
-    # List of volume data.
-    attr_accessor :v
-
-    # List of price data.
-    attr_accessor :p
-
-    # List of yield data.
-    attr_accessor :y
-
-    # List of timestamp in UNIX ms.
-    attr_accessor :t
-
-    # List of values showing the side (Buy/sell) of each trade. List of supported values: <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\",>here</a>
-    attr_accessor :si
-
-    # List of values showing the counterparty of each trade. List of supported values: <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\",>here</a>
-    attr_accessor :cp
-
-    # List of values showing the reporting party of each trade. List of supported values: <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\",>here</a>
-    attr_accessor :rp
-
-    # ATS flag. Y or empty
-    attr_accessor :ats
-
-    # List of trade conditions. A comprehensive list of trade conditions code can be found <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1O3aueXSPOqo7Iuyz4PqDG6yZunHsX8BTefZ2kFk5pz4/edit?usp=sharing\">here</a>
-    attr_accessor :c
+    # Display name.
+    attr_accessor :name
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'skip' => :'skip',
-        :'count' => :'count',
-        :'total' => :'total',
-        :'v' => :'v',
-        :'p' => :'p',
-        :'y' => :'y',
-        :'t' => :'t',
-        :'si' => :'si',
-        :'cp' => :'cp',
-        :'rp' => :'rp',
-        :'ats' => :'ats',
-        :'c' => :'c'
+        :'id' => :'id',
+        :'name' => :'name'
       }
     end
 
@@ -77,18 +37,8 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'skip' => :'Integer',
-        :'count' => :'Integer',
-        :'total' => :'Integer',
-        :'v' => :'Array<Float>',
-        :'p' => :'Array<Float>',
-        :'y' => :'Array<Float>',
-        :'t' => :'Array<Integer>',
-        :'si' => :'Array<String>',
-        :'cp' => :'Array<String>',
-        :'rp' => :'Array<String>',
-        :'ats' => :'Array<String>',
-        :'c' => :'Array<Array<String>>'
+        :'id' => :'String',
+        :'name' => :'String'
       }
     end
 
@@ -102,81 +52,23 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::BondTickData` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::SearchFilter` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::BondTickData`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::SearchFilter`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'skip')
-        self.skip = attributes[:'skip']
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
       end
 
-      if attributes.key?(:'count')
-        self.count = attributes[:'count']
-      end
-
-      if attributes.key?(:'total')
-        self.total = attributes[:'total']
-      end
-
-      if attributes.key?(:'v')
-        if (value = attributes[:'v']).is_a?(Array)
-          self.v = value
-        end
-      end
-
-      if attributes.key?(:'p')
-        if (value = attributes[:'p']).is_a?(Array)
-          self.p = value
-        end
-      end
-
-      if attributes.key?(:'y')
-        if (value = attributes[:'y']).is_a?(Array)
-          self.y = value
-        end
-      end
-
-      if attributes.key?(:'t')
-        if (value = attributes[:'t']).is_a?(Array)
-          self.t = value
-        end
-      end
-
-      if attributes.key?(:'si')
-        if (value = attributes[:'si']).is_a?(Array)
-          self.si = value
-        end
-      end
-
-      if attributes.key?(:'cp')
-        if (value = attributes[:'cp']).is_a?(Array)
-          self.cp = value
-        end
-      end
-
-      if attributes.key?(:'rp')
-        if (value = attributes[:'rp']).is_a?(Array)
-          self.rp = value
-        end
-      end
-
-      if attributes.key?(:'ats')
-        if (value = attributes[:'ats']).is_a?(Array)
-          self.ats = value
-        end
-      end
-
-      if attributes.key?(:'c')
-        if (value = attributes[:'c']).is_a?(Array)
-          self.c = value
-        end
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       end
     end
 
@@ -198,18 +90,8 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          skip == o.skip &&
-          count == o.count &&
-          total == o.total &&
-          v == o.v &&
-          p == o.p &&
-          y == o.y &&
-          t == o.t &&
-          si == o.si &&
-          cp == o.cp &&
-          rp == o.rp &&
-          ats == o.ats &&
-          c == o.c
+          id == o.id &&
+          name == o.name
     end
 
     # @see the `==` method
@@ -221,7 +103,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [skip, count, total, v, p, y, t, si, cp, rp, ats, c].hash
+      [id, name].hash
     end
 
     # Builds the object from hash
