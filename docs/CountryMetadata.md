@@ -12,6 +12,10 @@
 | **currency_code** | **String** | Currency code | [optional] |
 | **region** | **String** | Region | [optional] |
 | **sub_region** | **String** | Sub-Region | [optional] |
+| **rating** | **String** | Moody&#39;s credit risk rating. | [optional] |
+| **default_spread** | **Float** | Default spread | [optional] |
+| **country_risk_premium** | **Float** | Country risk premium | [optional] |
+| **equity_risk_premium** | **Float** | Equity risk premium | [optional] |
 
 ## Example
 
@@ -26,7 +30,11 @@ instance = FinnhubRuby::CountryMetadata.new(
   currency: null,
   currency_code: null,
   region: null,
-  sub_region: null
+  sub_region: null,
+  rating: null,
+  default_spread: null,
+  country_risk_premium: null,
+  equity_risk_premium: null
 )
 ```
 

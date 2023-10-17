@@ -4,6 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **_alias** | **Array&lt;String&gt;** | Company name alias. | [optional] |
 | **address** | **String** | Address of company&#39;s headquarter. | [optional] |
 | **city** | **String** | City of company&#39;s headquarter. | [optional] |
 | **country** | **String** | Country of company&#39;s headquarter. | [optional] |
@@ -19,6 +20,7 @@
 | **gsector** | **String** | Sector. | [optional] |
 | **gsubind** | **String** | Sub-industry. | [optional] |
 | **isin** | **String** | ISIN number. | [optional] |
+| **lei** | **String** | LEI number. | [optional] |
 | **naics_national_industry** | **String** | NAICS national industry. | [optional] |
 | **naics** | **String** | NAICS industry. | [optional] |
 | **naics_sector** | **String** | NAICS sector. | [optional] |
@@ -41,6 +43,7 @@
 require 'finnhub_ruby'
 
 instance = FinnhubRuby::CompanyProfile.new(
+  _alias: null,
   address: null,
   city: null,
   country: null,
@@ -56,6 +59,7 @@ instance = FinnhubRuby::CompanyProfile.new(
   gsector: null,
   gsubind: null,
   isin: null,
+  lei: null,
   naics_national_industry: null,
   naics: null,
   naics_sector: null,

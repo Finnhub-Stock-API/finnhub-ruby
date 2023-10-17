@@ -14,22 +14,22 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class IndicesConstituents
-    # Index's symbol.
-    attr_accessor :symbol
+  class MarketHolidayData
+    # Holiday's name.
+    attr_accessor :event_name
 
-    # Array of constituents.
-    attr_accessor :constituents
+    # Date.
+    attr_accessor :at_date
 
-    # Array of constituents' details.
-    attr_accessor :constituents_breakdown
+    # Trading hours for this day if the market is partially closed only.
+    attr_accessor :trading_hour
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'symbol' => :'symbol',
-        :'constituents' => :'constituents',
-        :'constituents_breakdown' => :'constituentsBreakdown'
+        :'event_name' => :'eventName',
+        :'at_date' => :'atDate',
+        :'trading_hour' => :'tradingHour'
       }
     end
 
@@ -41,9 +41,9 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'symbol' => :'String',
-        :'constituents' => :'Array<String>',
-        :'constituents_breakdown' => :'Array<IndicesConstituentsBreakdown>'
+        :'event_name' => :'String',
+        :'at_date' => :'String',
+        :'trading_hour' => :'String'
       }
     end
 
@@ -57,31 +57,27 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::IndicesConstituents` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::MarketHolidayData` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::IndicesConstituents`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::MarketHolidayData`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'symbol')
-        self.symbol = attributes[:'symbol']
+      if attributes.key?(:'event_name')
+        self.event_name = attributes[:'event_name']
       end
 
-      if attributes.key?(:'constituents')
-        if (value = attributes[:'constituents']).is_a?(Array)
-          self.constituents = value
-        end
+      if attributes.key?(:'at_date')
+        self.at_date = attributes[:'at_date']
       end
 
-      if attributes.key?(:'constituents_breakdown')
-        if (value = attributes[:'constituents_breakdown']).is_a?(Array)
-          self.constituents_breakdown = value
-        end
+      if attributes.key?(:'trading_hour')
+        self.trading_hour = attributes[:'trading_hour']
       end
     end
 
@@ -103,9 +99,9 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          symbol == o.symbol &&
-          constituents == o.constituents &&
-          constituents_breakdown == o.constituents_breakdown
+          event_name == o.event_name &&
+          at_date == o.at_date &&
+          trading_hour == o.trading_hour
     end
 
     # @see the `==` method
@@ -117,7 +113,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, constituents, constituents_breakdown].hash
+      [event_name, at_date, trading_hour].hash
     end
 
     # Builds the object from hash

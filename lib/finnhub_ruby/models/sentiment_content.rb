@@ -14,22 +14,38 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class IndicesConstituents
-    # Index's symbol.
-    attr_accessor :symbol
+  class SentimentContent
+    # Number of mentions
+    attr_accessor :mention
 
-    # Array of constituents.
-    attr_accessor :constituents
+    # Number of positive mentions
+    attr_accessor :positive_mention
 
-    # Array of constituents' details.
-    attr_accessor :constituents_breakdown
+    # Number of negative mentions
+    attr_accessor :negative_mention
+
+    # Positive score. Range 0-1
+    attr_accessor :positive_score
+
+    # Negative score. Range 0-1
+    attr_accessor :negative_score
+
+    # Final score. Range: -1 to 1 with 1 is very positive and -1 is very negative
+    attr_accessor :score
+
+    # Period.
+    attr_accessor :at_time
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'symbol' => :'symbol',
-        :'constituents' => :'constituents',
-        :'constituents_breakdown' => :'constituentsBreakdown'
+        :'mention' => :'mention',
+        :'positive_mention' => :'positiveMention',
+        :'negative_mention' => :'negativeMention',
+        :'positive_score' => :'positiveScore',
+        :'negative_score' => :'negativeScore',
+        :'score' => :'score',
+        :'at_time' => :'atTime'
       }
     end
 
@@ -41,9 +57,13 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'symbol' => :'String',
-        :'constituents' => :'Array<String>',
-        :'constituents_breakdown' => :'Array<IndicesConstituentsBreakdown>'
+        :'mention' => :'Integer',
+        :'positive_mention' => :'Integer',
+        :'negative_mention' => :'Integer',
+        :'positive_score' => :'Float',
+        :'negative_score' => :'Float',
+        :'score' => :'Float',
+        :'at_time' => :'String'
       }
     end
 
@@ -57,31 +77,43 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::IndicesConstituents` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::SentimentContent` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::IndicesConstituents`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::SentimentContent`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'symbol')
-        self.symbol = attributes[:'symbol']
+      if attributes.key?(:'mention')
+        self.mention = attributes[:'mention']
       end
 
-      if attributes.key?(:'constituents')
-        if (value = attributes[:'constituents']).is_a?(Array)
-          self.constituents = value
-        end
+      if attributes.key?(:'positive_mention')
+        self.positive_mention = attributes[:'positive_mention']
       end
 
-      if attributes.key?(:'constituents_breakdown')
-        if (value = attributes[:'constituents_breakdown']).is_a?(Array)
-          self.constituents_breakdown = value
-        end
+      if attributes.key?(:'negative_mention')
+        self.negative_mention = attributes[:'negative_mention']
+      end
+
+      if attributes.key?(:'positive_score')
+        self.positive_score = attributes[:'positive_score']
+      end
+
+      if attributes.key?(:'negative_score')
+        self.negative_score = attributes[:'negative_score']
+      end
+
+      if attributes.key?(:'score')
+        self.score = attributes[:'score']
+      end
+
+      if attributes.key?(:'at_time')
+        self.at_time = attributes[:'at_time']
       end
     end
 
@@ -103,9 +135,13 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          symbol == o.symbol &&
-          constituents == o.constituents &&
-          constituents_breakdown == o.constituents_breakdown
+          mention == o.mention &&
+          positive_mention == o.positive_mention &&
+          negative_mention == o.negative_mention &&
+          positive_score == o.positive_score &&
+          negative_score == o.negative_score &&
+          score == o.score &&
+          at_time == o.at_time
     end
 
     # @see the `==` method
@@ -117,7 +153,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, constituents, constituents_breakdown].hash
+      [mention, positive_mention, negative_mention, positive_score, negative_score, score, at_time].hash
     end
 
     # Builds the object from hash

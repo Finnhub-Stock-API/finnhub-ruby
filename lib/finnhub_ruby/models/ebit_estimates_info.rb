@@ -30,6 +30,12 @@ module FinnhubRuby
     # Period.
     attr_accessor :period
 
+    # Fiscal year.
+    attr_accessor :year
+
+    # Fiscal quarter.
+    attr_accessor :quarter
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -37,7 +43,9 @@ module FinnhubRuby
         :'ebit_high' => :'ebitHigh',
         :'ebit_low' => :'ebitLow',
         :'number_analysts' => :'numberAnalysts',
-        :'period' => :'period'
+        :'period' => :'period',
+        :'year' => :'year',
+        :'quarter' => :'quarter'
       }
     end
 
@@ -53,7 +61,9 @@ module FinnhubRuby
         :'ebit_high' => :'Float',
         :'ebit_low' => :'Float',
         :'number_analysts' => :'Integer',
-        :'period' => :'Date'
+        :'period' => :'Date',
+        :'year' => :'Integer',
+        :'quarter' => :'Integer'
       }
     end
 
@@ -97,6 +107,14 @@ module FinnhubRuby
       if attributes.key?(:'period')
         self.period = attributes[:'period']
       end
+
+      if attributes.key?(:'year')
+        self.year = attributes[:'year']
+      end
+
+      if attributes.key?(:'quarter')
+        self.quarter = attributes[:'quarter']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -121,7 +139,9 @@ module FinnhubRuby
           ebit_high == o.ebit_high &&
           ebit_low == o.ebit_low &&
           number_analysts == o.number_analysts &&
-          period == o.period
+          period == o.period &&
+          year == o.year &&
+          quarter == o.quarter
     end
 
     # @see the `==` method
@@ -133,7 +153,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [ebit_avg, ebit_high, ebit_low, number_analysts, period].hash
+      [ebit_avg, ebit_high, ebit_low, number_analysts, period, year, quarter].hash
     end
 
     # Builds the object from hash

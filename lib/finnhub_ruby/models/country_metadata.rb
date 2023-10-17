@@ -39,6 +39,18 @@ module FinnhubRuby
     # Sub-Region
     attr_accessor :sub_region
 
+    # Moody's credit risk rating.
+    attr_accessor :rating
+
+    # Default spread
+    attr_accessor :default_spread
+
+    # Country risk premium
+    attr_accessor :country_risk_premium
+
+    # Equity risk premium
+    attr_accessor :equity_risk_premium
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -49,7 +61,11 @@ module FinnhubRuby
         :'currency' => :'currency',
         :'currency_code' => :'currencyCode',
         :'region' => :'region',
-        :'sub_region' => :'subRegion'
+        :'sub_region' => :'subRegion',
+        :'rating' => :'rating',
+        :'default_spread' => :'defaultSpread',
+        :'country_risk_premium' => :'countryRiskPremium',
+        :'equity_risk_premium' => :'equityRiskPremium'
       }
     end
 
@@ -68,7 +84,11 @@ module FinnhubRuby
         :'currency' => :'String',
         :'currency_code' => :'String',
         :'region' => :'String',
-        :'sub_region' => :'String'
+        :'sub_region' => :'String',
+        :'rating' => :'String',
+        :'default_spread' => :'Float',
+        :'country_risk_premium' => :'Float',
+        :'equity_risk_premium' => :'Float'
       }
     end
 
@@ -124,6 +144,22 @@ module FinnhubRuby
       if attributes.key?(:'sub_region')
         self.sub_region = attributes[:'sub_region']
       end
+
+      if attributes.key?(:'rating')
+        self.rating = attributes[:'rating']
+      end
+
+      if attributes.key?(:'default_spread')
+        self.default_spread = attributes[:'default_spread']
+      end
+
+      if attributes.key?(:'country_risk_premium')
+        self.country_risk_premium = attributes[:'country_risk_premium']
+      end
+
+      if attributes.key?(:'equity_risk_premium')
+        self.equity_risk_premium = attributes[:'equity_risk_premium']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -151,7 +187,11 @@ module FinnhubRuby
           currency == o.currency &&
           currency_code == o.currency_code &&
           region == o.region &&
-          sub_region == o.sub_region
+          sub_region == o.sub_region &&
+          rating == o.rating &&
+          default_spread == o.default_spread &&
+          country_risk_premium == o.country_risk_premium &&
+          equity_risk_premium == o.equity_risk_premium
     end
 
     # @see the `==` method
@@ -163,7 +203,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [country, code2, code3, code_no, currency, currency_code, region, sub_region].hash
+      [country, code2, code3, code_no, currency, currency_code, region, sub_region, rating, default_spread, country_risk_premium, equity_risk_premium].hash
     end
 
     # Builds the object from hash

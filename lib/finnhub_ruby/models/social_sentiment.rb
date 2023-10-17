@@ -18,18 +18,14 @@ module FinnhubRuby
     # Company symbol.
     attr_accessor :symbol
 
-    # Reddit sentiment.
-    attr_accessor :reddit
-
-    # Twitter sentiment.
-    attr_accessor :twitter
+    # Sentiment data.
+    attr_accessor :data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'symbol' => :'symbol',
-        :'reddit' => :'reddit',
-        :'twitter' => :'twitter'
+        :'data' => :'data'
       }
     end
 
@@ -42,8 +38,7 @@ module FinnhubRuby
     def self.openapi_types
       {
         :'symbol' => :'String',
-        :'reddit' => :'Array<RedditSentimentContent>',
-        :'twitter' => :'Array<TwitterSentimentContent>'
+        :'data' => :'Array<SentimentContent>'
       }
     end
 
@@ -72,15 +67,9 @@ module FinnhubRuby
         self.symbol = attributes[:'symbol']
       end
 
-      if attributes.key?(:'reddit')
-        if (value = attributes[:'reddit']).is_a?(Array)
-          self.reddit = value
-        end
-      end
-
-      if attributes.key?(:'twitter')
-        if (value = attributes[:'twitter']).is_a?(Array)
-          self.twitter = value
+      if attributes.key?(:'data')
+        if (value = attributes[:'data']).is_a?(Array)
+          self.data = value
         end
       end
     end
@@ -104,8 +93,7 @@ module FinnhubRuby
       return true if self.equal?(o)
       self.class == o.class &&
           symbol == o.symbol &&
-          reddit == o.reddit &&
-          twitter == o.twitter
+          data == o.data
     end
 
     # @see the `==` method
@@ -117,7 +105,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, reddit, twitter].hash
+      [symbol, data].hash
     end
 
     # Builds the object from hash

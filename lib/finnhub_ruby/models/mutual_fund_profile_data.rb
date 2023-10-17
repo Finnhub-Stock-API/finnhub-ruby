@@ -42,6 +42,9 @@ module FinnhubRuby
     # Fund Family.
     attr_accessor :fund_family
 
+    # Fund Company.
+    attr_accessor :fund_company
+
     # Fund's managers.
     attr_accessor :manager
 
@@ -108,6 +111,7 @@ module FinnhubRuby
         :'inception_date' => :'inceptionDate',
         :'description' => :'description',
         :'fund_family' => :'fundFamily',
+        :'fund_company' => :'fundCompany',
         :'manager' => :'manager',
         :'status' => :'status',
         :'beta' => :'beta',
@@ -146,6 +150,7 @@ module FinnhubRuby
         :'inception_date' => :'Date',
         :'description' => :'String',
         :'fund_family' => :'String',
+        :'fund_company' => :'String',
         :'manager' => :'String',
         :'status' => :'String',
         :'beta' => :'Float',
@@ -222,6 +227,10 @@ module FinnhubRuby
 
       if attributes.key?(:'fund_family')
         self.fund_family = attributes[:'fund_family']
+      end
+
+      if attributes.key?(:'fund_company')
+        self.fund_company = attributes[:'fund_company']
       end
 
       if attributes.key?(:'manager')
@@ -324,6 +333,7 @@ module FinnhubRuby
           inception_date == o.inception_date &&
           description == o.description &&
           fund_family == o.fund_family &&
+          fund_company == o.fund_company &&
           manager == o.manager &&
           status == o.status &&
           beta == o.beta &&
@@ -353,7 +363,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, category, investment_segment, total_nav, expense_ratio, benchmark, inception_date, description, fund_family, manager, status, beta, deferred_load, fee12b1, front_load, ira_min_investment, isin, cusip, max_redemption_fee, standard_min_investment, turnover, series_id, series_name, class_id, class_name, sfdr_classification, currency].hash
+      [name, category, investment_segment, total_nav, expense_ratio, benchmark, inception_date, description, fund_family, fund_company, manager, status, beta, deferred_load, fee12b1, front_load, ira_min_investment, isin, cusip, max_redemption_fee, standard_min_investment, turnover, series_id, series_name, class_id, class_name, sfdr_classification, currency].hash
     end
 
     # Builds the object from hash

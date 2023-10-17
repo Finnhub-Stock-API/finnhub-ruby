@@ -78,6 +78,7 @@ docs/InFilingSearchBody.md
 docs/IndexHistoricalConstituent.md
 docs/Indicator.md
 docs/IndicesConstituents.md
+docs/IndicesConstituentsBreakdown.md
 docs/IndicesHistoricalConstituents.md
 docs/InsiderSentiments.md
 docs/InsiderSentimentsData.md
@@ -99,7 +100,10 @@ docs/KeyCustomersSuppliers.md
 docs/LastBidAsk.md
 docs/LobbyingData.md
 docs/LobbyingResult.md
+docs/MarketHoliday.md
+docs/MarketHolidayData.md
 docs/MarketNews.md
+docs/MarketStatus.md
 docs/MutualFundCountryExposure.md
 docs/MutualFundCountryExposureData.md
 docs/MutualFundEet.md
@@ -119,7 +123,6 @@ docs/PriceMetrics.md
 docs/PriceTarget.md
 docs/Quote.md
 docs/RecommendationTrend.md
-docs/RedditSentimentContent.md
 docs/Report.md
 docs/RevenueBreakdown.md
 docs/RevenueEstimates.md
@@ -131,6 +134,7 @@ docs/SearchResponse.md
 docs/SectorMetric.md
 docs/SectorMetricData.md
 docs/Sentiment.md
+docs/SentimentContent.md
 docs/SimilarityIndex.md
 docs/SimilarityIndexInfo.md
 docs/SocialSentiment.md
@@ -150,7 +154,6 @@ docs/Transactions.md
 docs/TranscriptContent.md
 docs/TranscriptParticipant.md
 docs/Trend.md
-docs/TwitterSentimentContent.md
 docs/UpgradeDowngrade.md
 docs/UsaSpending.md
 docs/UsaSpendingResult.md
@@ -235,6 +238,7 @@ lib/finnhub_ruby/models/in_filing_search_body.rb
 lib/finnhub_ruby/models/index_historical_constituent.rb
 lib/finnhub_ruby/models/indicator.rb
 lib/finnhub_ruby/models/indices_constituents.rb
+lib/finnhub_ruby/models/indices_constituents_breakdown.rb
 lib/finnhub_ruby/models/indices_historical_constituents.rb
 lib/finnhub_ruby/models/insider_sentiments.rb
 lib/finnhub_ruby/models/insider_sentiments_data.rb
@@ -258,7 +262,10 @@ lib/finnhub_ruby/models/key_customers_suppliers.rb
 lib/finnhub_ruby/models/last_bid_ask.rb
 lib/finnhub_ruby/models/lobbying_data.rb
 lib/finnhub_ruby/models/lobbying_result.rb
+lib/finnhub_ruby/models/market_holiday.rb
+lib/finnhub_ruby/models/market_holiday_data.rb
 lib/finnhub_ruby/models/market_news.rb
+lib/finnhub_ruby/models/market_status.rb
 lib/finnhub_ruby/models/mutual_fund_country_exposure.rb
 lib/finnhub_ruby/models/mutual_fund_country_exposure_data.rb
 lib/finnhub_ruby/models/mutual_fund_eet.rb
@@ -278,7 +285,6 @@ lib/finnhub_ruby/models/price_metrics.rb
 lib/finnhub_ruby/models/price_target.rb
 lib/finnhub_ruby/models/quote.rb
 lib/finnhub_ruby/models/recommendation_trend.rb
-lib/finnhub_ruby/models/reddit_sentiment_content.rb
 lib/finnhub_ruby/models/report.rb
 lib/finnhub_ruby/models/revenue_breakdown.rb
 lib/finnhub_ruby/models/revenue_estimates.rb
@@ -290,6 +296,7 @@ lib/finnhub_ruby/models/sec_sentiment_analysis.rb
 lib/finnhub_ruby/models/sector_metric.rb
 lib/finnhub_ruby/models/sector_metric_data.rb
 lib/finnhub_ruby/models/sentiment.rb
+lib/finnhub_ruby/models/sentiment_content.rb
 lib/finnhub_ruby/models/similarity_index.rb
 lib/finnhub_ruby/models/similarity_index_info.rb
 lib/finnhub_ruby/models/social_sentiment.rb
@@ -309,7 +316,6 @@ lib/finnhub_ruby/models/transactions.rb
 lib/finnhub_ruby/models/transcript_content.rb
 lib/finnhub_ruby/models/transcript_participant.rb
 lib/finnhub_ruby/models/trend.rb
-lib/finnhub_ruby/models/twitter_sentiment_content.rb
 lib/finnhub_ruby/models/upgrade_downgrade.rb
 lib/finnhub_ruby/models/usa_spending.rb
 lib/finnhub_ruby/models/usa_spending_result.rb
@@ -320,18 +326,9 @@ lib/finnhub_ruby/models/visa_application_result.rb
 lib/finnhub_ruby/version.rb
 spec/api_client_spec.rb
 spec/configuration_spec.rb
-spec/models/bond_yield_curve_info_spec.rb
-spec/models/bond_yield_curve_spec.rb
-spec/models/congressional_trading_spec.rb
-spec/models/congressional_transaction_spec.rb
-spec/models/document_response_spec.rb
-spec/models/excerpt_response_spec.rb
-spec/models/filing_response_spec.rb
-spec/models/in_filing_response_spec.rb
-spec/models/in_filing_search_body_spec.rb
-spec/models/mutual_fund_eet_pai_spec.rb
-spec/models/mutual_fund_eet_spec.rb
-spec/models/search_body_spec.rb
-spec/models/search_filter_spec.rb
-spec/models/search_response_spec.rb
+spec/models/indices_constituents_breakdown_spec.rb
+spec/models/market_holiday_data_spec.rb
+spec/models/market_holiday_spec.rb
+spec/models/market_status_spec.rb
+spec/models/sentiment_content_spec.rb
 spec/spec_helper.rb

@@ -54,10 +54,13 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**institutional_ownership**](DefaultApi.md#institutional_ownership) | **GET** /institutional/ownership | Institutional Ownership |
 | [**institutional_portfolio**](DefaultApi.md#institutional_portfolio) | **GET** /institutional/portfolio | Institutional Portfolio |
 | [**institutional_profile**](DefaultApi.md#institutional_profile) | **GET** /institutional/profile | Institutional Profile |
+| [**international_filings**](DefaultApi.md#international_filings) | **GET** /stock/international-filings | International Filings |
 | [**investment_themes**](DefaultApi.md#investment_themes) | **GET** /stock/investment-theme | Investment Themes (Thematic Investing) |
 | [**ipo_calendar**](DefaultApi.md#ipo_calendar) | **GET** /calendar/ipo | IPO Calendar |
 | [**isin_change**](DefaultApi.md#isin_change) | **GET** /ca/isin-change | ISIN Change |
+| [**market_holiday**](DefaultApi.md#market_holiday) | **GET** /stock/market-holiday | Market Holiday |
 | [**market_news**](DefaultApi.md#market_news) | **GET** /news | Market News |
+| [**market_status**](DefaultApi.md#market_status) | **GET** /stock/market-status | Market Status |
 | [**mutual_fund_country_exposure**](DefaultApi.md#mutual_fund_country_exposure) | **GET** /mutual-fund/country | Mutual Funds Country Exposure |
 | [**mutual_fund_eet**](DefaultApi.md#mutual_fund_eet) | **GET** /mutual-fund/eet | Mutual Funds EET |
 | [**mutual_fund_eet_pai**](DefaultApi.md#mutual_fund_eet_pai) | **GET** /mutual-fund/eet-pai | Mutual Funds EET PAI |
@@ -925,7 +928,7 @@ end
 
 Company ESG Scores
 
-<p>This endpoint provides ESG scores and important indicators for 1000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p>
+<p>This endpoint provides ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p><p>Historical ESG data is available for Enterprise users. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.</p>
 
 ### Examples
 
@@ -2233,7 +2236,7 @@ end
 
 ## etfs_country_exposure
 
-> <ETFsCountryExposure> etfs_country_exposure(symbol)
+> <ETFsCountryExposure> etfs_country_exposure(opts)
 
 ETFs Country Exposure
 
@@ -2253,11 +2256,14 @@ FinnhubRuby.configure do |config|
 end
 
 api_instance = FinnhubRuby::DefaultApi.new
-symbol = 'symbol_example' # String | ETF symbol.
+opts = {
+  symbol: 'symbol_example', # String | ETF symbol.
+  isin: 'isin_example' # String | ETF isin.
+}
 
 begin
   # ETFs Country Exposure
-  result = api_instance.etfs_country_exposure(symbol)
+  result = api_instance.etfs_country_exposure(opts)
   p result
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->etfs_country_exposure: #{e}"
@@ -2268,12 +2274,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<ETFsCountryExposure>, Integer, Hash)> etfs_country_exposure_with_http_info(symbol)
+> <Array(<ETFsCountryExposure>, Integer, Hash)> etfs_country_exposure_with_http_info(opts)
 
 ```ruby
 begin
   # ETFs Country Exposure
-  data, status_code, headers = api_instance.etfs_country_exposure_with_http_info(symbol)
+  data, status_code, headers = api_instance.etfs_country_exposure_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <ETFsCountryExposure>
@@ -2286,7 +2292,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **symbol** | **String** | ETF symbol. |  |
+| **symbol** | **String** | ETF symbol. | [optional] |
+| **isin** | **String** | ETF isin. | [optional] |
 
 ### Return type
 
@@ -2458,7 +2465,7 @@ end
 
 ## etfs_sector_exposure
 
-> <ETFsSectorExposure> etfs_sector_exposure(symbol)
+> <ETFsSectorExposure> etfs_sector_exposure(opts)
 
 ETFs Sector Exposure
 
@@ -2478,11 +2485,14 @@ FinnhubRuby.configure do |config|
 end
 
 api_instance = FinnhubRuby::DefaultApi.new
-symbol = 'symbol_example' # String | ETF symbol.
+opts = {
+  symbol: 'symbol_example', # String | ETF symbol.
+  isin: 'isin_example' # String | ETF isin.
+}
 
 begin
   # ETFs Sector Exposure
-  result = api_instance.etfs_sector_exposure(symbol)
+  result = api_instance.etfs_sector_exposure(opts)
   p result
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->etfs_sector_exposure: #{e}"
@@ -2493,12 +2503,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<ETFsSectorExposure>, Integer, Hash)> etfs_sector_exposure_with_http_info(symbol)
+> <Array(<ETFsSectorExposure>, Integer, Hash)> etfs_sector_exposure_with_http_info(opts)
 
 ```ruby
 begin
   # ETFs Sector Exposure
-  data, status_code, headers = api_instance.etfs_sector_exposure_with_http_info(symbol)
+  data, status_code, headers = api_instance.etfs_sector_exposure_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <ETFsSectorExposure>
@@ -2511,7 +2521,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **symbol** | **String** | ETF symbol. |  |
+| **symbol** | **String** | ETF symbol. | [optional] |
+| **isin** | **String** | ETF isin. | [optional] |
 
 ### Return type
 
@@ -3279,7 +3290,7 @@ end
 
 Indices Constituents
 
-Get a list of index's constituents. A list of supported indices for this endpoint can be found <a href=\"https://docs.google.com/spreadsheets/d/1Syr2eLielHWsorxkDEZXyc55d6bNx1M3ZeI4vdn7Qzo/edit?usp=sharing\" target=\"_blank\">here</a>.
+Get a list of index's constituents. A list of supported indices for this endpoint can be found <a href=\"/api/v1/index/list?token=\" target=\"_blank\">here</a>.
 
 ### Examples
 
@@ -3792,6 +3803,81 @@ end
 - **Accept**: application/json
 
 
+## international_filings
+
+> <Array<InternationalFiling>> international_filings(opts)
+
+International Filings
+
+List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+opts = {
+  symbol: 'symbol_example', # String | Symbol. Leave empty to list latest filings.
+  country: 'country_example' # String | Filter by country using country's 2-letter code.
+}
+
+begin
+  # International Filings
+  result = api_instance.international_filings(opts)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->international_filings: #{e}"
+end
+```
+
+#### Using the international_filings_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<InternationalFiling>>, Integer, Hash)> international_filings_with_http_info(opts)
+
+```ruby
+begin
+  # International Filings
+  data, status_code, headers = api_instance.international_filings_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<InternationalFiling>>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->international_filings_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol. Leave empty to list latest filings. | [optional] |
+| **country** | **String** | Filter by country using country&#39;s 2-letter code. | [optional] |
+
+### Return type
+
+[**Array&lt;InternationalFiling&gt;**](InternationalFiling.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## investment_themes
 
 > <InvestmentThemes> investment_themes(theme)
@@ -4009,6 +4095,77 @@ end
 - **Accept**: application/json
 
 
+## market_holiday
+
+> <MarketHoliday> market_holiday(exchange)
+
+Market Holiday
+
+Get a list of holidays for global exchanges.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+exchange = 'exchange_example' # String | Exchange code.
+
+begin
+  # Market Holiday
+  result = api_instance.market_holiday(exchange)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->market_holiday: #{e}"
+end
+```
+
+#### Using the market_holiday_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<MarketHoliday>, Integer, Hash)> market_holiday_with_http_info(exchange)
+
+```ruby
+begin
+  # Market Holiday
+  data, status_code, headers = api_instance.market_holiday_with_http_info(exchange)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <MarketHoliday>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->market_holiday_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **exchange** | **String** | Exchange code. |  |
+
+### Return type
+
+[**MarketHoliday**](MarketHoliday.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## market_news
 
 > <Array<MarketNews>> market_news(category, opts)
@@ -4084,9 +4241,80 @@ end
 - **Accept**: application/json
 
 
+## market_status
+
+> <MarketStatus> market_status(exchange)
+
+Market Status
+
+Get current market status for global exchanges (whether exchanges are open or close).
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+exchange = 'exchange_example' # String | Exchange code.
+
+begin
+  # Market Status
+  result = api_instance.market_status(exchange)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->market_status: #{e}"
+end
+```
+
+#### Using the market_status_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<MarketStatus>, Integer, Hash)> market_status_with_http_info(exchange)
+
+```ruby
+begin
+  # Market Status
+  data, status_code, headers = api_instance.market_status_with_http_info(exchange)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <MarketStatus>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->market_status_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **exchange** | **String** | Exchange code. |  |
+
+### Return type
+
+[**MarketStatus**](MarketStatus.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## mutual_fund_country_exposure
 
-> <MutualFundCountryExposure> mutual_fund_country_exposure(symbol)
+> <MutualFundCountryExposure> mutual_fund_country_exposure(opts)
 
 Mutual Funds Country Exposure
 
@@ -4106,11 +4334,14 @@ FinnhubRuby.configure do |config|
 end
 
 api_instance = FinnhubRuby::DefaultApi.new
-symbol = 'symbol_example' # String | Symbol.
+opts = {
+  symbol: 'symbol_example', # String | Symbol.
+  isin: 'isin_example' # String | Fund's isin.
+}
 
 begin
   # Mutual Funds Country Exposure
-  result = api_instance.mutual_fund_country_exposure(symbol)
+  result = api_instance.mutual_fund_country_exposure(opts)
   p result
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->mutual_fund_country_exposure: #{e}"
@@ -4121,12 +4352,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<MutualFundCountryExposure>, Integer, Hash)> mutual_fund_country_exposure_with_http_info(symbol)
+> <Array(<MutualFundCountryExposure>, Integer, Hash)> mutual_fund_country_exposure_with_http_info(opts)
 
 ```ruby
 begin
   # Mutual Funds Country Exposure
-  data, status_code, headers = api_instance.mutual_fund_country_exposure_with_http_info(symbol)
+  data, status_code, headers = api_instance.mutual_fund_country_exposure_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <MutualFundCountryExposure>
@@ -4139,7 +4370,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **symbol** | **String** | Symbol. |  |
+| **symbol** | **String** | Symbol. | [optional] |
+| **isin** | **String** | Fund&#39;s isin. | [optional] |
 
 ### Return type
 
@@ -4451,7 +4683,7 @@ end
 
 ## mutual_fund_sector_exposure
 
-> <MutualFundSectorExposure> mutual_fund_sector_exposure(symbol)
+> <MutualFundSectorExposure> mutual_fund_sector_exposure(opts)
 
 Mutual Funds Sector Exposure
 
@@ -4471,11 +4703,14 @@ FinnhubRuby.configure do |config|
 end
 
 api_instance = FinnhubRuby::DefaultApi.new
-symbol = 'symbol_example' # String | Mutual Fund symbol.
+opts = {
+  symbol: 'symbol_example', # String | Mutual Fund symbol.
+  isin: 'isin_example' # String | Fund's isin.
+}
 
 begin
   # Mutual Funds Sector Exposure
-  result = api_instance.mutual_fund_sector_exposure(symbol)
+  result = api_instance.mutual_fund_sector_exposure(opts)
   p result
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->mutual_fund_sector_exposure: #{e}"
@@ -4486,12 +4721,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<MutualFundSectorExposure>, Integer, Hash)> mutual_fund_sector_exposure_with_http_info(symbol)
+> <Array(<MutualFundSectorExposure>, Integer, Hash)> mutual_fund_sector_exposure_with_http_info(opts)
 
 ```ruby
 begin
   # Mutual Funds Sector Exposure
-  data, status_code, headers = api_instance.mutual_fund_sector_exposure_with_http_info(symbol)
+  data, status_code, headers = api_instance.mutual_fund_sector_exposure_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <MutualFundSectorExposure>
@@ -4504,7 +4739,8 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **symbol** | **String** | Mutual Fund symbol. |  |
+| **symbol** | **String** | Mutual Fund symbol. | [optional] |
+| **isin** | **String** | Fund&#39;s isin. | [optional] |
 
 ### Return type
 
@@ -5333,7 +5569,7 @@ end
 
 Social Sentiment
 
-<p>Get social sentiment for stocks on Reddit and Twitter. This endpoint is currently in Beta.</p>
+<p>Get social sentiment for stocks on Reddit and Twitter.</p>
 
 ### Examples
 
@@ -5552,7 +5788,7 @@ end
 
 Stock Candles
 
-<p>Get candlestick data (OHLCV) for stocks.</p><p>Daily data will be adjusted for Splits. Intraday data will remain unadjusted.</p>
+<p>Get candlestick data (OHLCV) for stocks.</p><p>Daily data will be adjusted for Splits. Intraday data will remain unadjusted. Only 1 month of intraday will be returned at a time. If you need more historical intraday data, please use the from and to params iteratively to request more data.</p>
 
 ### Examples
 
@@ -6010,7 +6246,7 @@ end
 
 Tick Data
 
-<p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target=\"_blank\" href=\"/dashboard/download\",>here</a> to speed up the download process.</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">US CTA/UTP</th>       <td>Full SIP</td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">TSX</th>       <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">LSE</th>       <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">Euronext</th>       <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Deutsche Börse</th>       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>   </tbody> </table>
+<p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For more historical tick data, you can visit our bulk download page in the Dashboard <a target=\"_blank\" href=\"/dashboard/download\",>here</a> to speed up the download process.</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">US CTA/UTP</th>       <td>Full SIP</td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">TSX</th>       <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">LSE</th>       <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">Euronext</th>       <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Deutsche Börse</th>       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>   </tbody> </table>
 
 ### Examples
 

@@ -33,10 +33,10 @@ module FinnhubRuby
     # Company symbol.
     attr_accessor :symbol
 
-    # Earnings year.
+    # Fiscal year.
     attr_accessor :year
 
-    # Earnings quarter.
+    # Fiscal quarter.
     attr_accessor :quarter
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -13,6 +13,7 @@
 | **inception_date** | **Date** | Inception date. | [optional] |
 | **description** | **String** | Fund&#39;s description. | [optional] |
 | **fund_family** | **String** | Fund Family. | [optional] |
+| **fund_company** | **String** | Fund Company. | [optional] |
 | **manager** | **String** | Fund&#39;s managers. | [optional] |
 | **status** | **String** | Status. | [optional] |
 | **beta** | **Float** | Beta. | [optional] |
@@ -47,6 +48,7 @@ instance = FinnhubRuby::MutualFundProfileData.new(
   inception_date: null,
   description: null,
   fund_family: null,
+  fund_company: null,
   manager: null,
   status: null,
   beta: null,

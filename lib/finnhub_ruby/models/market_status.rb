@@ -14,22 +14,34 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class IndicesConstituents
-    # Index's symbol.
-    attr_accessor :symbol
+  class MarketStatus
+    # Exchange.
+    attr_accessor :exchange
 
-    # Array of constituents.
-    attr_accessor :constituents
+    # Timezone.
+    attr_accessor :timezone
 
-    # Array of constituents' details.
-    attr_accessor :constituents_breakdown
+    # Market session.
+    attr_accessor :session
+
+    # Holiday event.
+    attr_accessor :holiday
+
+    # Whether the market is open at the moment.
+    attr_accessor :is_open
+
+    # Current timestamp.
+    attr_accessor :t
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'symbol' => :'symbol',
-        :'constituents' => :'constituents',
-        :'constituents_breakdown' => :'constituentsBreakdown'
+        :'exchange' => :'exchange',
+        :'timezone' => :'timezone',
+        :'session' => :'session',
+        :'holiday' => :'holiday',
+        :'is_open' => :'isOpen',
+        :'t' => :'t'
       }
     end
 
@@ -41,9 +53,12 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'symbol' => :'String',
-        :'constituents' => :'Array<String>',
-        :'constituents_breakdown' => :'Array<IndicesConstituentsBreakdown>'
+        :'exchange' => :'String',
+        :'timezone' => :'String',
+        :'session' => :'String',
+        :'holiday' => :'String',
+        :'is_open' => :'Boolean',
+        :'t' => :'Integer'
       }
     end
 
@@ -57,31 +72,39 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::IndicesConstituents` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::MarketStatus` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::IndicesConstituents`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::MarketStatus`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'symbol')
-        self.symbol = attributes[:'symbol']
+      if attributes.key?(:'exchange')
+        self.exchange = attributes[:'exchange']
       end
 
-      if attributes.key?(:'constituents')
-        if (value = attributes[:'constituents']).is_a?(Array)
-          self.constituents = value
-        end
+      if attributes.key?(:'timezone')
+        self.timezone = attributes[:'timezone']
       end
 
-      if attributes.key?(:'constituents_breakdown')
-        if (value = attributes[:'constituents_breakdown']).is_a?(Array)
-          self.constituents_breakdown = value
-        end
+      if attributes.key?(:'session')
+        self.session = attributes[:'session']
+      end
+
+      if attributes.key?(:'holiday')
+        self.holiday = attributes[:'holiday']
+      end
+
+      if attributes.key?(:'is_open')
+        self.is_open = attributes[:'is_open']
+      end
+
+      if attributes.key?(:'t')
+        self.t = attributes[:'t']
       end
     end
 
@@ -103,9 +126,12 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          symbol == o.symbol &&
-          constituents == o.constituents &&
-          constituents_breakdown == o.constituents_breakdown
+          exchange == o.exchange &&
+          timezone == o.timezone &&
+          session == o.session &&
+          holiday == o.holiday &&
+          is_open == o.is_open &&
+          t == o.t
     end
 
     # @see the `==` method
@@ -117,7 +143,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, constituents, constituents_breakdown].hash
+      [exchange, timezone, session, holiday, is_open, t].hash
     end
 
     # Builds the object from hash

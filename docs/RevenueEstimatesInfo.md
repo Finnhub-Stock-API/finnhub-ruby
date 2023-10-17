@@ -9,6 +9,8 @@
 | **revenue_low** | **Float** | Lowest estimate. | [optional] |
 | **number_analysts** | **Integer** | Number of Analysts. | [optional] |
 | **period** | **Date** | Period. | [optional] |
+| **year** | **Integer** | Fiscal year. | [optional] |
+| **quarter** | **Integer** | Fiscal quarter. | [optional] |
 
 ## Example
 
@@ -20,7 +22,9 @@ instance = FinnhubRuby::RevenueEstimatesInfo.new(
   revenue_high: null,
   revenue_low: null,
   number_analysts: null,
-  period: null
+  period: null,
+  year: null,
+  quarter: null
 )
 ```
 

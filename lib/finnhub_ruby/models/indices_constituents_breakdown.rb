@@ -14,22 +14,34 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class IndicesConstituents
-    # Index's symbol.
+  class IndicesConstituentsBreakdown
+    # Symbol.
     attr_accessor :symbol
 
-    # Array of constituents.
-    attr_accessor :constituents
+    # Name.
+    attr_accessor :name
 
-    # Array of constituents' details.
-    attr_accessor :constituents_breakdown
+    # ISIN.
+    attr_accessor :isin
+
+    # Cusip.
+    attr_accessor :cusip
+
+    # Global Share Class FIGI.
+    attr_accessor :share_class_figi
+
+    # Weight.
+    attr_accessor :weight
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'symbol' => :'symbol',
-        :'constituents' => :'constituents',
-        :'constituents_breakdown' => :'constituentsBreakdown'
+        :'name' => :'name',
+        :'isin' => :'isin',
+        :'cusip' => :'cusip',
+        :'share_class_figi' => :'shareClassFIGI',
+        :'weight' => :'weight'
       }
     end
 
@@ -42,8 +54,11 @@ module FinnhubRuby
     def self.openapi_types
       {
         :'symbol' => :'String',
-        :'constituents' => :'Array<String>',
-        :'constituents_breakdown' => :'Array<IndicesConstituentsBreakdown>'
+        :'name' => :'String',
+        :'isin' => :'String',
+        :'cusip' => :'String',
+        :'share_class_figi' => :'String',
+        :'weight' => :'Float'
       }
     end
 
@@ -57,13 +72,13 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::IndicesConstituents` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::IndicesConstituentsBreakdown` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::IndicesConstituents`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::IndicesConstituentsBreakdown`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -72,16 +87,24 @@ module FinnhubRuby
         self.symbol = attributes[:'symbol']
       end
 
-      if attributes.key?(:'constituents')
-        if (value = attributes[:'constituents']).is_a?(Array)
-          self.constituents = value
-        end
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       end
 
-      if attributes.key?(:'constituents_breakdown')
-        if (value = attributes[:'constituents_breakdown']).is_a?(Array)
-          self.constituents_breakdown = value
-        end
+      if attributes.key?(:'isin')
+        self.isin = attributes[:'isin']
+      end
+
+      if attributes.key?(:'cusip')
+        self.cusip = attributes[:'cusip']
+      end
+
+      if attributes.key?(:'share_class_figi')
+        self.share_class_figi = attributes[:'share_class_figi']
+      end
+
+      if attributes.key?(:'weight')
+        self.weight = attributes[:'weight']
       end
     end
 
@@ -104,8 +127,11 @@ module FinnhubRuby
       return true if self.equal?(o)
       self.class == o.class &&
           symbol == o.symbol &&
-          constituents == o.constituents &&
-          constituents_breakdown == o.constituents_breakdown
+          name == o.name &&
+          isin == o.isin &&
+          cusip == o.cusip &&
+          share_class_figi == o.share_class_figi &&
+          weight == o.weight
     end
 
     # @see the `==` method
@@ -117,7 +143,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, constituents, constituents_breakdown].hash
+      [symbol, name, isin, cusip, share_class_figi, weight].hash
     end
 
     # Builds the object from hash

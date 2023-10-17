@@ -801,7 +801,7 @@ module FinnhubRuby
     end
 
     # Company ESG Scores
-    # <p>This endpoint provides ESG scores and important indicators for 1000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p>
+    # <p>This endpoint provides ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p><p>Historical ESG data is available for Enterprise users. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.</p>
     # @param symbol [String] Symbol.
     # @param [Hash] opts the optional parameters
     # @return [CompanyESG]
@@ -811,7 +811,7 @@ module FinnhubRuby
     end
 
     # Company ESG Scores
-    # &lt;p&gt;This endpoint provides ESG scores and important indicators for 1000+ global companies. The data is collected through company&#39;s public ESG disclosure and public sources.&lt;/p&gt;&lt;p&gt;Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.&lt;/p&gt;
+    # &lt;p&gt;This endpoint provides ESG scores and important indicators for 7000+ global companies. The data is collected through company&#39;s public ESG disclosure and public sources.&lt;/p&gt;&lt;p&gt;Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.&lt;/p&gt;&lt;p&gt;Historical ESG data is available for Enterprise users. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact us&lt;/a&gt; to learn more.&lt;/p&gt;
     # @param symbol [String] Symbol.
     # @param [Hash] opts the optional parameters
     # @return [Array<(CompanyESG, Integer, Hash)>] CompanyESG data, response status code and response headers
@@ -1989,33 +1989,32 @@ module FinnhubRuby
 
     # ETFs Country Exposure
     # Get ETF country exposure data.
-    # @param symbol [String] ETF symbol.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol ETF symbol.
+    # @option opts [String] :isin ETF isin.
     # @return [ETFsCountryExposure]
-    def etfs_country_exposure(symbol, opts = {})
-      data, _status_code, _headers = etfs_country_exposure_with_http_info(symbol, opts)
+    def etfs_country_exposure(opts = {})
+      data, _status_code, _headers = etfs_country_exposure_with_http_info(opts)
       data
     end
 
     # ETFs Country Exposure
     # Get ETF country exposure data.
-    # @param symbol [String] ETF symbol.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol ETF symbol.
+    # @option opts [String] :isin ETF isin.
     # @return [Array<(ETFsCountryExposure, Integer, Hash)>] ETFsCountryExposure data, response status code and response headers
-    def etfs_country_exposure_with_http_info(symbol, opts = {})
+    def etfs_country_exposure_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.etfs_country_exposure ...'
-      end
-      # verify the required parameter 'symbol' is set
-      if @api_client.config.client_side_validation && symbol.nil?
-        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.etfs_country_exposure"
       end
       # resource path
       local_var_path = '/etf/country'
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'symbol'] = symbol
+      query_params[:'symbol'] = opts[:'symbol'] if !opts[:'symbol'].nil?
+      query_params[:'isin'] = opts[:'isin'] if !opts[:'isin'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -2185,33 +2184,32 @@ module FinnhubRuby
 
     # ETFs Sector Exposure
     # Get ETF sector exposure data.
-    # @param symbol [String] ETF symbol.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol ETF symbol.
+    # @option opts [String] :isin ETF isin.
     # @return [ETFsSectorExposure]
-    def etfs_sector_exposure(symbol, opts = {})
-      data, _status_code, _headers = etfs_sector_exposure_with_http_info(symbol, opts)
+    def etfs_sector_exposure(opts = {})
+      data, _status_code, _headers = etfs_sector_exposure_with_http_info(opts)
       data
     end
 
     # ETFs Sector Exposure
     # Get ETF sector exposure data.
-    # @param symbol [String] ETF symbol.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol ETF symbol.
+    # @option opts [String] :isin ETF isin.
     # @return [Array<(ETFsSectorExposure, Integer, Hash)>] ETFsSectorExposure data, response status code and response headers
-    def etfs_sector_exposure_with_http_info(symbol, opts = {})
+    def etfs_sector_exposure_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.etfs_sector_exposure ...'
-      end
-      # verify the required parameter 'symbol' is set
-      if @api_client.config.client_side_validation && symbol.nil?
-        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.etfs_sector_exposure"
       end
       # resource path
       local_var_path = '/etf/sector'
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'symbol'] = symbol
+      query_params[:'symbol'] = opts[:'symbol'] if !opts[:'symbol'].nil?
+      query_params[:'isin'] = opts[:'isin'] if !opts[:'isin'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -2933,7 +2931,7 @@ module FinnhubRuby
     end
 
     # Indices Constituents
-    # Get a list of index's constituents. A list of supported indices for this endpoint can be found <a href=\"https://docs.google.com/spreadsheets/d/1Syr2eLielHWsorxkDEZXyc55d6bNx1M3ZeI4vdn7Qzo/edit?usp=sharing\" target=\"_blank\">here</a>.
+    # Get a list of index's constituents. A list of supported indices for this endpoint can be found <a href=\"/api/v1/index/list?token=\" target=\"_blank\">here</a>.
     # @param symbol [String] symbol
     # @param [Hash] opts the optional parameters
     # @return [IndicesConstituents]
@@ -2943,7 +2941,7 @@ module FinnhubRuby
     end
 
     # Indices Constituents
-    # Get a list of index&#39;s constituents. A list of supported indices for this endpoint can be found &lt;a href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1Syr2eLielHWsorxkDEZXyc55d6bNx1M3ZeI4vdn7Qzo/edit?usp&#x3D;sharing\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
+    # Get a list of index&#39;s constituents. A list of supported indices for this endpoint can be found &lt;a href&#x3D;\&quot;/api/v1/index/list?token&#x3D;\&quot; target&#x3D;\&quot;_blank\&quot;&gt;here&lt;/a&gt;.
     # @param symbol [String] symbol
     # @param [Hash] opts the optional parameters
     # @return [Array<(IndicesConstituents, Integer, Hash)>] IndicesConstituents data, response status code and response headers
@@ -3431,6 +3429,69 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
+    # International Filings
+    # List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol Symbol. Leave empty to list latest filings.
+    # @option opts [String] :country Filter by country using country&#39;s 2-letter code.
+    # @return [Array<InternationalFiling>]
+    def international_filings(opts = {})
+      data, _status_code, _headers = international_filings_with_http_info(opts)
+      data
+    end
+
+    # International Filings
+    # List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol Symbol. Leave empty to list latest filings.
+    # @option opts [String] :country Filter by country using country&#39;s 2-letter code.
+    # @return [Array<(Array<InternationalFiling>, Integer, Hash)>] Array<InternationalFiling> data, response status code and response headers
+    def international_filings_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.international_filings ...'
+      end
+      # resource path
+      local_var_path = '/stock/international-filings'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = opts[:'symbol'] if !opts[:'symbol'].nil?
+      query_params[:'country'] = opts[:'country'] if !opts[:'country'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Array<InternationalFiling>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.international_filings",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#international_filings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Investment Themes (Thematic Investing)
     # <p>Thematic investing involves creating a portfolio (or portion of a portfolio) by gathering together a collection of companies involved in certain areas that you predict will generate above-market returns over the long term. Themes can be based on a concept such as ageing populations or a sub-sector such as robotics, and drones. Thematic investing focuses on predicted long-term trends rather than specific companies or sectors, enabling investors to access structural, one-off shifts that can change an entire industry.</p><p>This endpoint will help you get portfolios of different investment themes that are changing our life and are the way of the future.</p><p>A full list of themes supported can be found <a target=\"_blank\" href=\"https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp=sharing\">here</a>. The theme coverage and portfolios are updated bi-weekly by our analysts. Our approach excludes penny, super-small cap and illiquid stocks.</p>
     # @param theme [String] Investment theme. A full list of themes supported can be found &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://docs.google.com/spreadsheets/d/1ULj9xDh4iPoQj279M084adZ2_S852ttRthKKJ7madYc/edit?usp&#x3D;sharing\&quot;&gt;here&lt;/a&gt;.
@@ -3637,6 +3698,70 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
+    # Market Holiday
+    # Get a list of holidays for global exchanges.
+    # @param exchange [String] Exchange code.
+    # @param [Hash] opts the optional parameters
+    # @return [MarketHoliday]
+    def market_holiday(exchange, opts = {})
+      data, _status_code, _headers = market_holiday_with_http_info(exchange, opts)
+      data
+    end
+
+    # Market Holiday
+    # Get a list of holidays for global exchanges.
+    # @param exchange [String] Exchange code.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(MarketHoliday, Integer, Hash)>] MarketHoliday data, response status code and response headers
+    def market_holiday_with_http_info(exchange, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.market_holiday ...'
+      end
+      # verify the required parameter 'exchange' is set
+      if @api_client.config.client_side_validation && exchange.nil?
+        fail ArgumentError, "Missing the required parameter 'exchange' when calling DefaultApi.market_holiday"
+      end
+      # resource path
+      local_var_path = '/stock/market-holiday'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'exchange'] = exchange
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'MarketHoliday'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.market_holiday",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#market_holiday\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Market News
     # Get latest market news.
     # @param category [String] This parameter can be 1 of the following values &lt;code&gt;general, forex, crypto, merger&lt;/code&gt;.
@@ -3704,35 +3829,98 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
+    # Market Status
+    # Get current market status for global exchanges (whether exchanges are open or close).
+    # @param exchange [String] Exchange code.
+    # @param [Hash] opts the optional parameters
+    # @return [MarketStatus]
+    def market_status(exchange, opts = {})
+      data, _status_code, _headers = market_status_with_http_info(exchange, opts)
+      data
+    end
+
+    # Market Status
+    # Get current market status for global exchanges (whether exchanges are open or close).
+    # @param exchange [String] Exchange code.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(MarketStatus, Integer, Hash)>] MarketStatus data, response status code and response headers
+    def market_status_with_http_info(exchange, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.market_status ...'
+      end
+      # verify the required parameter 'exchange' is set
+      if @api_client.config.client_side_validation && exchange.nil?
+        fail ArgumentError, "Missing the required parameter 'exchange' when calling DefaultApi.market_status"
+      end
+      # resource path
+      local_var_path = '/stock/market-status'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'exchange'] = exchange
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'MarketStatus'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.market_status",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#market_status\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Mutual Funds Country Exposure
     # Get Mutual Funds country exposure data.
-    # @param symbol [String] Symbol.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol Symbol.
+    # @option opts [String] :isin Fund&#39;s isin.
     # @return [MutualFundCountryExposure]
-    def mutual_fund_country_exposure(symbol, opts = {})
-      data, _status_code, _headers = mutual_fund_country_exposure_with_http_info(symbol, opts)
+    def mutual_fund_country_exposure(opts = {})
+      data, _status_code, _headers = mutual_fund_country_exposure_with_http_info(opts)
       data
     end
 
     # Mutual Funds Country Exposure
     # Get Mutual Funds country exposure data.
-    # @param symbol [String] Symbol.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol Symbol.
+    # @option opts [String] :isin Fund&#39;s isin.
     # @return [Array<(MutualFundCountryExposure, Integer, Hash)>] MutualFundCountryExposure data, response status code and response headers
-    def mutual_fund_country_exposure_with_http_info(symbol, opts = {})
+    def mutual_fund_country_exposure_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.mutual_fund_country_exposure ...'
-      end
-      # verify the required parameter 'symbol' is set
-      if @api_client.config.client_side_validation && symbol.nil?
-        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.mutual_fund_country_exposure"
       end
       # resource path
       local_var_path = '/mutual-fund/country'
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'symbol'] = symbol
+      query_params[:'symbol'] = opts[:'symbol'] if !opts[:'symbol'].nil?
+      query_params[:'isin'] = opts[:'isin'] if !opts[:'isin'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -4027,33 +4215,32 @@ module FinnhubRuby
 
     # Mutual Funds Sector Exposure
     # Get Mutual Funds sector exposure data.
-    # @param symbol [String] Mutual Fund symbol.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol Mutual Fund symbol.
+    # @option opts [String] :isin Fund&#39;s isin.
     # @return [MutualFundSectorExposure]
-    def mutual_fund_sector_exposure(symbol, opts = {})
-      data, _status_code, _headers = mutual_fund_sector_exposure_with_http_info(symbol, opts)
+    def mutual_fund_sector_exposure(opts = {})
+      data, _status_code, _headers = mutual_fund_sector_exposure_with_http_info(opts)
       data
     end
 
     # Mutual Funds Sector Exposure
     # Get Mutual Funds sector exposure data.
-    # @param symbol [String] Mutual Fund symbol.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :symbol Mutual Fund symbol.
+    # @option opts [String] :isin Fund&#39;s isin.
     # @return [Array<(MutualFundSectorExposure, Integer, Hash)>] MutualFundSectorExposure data, response status code and response headers
-    def mutual_fund_sector_exposure_with_http_info(symbol, opts = {})
+    def mutual_fund_sector_exposure_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.mutual_fund_sector_exposure ...'
-      end
-      # verify the required parameter 'symbol' is set
-      if @api_client.config.client_side_validation && symbol.nil?
-        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.mutual_fund_sector_exposure"
       end
       # resource path
       local_var_path = '/mutual-fund/sector'
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'symbol'] = symbol
+      query_params[:'symbol'] = opts[:'symbol'] if !opts[:'symbol'].nil?
+      query_params[:'isin'] = opts[:'isin'] if !opts[:'isin'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -4814,7 +5001,7 @@ module FinnhubRuby
     end
 
     # Social Sentiment
-    # <p>Get social sentiment for stocks on Reddit and Twitter. This endpoint is currently in Beta.</p>
+    # <p>Get social sentiment for stocks on Reddit and Twitter.</p>
     # @param symbol [String] Company symbol.
     # @param [Hash] opts the optional parameters
     # @option opts [Date] :from From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
@@ -4826,7 +5013,7 @@ module FinnhubRuby
     end
 
     # Social Sentiment
-    # &lt;p&gt;Get social sentiment for stocks on Reddit and Twitter. This endpoint is currently in Beta.&lt;/p&gt;
+    # &lt;p&gt;Get social sentiment for stocks on Reddit and Twitter.&lt;/p&gt;
     # @param symbol [String] Company symbol.
     # @param [Hash] opts the optional parameters
     # @option opts [Date] :from From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
@@ -5012,7 +5199,7 @@ module FinnhubRuby
     end
 
     # Stock Candles
-    # <p>Get candlestick data (OHLCV) for stocks.</p><p>Daily data will be adjusted for Splits. Intraday data will remain unadjusted.</p>
+    # <p>Get candlestick data (OHLCV) for stocks.</p><p>Daily data will be adjusted for Splits. Intraday data will remain unadjusted. Only 1 month of intraday will be returned at a time. If you need more historical intraday data, please use the from and to params iteratively to request more data.</p>
     # @param symbol [String] Symbol.
     # @param resolution [String] Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange.
     # @param from [Integer] UNIX timestamp. Interval initial value.
@@ -5025,7 +5212,7 @@ module FinnhubRuby
     end
 
     # Stock Candles
-    # &lt;p&gt;Get candlestick data (OHLCV) for stocks.&lt;/p&gt;&lt;p&gt;Daily data will be adjusted for Splits. Intraday data will remain unadjusted.&lt;/p&gt;
+    # &lt;p&gt;Get candlestick data (OHLCV) for stocks.&lt;/p&gt;&lt;p&gt;Daily data will be adjusted for Splits. Intraday data will remain unadjusted. Only 1 month of intraday will be returned at a time. If you need more historical intraday data, please use the from and to params iteratively to request more data.&lt;/p&gt;
     # @param symbol [String] Symbol.
     # @param resolution [String] Supported resolution includes &lt;code&gt;1, 5, 15, 30, 60, D, W, M &lt;/code&gt;.Some timeframes might not be available depending on the exchange.
     # @param from [Integer] UNIX timestamp. Interval initial value.
@@ -5489,7 +5676,7 @@ module FinnhubRuby
     end
 
     # Tick Data
-    # <p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For US market, you can visit our bulk download page in the Dashboard <a target=\"_blank\" href=\"/dashboard/download\",>here</a> to speed up the download process.</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">US CTA/UTP</th>       <td>Full SIP</td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">TSX</th>       <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">LSE</th>       <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">Euronext</th>       <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Deutsche Börse</th>       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>   </tbody> </table>
+    # <p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For more historical tick data, you can visit our bulk download page in the Dashboard <a target=\"_blank\" href=\"/dashboard/download\",>here</a> to speed up the download process.</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">US CTA/UTP</th>       <td>Full SIP</td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">TSX</th>       <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">LSE</th>       <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">Euronext</th>       <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Deutsche Börse</th>       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>   </tbody> </table>
     # @param symbol [String] Symbol.
     # @param date [Date] Date: 2020-04-02.
     # @param limit [Integer] Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt;
@@ -5502,7 +5689,7 @@ module FinnhubRuby
     end
 
     # Tick Data
-    # &lt;p&gt;Get historical tick data for global exchanges. You can send the request directly to our tick server at &lt;a href&#x3D;\&quot;https://tick.finnhub.io/\&quot;&gt;https://tick.finnhub.io/&lt;/a&gt; with the same path and parameters or get redirected there if you call our main server.&lt;/p&gt;&lt;p&gt;For US market, you can visit our bulk download page in the Dashboard &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;/dashboard/download\&quot;,&gt;here&lt;/a&gt; to speed up the download process.&lt;/p&gt;&lt;table class&#x3D;\&quot;table table-hover\&quot;&gt;   &lt;thead&gt;     &lt;tr&gt;       &lt;th&gt;Exchange&lt;/th&gt;       &lt;th&gt;Segment&lt;/th&gt;       &lt;th&gt;Delay&lt;/th&gt;     &lt;/tr&gt;   &lt;/thead&gt;   &lt;tbody&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;US CTA/UTP&lt;/th&gt;       &lt;td&gt;Full SIP&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;TSX&lt;/th&gt;       &lt;td&gt;&lt;ul&gt;&lt;li&gt;TSX&lt;/li&gt;&lt;li&gt;TSX Venture&lt;/li&gt;&lt;li&gt;Index&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;LSE&lt;/th&gt;       &lt;td&gt;&lt;ul&gt;&lt;li&gt;London Stock Exchange (L)&lt;/li&gt;&lt;li&gt;LSE International (L)&lt;/li&gt;&lt;li&gt;LSE European (L)&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;15 minute&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;Euronext&lt;/th&gt;       &lt;td&gt;&lt;ul&gt; &lt;li&gt;Euronext Paris (PA)&lt;/li&gt; &lt;li&gt;Euronext Amsterdam (AS)&lt;/li&gt; &lt;li&gt;Euronext Lisbon (LS)&lt;/li&gt; &lt;li&gt;Euronext Brussels (BR)&lt;/li&gt; &lt;li&gt;Euronext Oslo (OL)&lt;/li&gt; &lt;li&gt;Euronext London (LN)&lt;/li&gt; &lt;li&gt;Euronext Dublin (IR)&lt;/li&gt; &lt;li&gt;Index&lt;/li&gt; &lt;li&gt;Warrant&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;Deutsche Börse&lt;/th&gt;       &lt;td&gt;&lt;ul&gt; &lt;li&gt;Frankfurt (F)&lt;/li&gt; &lt;li&gt;Xetra (DE)&lt;/li&gt; &lt;li&gt;Duesseldorf (DU)&lt;/li&gt; &lt;li&gt;Hamburg (HM)&lt;/li&gt; &lt;li&gt;Berlin (BE)&lt;/li&gt; &lt;li&gt;Hanover (HA)&lt;/li&gt; &lt;li&gt;Stoxx (SX)&lt;/li&gt; &lt;li&gt;TradeGate (TG)&lt;/li&gt; &lt;li&gt;Zertifikate (SC)&lt;/li&gt; &lt;li&gt;Index&lt;/li&gt; &lt;li&gt;Warrant&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;   &lt;/tbody&gt; &lt;/table&gt;
+    # &lt;p&gt;Get historical tick data for global exchanges. You can send the request directly to our tick server at &lt;a href&#x3D;\&quot;https://tick.finnhub.io/\&quot;&gt;https://tick.finnhub.io/&lt;/a&gt; with the same path and parameters or get redirected there if you call our main server.&lt;/p&gt;&lt;p&gt;For more historical tick data, you can visit our bulk download page in the Dashboard &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;/dashboard/download\&quot;,&gt;here&lt;/a&gt; to speed up the download process.&lt;/p&gt;&lt;table class&#x3D;\&quot;table table-hover\&quot;&gt;   &lt;thead&gt;     &lt;tr&gt;       &lt;th&gt;Exchange&lt;/th&gt;       &lt;th&gt;Segment&lt;/th&gt;       &lt;th&gt;Delay&lt;/th&gt;     &lt;/tr&gt;   &lt;/thead&gt;   &lt;tbody&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;US CTA/UTP&lt;/th&gt;       &lt;td&gt;Full SIP&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;TSX&lt;/th&gt;       &lt;td&gt;&lt;ul&gt;&lt;li&gt;TSX&lt;/li&gt;&lt;li&gt;TSX Venture&lt;/li&gt;&lt;li&gt;Index&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;LSE&lt;/th&gt;       &lt;td&gt;&lt;ul&gt;&lt;li&gt;London Stock Exchange (L)&lt;/li&gt;&lt;li&gt;LSE International (L)&lt;/li&gt;&lt;li&gt;LSE European (L)&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;15 minute&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;Euronext&lt;/th&gt;       &lt;td&gt;&lt;ul&gt; &lt;li&gt;Euronext Paris (PA)&lt;/li&gt; &lt;li&gt;Euronext Amsterdam (AS)&lt;/li&gt; &lt;li&gt;Euronext Lisbon (LS)&lt;/li&gt; &lt;li&gt;Euronext Brussels (BR)&lt;/li&gt; &lt;li&gt;Euronext Oslo (OL)&lt;/li&gt; &lt;li&gt;Euronext London (LN)&lt;/li&gt; &lt;li&gt;Euronext Dublin (IR)&lt;/li&gt; &lt;li&gt;Index&lt;/li&gt; &lt;li&gt;Warrant&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;Deutsche Börse&lt;/th&gt;       &lt;td&gt;&lt;ul&gt; &lt;li&gt;Frankfurt (F)&lt;/li&gt; &lt;li&gt;Xetra (DE)&lt;/li&gt; &lt;li&gt;Duesseldorf (DU)&lt;/li&gt; &lt;li&gt;Hamburg (HM)&lt;/li&gt; &lt;li&gt;Berlin (BE)&lt;/li&gt; &lt;li&gt;Hanover (HA)&lt;/li&gt; &lt;li&gt;Stoxx (SX)&lt;/li&gt; &lt;li&gt;TradeGate (TG)&lt;/li&gt; &lt;li&gt;Zertifikate (SC)&lt;/li&gt; &lt;li&gt;Index&lt;/li&gt; &lt;li&gt;Warrant&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;   &lt;/tbody&gt; &lt;/table&gt;
     # @param symbol [String] Symbol.
     # @param date [Date] Date: 2020-04-02.
     # @param limit [Integer] Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt;

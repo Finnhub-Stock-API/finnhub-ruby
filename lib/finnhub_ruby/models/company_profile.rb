@@ -15,6 +15,9 @@ require 'time'
 
 module FinnhubRuby
   class CompanyProfile
+    # Company name alias.
+    attr_accessor :_alias
+
     # Address of company's headquarter.
     attr_accessor :address
 
@@ -59,6 +62,9 @@ module FinnhubRuby
 
     # ISIN number.
     attr_accessor :isin
+
+    # LEI number.
+    attr_accessor :lei
 
     # NAICS national industry.
     attr_accessor :naics_national_industry
@@ -108,6 +114,7 @@ module FinnhubRuby
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'_alias' => :'alias',
         :'address' => :'address',
         :'city' => :'city',
         :'country' => :'country',
@@ -123,6 +130,7 @@ module FinnhubRuby
         :'gsector' => :'gsector',
         :'gsubind' => :'gsubind',
         :'isin' => :'isin',
+        :'lei' => :'lei',
         :'naics_national_industry' => :'naicsNationalIndustry',
         :'naics' => :'naics',
         :'naics_sector' => :'naicsSector',
@@ -149,6 +157,7 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'_alias' => :'Array<String>',
         :'address' => :'String',
         :'city' => :'String',
         :'country' => :'String',
@@ -164,6 +173,7 @@ module FinnhubRuby
         :'gsector' => :'String',
         :'gsubind' => :'String',
         :'isin' => :'String',
+        :'lei' => :'String',
         :'naics_national_industry' => :'String',
         :'naics' => :'String',
         :'naics_sector' => :'String',
@@ -202,6 +212,12 @@ module FinnhubRuby
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'_alias')
+        if (value = attributes[:'_alias']).is_a?(Array)
+          self._alias = value
+        end
+      end
 
       if attributes.key?(:'address')
         self.address = attributes[:'address']
@@ -261,6 +277,10 @@ module FinnhubRuby
 
       if attributes.key?(:'isin')
         self.isin = attributes[:'isin']
+      end
+
+      if attributes.key?(:'lei')
+        self.lei = attributes[:'lei']
       end
 
       if attributes.key?(:'naics_national_industry')
@@ -342,6 +362,7 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          _alias == o._alias &&
           address == o.address &&
           city == o.city &&
           country == o.country &&
@@ -357,6 +378,7 @@ module FinnhubRuby
           gsector == o.gsector &&
           gsubind == o.gsubind &&
           isin == o.isin &&
+          lei == o.lei &&
           naics_national_industry == o.naics_national_industry &&
           naics == o.naics &&
           naics_sector == o.naics_sector &&
@@ -383,7 +405,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [address, city, country, currency, estimate_currency, market_cap_currency, cusip, sedol, description, exchange, ggroup, gind, gsector, gsubind, isin, naics_national_industry, naics, naics_sector, naics_subsector, name, phone, state, ticker, weburl, ipo, market_capitalization, share_outstanding, employee_total, logo, finnhub_industry].hash
+      [_alias, address, city, country, currency, estimate_currency, market_cap_currency, cusip, sedol, description, exchange, ggroup, gind, gsector, gsubind, isin, lei, naics_national_industry, naics, naics_sector, naics_subsector, name, phone, state, ticker, weburl, ipo, market_capitalization, share_outstanding, employee_total, logo, finnhub_industry].hash
     end
 
     # Builds the object from hash

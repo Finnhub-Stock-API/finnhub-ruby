@@ -10,8 +10,8 @@
 | **surprise_percent** | **Float** | Surprise percent. | [optional] |
 | **period** | **Date** | Reported period. | [optional] |
 | **symbol** | **String** | Company symbol. | [optional] |
-| **year** | **Integer** | Earnings year. | [optional] |
-| **quarter** | **Integer** | Earnings quarter. | [optional] |
+| **year** | **Integer** | Fiscal year. | [optional] |
+| **quarter** | **Integer** | Fiscal quarter. | [optional] |
 
 ## Example
 
