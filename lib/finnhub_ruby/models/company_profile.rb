@@ -66,6 +66,9 @@ module FinnhubRuby
     # LEI number.
     attr_accessor :lei
 
+    # Investor relations website.
+    attr_accessor :ir_url
+
     # NAICS national industry.
     attr_accessor :naics_national_industry
 
@@ -131,6 +134,7 @@ module FinnhubRuby
         :'gsubind' => :'gsubind',
         :'isin' => :'isin',
         :'lei' => :'lei',
+        :'ir_url' => :'irUrl',
         :'naics_national_industry' => :'naicsNationalIndustry',
         :'naics' => :'naics',
         :'naics_sector' => :'naicsSector',
@@ -174,6 +178,7 @@ module FinnhubRuby
         :'gsubind' => :'String',
         :'isin' => :'String',
         :'lei' => :'String',
+        :'ir_url' => :'String',
         :'naics_national_industry' => :'String',
         :'naics' => :'String',
         :'naics_sector' => :'String',
@@ -283,6 +288,10 @@ module FinnhubRuby
         self.lei = attributes[:'lei']
       end
 
+      if attributes.key?(:'ir_url')
+        self.ir_url = attributes[:'ir_url']
+      end
+
       if attributes.key?(:'naics_national_industry')
         self.naics_national_industry = attributes[:'naics_national_industry']
       end
@@ -379,6 +388,7 @@ module FinnhubRuby
           gsubind == o.gsubind &&
           isin == o.isin &&
           lei == o.lei &&
+          ir_url == o.ir_url &&
           naics_national_industry == o.naics_national_industry &&
           naics == o.naics &&
           naics_sector == o.naics_sector &&
@@ -405,7 +415,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [_alias, address, city, country, currency, estimate_currency, market_cap_currency, cusip, sedol, description, exchange, ggroup, gind, gsector, gsubind, isin, lei, naics_national_industry, naics, naics_sector, naics_subsector, name, phone, state, ticker, weburl, ipo, market_capitalization, share_outstanding, employee_total, logo, finnhub_industry].hash
+      [_alias, address, city, country, currency, estimate_currency, market_cap_currency, cusip, sedol, description, exchange, ggroup, gind, gsector, gsubind, isin, lei, ir_url, naics_national_industry, naics, naics_sector, naics_subsector, name, phone, state, ticker, weburl, ipo, market_capitalization, share_outstanding, employee_total, logo, finnhub_industry].hash
     end
 
     # Builds the object from hash

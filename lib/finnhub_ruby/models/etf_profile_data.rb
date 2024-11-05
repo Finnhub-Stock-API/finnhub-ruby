@@ -51,6 +51,9 @@ module FinnhubRuby
     # ETF's website.
     attr_accessor :website
 
+    # Logo.
+    attr_accessor :logo
+
     # ISIN.
     attr_accessor :isin
 
@@ -93,6 +96,7 @@ module FinnhubRuby
         :'domicile' => :'domicile',
         :'inception_date' => :'inceptionDate',
         :'website' => :'website',
+        :'logo' => :'logo',
         :'isin' => :'isin',
         :'cusip' => :'cusip',
         :'price_to_earnings' => :'priceToEarnings',
@@ -125,6 +129,7 @@ module FinnhubRuby
         :'domicile' => :'String',
         :'inception_date' => :'Date',
         :'website' => :'String',
+        :'logo' => :'String',
         :'isin' => :'String',
         :'cusip' => :'String',
         :'price_to_earnings' => :'Float',
@@ -206,6 +211,10 @@ module FinnhubRuby
         self.website = attributes[:'website']
       end
 
+      if attributes.key?(:'logo')
+        self.logo = attributes[:'logo']
+      end
+
       if attributes.key?(:'isin')
         self.isin = attributes[:'isin']
       end
@@ -273,6 +282,7 @@ module FinnhubRuby
           domicile == o.domicile &&
           inception_date == o.inception_date &&
           website == o.website &&
+          logo == o.logo &&
           isin == o.isin &&
           cusip == o.cusip &&
           price_to_earnings == o.price_to_earnings &&
@@ -293,7 +303,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, asset_class, investment_segment, aum, nav, nav_currency, expense_ratio, tracking_index, etf_company, domicile, inception_date, website, isin, cusip, price_to_earnings, price_to_book, avg_volume, description, is_inverse, is_leveraged, leverage_factor].hash
+      [name, asset_class, investment_segment, aum, nav, nav_currency, expense_ratio, tracking_index, etf_company, domicile, inception_date, website, logo, isin, cusip, price_to_earnings, price_to_book, avg_volume, description, is_inverse, is_leveraged, leverage_factor].hash
     end
 
     # Builds the object from hash

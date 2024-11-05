@@ -21,7 +21,7 @@ module FinnhubRuby
     # Timezone.
     attr_accessor :timezone
 
-    # Market session.
+    # Market session. Can be 1 of the following values: <code>pre-market</code>,<code>regular</code>,<code>post-market</code> or <code>null</code> if the market is closed.
     attr_accessor :session
 
     # Holiday event.

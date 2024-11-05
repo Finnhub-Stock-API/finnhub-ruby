@@ -21,6 +21,7 @@
 | **gsubind** | **String** | Sub-industry. | [optional] |
 | **isin** | **String** | ISIN number. | [optional] |
 | **lei** | **String** | LEI number. | [optional] |
+| **ir_url** | **String** | Investor relations website. | [optional] |
 | **naics_national_industry** | **String** | NAICS national industry. | [optional] |
 | **naics** | **String** | NAICS industry. | [optional] |
 | **naics_sector** | **String** | NAICS sector. | [optional] |
@@ -60,6 +61,7 @@ instance = FinnhubRuby::CompanyProfile.new(
   gsubind: null,
   isin: null,
   lei: null,
+  ir_url: null,
   naics_national_industry: null,
   naics: null,
   naics_sector: null,

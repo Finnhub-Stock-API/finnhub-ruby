@@ -33,7 +33,7 @@ module FinnhubRuby
     # Date the filing is submitted.
     attr_accessor :acceptance_date
 
-    # Date the filing is make available to the public
+    # Date the filing is made available to the public
     attr_accessor :filed_date
 
     # Date as which the filing is reported

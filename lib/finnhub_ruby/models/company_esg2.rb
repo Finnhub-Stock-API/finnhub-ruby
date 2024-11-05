@@ -14,38 +14,33 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class PriceTarget
-    # Company symbol.
-    attr_accessor :symbol
+  class CompanyESG2
+    # Total ESG Score
+    attr_accessor :total_esg_score
 
-    # Highes analysts' target.
-    attr_accessor :target_high
+    # Environment Score
+    attr_accessor :environment_score
 
-    # Lowest analysts' target.
-    attr_accessor :target_low
+    # Governance Score
+    attr_accessor :governance_score
 
-    # Mean of all analysts' targets.
-    attr_accessor :target_mean
+    # Social Score
+    attr_accessor :social_score
 
-    # Median of all analysts' targets.
-    attr_accessor :target_median
+    attr_accessor :data
 
-    # Number of Analysts.
-    attr_accessor :number_analysts
-
-    # Updated time of the data
-    attr_accessor :last_updated
+    # Period
+    attr_accessor :period
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'symbol' => :'symbol',
-        :'target_high' => :'targetHigh',
-        :'target_low' => :'targetLow',
-        :'target_mean' => :'targetMean',
-        :'target_median' => :'targetMedian',
-        :'number_analysts' => :'numberAnalysts',
-        :'last_updated' => :'lastUpdated'
+        :'total_esg_score' => :'totalESGScore',
+        :'environment_score' => :'environmentScore',
+        :'governance_score' => :'governanceScore',
+        :'social_score' => :'socialScore',
+        :'data' => :'data',
+        :'period' => :'period'
       }
     end
 
@@ -57,13 +52,12 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'symbol' => :'String',
-        :'target_high' => :'Float',
-        :'target_low' => :'Float',
-        :'target_mean' => :'Float',
-        :'target_median' => :'Float',
-        :'number_analysts' => :'Integer',
-        :'last_updated' => :'String'
+        :'total_esg_score' => :'Float',
+        :'environment_score' => :'Float',
+        :'governance_score' => :'Float',
+        :'social_score' => :'Float',
+        :'data' => :'Object',
+        :'period' => :'String'
       }
     end
 
@@ -77,43 +71,39 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::PriceTarget` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::CompanyESG2` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::PriceTarget`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::CompanyESG2`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'symbol')
-        self.symbol = attributes[:'symbol']
+      if attributes.key?(:'total_esg_score')
+        self.total_esg_score = attributes[:'total_esg_score']
       end
 
-      if attributes.key?(:'target_high')
-        self.target_high = attributes[:'target_high']
+      if attributes.key?(:'environment_score')
+        self.environment_score = attributes[:'environment_score']
       end
 
-      if attributes.key?(:'target_low')
-        self.target_low = attributes[:'target_low']
+      if attributes.key?(:'governance_score')
+        self.governance_score = attributes[:'governance_score']
       end
 
-      if attributes.key?(:'target_mean')
-        self.target_mean = attributes[:'target_mean']
+      if attributes.key?(:'social_score')
+        self.social_score = attributes[:'social_score']
       end
 
-      if attributes.key?(:'target_median')
-        self.target_median = attributes[:'target_median']
+      if attributes.key?(:'data')
+        self.data = attributes[:'data']
       end
 
-      if attributes.key?(:'number_analysts')
-        self.number_analysts = attributes[:'number_analysts']
-      end
-
-      if attributes.key?(:'last_updated')
-        self.last_updated = attributes[:'last_updated']
+      if attributes.key?(:'period')
+        self.period = attributes[:'period']
       end
     end
 
@@ -135,13 +125,12 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          symbol == o.symbol &&
-          target_high == o.target_high &&
-          target_low == o.target_low &&
-          target_mean == o.target_mean &&
-          target_median == o.target_median &&
-          number_analysts == o.number_analysts &&
-          last_updated == o.last_updated
+          total_esg_score == o.total_esg_score &&
+          environment_score == o.environment_score &&
+          governance_score == o.governance_score &&
+          social_score == o.social_score &&
+          data == o.data &&
+          period == o.period
     end
 
     # @see the `==` method
@@ -153,7 +142,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, target_high, target_low, target_mean, target_median, number_analysts, last_updated].hash
+      [total_esg_score, environment_score, governance_score, social_score, data, period].hash
     end
 
     # Builds the object from hash

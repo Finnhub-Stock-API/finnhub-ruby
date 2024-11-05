@@ -90,6 +90,84 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
+    # Airline Price Index
+    # <p>The Flight Ticket Price Index API provides comprehensive data on airline ticket prices, including the average daily ticket price and its percentage change (price index). This data, collected weekly and projected two weeks ahead, aggregates daily prices and indexes from the 50 busiest and largest airports across the USA. The dataset includes detailed information on airlines, dates, and average ticket prices, offering valuable insights for market analysis and pricing strategies.</p><p>The price index is calculated as percentage change of average daily ticket price from the previous weekly reading. Raw ticket prices data is available for Enterprise users. <a href=\"mailto:support@finnhub.io\">Contact us</a> to inquire about the raw price data.</p>
+    # @param airline [String] Filter data by airline. Accepted values: &lt;code&gt;united&lt;/code&gt;,&lt;code&gt;delta&lt;/code&gt;,&lt;code&gt;american_airlines&lt;/code&gt;,&lt;code&gt;southwest&lt;/code&gt;,&lt;code&gt;southern_airways_express&lt;/code&gt;,&lt;code&gt;alaska_airlines&lt;/code&gt;,&lt;code&gt;frontier_airlines&lt;/code&gt;,&lt;code&gt;jetblue_airways&lt;/code&gt;,&lt;code&gt;spirit_airlines&lt;/code&gt;,&lt;code&gt;sun_country_airlines&lt;/code&gt;,&lt;code&gt;breeze_airways&lt;/code&gt;,&lt;code&gt;hawaiian_airlines&lt;/code&gt;
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [AirlinePriceIndexData]
+    def airline_price_index(airline, from, to, opts = {})
+      data, _status_code, _headers = airline_price_index_with_http_info(airline, from, to, opts)
+      data
+    end
+
+    # Airline Price Index
+    # &lt;p&gt;The Flight Ticket Price Index API provides comprehensive data on airline ticket prices, including the average daily ticket price and its percentage change (price index). This data, collected weekly and projected two weeks ahead, aggregates daily prices and indexes from the 50 busiest and largest airports across the USA. The dataset includes detailed information on airlines, dates, and average ticket prices, offering valuable insights for market analysis and pricing strategies.&lt;/p&gt;&lt;p&gt;The price index is calculated as percentage change of average daily ticket price from the previous weekly reading. Raw ticket prices data is available for Enterprise users. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact us&lt;/a&gt; to inquire about the raw price data.&lt;/p&gt;
+    # @param airline [String] Filter data by airline. Accepted values: &lt;code&gt;united&lt;/code&gt;,&lt;code&gt;delta&lt;/code&gt;,&lt;code&gt;american_airlines&lt;/code&gt;,&lt;code&gt;southwest&lt;/code&gt;,&lt;code&gt;southern_airways_express&lt;/code&gt;,&lt;code&gt;alaska_airlines&lt;/code&gt;,&lt;code&gt;frontier_airlines&lt;/code&gt;,&lt;code&gt;jetblue_airways&lt;/code&gt;,&lt;code&gt;spirit_airlines&lt;/code&gt;,&lt;code&gt;sun_country_airlines&lt;/code&gt;,&lt;code&gt;breeze_airways&lt;/code&gt;,&lt;code&gt;hawaiian_airlines&lt;/code&gt;
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(AirlinePriceIndexData, Integer, Hash)>] AirlinePriceIndexData data, response status code and response headers
+    def airline_price_index_with_http_info(airline, from, to, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.airline_price_index ...'
+      end
+      # verify the required parameter 'airline' is set
+      if @api_client.config.client_side_validation && airline.nil?
+        fail ArgumentError, "Missing the required parameter 'airline' when calling DefaultApi.airline_price_index"
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.airline_price_index"
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.airline_price_index"
+      end
+      # resource path
+      local_var_path = '/airline/price-index'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'airline'] = airline
+      query_params[:'from'] = from
+      query_params[:'to'] = to
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'AirlinePriceIndexData'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.airline_price_index",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#airline_price_index\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Bond price data
     # <p>Get bond's price data. The following datasets are supported:</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>   <tr>       <td class=\"text-blue\">US Government Bonds</th>       <td>Government Bonds</td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">FINRA Trace</th>       <td>BTDS: US Corporate Bonds</td>       <td>Delayed 4h</td>     </tr>     <tr>       <td class=\"text-blue\">FINRA Trace</th>       <td>144A Bonds</td>       <td>Delayed 4h</td>     </tr>   </tbody> </table>
     # @param isin [String] ISIN.
@@ -801,7 +879,7 @@ module FinnhubRuby
     end
 
     # Company ESG Scores
-    # <p>This endpoint provides ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p><p>Historical ESG data is available for Enterprise users. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.</p>
+    # <p>This endpoint provides the latest ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p>
     # @param symbol [String] Symbol.
     # @param [Hash] opts the optional parameters
     # @return [CompanyESG]
@@ -811,7 +889,7 @@ module FinnhubRuby
     end
 
     # Company ESG Scores
-    # &lt;p&gt;This endpoint provides ESG scores and important indicators for 7000+ global companies. The data is collected through company&#39;s public ESG disclosure and public sources.&lt;/p&gt;&lt;p&gt;Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.&lt;/p&gt;&lt;p&gt;Historical ESG data is available for Enterprise users. &lt;a href&#x3D;\&quot;mailto:support@finnhub.io\&quot;&gt;Contact us&lt;/a&gt; to learn more.&lt;/p&gt;
+    # &lt;p&gt;This endpoint provides the latest ESG scores and important indicators for 7000+ global companies. The data is collected through company&#39;s public ESG disclosure and public sources.&lt;/p&gt;&lt;p&gt;Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.&lt;/p&gt;
     # @param symbol [String] Symbol.
     # @param [Hash] opts the optional parameters
     # @return [Array<(CompanyESG, Integer, Hash)>] CompanyESG data, response status code and response headers
@@ -924,6 +1002,70 @@ module FinnhubRuby
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#company_executive\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Historical ESG Scores
+    # <p>This endpoint provides historical ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p>
+    # @param symbol [String] Symbol.
+    # @param [Hash] opts the optional parameters
+    # @return [HistoricalCompanyESG]
+    def company_historical_esg_score(symbol, opts = {})
+      data, _status_code, _headers = company_historical_esg_score_with_http_info(symbol, opts)
+      data
+    end
+
+    # Historical ESG Scores
+    # &lt;p&gt;This endpoint provides historical ESG scores and important indicators for 7000+ global companies. The data is collected through company&#39;s public ESG disclosure and public sources.&lt;/p&gt;&lt;p&gt;Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.&lt;/p&gt;
+    # @param symbol [String] Symbol.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(HistoricalCompanyESG, Integer, Hash)>] HistoricalCompanyESG data, response status code and response headers
+    def company_historical_esg_score_with_http_info(symbol, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.company_historical_esg_score ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.company_historical_esg_score"
+      end
+      # resource path
+      local_var_path = '/stock/historical-esg'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'HistoricalCompanyESG'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.company_historical_esg_score",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#company_historical_esg_score\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2309,8 +2451,8 @@ module FinnhubRuby
     # @option opts [String] :cik CIK.
     # @option opts [String] :access_number Access number of a specific report you want to retrieve data from.
     # @option opts [String] :form Filter by form. You can use this value &lt;code&gt;NT 10-K&lt;/code&gt; to find non-timely filings for a company.
-    # @option opts [Date] :from From date: 2020-03-15.
-    # @option opts [Date] :to To date: 2020-03-16.
+    # @option opts [Date] :from From date: 2023-03-15.
+    # @option opts [Date] :to To date: 2023-03-16.
     # @return [Array<Filing>]
     def filings(opts = {})
       data, _status_code, _headers = filings_with_http_info(opts)
@@ -2324,8 +2466,8 @@ module FinnhubRuby
     # @option opts [String] :cik CIK.
     # @option opts [String] :access_number Access number of a specific report you want to retrieve data from.
     # @option opts [String] :form Filter by form. You can use this value &lt;code&gt;NT 10-K&lt;/code&gt; to find non-timely filings for a company.
-    # @option opts [Date] :from From date: 2020-03-15.
-    # @option opts [Date] :to To date: 2020-03-16.
+    # @option opts [Date] :from From date: 2023-03-15.
+    # @option opts [Date] :to To date: 2023-03-16.
     # @return [Array<(Array<Filing>, Integer, Hash)>] Array<Filing> data, response status code and response headers
     def filings_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -2930,6 +3072,162 @@ module FinnhubRuby
       return data, status_code, headers
     end
 
+    # Historical Employee Count
+    # Get historical employee count for global companies.
+    # @param symbol [String] Company symbol.
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [HistoricalEmployeeCount]
+    def historical_employee_count(symbol, from, to, opts = {})
+      data, _status_code, _headers = historical_employee_count_with_http_info(symbol, from, to, opts)
+      data
+    end
+
+    # Historical Employee Count
+    # Get historical employee count for global companies.
+    # @param symbol [String] Company symbol.
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(HistoricalEmployeeCount, Integer, Hash)>] HistoricalEmployeeCount data, response status code and response headers
+    def historical_employee_count_with_http_info(symbol, from, to, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.historical_employee_count ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.historical_employee_count"
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.historical_employee_count"
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.historical_employee_count"
+      end
+      # resource path
+      local_var_path = '/stock/historical-employee-count'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+      query_params[:'from'] = from
+      query_params[:'to'] = to
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'HistoricalEmployeeCount'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.historical_employee_count",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#historical_employee_count\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Historical Market Cap
+    # Get historical market cap data for global companies.
+    # @param symbol [String] Company symbol.
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [HistoricalMarketCapData]
+    def historical_market_cap(symbol, from, to, opts = {})
+      data, _status_code, _headers = historical_market_cap_with_http_info(symbol, from, to, opts)
+      data
+    end
+
+    # Historical Market Cap
+    # Get historical market cap data for global companies.
+    # @param symbol [String] Company symbol.
+    # @param from [Date] From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param to [Date] To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(HistoricalMarketCapData, Integer, Hash)>] HistoricalMarketCapData data, response status code and response headers
+    def historical_market_cap_with_http_info(symbol, from, to, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.historical_market_cap ...'
+      end
+      # verify the required parameter 'symbol' is set
+      if @api_client.config.client_side_validation && symbol.nil?
+        fail ArgumentError, "Missing the required parameter 'symbol' when calling DefaultApi.historical_market_cap"
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.historical_market_cap"
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.historical_market_cap"
+      end
+      # resource path
+      local_var_path = '/stock/historical-market-cap'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'symbol'] = symbol
+      query_params[:'from'] = from
+      query_params[:'to'] = to
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'HistoricalMarketCapData'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['api_key']
+
+      new_options = opts.merge(
+        :operation => :"DefaultApi.historical_market_cap",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#historical_market_cap\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Indices Constituents
     # Get a list of index's constituents. A list of supported indices for this endpoint can be found <a href=\"/api/v1/index/list?token=\" target=\"_blank\">here</a>.
     # @param symbol [String] symbol
@@ -3137,7 +3435,7 @@ module FinnhubRuby
     end
 
     # Insider Transactions
-    # Company insider transactions data sourced from <code>Form 3,4,5</code>, SEDI and relevant companies' filings. This endpoint covers US, Canada, Australia, and selected EU companies. Limit to 100 transactions per API call.
+    # Company insider transactions data sourced from <code>Form 3,4,5</code>, SEDI and relevant companies' filings. This endpoint covers US, UK, Canada, Australia, India, and all major EU markets. Limit to 100 transactions per API call.
     # @param symbol [String] Symbol of the company: AAPL. Leave this param blank to get the latest transactions.
     # @param [Hash] opts the optional parameters
     # @option opts [Date] :from From date: 2020-03-15.
@@ -3149,7 +3447,7 @@ module FinnhubRuby
     end
 
     # Insider Transactions
-    # Company insider transactions data sourced from &lt;code&gt;Form 3,4,5&lt;/code&gt;, SEDI and relevant companies&#39; filings. This endpoint covers US, Canada, Australia, and selected EU companies. Limit to 100 transactions per API call.
+    # Company insider transactions data sourced from &lt;code&gt;Form 3,4,5&lt;/code&gt;, SEDI and relevant companies&#39; filings. This endpoint covers US, UK, Canada, Australia, India, and all major EU markets. Limit to 100 transactions per API call.
     # @param symbol [String] Symbol of the company: AAPL. Leave this param blank to get the latest transactions.
     # @param [Hash] opts the optional parameters
     # @option opts [Date] :from From date: 2020-03-15.
@@ -3430,10 +3728,12 @@ module FinnhubRuby
     end
 
     # International Filings
-    # List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
+    # List filings for international companies. Limit to 500 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Symbol. Leave empty to list latest filings.
     # @option opts [String] :country Filter by country using country&#39;s 2-letter code.
+    # @option opts [Date] :from From date: 2023-01-15.
+    # @option opts [Date] :to To date: 2023-12-16.
     # @return [Array<InternationalFiling>]
     def international_filings(opts = {})
       data, _status_code, _headers = international_filings_with_http_info(opts)
@@ -3441,10 +3741,12 @@ module FinnhubRuby
     end
 
     # International Filings
-    # List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
+    # List filings for international companies. Limit to 500 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :symbol Symbol. Leave empty to list latest filings.
     # @option opts [String] :country Filter by country using country&#39;s 2-letter code.
+    # @option opts [Date] :from From date: 2023-01-15.
+    # @option opts [Date] :to To date: 2023-12-16.
     # @return [Array<(Array<InternationalFiling>, Integer, Hash)>] Array<InternationalFiling> data, response status code and response headers
     def international_filings_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -3457,6 +3759,8 @@ module FinnhubRuby
       query_params = opts[:query_params] || {}
       query_params[:'symbol'] = opts[:'symbol'] if !opts[:'symbol'].nil?
       query_params[:'country'] = opts[:'country'] if !opts[:'country'].nil?
+      query_params[:'from'] = opts[:'from'] if !opts[:'from'].nil?
+      query_params[:'to'] = opts[:'to'] if !opts[:'to'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -5676,7 +5980,7 @@ module FinnhubRuby
     end
 
     # Tick Data
-    # <p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For more historical tick data, you can visit our bulk download page in the Dashboard <a target=\"_blank\" href=\"/dashboard/download\",>here</a> to speed up the download process.</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">US CTA/UTP</th>       <td>Full SIP</td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">TSX</th>       <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">LSE</th>       <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">Euronext</th>       <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Deutsche Börse</th>       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>   </tbody> </table>
+    # <p>Get historical tick data for global exchanges.</p><p>For more historical tick data, you can visit our bulk download page in the Dashboard <a target=\"_blank\" href=\"/dashboard/download\",>here</a> to speed up the download process.</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">US CTA/UTP</th>       <td>Full SIP</td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">TSX</th>       <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">LSE</th>       <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">Euronext</th>       <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Deutsche Börse</th>       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>   </tbody> </table>
     # @param symbol [String] Symbol.
     # @param date [Date] Date: 2020-04-02.
     # @param limit [Integer] Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt;
@@ -5689,7 +5993,7 @@ module FinnhubRuby
     end
 
     # Tick Data
-    # &lt;p&gt;Get historical tick data for global exchanges. You can send the request directly to our tick server at &lt;a href&#x3D;\&quot;https://tick.finnhub.io/\&quot;&gt;https://tick.finnhub.io/&lt;/a&gt; with the same path and parameters or get redirected there if you call our main server.&lt;/p&gt;&lt;p&gt;For more historical tick data, you can visit our bulk download page in the Dashboard &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;/dashboard/download\&quot;,&gt;here&lt;/a&gt; to speed up the download process.&lt;/p&gt;&lt;table class&#x3D;\&quot;table table-hover\&quot;&gt;   &lt;thead&gt;     &lt;tr&gt;       &lt;th&gt;Exchange&lt;/th&gt;       &lt;th&gt;Segment&lt;/th&gt;       &lt;th&gt;Delay&lt;/th&gt;     &lt;/tr&gt;   &lt;/thead&gt;   &lt;tbody&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;US CTA/UTP&lt;/th&gt;       &lt;td&gt;Full SIP&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;TSX&lt;/th&gt;       &lt;td&gt;&lt;ul&gt;&lt;li&gt;TSX&lt;/li&gt;&lt;li&gt;TSX Venture&lt;/li&gt;&lt;li&gt;Index&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;LSE&lt;/th&gt;       &lt;td&gt;&lt;ul&gt;&lt;li&gt;London Stock Exchange (L)&lt;/li&gt;&lt;li&gt;LSE International (L)&lt;/li&gt;&lt;li&gt;LSE European (L)&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;15 minute&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;Euronext&lt;/th&gt;       &lt;td&gt;&lt;ul&gt; &lt;li&gt;Euronext Paris (PA)&lt;/li&gt; &lt;li&gt;Euronext Amsterdam (AS)&lt;/li&gt; &lt;li&gt;Euronext Lisbon (LS)&lt;/li&gt; &lt;li&gt;Euronext Brussels (BR)&lt;/li&gt; &lt;li&gt;Euronext Oslo (OL)&lt;/li&gt; &lt;li&gt;Euronext London (LN)&lt;/li&gt; &lt;li&gt;Euronext Dublin (IR)&lt;/li&gt; &lt;li&gt;Index&lt;/li&gt; &lt;li&gt;Warrant&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;Deutsche Börse&lt;/th&gt;       &lt;td&gt;&lt;ul&gt; &lt;li&gt;Frankfurt (F)&lt;/li&gt; &lt;li&gt;Xetra (DE)&lt;/li&gt; &lt;li&gt;Duesseldorf (DU)&lt;/li&gt; &lt;li&gt;Hamburg (HM)&lt;/li&gt; &lt;li&gt;Berlin (BE)&lt;/li&gt; &lt;li&gt;Hanover (HA)&lt;/li&gt; &lt;li&gt;Stoxx (SX)&lt;/li&gt; &lt;li&gt;TradeGate (TG)&lt;/li&gt; &lt;li&gt;Zertifikate (SC)&lt;/li&gt; &lt;li&gt;Index&lt;/li&gt; &lt;li&gt;Warrant&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;   &lt;/tbody&gt; &lt;/table&gt;
+    # &lt;p&gt;Get historical tick data for global exchanges.&lt;/p&gt;&lt;p&gt;For more historical tick data, you can visit our bulk download page in the Dashboard &lt;a target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;/dashboard/download\&quot;,&gt;here&lt;/a&gt; to speed up the download process.&lt;/p&gt;&lt;table class&#x3D;\&quot;table table-hover\&quot;&gt;   &lt;thead&gt;     &lt;tr&gt;       &lt;th&gt;Exchange&lt;/th&gt;       &lt;th&gt;Segment&lt;/th&gt;       &lt;th&gt;Delay&lt;/th&gt;     &lt;/tr&gt;   &lt;/thead&gt;   &lt;tbody&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;US CTA/UTP&lt;/th&gt;       &lt;td&gt;Full SIP&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;TSX&lt;/th&gt;       &lt;td&gt;&lt;ul&gt;&lt;li&gt;TSX&lt;/li&gt;&lt;li&gt;TSX Venture&lt;/li&gt;&lt;li&gt;Index&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;LSE&lt;/th&gt;       &lt;td&gt;&lt;ul&gt;&lt;li&gt;London Stock Exchange (L)&lt;/li&gt;&lt;li&gt;LSE International (L)&lt;/li&gt;&lt;li&gt;LSE European (L)&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;15 minute&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;Euronext&lt;/th&gt;       &lt;td&gt;&lt;ul&gt; &lt;li&gt;Euronext Paris (PA)&lt;/li&gt; &lt;li&gt;Euronext Amsterdam (AS)&lt;/li&gt; &lt;li&gt;Euronext Lisbon (LS)&lt;/li&gt; &lt;li&gt;Euronext Brussels (BR)&lt;/li&gt; &lt;li&gt;Euronext Oslo (OL)&lt;/li&gt; &lt;li&gt;Euronext London (LN)&lt;/li&gt; &lt;li&gt;Euronext Dublin (IR)&lt;/li&gt; &lt;li&gt;Index&lt;/li&gt; &lt;li&gt;Warrant&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td class&#x3D;\&quot;text-blue\&quot;&gt;Deutsche Börse&lt;/th&gt;       &lt;td&gt;&lt;ul&gt; &lt;li&gt;Frankfurt (F)&lt;/li&gt; &lt;li&gt;Xetra (DE)&lt;/li&gt; &lt;li&gt;Duesseldorf (DU)&lt;/li&gt; &lt;li&gt;Hamburg (HM)&lt;/li&gt; &lt;li&gt;Berlin (BE)&lt;/li&gt; &lt;li&gt;Hanover (HA)&lt;/li&gt; &lt;li&gt;Stoxx (SX)&lt;/li&gt; &lt;li&gt;TradeGate (TG)&lt;/li&gt; &lt;li&gt;Zertifikate (SC)&lt;/li&gt; &lt;li&gt;Index&lt;/li&gt; &lt;li&gt;Warrant&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;       &lt;td&gt;End-of-day&lt;/td&gt;     &lt;/tr&gt;   &lt;/tbody&gt; &lt;/table&gt;
     # @param symbol [String] Symbol.
     # @param date [Date] Date: 2020-04-02.
     # @param limit [Integer] Limit number of ticks returned. Maximum value: &lt;code&gt;25000&lt;/code&gt;
@@ -6204,6 +6508,7 @@ module FinnhubRuby
     # Search for best-matching symbols based on your query. You can input anything from symbol, security's name to ISIN and Cusip.
     # @param q [String] Query text can be symbol, name, isin, or cusip.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :exchange Exchange limit.
     # @return [SymbolLookup]
     def symbol_search(q, opts = {})
       data, _status_code, _headers = symbol_search_with_http_info(q, opts)
@@ -6214,6 +6519,7 @@ module FinnhubRuby
     # Search for best-matching symbols based on your query. You can input anything from symbol, security&#39;s name to ISIN and Cusip.
     # @param q [String] Query text can be symbol, name, isin, or cusip.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :exchange Exchange limit.
     # @return [Array<(SymbolLookup, Integer, Hash)>] SymbolLookup data, response status code and response headers
     def symbol_search_with_http_info(q, opts = {})
       if @api_client.config.debugging
@@ -6229,6 +6535,7 @@ module FinnhubRuby
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'q'] = q
+      query_params[:'exchange'] = opts[:'exchange'] if !opts[:'exchange'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

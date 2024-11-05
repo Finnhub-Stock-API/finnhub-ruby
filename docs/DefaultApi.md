@@ -5,6 +5,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**aggregate_indicator**](DefaultApi.md#aggregate_indicator) | **GET** /scan/technical-indicator | Aggregate Indicators |
+| [**airline_price_index**](DefaultApi.md#airline_price_index) | **GET** /airline/price-index | Airline Price Index |
 | [**bond_price**](DefaultApi.md#bond_price) | **GET** /bond/price | Bond price data |
 | [**bond_profile**](DefaultApi.md#bond_profile) | **GET** /bond/profile | Bond Profile |
 | [**bond_tick**](DefaultApi.md#bond_tick) | **GET** /bond/tick | Bond Tick Data |
@@ -17,6 +18,7 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**company_eps_estimates**](DefaultApi.md#company_eps_estimates) | **GET** /stock/eps-estimate | Earnings Estimates |
 | [**company_esg_score**](DefaultApi.md#company_esg_score) | **GET** /stock/esg | Company ESG Scores |
 | [**company_executive**](DefaultApi.md#company_executive) | **GET** /stock/executive | Company Executive |
+| [**company_historical_esg_score**](DefaultApi.md#company_historical_esg_score) | **GET** /stock/historical-esg | Historical ESG Scores |
 | [**company_news**](DefaultApi.md#company_news) | **GET** /company-news | Company News |
 | [**company_peers**](DefaultApi.md#company_peers) | **GET** /stock/peers | Peers |
 | [**company_profile**](DefaultApi.md#company_profile) | **GET** /stock/profile | Company Profile |
@@ -47,6 +49,8 @@ All URIs are relative to *https://finnhub.io/api/v1*
 | [**forex_rates**](DefaultApi.md#forex_rates) | **GET** /forex/rates | Forex rates |
 | [**forex_symbols**](DefaultApi.md#forex_symbols) | **GET** /forex/symbol | Forex Symbol |
 | [**fund_ownership**](DefaultApi.md#fund_ownership) | **GET** /stock/fund-ownership | Fund Ownership |
+| [**historical_employee_count**](DefaultApi.md#historical_employee_count) | **GET** /stock/historical-employee-count | Historical Employee Count |
+| [**historical_market_cap**](DefaultApi.md#historical_market_cap) | **GET** /stock/historical-market-cap | Historical Market Cap |
 | [**indices_constituents**](DefaultApi.md#indices_constituents) | **GET** /index/constituents | Indices Constituents |
 | [**indices_historical_constituents**](DefaultApi.md#indices_historical_constituents) | **GET** /index/historical-constituents | Indices Historical Constituents |
 | [**insider_sentiment**](DefaultApi.md#insider_sentiment) | **GET** /stock/insider-sentiment | Insider Sentiment |
@@ -163,6 +167,81 @@ end
 ### Return type
 
 [**AggregateIndicators**](AggregateIndicators.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## airline_price_index
+
+> <AirlinePriceIndexData> airline_price_index(airline, from, to)
+
+Airline Price Index
+
+<p>The Flight Ticket Price Index API provides comprehensive data on airline ticket prices, including the average daily ticket price and its percentage change (price index). This data, collected weekly and projected two weeks ahead, aggregates daily prices and indexes from the 50 busiest and largest airports across the USA. The dataset includes detailed information on airlines, dates, and average ticket prices, offering valuable insights for market analysis and pricing strategies.</p><p>The price index is calculated as percentage change of average daily ticket price from the previous weekly reading. Raw ticket prices data is available for Enterprise users. <a href=\"mailto:support@finnhub.io\">Contact us</a> to inquire about the raw price data.</p>
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+airline = 'airline_example' # String | Filter data by airline. Accepted values: <code>united</code>,<code>delta</code>,<code>american_airlines</code>,<code>southwest</code>,<code>southern_airways_express</code>,<code>alaska_airlines</code>,<code>frontier_airlines</code>,<code>jetblue_airways</code>,<code>spirit_airlines</code>,<code>sun_country_airlines</code>,<code>breeze_airways</code>,<code>hawaiian_airlines</code>
+from = Date.parse('2013-10-20') # Date | From date <code>YYYY-MM-DD</code>.
+to = Date.parse('2013-10-20') # Date | To date <code>YYYY-MM-DD</code>.
+
+begin
+  # Airline Price Index
+  result = api_instance.airline_price_index(airline, from, to)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->airline_price_index: #{e}"
+end
+```
+
+#### Using the airline_price_index_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<AirlinePriceIndexData>, Integer, Hash)> airline_price_index_with_http_info(airline, from, to)
+
+```ruby
+begin
+  # Airline Price Index
+  data, status_code, headers = api_instance.airline_price_index_with_http_info(airline, from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <AirlinePriceIndexData>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->airline_price_index_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **airline** | **String** | Filter data by airline. Accepted values: &lt;code&gt;united&lt;/code&gt;,&lt;code&gt;delta&lt;/code&gt;,&lt;code&gt;american_airlines&lt;/code&gt;,&lt;code&gt;southwest&lt;/code&gt;,&lt;code&gt;southern_airways_express&lt;/code&gt;,&lt;code&gt;alaska_airlines&lt;/code&gt;,&lt;code&gt;frontier_airlines&lt;/code&gt;,&lt;code&gt;jetblue_airways&lt;/code&gt;,&lt;code&gt;spirit_airlines&lt;/code&gt;,&lt;code&gt;sun_country_airlines&lt;/code&gt;,&lt;code&gt;breeze_airways&lt;/code&gt;,&lt;code&gt;hawaiian_airlines&lt;/code&gt; |  |
+| **from** | **Date** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+| **to** | **Date** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+
+### Return type
+
+[**AirlinePriceIndexData**](AirlinePriceIndexData.md)
 
 ### Authorization
 
@@ -928,7 +1007,7 @@ end
 
 Company ESG Scores
 
-<p>This endpoint provides ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p><p>Historical ESG data is available for Enterprise users. <a href=\"mailto:support@finnhub.io\">Contact us</a> to learn more.</p>
+<p>This endpoint provides the latest ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p>
 
 ### Examples
 
@@ -1053,6 +1132,77 @@ end
 ### Return type
 
 [**CompanyExecutive**](CompanyExecutive.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## company_historical_esg_score
+
+> <HistoricalCompanyESG> company_historical_esg_score(symbol)
+
+Historical ESG Scores
+
+<p>This endpoint provides historical ESG scores and important indicators for 7000+ global companies. The data is collected through company's public ESG disclosure and public sources.</p><p>Our ESG scoring models takes into account more than 150 different inputs to calculate the level of ESG risks and how well a company is managing them. A higher score means lower ESG risk or better ESG management. ESG scores are in the the range of 0-100. Some key indicators might contain letter-grade score from C- to A+ with C- is the lowest score and A+ is the highest score.</p>
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | Symbol.
+
+begin
+  # Historical ESG Scores
+  result = api_instance.company_historical_esg_score(symbol)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->company_historical_esg_score: #{e}"
+end
+```
+
+#### Using the company_historical_esg_score_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<HistoricalCompanyESG>, Integer, Hash)> company_historical_esg_score_with_http_info(symbol)
+
+```ruby
+begin
+  # Historical ESG Scores
+  data, status_code, headers = api_instance.company_historical_esg_score_with_http_info(symbol)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <HistoricalCompanyESG>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->company_historical_esg_score_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Symbol. |  |
+
+### Return type
+
+[**HistoricalCompanyESG**](HistoricalCompanyESG.md)
 
 ### Authorization
 
@@ -2633,8 +2783,8 @@ opts = {
   cik: 'cik_example', # String | CIK.
   access_number: 'access_number_example', # String | Access number of a specific report you want to retrieve data from.
   form: 'form_example', # String | Filter by form. You can use this value <code>NT 10-K</code> to find non-timely filings for a company.
-  from: Date.parse('2013-10-20'), # Date | From date: 2020-03-15.
-  to: Date.parse('2013-10-20') # Date | To date: 2020-03-16.
+  from: Date.parse('2013-10-20'), # Date | From date: 2023-03-15.
+  to: Date.parse('2013-10-20') # Date | To date: 2023-03-16.
 }
 
 begin
@@ -2672,8 +2822,8 @@ end
 | **cik** | **String** | CIK. | [optional] |
 | **access_number** | **String** | Access number of a specific report you want to retrieve data from. | [optional] |
 | **form** | **String** | Filter by form. You can use this value &lt;code&gt;NT 10-K&lt;/code&gt; to find non-timely filings for a company. | [optional] |
-| **from** | **Date** | From date: 2020-03-15. | [optional] |
-| **to** | **Date** | To date: 2020-03-16. | [optional] |
+| **from** | **Date** | From date: 2023-03-15. | [optional] |
+| **to** | **Date** | To date: 2023-03-16. | [optional] |
 
 ### Return type
 
@@ -3284,6 +3434,156 @@ end
 - **Accept**: application/json
 
 
+## historical_employee_count
+
+> <HistoricalEmployeeCount> historical_employee_count(symbol, from, to)
+
+Historical Employee Count
+
+Get historical employee count for global companies.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | Company symbol.
+from = Date.parse('2013-10-20') # Date | From date <code>YYYY-MM-DD</code>.
+to = Date.parse('2013-10-20') # Date | To date <code>YYYY-MM-DD</code>.
+
+begin
+  # Historical Employee Count
+  result = api_instance.historical_employee_count(symbol, from, to)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->historical_employee_count: #{e}"
+end
+```
+
+#### Using the historical_employee_count_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<HistoricalEmployeeCount>, Integer, Hash)> historical_employee_count_with_http_info(symbol, from, to)
+
+```ruby
+begin
+  # Historical Employee Count
+  data, status_code, headers = api_instance.historical_employee_count_with_http_info(symbol, from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <HistoricalEmployeeCount>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->historical_employee_count_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Company symbol. |  |
+| **from** | **Date** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+| **to** | **Date** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+
+### Return type
+
+[**HistoricalEmployeeCount**](HistoricalEmployeeCount.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## historical_market_cap
+
+> <HistoricalMarketCapData> historical_market_cap(symbol, from, to)
+
+Historical Market Cap
+
+Get historical market cap data for global companies.
+
+### Examples
+
+```ruby
+require 'time'
+require 'finnhub_ruby'
+# setup authorization
+FinnhubRuby.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['api_key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['api_key'] = 'Bearer'
+end
+
+api_instance = FinnhubRuby::DefaultApi.new
+symbol = 'symbol_example' # String | Company symbol.
+from = Date.parse('2013-10-20') # Date | From date <code>YYYY-MM-DD</code>.
+to = Date.parse('2013-10-20') # Date | To date <code>YYYY-MM-DD</code>.
+
+begin
+  # Historical Market Cap
+  result = api_instance.historical_market_cap(symbol, from, to)
+  p result
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->historical_market_cap: #{e}"
+end
+```
+
+#### Using the historical_market_cap_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<HistoricalMarketCapData>, Integer, Hash)> historical_market_cap_with_http_info(symbol, from, to)
+
+```ruby
+begin
+  # Historical Market Cap
+  data, status_code, headers = api_instance.historical_market_cap_with_http_info(symbol, from, to)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <HistoricalMarketCapData>
+rescue FinnhubRuby::ApiError => e
+  puts "Error when calling DefaultApi->historical_market_cap_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **symbol** | **String** | Company symbol. |  |
+| **from** | **Date** | From date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+| **to** | **Date** | To date &lt;code&gt;YYYY-MM-DD&lt;/code&gt;. |  |
+
+### Return type
+
+[**HistoricalMarketCapData**](HistoricalMarketCapData.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## indices_constituents
 
 > <IndicesConstituents> indices_constituents(symbol)
@@ -3507,7 +3807,7 @@ end
 
 Insider Transactions
 
-Company insider transactions data sourced from <code>Form 3,4,5</code>, SEDI and relevant companies' filings. This endpoint covers US, Canada, Australia, and selected EU companies. Limit to 100 transactions per API call.
+Company insider transactions data sourced from <code>Form 3,4,5</code>, SEDI and relevant companies' filings. This endpoint covers US, UK, Canada, Australia, India, and all major EU markets. Limit to 100 transactions per API call.
 
 ### Examples
 
@@ -3809,7 +4109,7 @@ end
 
 International Filings
 
-List filings for international companies. Limit to 250 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
+List filings for international companies. Limit to 500 documents at a time. These are the documents we use to source our fundamental data. Only support SEDAR and UK Companies House for normal usage. Enterprise clients who need access to the full filings for global markets should contact us for the access.
 
 ### Examples
 
@@ -3827,7 +4127,9 @@ end
 api_instance = FinnhubRuby::DefaultApi.new
 opts = {
   symbol: 'symbol_example', # String | Symbol. Leave empty to list latest filings.
-  country: 'country_example' # String | Filter by country using country's 2-letter code.
+  country: 'country_example', # String | Filter by country using country's 2-letter code.
+  from: Date.parse('2013-10-20'), # Date | From date: 2023-01-15.
+  to: Date.parse('2013-10-20') # Date | To date: 2023-12-16.
 }
 
 begin
@@ -3863,6 +4165,8 @@ end
 | ---- | ---- | ----------- | ----- |
 | **symbol** | **String** | Symbol. Leave empty to list latest filings. | [optional] |
 | **country** | **String** | Filter by country using country&#39;s 2-letter code. | [optional] |
+| **from** | **Date** | From date: 2023-01-15. | [optional] |
+| **to** | **Date** | To date: 2023-12-16. | [optional] |
 
 ### Return type
 
@@ -6246,7 +6550,7 @@ end
 
 Tick Data
 
-<p>Get historical tick data for global exchanges. You can send the request directly to our tick server at <a href=\"https://tick.finnhub.io/\">https://tick.finnhub.io/</a> with the same path and parameters or get redirected there if you call our main server.</p><p>For more historical tick data, you can visit our bulk download page in the Dashboard <a target=\"_blank\" href=\"/dashboard/download\",>here</a> to speed up the download process.</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">US CTA/UTP</th>       <td>Full SIP</td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">TSX</th>       <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">LSE</th>       <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">Euronext</th>       <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Deutsche Börse</th>       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>   </tbody> </table>
+<p>Get historical tick data for global exchanges.</p><p>For more historical tick data, you can visit our bulk download page in the Dashboard <a target=\"_blank\" href=\"/dashboard/download\",>here</a> to speed up the download process.</p><table class=\"table table-hover\">   <thead>     <tr>       <th>Exchange</th>       <th>Segment</th>       <th>Delay</th>     </tr>   </thead>   <tbody>     <tr>       <td class=\"text-blue\">US CTA/UTP</th>       <td>Full SIP</td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">TSX</th>       <td><ul><li>TSX</li><li>TSX Venture</li><li>Index</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">LSE</th>       <td><ul><li>London Stock Exchange (L)</li><li>LSE International (L)</li><li>LSE European (L)</li></ul></td>       <td>15 minute</td>     </tr>     <tr>       <td class=\"text-blue\">Euronext</th>       <td><ul> <li>Euronext Paris (PA)</li> <li>Euronext Amsterdam (AS)</li> <li>Euronext Lisbon (LS)</li> <li>Euronext Brussels (BR)</li> <li>Euronext Oslo (OL)</li> <li>Euronext London (LN)</li> <li>Euronext Dublin (IR)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>     <tr>       <td class=\"text-blue\">Deutsche Börse</th>       <td><ul> <li>Frankfurt (F)</li> <li>Xetra (DE)</li> <li>Duesseldorf (DU)</li> <li>Hamburg (HM)</li> <li>Berlin (BE)</li> <li>Hanover (HA)</li> <li>Stoxx (SX)</li> <li>TradeGate (TG)</li> <li>Zertifikate (SC)</li> <li>Index</li> <li>Warrant</li></ul></td>       <td>End-of-day</td>     </tr>   </tbody> </table>
 
 ### Examples
 
@@ -6761,7 +7065,7 @@ end
 
 ## symbol_search
 
-> <SymbolLookup> symbol_search(q)
+> <SymbolLookup> symbol_search(q, opts)
 
 Symbol Lookup
 
@@ -6782,10 +7086,13 @@ end
 
 api_instance = FinnhubRuby::DefaultApi.new
 q = 'q_example' # String | Query text can be symbol, name, isin, or cusip.
+opts = {
+  exchange: 'exchange_example' # String | Exchange limit.
+}
 
 begin
   # Symbol Lookup
-  result = api_instance.symbol_search(q)
+  result = api_instance.symbol_search(q, opts)
   p result
 rescue FinnhubRuby::ApiError => e
   puts "Error when calling DefaultApi->symbol_search: #{e}"
@@ -6796,12 +7103,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<SymbolLookup>, Integer, Hash)> symbol_search_with_http_info(q)
+> <Array(<SymbolLookup>, Integer, Hash)> symbol_search_with_http_info(q, opts)
 
 ```ruby
 begin
   # Symbol Lookup
-  data, status_code, headers = api_instance.symbol_search_with_http_info(q)
+  data, status_code, headers = api_instance.symbol_search_with_http_info(q, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <SymbolLookup>
@@ -6815,6 +7122,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **q** | **String** | Query text can be symbol, name, isin, or cusip. |  |
+| **exchange** | **String** | Exchange limit. | [optional] |
 
 ### Return type
 

@@ -16,6 +16,7 @@
 | **domicile** | **String** | ETF domicile. | [optional] |
 | **inception_date** | **Date** | Inception date. | [optional] |
 | **website** | **String** | ETF&#39;s website. | [optional] |
+| **logo** | **String** | Logo. | [optional] |
 | **isin** | **String** | ISIN. | [optional] |
 | **cusip** | **String** | CUSIP. | [optional] |
 | **price_to_earnings** | **Float** | P/E. | [optional] |
@@ -44,6 +45,7 @@ instance = FinnhubRuby::ETFProfileData.new(
   domicile: null,
   inception_date: null,
   website: null,
+  logo: null,
   isin: null,
   cusip: null,
   price_to_earnings: null,

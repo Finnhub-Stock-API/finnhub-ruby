@@ -5,6 +5,8 @@
 Gemfile
 Rakefile
 docs/AggregateIndicators.md
+docs/AirlinePriceIndex.md
+docs/AirlinePriceIndexData.md
 docs/BasicFinancials.md
 docs/BondCandles.md
 docs/BondProfile.md
@@ -14,6 +16,7 @@ docs/BondYieldCurveInfo.md
 docs/BreakdownItem.md
 docs/Company.md
 docs/CompanyESG.md
+docs/CompanyESG2.md
 docs/CompanyEarningsQualityScore.md
 docs/CompanyEarningsQualityScoreData.md
 docs/CompanyExecutive.md
@@ -58,6 +61,7 @@ docs/EconomicCode.md
 docs/EconomicData.md
 docs/EconomicDataInfo.md
 docs/EconomicEvent.md
+docs/EmployeeCount.md
 docs/ExcerptResponse.md
 docs/FDAComitteeMeeting.md
 docs/Filing.md
@@ -70,6 +74,9 @@ docs/ForexSymbol.md
 docs/Forexrates.md
 docs/FundOwnership.md
 docs/FundOwnershipInfo.md
+docs/HistoricalCompanyESG.md
+docs/HistoricalEmployeeCount.md
+docs/HistoricalMarketCapData.md
 docs/HistoricalNBBO.md
 docs/IPOCalendar.md
 docs/IPOEvent.md
@@ -100,6 +107,7 @@ docs/KeyCustomersSuppliers.md
 docs/LastBidAsk.md
 docs/LobbyingData.md
 docs/LobbyingResult.md
+docs/MarketCapData.md
 docs/MarketHoliday.md
 docs/MarketHolidayData.md
 docs/MarketNews.md
@@ -168,6 +176,8 @@ lib/finnhub_ruby/api/default_api.rb
 lib/finnhub_ruby/api_error.rb
 lib/finnhub_ruby/configuration.rb
 lib/finnhub_ruby/models/aggregate_indicators.rb
+lib/finnhub_ruby/models/airline_price_index.rb
+lib/finnhub_ruby/models/airline_price_index_data.rb
 lib/finnhub_ruby/models/basic_financials.rb
 lib/finnhub_ruby/models/bond_candles.rb
 lib/finnhub_ruby/models/bond_profile.rb
@@ -179,6 +189,7 @@ lib/finnhub_ruby/models/company.rb
 lib/finnhub_ruby/models/company_earnings_quality_score.rb
 lib/finnhub_ruby/models/company_earnings_quality_score_data.rb
 lib/finnhub_ruby/models/company_esg.rb
+lib/finnhub_ruby/models/company_esg2.rb
 lib/finnhub_ruby/models/company_executive.rb
 lib/finnhub_ruby/models/company_news.rb
 lib/finnhub_ruby/models/company_news_statistics.rb
@@ -212,6 +223,7 @@ lib/finnhub_ruby/models/economic_code.rb
 lib/finnhub_ruby/models/economic_data.rb
 lib/finnhub_ruby/models/economic_data_info.rb
 lib/finnhub_ruby/models/economic_event.rb
+lib/finnhub_ruby/models/employee_count.rb
 lib/finnhub_ruby/models/etf_country_exposure_data.rb
 lib/finnhub_ruby/models/etf_holdings_data.rb
 lib/finnhub_ruby/models/etf_profile_data.rb
@@ -232,6 +244,9 @@ lib/finnhub_ruby/models/forex_symbol.rb
 lib/finnhub_ruby/models/forexrates.rb
 lib/finnhub_ruby/models/fund_ownership.rb
 lib/finnhub_ruby/models/fund_ownership_info.rb
+lib/finnhub_ruby/models/historical_company_esg.rb
+lib/finnhub_ruby/models/historical_employee_count.rb
+lib/finnhub_ruby/models/historical_market_cap_data.rb
 lib/finnhub_ruby/models/historical_nbbo.rb
 lib/finnhub_ruby/models/in_filing_response.rb
 lib/finnhub_ruby/models/in_filing_search_body.rb
@@ -262,6 +277,7 @@ lib/finnhub_ruby/models/key_customers_suppliers.rb
 lib/finnhub_ruby/models/last_bid_ask.rb
 lib/finnhub_ruby/models/lobbying_data.rb
 lib/finnhub_ruby/models/lobbying_result.rb
+lib/finnhub_ruby/models/market_cap_data.rb
 lib/finnhub_ruby/models/market_holiday.rb
 lib/finnhub_ruby/models/market_holiday_data.rb
 lib/finnhub_ruby/models/market_news.rb
@@ -326,9 +342,12 @@ lib/finnhub_ruby/models/visa_application_result.rb
 lib/finnhub_ruby/version.rb
 spec/api_client_spec.rb
 spec/configuration_spec.rb
-spec/models/indices_constituents_breakdown_spec.rb
-spec/models/market_holiday_data_spec.rb
-spec/models/market_holiday_spec.rb
-spec/models/market_status_spec.rb
-spec/models/sentiment_content_spec.rb
+spec/models/airline_price_index_data_spec.rb
+spec/models/airline_price_index_spec.rb
+spec/models/company_esg2_spec.rb
+spec/models/employee_count_spec.rb
+spec/models/historical_company_esg_spec.rb
+spec/models/historical_employee_count_spec.rb
+spec/models/historical_market_cap_data_spec.rb
+spec/models/market_cap_data_spec.rb
 spec/spec_helper.rb

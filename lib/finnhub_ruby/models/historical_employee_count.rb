@@ -14,38 +14,18 @@ require 'date'
 require 'time'
 
 module FinnhubRuby
-  class PriceTarget
-    # Company symbol.
+  class HistoricalEmployeeCount
+    # Array of market data.
+    attr_accessor :data
+
+    # Symbol
     attr_accessor :symbol
-
-    # Highes analysts' target.
-    attr_accessor :target_high
-
-    # Lowest analysts' target.
-    attr_accessor :target_low
-
-    # Mean of all analysts' targets.
-    attr_accessor :target_mean
-
-    # Median of all analysts' targets.
-    attr_accessor :target_median
-
-    # Number of Analysts.
-    attr_accessor :number_analysts
-
-    # Updated time of the data
-    attr_accessor :last_updated
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'symbol' => :'symbol',
-        :'target_high' => :'targetHigh',
-        :'target_low' => :'targetLow',
-        :'target_mean' => :'targetMean',
-        :'target_median' => :'targetMedian',
-        :'number_analysts' => :'numberAnalysts',
-        :'last_updated' => :'lastUpdated'
+        :'data' => :'data',
+        :'symbol' => :'symbol'
       }
     end
 
@@ -57,13 +37,8 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'symbol' => :'String',
-        :'target_high' => :'Float',
-        :'target_low' => :'Float',
-        :'target_mean' => :'Float',
-        :'target_median' => :'Float',
-        :'number_analysts' => :'Integer',
-        :'last_updated' => :'String'
+        :'data' => :'Array<EmployeeCount>',
+        :'symbol' => :'String'
       }
     end
 
@@ -77,43 +52,25 @@ module FinnhubRuby
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::PriceTarget` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `FinnhubRuby::HistoricalEmployeeCount` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::PriceTarget`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `FinnhubRuby::HistoricalEmployeeCount`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'data')
+        if (value = attributes[:'data']).is_a?(Array)
+          self.data = value
+        end
+      end
+
       if attributes.key?(:'symbol')
         self.symbol = attributes[:'symbol']
-      end
-
-      if attributes.key?(:'target_high')
-        self.target_high = attributes[:'target_high']
-      end
-
-      if attributes.key?(:'target_low')
-        self.target_low = attributes[:'target_low']
-      end
-
-      if attributes.key?(:'target_mean')
-        self.target_mean = attributes[:'target_mean']
-      end
-
-      if attributes.key?(:'target_median')
-        self.target_median = attributes[:'target_median']
-      end
-
-      if attributes.key?(:'number_analysts')
-        self.number_analysts = attributes[:'number_analysts']
-      end
-
-      if attributes.key?(:'last_updated')
-        self.last_updated = attributes[:'last_updated']
       end
     end
 
@@ -135,13 +92,8 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          symbol == o.symbol &&
-          target_high == o.target_high &&
-          target_low == o.target_low &&
-          target_mean == o.target_mean &&
-          target_median == o.target_median &&
-          number_analysts == o.number_analysts &&
-          last_updated == o.last_updated
+          data == o.data &&
+          symbol == o.symbol
     end
 
     # @see the `==` method
@@ -153,7 +105,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, target_high, target_low, target_mean, target_median, number_analysts, last_updated].hash
+      [data, symbol].hash
     end
 
     # Builds the object from hash

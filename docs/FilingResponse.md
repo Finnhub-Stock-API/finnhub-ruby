@@ -10,7 +10,7 @@
 | **symbol** | **Object** | List of symbol associate with this filing | [optional] |
 | **name** | **String** | Filer name | [optional] |
 | **acceptance_date** | **String** | Date the filing is submitted. | [optional] |
-| **filed_date** | **String** | Date the filing is make available to the public | [optional] |
+| **filed_date** | **String** | Date the filing is made available to the public | [optional] |
 | **report_date** | **String** | Date as which the filing is reported | [optional] |
 | **form** | **String** | Filing Form | [optional] |
 | **amend** | **Boolean** | Amendment | [optional] |
