@@ -454,9 +454,9 @@ module FinnhubRuby
     def _deserialize(type, value)
       case type.to_sym
       when :Time
-        Time.parse(value)
+        Time.parse(value) rescue nil
       when :Date
-        Date.parse(value)
+        Date.parse(value) rescue nil
       when :String
         value.to_s
       when :Integer
