@@ -15,6 +15,9 @@ require 'time'
 
 module FinnhubRuby
   class Transactions
+    # ID
+    attr_accessor :id
+
     # Symbol.
     attr_accessor :symbol
 
@@ -39,9 +42,20 @@ module FinnhubRuby
     # Transaction code. A list of codes and their meanings can be found <a href=\"https://www.sec.gov/about/forms/form4data.pdf\" target=\"_blank\" rel=\"noopener\">here</a>.
     attr_accessor :transaction_code
 
+    # Currency
+    attr_accessor :currency
+
+    # Is Deriative
+    attr_accessor :is_derivative
+
+    # Source
+    attr_accessor :source
+
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'id' => :'id',
         :'symbol' => :'symbol',
         :'name' => :'name',
         :'share' => :'share',
@@ -49,7 +63,10 @@ module FinnhubRuby
         :'filing_date' => :'filingDate',
         :'transaction_date' => :'transactionDate',
         :'transaction_price' => :'transactionPrice',
-        :'transaction_code' => :'transactionCode'
+        :'transaction_code' => :'transactionCode',
+        :'currency' => :'currency',
+        :'is_derivative' => :'isDerivative',
+        :'source' => :'source'
       }
     end
 
@@ -61,6 +78,7 @@ module FinnhubRuby
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'id' => :'String',
         :'symbol' => :'String',
         :'name' => :'String',
         :'share' => :'Integer',
@@ -68,7 +86,10 @@ module FinnhubRuby
         :'filing_date' => :'Date',
         :'transaction_date' => :'Date',
         :'transaction_price' => :'Float',
-        :'transaction_code' => :'String'
+        :'transaction_code' => :'String',
+        :'currency' => :'String',
+        :'is_derivative' => :'Boolean',
+        :'source' => :'String'
       }
     end
 
@@ -92,6 +113,10 @@ module FinnhubRuby
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'id')
+        self.symbol = attributes[:'id']
+      end
 
       if attributes.key?(:'symbol')
         self.symbol = attributes[:'symbol']
@@ -124,6 +149,18 @@ module FinnhubRuby
       if attributes.key?(:'transaction_code')
         self.transaction_code = attributes[:'transaction_code']
       end
+
+      if attributes.key?(:'currency')
+        self.transaction_code = attributes[:'currency']
+      end
+
+      if attributes.key?(:'is_derivative')
+        self.transaction_code = attributes[:'is_derivative']
+      end
+
+      if attributes.key?(:'source')
+        self.transaction_code = attributes[:'source']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -144,6 +181,7 @@ module FinnhubRuby
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          id == o.id &&
           symbol == o.symbol &&
           name == o.name &&
           share == o.share &&
@@ -151,7 +189,9 @@ module FinnhubRuby
           filing_date == o.filing_date &&
           transaction_date == o.transaction_date &&
           transaction_price == o.transaction_price &&
-          transaction_code == o.transaction_code
+          currency == o.currency &&
+          is_derivative == o.is_derivative &&
+          source == o.source
     end
 
     # @see the `==` method
@@ -163,7 +203,8 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [symbol, name, share, change, filing_date, transaction_date, transaction_price, transaction_code].hash
+      [id, symbol, name, share, change, filing_date, transaction_date,
+       transaction_price, transaction_code, currency, is_derivative, source].hash
     end
 
     # Builds the object from hash
@@ -202,9 +243,9 @@ module FinnhubRuby
     def _deserialize(type, value)
       case type.to_sym
       when :Time
-        Time.parse(value)
+        Time.parse(value) rescue nil
       when :Date
-        Date.parse(value)
+        Date.parse(value) rescue nil
       when :String
         value.to_s
       when :Integer
