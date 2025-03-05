@@ -21,8 +21,8 @@ module FinnhubRuby
     # Age
     attr_accessor :age
 
-    # Title
-    attr_accessor :title
+    # Position
+    attr_accessor :position
 
     # Year first appointed as executive/director of the company
     attr_accessor :since
@@ -41,7 +41,7 @@ module FinnhubRuby
       {
         :'name' => :'name',
         :'age' => :'age',
-        :'title' => :'title',
+        :'position' => :'position',
         :'since' => :'since',
         :'sex' => :'sex',
         :'compensation' => :'compensation',
@@ -59,7 +59,7 @@ module FinnhubRuby
       {
         :'name' => :'String',
         :'age' => :'Integer',
-        :'title' => :'String',
+        :'position' => :'String',
         :'since' => :'String',
         :'sex' => :'String',
         :'compensation' => :'Integer',
@@ -96,8 +96,8 @@ module FinnhubRuby
         self.age = attributes[:'age']
       end
 
-      if attributes.key?(:'title')
-        self.title = attributes[:'title']
+      if attributes.key?(:'position')
+        self.position = attributes[:'position']
       end
 
       if attributes.key?(:'since')
@@ -137,7 +137,7 @@ module FinnhubRuby
       self.class == o.class &&
           name == o.name &&
           age == o.age &&
-          title == o.title &&
+          position == o.position &&
           since == o.since &&
           sex == o.sex &&
           compensation == o.compensation &&
@@ -153,7 +153,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, age, title, since, sex, compensation, currency].hash
+      [name, age, position, since, sex, compensation, currency].hash
     end
 
     # Builds the object from hash
