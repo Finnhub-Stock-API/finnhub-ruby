@@ -114,6 +114,9 @@ module FinnhubRuby
     # Finnhub industry classification.
     attr_accessor :finnhub_industry
 
+    # Finnhub industry classification.
+    attr_accessor :fundamental_freq
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -149,7 +152,8 @@ module FinnhubRuby
         :'share_outstanding' => :'shareOutstanding',
         :'employee_total' => :'employeeTotal',
         :'logo' => :'logo',
-        :'finnhub_industry' => :'finnhubIndustry'
+        :'finnhub_industry' => :'finnhubIndustry',
+        :'fundamental_freq' => :'fundamentalFreq'
       }
     end
 
@@ -193,7 +197,8 @@ module FinnhubRuby
         :'share_outstanding' => :'Float',
         :'employee_total' => :'Float',
         :'logo' => :'String',
-        :'finnhub_industry' => :'String'
+        :'finnhub_industry' => :'String',
+        :'fundamental_freq' => :'String'
       }
     end
 
@@ -351,6 +356,10 @@ module FinnhubRuby
       if attributes.key?(:'finnhub_industry')
         self.finnhub_industry = attributes[:'finnhub_industry']
       end
+
+      if attributes.key?(:'fundamental_freq')
+        self.fundamental_freq = attributes[:'fundamental_freq']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -403,7 +412,8 @@ module FinnhubRuby
           share_outstanding == o.share_outstanding &&
           employee_total == o.employee_total &&
           logo == o.logo &&
-          finnhub_industry == o.finnhub_industry
+          finnhub_industry == o.finnhub_industry &&
+          fundamental_freq == o.fundamental_freq
     end
 
     # @see the `==` method
@@ -415,7 +425,7 @@ module FinnhubRuby
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [_alias, address, city, country, currency, estimate_currency, market_cap_currency, cusip, sedol, description, exchange, ggroup, gind, gsector, gsubind, isin, lei, ir_url, naics_national_industry, naics, naics_sector, naics_subsector, name, phone, state, ticker, weburl, ipo, market_capitalization, share_outstanding, employee_total, logo, finnhub_industry].hash
+      [_alias, address, city, country, currency, estimate_currency, market_cap_currency, cusip, sedol, description, exchange, ggroup, gind, gsector, gsubind, isin, lei, ir_url, naics_national_industry, naics, naics_sector, naics_subsector, name, phone, state, ticker, weburl, ipo, market_capitalization, share_outstanding, employee_total, logo, finnhub_industry, fundamental_freq].hash
     end
 
     # Builds the object from hash
