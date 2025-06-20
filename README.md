@@ -1,7 +1,7 @@
 # finnhub-ruby
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 1.1.21
+- Package version: 2.0.0
 
 ## Installation
 https://rubygems.org/gems/finnhub_ruby
@@ -13,7 +13,7 @@ gem install finnhub_ruby
 or in your Gemfile
 
 ```ruby
-gem 'finnhub_ruby', '~> 1.1.21'
+gem 'finnhub_ruby', '~> 2.0.0'
 ```
 
 ## Getting Started
