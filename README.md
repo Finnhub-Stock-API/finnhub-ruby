@@ -31,7 +31,7 @@ finnhub_client = FinnhubRuby::DefaultApi.new
 puts(finnhub_client.similarity_index({symbol: 'AAPL'}))
 
 # Stock symbols
-puts(finnhub_client.stock_symbols('US'))
+puts(client.stock_symbols('US'))
 
 #Symbol search
 puts(finnhub_client.symbol_search('AAPL'))
@@ -126,7 +126,7 @@ puts(finnhub_client.forex_symbols('OANDA'))
 puts(finnhub_client.fund_ownership('AMZN', {limit: 5}))
 
 # General news
-puts(finnhub_client.market_news('forex', {min_id: 0}))
+puts(finnhub_client.general_news('forex', {min_id: 0}))
 
 # Investors ownership
 puts(finnhub_client.ownership('AAPL', {limit: 5}))

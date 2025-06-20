@@ -1,21 +1,86 @@
 # frozen_string_literal: true
 
+require_relative 'finnhub_ruby/version'
 require 'net/http'
 require 'uri'
 require 'json'
 
-module Finnhub
+module FinnhubRuby
+  class << self
+    # Customize default settings for the SDK using block.
+    #   FinnhubRuby.configure do |config|
+    #     config.api_key['api_key'] = "YOUR API KEY"
+    #   end
+    # If no block given, return the default Configuration object.
+    def configure
+      if block_given?
+        yield(Configuration.default)
+      else
+        Configuration.default
+      end
+    end
+  end
+
   class FinnhubAPIException < StandardError; end
   class FinnhubRequestException < StandardError; end
 
-  class Client
+  class Configuration
+    attr_accessor :api_key
+
+    def initialize
+      @api_key = {}
+    end
+
+    def self.default
+      @default ||= Configuration.new
+    end
+  end
+
+  class DefaultApi
     API_URL = 'https://api.finnhub.io/api/v1'
     DEFAULT_TIMEOUT = 10
 
-    attr_accessor :api_key
+    def initialize(api_client = nil)
+      # api_client is unused, but kept for compatibility with openapi-generator pattern
+      @config = Configuration.default
+    end
 
-    def initialize(api_key)
-      @api_key = api_key
+    def get(path, params = {})
+      # Ensure exactly one slash between base and path
+      base = API_URL.chomp('/')
+      path = path.start_with?('/') ? path : "/#{path}"
+      url = "#{base}#{path}"
+      uri = URI.parse(url)
+      params = params.dup
+      params['token'] = @config.api_key['api_key']
+      uri.query = URI.encode_www_form(params)
+      puts(uri)
+
+      # Some endpoints redirect to another endpoint, so we need to handle that
+      limit = 2
+      res = nil
+
+      loop do
+        raise FinnhubRequestException, 'Too many redirects' if limit.zero?
+
+        req = Net::HTTP::Get.new(uri)
+        req['Accept'] = 'application/json'
+        req['User-Agent'] = "finnhub/ruby/#{VERSION}"
+
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = (uri.scheme == 'https')
+        http.read_timeout = DEFAULT_TIMEOUT
+        http.open_timeout = DEFAULT_TIMEOUT
+
+        res = http.request(req)
+
+        break unless res.is_a?(Net::HTTPRedirection)
+
+        uri = URI(res['location'])
+        limit -= 1
+      end
+
+      handle_response(res)
     end
 
     def quote(symbol)
@@ -138,9 +203,9 @@ module Finnhub
       get('/stock/transcripts/list', { symbol: symbol })
     end
 
-    def sim_index(params = {})
-      get('/stock/similarity-index', params)
-    end
+    # def sim_index(params = {})
+    #   get('/stock/similarity-index', params)
+    # end
 
     def stock_candles(symbol, resolution, from, to, **kwargs)
       get('/stock/candle', { symbol: symbol, resolution: resolution, from: from, to: to }.merge(kwargs))
@@ -218,7 +283,7 @@ module Finnhub
       get('/economic', { code: code })
     end
 
-    def calendar_economic(from: nil, to: nil)
+    def economic_calendar(from: nil, to: nil)
       get('/calendar/economic', { from: from, to: to }.compact)
     end
 
@@ -258,11 +323,11 @@ module Finnhub
       get('/stock/international-filings', { symbol: symbol, country: country }.compact)
     end
 
-    def sec_sentiment_analysis(access_number)
+    def sentiment_analysis(access_number)
       get('/stock/filings-sentiment', { accessNumber: access_number })
     end
 
-    def sec_similarity_index(symbol: '', cik: '', freq: 'annual')
+    def similarity_index(symbol: '', cik: '', freq: 'annual')
       get('/stock/similarity-index', { symbol: symbol, cik: cik, freq: freq }.compact)
     end
 
@@ -274,7 +339,7 @@ module Finnhub
       get('/fda-advisory-committee-calendar')
     end
 
-    def symbol_lookup(query)
+    def symbol_search(query)
       get('/search', { q: query })
     end
 
@@ -440,29 +505,6 @@ module Finnhub
 
     def covid19
       get('/covid19/us')
-    end
-
-    def get(path, params = {})
-      # Ensure exactly one slash between base and path
-      base = API_URL.chomp('/')
-      path = path.start_with?('/') ? path : "/#{path}"
-      url = "#{base}#{path}"
-      uri = URI.parse(url)
-      params = params.dup
-      params['token'] = @api_key
-      uri.query = URI.encode_www_form(params)
-
-      req = Net::HTTP::Get.new(uri)
-      req['Accept'] = 'application/json'
-      req['User-Agent'] = 'finnhub/ruby-minimal'
-
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      http.read_timeout = DEFAULT_TIMEOUT
-      http.open_timeout = DEFAULT_TIMEOUT
-
-      res = http.request(req)
-      handle_response(res)
     end
 
     private
