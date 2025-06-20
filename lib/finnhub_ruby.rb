@@ -54,7 +54,6 @@ module FinnhubRuby
       params = params.dup
       params['token'] = @config.api_key['api_key']
       uri.query = URI.encode_www_form(params)
-      puts(uri)
 
       # Some endpoints redirect to another endpoint, so we need to handle that
       limit = 2
