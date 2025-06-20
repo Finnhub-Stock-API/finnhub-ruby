@@ -506,6 +506,10 @@ module FinnhubRuby
       get('/covid19/us')
     end
 
+    def bank_branch(symbol)
+      get('/bank-branch', { symbol: symbol })
+    end
+
     private
 
     def handle_response(res)
