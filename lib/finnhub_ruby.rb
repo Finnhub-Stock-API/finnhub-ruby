@@ -150,8 +150,8 @@ module FinnhubRuby
       get('/stock/metric', { symbol: symbol, metric: metric })
     end
 
-    def financials(symbol, statement, freq)
-      get('/stock/financials', { symbol: symbol, statement: statement, freq: freq })
+    def financials(symbol, statement, freq, preliminary: nil)
+      get('/stock/financials', { symbol: symbol, statement: statement, freq: freq, preliminary: preliminary }.compact)
     end
 
     def financials_reported(params = {})

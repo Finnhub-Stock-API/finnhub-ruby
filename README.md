@@ -112,6 +112,7 @@ puts(finnhub_client.filings_sentiment('0000320193-20-000052', {}))
 
 # Financials
 puts(finnhub_client.financials('AAPL', 'bs', 'annual'))
+puts(finnhub_client.financials('AAPL', 'bs', 'annual', preliminary: true))
 
 # Financials as reported
 puts(finnhub_client.financials_reported({symbol: 'AAPL', freq: 'annual'}))
