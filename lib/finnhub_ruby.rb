@@ -262,6 +262,10 @@ module FinnhubRuby
       get('/company-news', { symbol: symbol, from: from, to: to })
     end
 
+    def stock_newsroom(symbol, from: nil, to: nil)
+      get('/stock/newsroom', { symbol: symbol, from: from, to: to }.compact)
+    end
+
     def news_sentiment(symbol)
       get('/news-sentiment', { symbol: symbol })
     end
