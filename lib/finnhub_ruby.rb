@@ -314,6 +314,10 @@ module FinnhubRuby
       get('/etf/holdings', { symbol: symbol, isin: isin, skip: skip, date: date }.compact)
     end
 
+    def etf_allocation(symbol: nil, isin: nil)
+      get('/etf/allocation', { symbol: symbol, isin: isin }.compact)
+    end
+
     def etfs_sector_exp(symbol)
       get('/etf/sector', { symbol: symbol })
     end
