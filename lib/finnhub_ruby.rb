@@ -182,6 +182,22 @@ module FinnhubRuby
       get('/stock/eps-estimate', { symbol: symbol, freq: freq }.compact)
     end
 
+    def company_net_income_estimates(symbol, freq: 'quarterly')
+      get('/stock/net-income-estimate', { symbol: symbol, freq: freq }.compact)
+    end
+
+    def company_pretax_income_estimates(symbol, freq: 'quarterly')
+      get('/stock/pretax-income-estimate', { symbol: symbol, freq: freq }.compact)
+    end
+
+    def company_gross_income_estimates(symbol, freq: 'quarterly')
+      get('/stock/gross-income-estimate', { symbol: symbol, freq: freq }.compact)
+    end
+
+    def company_dps_estimates(symbol, freq: 'quarterly')
+      get('/stock/dps-estimate', { symbol: symbol, freq: freq }.compact)
+    end
+
     def exchange
       get('/stock/exchange')
     end
