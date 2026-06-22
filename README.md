@@ -247,7 +247,16 @@ puts(finnhub_client.company_earnings_quality_score('AAPL', 'quarterly'))
 puts(finnhub_client.crypto_profile('BTC'))
 
 # EBITDA Estimates
-puts(finnhub_client.company_ebitda_estimates('AAPL', {freq: 'quarterly'}))
+puts(finnhub_client.company_ebitda_estimates('AAPL', freq: 'quarterly'))
+
+# FCF Estimates
+puts(finnhub_client.company_fcf_estimates('AAPL', freq: 'annual'))
+
+# CapEx Estimates
+puts(finnhub_client.company_capex_estimates('AAPL', freq: 'annual'))
+
+# OCF Estimates
+puts(finnhub_client.company_ocf_estimates('AAPL', freq: 'annual'))
 
 # EBIT Estimates
 puts(finnhub_client.company_ebit_estimates('TSLA', {freq: 'quarterly'}))

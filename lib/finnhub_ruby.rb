@@ -174,6 +174,18 @@ module FinnhubRuby
       get('/stock/ebitda-estimate', { symbol: symbol, freq: freq }.compact)
     end
 
+    def company_fcf_estimates(symbol, freq: nil)
+      get('/stock/fcf-estimate', { symbol: symbol, freq: freq }.compact)
+    end
+
+    def company_capex_estimates(symbol, freq: nil)
+      get('/stock/capex-estimate', { symbol: symbol, freq: freq }.compact)
+    end
+
+    def company_ocf_estimates(symbol, freq: nil)
+      get('/stock/ocf-estimate', { symbol: symbol, freq: freq }.compact)
+    end
+
     def company_ebit_estimates(symbol, freq: nil)
       get('/stock/ebit-estimate', { symbol: symbol, freq: freq }.compact)
     end
