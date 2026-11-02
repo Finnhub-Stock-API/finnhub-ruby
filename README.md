@@ -1,7 +1,7 @@
 # finnhub-ruby
 - API documentation: https://finnhub.io/docs/api
 - API version: 1.0.0
-- Package version: 2.0.0
+- Package version: 2.0.7
 
 ## Installation
 https://rubygems.org/gems/finnhub_ruby
@@ -146,6 +146,9 @@ puts(finnhub_client.pattern_recognition('AAPL', 'D'))
 
 # Price target
 puts(finnhub_client.price_target('AAPL'))
+
+# Historical price target
+puts(finnhub_client.historical_price_target('AAPL'))
 
 # Quote
 puts(finnhub_client.quote('AAPL'))

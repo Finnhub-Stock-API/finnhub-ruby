@@ -134,6 +134,10 @@ module FinnhubRuby
       get('/stock/price-target', { symbol: symbol })
     end
 
+    def historical_price_target(symbol)
+      get('/stock/historical-price-target', { symbol: symbol })
+    end
+
     def upgrade_downgrade(symbol: nil, from: nil, to: nil)
       get('/stock/upgrade-downgrade', { symbol: symbol, from: from, to: to }.compact)
     end
